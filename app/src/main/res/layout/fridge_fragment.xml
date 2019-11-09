@@ -4,8 +4,193 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FridgeFragment">
+    tools:context="com.hci.cardtest.ui.DeviceMenu.Fridge.FridgeFragment">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="594dp"
+
+        >
+
+        <RelativeLayout
+            android:id="@+id/FridgeImageLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:orientation="vertical"
+
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/FridgeTemperatureTitle"
+                    android:textAlignment="center"
+                  />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:scaleType="centerInside"
+                        android:tint="@color/colorPrimaryDark"
+                        android:src="@drawable/ic_white_circle" />
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="@color/colorPrimary"
+                        android:id="@+id/FridgeViewTemp"
+                        android:textSize="25sp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/FridgeImage"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/ic_fridge"
+
+                android:textAlignment="center"
+                android:tint="@color/Black" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/FreezerTemperatureTitle"
+                    android:textAlignment="center"
+                    />
+
+                <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerInside"
+                    android:tint="@color/colorPrimaryDark"
+                    android:src="@drawable/ic_white_circle" />
+
+
+                <TextView
+                    android:id="@+id/FridgeViewFreezerTemp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="25sp" />
+            </RelativeLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/FridgeTextTemperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/FridgeTemperatureTitle"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/FridgeImageLayout"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="10dp"
+             />
+
+        <SeekBar
+            android:id="@+id/FridgeSlidierTemperature"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:max="6"
+            android:progress="3"
+            app:layout_constraintLeft_toRightOf="@+id/FridgeTextTemperature"
+            app:layout_constraintTop_toTopOf="@id/FridgeTextTemperature"
+            app:layout_constraintRight_toRightOf="parent"
+
+            />
+
+        <TextView
+            android:id="@+id/FridgeTextFreezer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/FreezerTemperatureTitle"
+            app:layout_constraintTop_toBottomOf="@id/FridgeTextTemperature"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+
+        <SeekBar
+            android:id="@+id/FridgeSliderFreezer"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="0dp"
+            app:layout_constraintLeft_toRightOf="@id/FridgeTextFreezer"
+            app:layout_constraintTop_toTopOf="@id/FridgeTextFreezer"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_height="wrap_content"
+            android:max="12"
+            android:progress="3"
+            />
+
+
+        <TextView
+            android:id="@+id/FridgeMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/FridgeMode"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/FridgeTextFreezer"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="40dp"
+            />
+
+        <Spinner
+            android:id="@+id/FridgeModeDDL"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:entries="@array/FridgeModeOptions"
+            android:prompt="@string/FridgeSelectMode"
+            app:layout_constraintLeft_toRightOf="@id/FridgeMode"
+            app:layout_constraintRight_toRightOf="parent"
+
+
+            app:layout_constraintTop_toTopOf="@id/FridgeMode" />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </FrameLayout>

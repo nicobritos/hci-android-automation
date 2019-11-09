@@ -1,4 +1,4 @@
-package com.hci.cardtest;
+package com.hci.cardtest.ui.DeviceMenu.Fridge;
 
 import androidx.lifecycle.ViewModelProviders;
 
@@ -23,7 +23,7 @@ public class FridgeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fridge_fragment, container, false);
+        return inflater.inflate(com.hci.cardtest.R.layout.fridge_fragment, container, false);
     }
 
     @Override

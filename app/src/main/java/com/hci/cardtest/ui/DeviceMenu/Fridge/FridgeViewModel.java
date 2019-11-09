@@ -1,4 +1,4 @@
-package com.hci.cardtest;
+package com.hci.cardtest.ui.DeviceMenu.Fridge;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
