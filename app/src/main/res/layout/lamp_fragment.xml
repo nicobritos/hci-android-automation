@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:pikolo="http://schemas.android.com/apk/res-auto"
-    tools:context="com.hci.cardtest.ui.DeviceMenu.Lamp.LampFragment">
+    tools:context="com.hci.StartIndustries.ui.DeviceMenu.Lamp.LampFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

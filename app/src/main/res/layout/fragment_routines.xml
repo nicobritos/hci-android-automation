@@ -11,7 +11,7 @@
 
     <fragment
         android:id="@+id/fragment"
-        android:name="com.hci.cardtest.ui.DeviceMenu.Door.DoorMenuFragment"
+        android:name="com.hci.StartIndustries.ui.DeviceMenu.Fridge.FridgeFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
          />
