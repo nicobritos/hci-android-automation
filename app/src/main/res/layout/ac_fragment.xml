@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.hci.StarkIndustries.ui.DeviceMenu.Oven.OvenFragment">
+    tools:context="com.hci.StarkIndustries.ui.DeviceMenu.AC.ACFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -12,29 +12,31 @@
         >
 
         <RelativeLayout
-            android:id="@+id/OvenImageLayout"
+            android:id="@+id/ACImageLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             >
 
             <Switch
-                android:id="@+id/OvenPower"
+                android:id="@+id/ACPower"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/ACPowerText"
                 android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:text="@string/OvenTitle"
                 android:layout_marginLeft="20dp"
+                android:layout_centerVertical="true"
                 />
 
+
             <ImageView
-                android:id="@+id/OvenImage"
-                android:layout_width="150dp"
+                android:id="@+id/ACImage"
+                android:layout_width="200dp"
                 android:layout_height="150dp"
-                android:src="@drawable/ic_oven_on"
+                android:src="@drawable/ic_air_conditioner_on"
                 android:tint="@color/Black"
+                android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 />
 
@@ -50,7 +52,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/OvenTemperatureTitle"
+                    android:text="@string/ACTemperatureTitle"
                     android:textAlignment="center"
                     />
 
@@ -70,7 +72,7 @@
                         android:layout_width="85dp"
                         android:layout_height="85dp"
                         android:gravity="center"
-                        android:id="@+id/OventTemperatureView"
+                        android:id="@+id/ACTemperatureView"
                         android:text="0"
                         android:textColor="@color/colorPrimary"
                         android:textSize="25sp"
@@ -81,101 +83,122 @@
 
         </RelativeLayout>
 
+
         <TextView
-            android:id="@+id/OvenTemperatureTitle"
+            app:layout_constraintTop_toBottomOf="@id/ACImageLayout"
+            android:id="@+id/ACTemperatureTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/OvenTemperatureTitle"
-            app:layout_constraintTop_toBottomOf="@+id/OvenImageLayout"
+            android:text="@string/ACTemperatureTitle"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="40dp"
-
             />
 
         <SeekBar
-            android:id="@+id/OvenTemperatureSlider"
+            android:id="@+id/ACTemperatureSlider"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="0in"
+            android:layout_height="wrap_content"
+            android:max="20"
+            android:progress="3"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/ACTemperatureTitle"
+            app:layout_constraintTop_toTopOf="@id/ACTemperatureTitle"
+            />
+
+
+
+        <TextView
+            android:id="@+id/ACModeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ACModeTitle"
+            app:layout_constraintTop_toBottomOf="@id/ACTemperatureTitle"
+            app:layout_constraintLeft_toLeftOf="@id/ACTemperatureTitle"
+            android:layout_marginTop="40dp"
+            />
+
+        <Spinner
+            android:id="@+id/ACModeDDL"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:max="140"
-            android:progress="40"
-            app:layout_constraintTop_toTopOf="@+id/OvenTemperatureTitle"
-            app:layout_constraintLeft_toRightOf="@id/OvenTemperatureTitle"
+            app:layout_constraintTop_toTopOf="@id/ACModeTitle"
+            app:layout_constraintLeft_toRightOf="@id/ACModeTitle"
             app:layout_constraintRight_toRightOf="parent"
+            android:entries="@array/ACModeList"
+
+            />
+        <TextView
+            android:id="@+id/ACFanSpeedTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ACFanSpeedTitle"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintTop_toBottomOf="@id/ACModeTitle"
+            />
+
+
+        <Spinner
+            android:id="@+id/ACFanSpeedDDL"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/ACFanSpeedTitle"
+            app:layout_constraintTop_toTopOf="@id/ACFanSpeedTitle"
+            android:entries="@array/ACFanSpeedList"
+            />
+
+        <TextView
+            android:id="@+id/ACHorizontalTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ACHorizontalTitle"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="15dp"
+            app:layout_constraintTop_toBottomOf="@id/ACFanSpeedTitle"
+            android:layout_marginTop="40dp"
+            />
+
+        <Spinner
+            android:id="@+id/ACHorizontalDDL"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/ACHorizontalTitle"
+            app:layout_constraintLeft_toRightOf="@id/ACHorizontalTitle"
+            app:layout_constraintRight_toRightOf="parent"
+            android:entries="@array/ACHorizontalMovementList"
             />
 
 
         <TextView
-            android:id="@+id/OvenGrillTitle"
+            android:id="@+id/ACVerticalTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/OvenGrillModeTitle"
-            app:layout_constraintTop_toBottomOf="@+id/OvenTemperatureTitle"
+            android:text="@string/ACVerticalTitle"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginLeft="15dp"
+            app:layout_constraintTop_toBottomOf="@id/ACHorizontalTitle"
             android:layout_marginTop="40dp"
-
             />
 
         <Spinner
-            android:id="@+id/OvenGrillDDL"
+            android:id="@+id/ACVerticalDDL"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toRightOf="@id/OvenGrillTitle"
-            app:layout_constraintTop_toTopOf="@id/OvenGrillTitle"
+            app:layout_constraintTop_toTopOf="@id/ACVerticalTitle"
+            app:layout_constraintLeft_toRightOf="@id/ACVerticalTitle"
             app:layout_constraintRight_toRightOf="parent"
-            android:entries="@array/OvenGrillModeDDL"
+            android:entries="@array/ACVerticalMovementList"
             />
-
-
-        <TextView
-            android:id="@+id/OvenHeatSourceTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/OvenHeatSourceTitle"
-            app:layout_constraintTop_toBottomOf="@+id/OvenGrillTitle"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="40dp"
-
-            />
-
-        <Spinner
-            android:id="@+id/OvenHeatSourceDDL"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toRightOf="@id/OvenHeatSourceTitle"
-            app:layout_constraintTop_toTopOf="@id/OvenHeatSourceTitle"
-            app:layout_constraintRight_toRightOf="parent"
-            android:entries="@array/OvenHeatSourceDDL"
-            />
-
-        <TextView
-            android:id="@+id/OvenConvectionTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/OvenConvectionMode"
-            app:layout_constraintTop_toBottomOf="@+id/OvenHeatSourceTitle"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="40dp"
-
-            />
-
-        <Spinner
-            android:id="@+id/OvenConvectionDDL"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toRightOf="@id/OvenConvectionTitle"
-            app:layout_constraintTop_toTopOf="@id/OvenConvectionTitle"
-            app:layout_constraintRight_toRightOf="parent"
-            android:entries="@array/OvenConvectionModeDDL"
-            />
-
 
 
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </FrameLayout>

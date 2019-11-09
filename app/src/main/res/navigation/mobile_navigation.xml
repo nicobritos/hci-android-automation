@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.hci.StartIndustries.ui.home.HomeFragment"
+        android:name="com.hci.StarkIndustries.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.hci.StartIndustries.ui.favourites.FavouritesFragment"
+        android:name="com.hci.StarkIndustries.ui.favourites.FavouritesFragment"
         android:label="@string/title_favorites"
         tools:layout="@layout/fragment_favourites" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.hci.StartIndustries.ui.Routines.RoutinesFragment"
+        android:name="com.hci.StarkIndustries.ui.Routines.RoutinesFragment"
         android:label="@string/title_routines"
         tools:layout="@layout/fragment_routines" />
 </navigation>
