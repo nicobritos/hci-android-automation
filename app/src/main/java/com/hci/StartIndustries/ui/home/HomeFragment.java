@@ -1,4 +1,4 @@
-package com.hci.cardtest.ui.home;
+package com.hci.StartIndustries.ui.home;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -14,10 +14,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.hci.cardtest.Models.DeviceType;
-import com.hci.cardtest.Models.CommonDeviceModel;
-import com.hci.cardtest.Models.RoutineModel;
-import com.hci.cardtest.R;
+import com.hci.StartIndustries.Models.CommonDeviceModel;
+import com.hci.StartIndustries.Models.DeviceType;
+import com.hci.StartIndustries.Models.RoutineModel;
+import com.hci.StarkIndustries.R;
 
 import java.util.ArrayList;
 import java.util.List;

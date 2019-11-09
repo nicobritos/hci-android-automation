@@ -1,4 +1,4 @@
-package com.hci.cardtest.ui.home;
+package com.hci.StartIndustries.ui.home;
 
 import android.content.Context;
 import android.util.Log;
@@ -12,8 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.hci.cardtest.Models.RoutineModel;
-import com.hci.cardtest.R;
+import com.hci.StartIndustries.Models.RoutineModel;
+import com.hci.StarkIndustries.R;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.hci.cardtest.ui.favourites;
+package com.hci.StartIndustries.ui.favourites;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
