@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="SpeakerGenreList">
+        <item>
+            Rock
+        </item>
+        <item>
+            Pop
+        </item>
+        <item>
+            Soul
+        </item>
+    </string-array>
+    <string name="SpeakerModeTitle">Mode</string>
+    <string name="SpeakerNoSong">Press play to start listening to music</string>
+</resources>

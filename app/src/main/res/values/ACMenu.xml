@@ -74,6 +74,7 @@
     <string name="ACPowerText">AC</string>
     <string name="ACModeTitle">Mode</string>
     <string name="ACFanSpeedTitle">Fan Speed</string>
+
 </resources>
 
 

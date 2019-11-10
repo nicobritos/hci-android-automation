@@ -1,4 +1,4 @@
-package com.hci.StartIndustries.ui.home;
+package com.hci.StarkIndustries.ui.home;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -14,9 +14,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.hci.StartIndustries.Models.CommonDeviceModel;
-import com.hci.StartIndustries.Models.DeviceType;
-import com.hci.StartIndustries.Models.RoutineModel;
+import com.hci.StarkIndustries.Models.CommonDeviceModel;
+import com.hci.StarkIndustries.Models.DeviceType;
+import com.hci.StarkIndustries.Models.RoutineModel;
 import com.hci.StarkIndustries.R;
 
 import java.util.ArrayList;

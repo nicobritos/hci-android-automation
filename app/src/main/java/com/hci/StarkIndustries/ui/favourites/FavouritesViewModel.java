@@ -1,4 +1,4 @@
-package com.hci.StartIndustries.ui.favourites;
+package com.hci.StarkIndustries.ui.favourites;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

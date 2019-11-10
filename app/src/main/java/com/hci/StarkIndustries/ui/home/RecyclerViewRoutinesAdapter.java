@@ -1,4 +1,4 @@
-package com.hci.StartIndustries.ui.home;
+package com.hci.StarkIndustries.ui.home;
 
 import android.content.Context;
 import android.util.Log;
@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.hci.StartIndustries.Models.RoutineModel;
+import com.hci.StarkIndustries.Models.RoutineModel;
 import com.hci.StarkIndustries.R;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.hci.StartIndustries.ui.home;
+package com.hci.StarkIndustries.ui.home;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

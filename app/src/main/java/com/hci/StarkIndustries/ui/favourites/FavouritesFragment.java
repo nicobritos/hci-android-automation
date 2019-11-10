@@ -1,4 +1,4 @@
-package com.hci.StartIndustries.ui.favourites;
+package com.hci.StarkIndustries.ui.favourites;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,7 +16,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.hci.StarkIndustries.R;
-import com.hci.StartIndustries.ui.DeviceMenu.DeviceMenuContainerFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.DeviceMenuContainerFragment;
 
 public class FavouritesFragment extends Fragment {
 
