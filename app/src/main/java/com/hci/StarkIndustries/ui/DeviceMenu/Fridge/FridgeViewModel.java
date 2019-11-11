@@ -12,12 +12,16 @@ public class FridgeViewModel extends ViewModel {
     private String id;
     private static final String TAG = "FridgeViewModel";
 
+    // temp
+    private FridgeModel model;
+
 
     public LiveData<FridgeModel> getModel(String id){
 
         if(mFridge == null){
             mFridge = new MutableLiveData<>();
             this.id =id;
+            model = new  FridgeModel("Heladera",id,"ROOM 1");
             loadModel();
         }
 
@@ -25,33 +29,26 @@ public class FridgeViewModel extends ViewModel {
     }
 
     private void loadModel(){
-        mFridge.setValue(new FridgeModel("Heladera",id,"ROOM 1"));
+        mFridge.setValue(model);
     }
 
-    public boolean setTemperature(int temperature){
-        if(id.isEmpty())
-            return false;
-        // IMPLEMENTAR
+    public void setTemperature(int temperature){
 
-        return true;
-    }
-
-
-    public boolean setFreezerTemperature(int temperature){
-        if(id.isEmpty())
-            return false;
-        // IMPLEMENTAR
-
-        return true;
+       model.temperature = temperature;
+       loadModel();
     }
 
 
-    public boolean setMode(int mode){
-        if(id.isEmpty())
-            return false;
-        // IMPLEMENTAR
+    public void setFreezerTemperature(int temperature){
+       model.freezerTemperature = temperature;
+       loadModel();
+    }
 
-        return true;
+
+    public void setMode(int mode){
+
+        model.mode = mode;
+        loadModel();
     }
 
 }

@@ -13,7 +13,10 @@ public class LampViewModel extends ViewModel {
 
     private static final String TAG = "LampViewModel";
     private MutableLiveData<LampModel> mLamp;
-    private String id;
+    private String id = "";
+
+    // temp
+    private LampModel model;
 
     public LiveData<LampModel> getModel(String id){
 
@@ -21,49 +24,52 @@ public class LampViewModel extends ViewModel {
             Log.d(TAG, "getModel: Loading Model. ID: "+ id);
             this.id = id;
             mLamp = new MutableLiveData<LampModel>();
-            loadModel(id);
+            model = new LampModel("Lampara",id,"Room1");
+            loadModel();
         }
 
         return mLamp;
     }
 
-    private void loadModel(String id){
+    private void loadModel(){
         // Aca habria que hablar con la API
-        mLamp.setValue(new LampModel("Lampara",id,"Room1", DeviceType.Lamp));
+        mLamp.setValue(model);
     }
 
     public boolean setIntensity(int intensity){
-        if (id.isEmpty())
-            return false;
+
 
         Log.d(TAG, "setIntensity to " + intensity);
 
+        model.intensity = intensity;
         // API
-        loadModel(id);
+        loadModel();
         return true;
     }
 
 
     public boolean setColor(int color){
-        if (id.isEmpty())
-            return false;
+
 
         Log.d(TAG, "setColor to 0X" + String.format("%x",color));
 
+        model.color = color;
+
         // API
-        loadModel(id);
+        loadModel();
         return true;
     }
 
 
     public boolean setEnabled(boolean enabled){
-        if (id.isEmpty())
-            return false;
+
 
         Log.d(TAG, "setEnabled to " + enabled);
 
+        model.isOn = enabled;
+
         // API
-        loadModel(id);
+        loadModel();
         return true;
     }
 

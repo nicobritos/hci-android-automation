@@ -1,4 +1,4 @@
-package com.hci.StarkIndustries.ui.home;
+package com.hci.StarkIndustries.ui.RecycleViewAdapters;
 
 import android.content.Context;
 import android.util.Log;

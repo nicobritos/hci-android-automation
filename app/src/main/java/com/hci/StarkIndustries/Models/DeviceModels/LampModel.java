@@ -11,11 +11,11 @@ public class LampModel extends CommonDeviceModel {
     public boolean isOn;
 
 
-    public LampModel(String name, String id, String room, DeviceType type) {
-        super(name, id, room, type);
+    public LampModel(String name, String id, String room) {
+        super(name, id, room, DeviceType.Lamp);
 
         isOn = false;
         intensity = 50;
-        color = 0x0;
+        color = 0xF012DA;
     }
 }

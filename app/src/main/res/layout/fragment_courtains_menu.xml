@@ -6,10 +6,13 @@
 
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:id="@+id/curtainsImage"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="20dp"
         android:tintMode="src_atop"
         android:tint="@color/Black"
         />
@@ -23,7 +26,6 @@
         app:layout_constraintTop_toBottomOf="@id/curtainsImage"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintWidth_percent=".5"
 
         />
 

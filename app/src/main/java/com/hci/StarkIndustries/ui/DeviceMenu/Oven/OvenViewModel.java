@@ -13,11 +13,16 @@ public class OvenViewModel extends ViewModel {
 
     private static final String TAG = "OvenViewModel";
 
+    // TEMp
+
+    private OvenModel model;
+
     public LiveData<OvenModel> getModel(String Id){
 
         if(mOven == null){
             mOven = new MutableLiveData<>();
             this.id = Id;
+            model =new OvenModel("Horno",id,"ROOM 1");
             loadModel();
         }
 
@@ -25,7 +30,27 @@ public class OvenViewModel extends ViewModel {
     }
 
     private void loadModel(){
-        mOven.setValue(new OvenModel("Horno",id,"ROOM 1"));
+        mOven.setValue(model);
+    }
+
+
+    void setTemperature(int temperature){
+        model.temperature = temperature;
+        loadModel();
+    }
+
+    public void setPower(boolean isChecked) {
+        model.isOn = isChecked;
+        loadModel();
+    }
+
+    public void setConvectionMode(int position) {
+    }
+
+    public void setGrillMode(int position) {
+    }
+
+    public void setHeatSource(int position) {
     }
 
     // Implementar funciones para afectar al modelo

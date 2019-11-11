@@ -4,6 +4,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.graphics.PorterDuff;
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -28,8 +29,15 @@ public class LampFragment extends Fragment {
 
     private LampViewModel mViewModel;
 
-    public static LampFragment newInstance() {
-        return new LampFragment();
+    protected LampFragment(){}
+
+    public static LampFragment newInstance(String id) {
+
+        LampFragment f = new LampFragment();
+        Bundle args = new Bundle();
+        args.putString("id",id);
+        f.setArguments(args);
+        return f;
     }
 
     @Override
@@ -42,17 +50,14 @@ public class LampFragment extends Fragment {
         final SeekBar seekBar = root.findViewById(R.id.LampSeekBar);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if(fromUser){
-                    mViewModel.setIntensity(progress);
-                }
-            }
-
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {}
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {}
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {}
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                mViewModel.setIntensity(seekBar.getProgress());
+            }
         });
 
         final Switch switch_ = root.findViewById(R.id.LampSwitch);
@@ -60,8 +65,6 @@ public class LampFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 mViewModel.setEnabled(isChecked);
-                seekBar.setEnabled(isChecked);
-
             }
         });
 
@@ -74,25 +77,17 @@ public class LampFragment extends Fragment {
                 if(switch_.isChecked()) {
                     imageView.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
                     mViewModel.setColor(color);
-                }else {
-                    mViewModel.getModel("").observe(getViewLifecycleOwner(), new Observer<LampModel>() {
-                        @Override
-                        public void onChanged(LampModel lampModel) {
-                            colorPicker.setColor(lampModel.color);
-                        }
-                    });
+                }
+                else{
+                    LampModel model = mViewModel.getModel(getID()).getValue();
+                    imageView.getBackground().setColorFilter(model.color, PorterDuff.Mode.MULTIPLY);
+                    colorPicker.setColor(model.color);
 
                 }
-
             }
         });
 
-
-
-
-
-
-
+        imageView.getBackground().setColorFilter(colorPicker.getSolidColor(), PorterDuff.Mode.MULTIPLY);
 
         return root;
     }
@@ -102,25 +97,27 @@ public class LampFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(LampViewModel.class);
 
-        mViewModel.getModel("").observe(this, new Observer<LampModel>() {
+        mViewModel.getModel(getID()).observe(this, new Observer<LampModel>() {
             @Override
             public void onChanged(LampModel lampModel) {
-                ((ImageView)getView().findViewById(R.id.imageView))
-                        .getBackground()
-                        .setColorFilter(lampModel.color, PorterDuff.Mode.MULTIPLY);
+                ((SeekBar)getView().findViewById(R.id.LampSeekBar)).setEnabled(lampModel.isOn);
 
                 ((Switch)getView().findViewById(R.id.LampSwitch)).setChecked(lampModel.isOn);
 
                 ((SeekBar)getView().findViewById(R.id.LampSeekBar)).setProgress(lampModel.intensity);
+
                 ((RGBColorPicker)getView().findViewById(R.id.colorPicker)).setColor(lampModel.color);
 
-                if(lampModel.isOn){
-                    ((SeekBar)getView().findViewById(R.id.LampSeekBar)).setEnabled(false);
-
-                }
+                ((ImageView) getView().findViewById(R.id.imageView)).
+                        getBackground().setTint(lampModel.color);
             }
         });
-        // TODO: Use the ViewModel
+
     }
+
+    private String getID(){
+        return getArguments().getString("id");
+    }
+
 
 }

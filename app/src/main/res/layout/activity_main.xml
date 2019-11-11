@@ -33,13 +33,7 @@
         app:layout_constraintVertical_bias="1.0"
         app:navGraph="@navigation/mobile_navigation" />
 
-    <FrameLayout
-        android:id="@+id/MainFragmentContainer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/nav_view"
-        android:background="@color/colorPrimary"
-         />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

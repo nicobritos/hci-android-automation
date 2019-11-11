@@ -28,8 +28,16 @@ public class ACFragment extends Fragment {
 
     private AcViewModel mViewModel;
 
-    public static ACFragment newInstance() {
-        return new ACFragment();
+    protected ACFragment(){}
+
+    public static ACFragment newInstance(String id) {
+        ACFragment f = new ACFragment();
+
+        Bundle args = new Bundle();
+        args.putString("id",id);
+        f.setArguments(args);
+
+        return f;
     }
 
     @Override
@@ -45,12 +53,13 @@ public class ACFragment extends Fragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 tempView.setText(String.valueOf(18 + progress));
-                // API
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {}
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {}
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                mViewModel.setTemperature(18 + seekBar.getProgress());
+            }
         });
 
         final Spinner modeDDL = root.findViewById(R.id.ACModeDDL);
@@ -58,25 +67,22 @@ public class ACFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 // API
+                mViewModel.selectMode(position);
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
+            public void onNothingSelected(AdapterView<?> parent) {}
         });
 
         final Spinner fanSpeedDDL = root.findViewById(R.id.ACFanSpeedDDL);
         fanSpeedDDL.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // API
+                mViewModel.selectFanSpeed(position);
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
+            public void onNothingSelected(AdapterView<?> parent) {}
         });
 
         final Spinner horizMovDDL = root.findViewById(R.id.ACHorizontalDDL);
@@ -84,49 +90,31 @@ public class ACFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 // API
+                mViewModel.selectHorizontalMovement(position);
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
+            public void onNothingSelected(AdapterView<?> parent) {}
         });
 
         final Spinner vertMovDDL = root.findViewById(R.id.ACVerticalDDL);
         vertMovDDL.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // API
+                mViewModel.selectVerticalMovement(position);
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
+            public void onNothingSelected(AdapterView<?> parent) {}
         });
 
         Switch power = root.findViewById(R.id.ACPower);
         power.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                ImageView imageView = getView().findViewById(R.id.ACImage);
-
-                if(isChecked)
-                    imageView.setImageResource(R.drawable.ic_air_conditioner_on);
-                else
-                    imageView.setImageResource(R.drawable.ic_air_conditioner_off);
-
-                tempSlider.setEnabled(isChecked);
-                fanSpeedDDL.setEnabled(isChecked);
-                horizMovDDL.setEnabled(isChecked);
-                modeDDL.setEnabled(isChecked);
-                vertMovDDL.setEnabled(isChecked);
-                //API
+                mViewModel.setPower(isChecked);
             }
         });
-
-
-
 
         return root;
     }
@@ -136,7 +124,7 @@ public class ACFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(AcViewModel.class);
 
-        mViewModel.getModel("").observe(this, new Observer<ACModel>() {
+        mViewModel.getModel(getID()).observe(this, new Observer<ACModel>() {
             @Override
             public void onChanged(ACModel acModel) {
 
@@ -161,11 +149,29 @@ public class ACFragment extends Fragment {
                 Switch power = getView().findViewById(R.id.ACPower);
                 power.setChecked(acModel.power);
 
+                ImageView imageView = getView().findViewById(R.id.ACImage);
+
+                if(acModel.power)
+                    imageView.setImageResource(R.drawable.ic_air_conditioner_on);
+                else
+                    imageView.setImageResource(R.drawable.ic_air_conditioner_off);
+
+                tempSlider.setEnabled(acModel.power);
+                fanSpeedDDL.setEnabled(acModel.power);
+                horizMovDDL.setEnabled(acModel.power);
+                modeDDL.setEnabled(acModel.power);
+                vertMovDDL.setEnabled(acModel.power);
+
             }
         });
 
 
 
     }
+
+    private String getID(){
+        return getArguments().getString("id");
+    }
+
 
 }

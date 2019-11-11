@@ -10,20 +10,28 @@ import com.hci.StarkIndustries.Models.DeviceType;
 public class CurtainsViewModel extends ViewModel {
 
     private MutableLiveData<CurtainsModel> mCurtains;
+    private CurtainsModel model;
+    private String id = "";
 
     public LiveData<CurtainsModel> getModel(String id){
 
         if(mCurtains == null){
             mCurtains = new MutableLiveData<CurtainsModel>();
-            loadModel(id);
+            model = new CurtainsModel("Cortinitas",id,"Room1");
+            loadModel();
         }
 
         return mCurtains;
     }
 
-    private void loadModel(String id){
+    private void loadModel(){
         // Aca habria que hablar con la API
-        mCurtains.setValue(new CurtainsModel("Cortinitas",id,"Room1", DeviceType.Curtains));
+        mCurtains.setValue(model);
+    }
+
+    public void setState(boolean state){
+        model.isOpen = state;
+        loadModel();
     }
 
 

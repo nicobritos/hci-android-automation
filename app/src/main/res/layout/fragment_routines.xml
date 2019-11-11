@@ -8,11 +8,40 @@
     xmlns:pikolo="http://schemas.android.com/apk/res-auto"
     >
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ABRIR"
+        android:id="@+id/BotonAbrir"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ABRIR2"
+        android:id="@+id/BotonAbrir2"
+        app:layout_constraintLeft_toRightOf="@+id/BotonAbrir"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
-    <fragment
-        android:id="@+id/fragment"
-        android:name="com.hci.StarkIndustries.ui.DeviceMenu.Speaker.SpeakerFragment"
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cerrar"
+        android:id="@+id/BotonCerrar"
+        app:layout_constraintLeft_toRightOf="@+id/BotonAbrir2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <FrameLayout
+        android:id="@+id/fragmentContainer2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-         />
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/BotonAbrir"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

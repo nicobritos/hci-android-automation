@@ -24,8 +24,15 @@ public class FridgeFragment extends Fragment {
 
     private FridgeViewModel mViewModel;
 
-    public static FridgeFragment newInstance() {
-        return new FridgeFragment();
+    protected FridgeFragment(){}
+
+    public static FridgeFragment newInstance(String id) {
+
+        FridgeFragment f = new FridgeFragment();
+        Bundle arg = new Bundle();
+        arg.putString("id", id);
+        f.setArguments(arg);
+        return  f;
     }
 
     @Override
@@ -38,15 +45,17 @@ public class FridgeFragment extends Fragment {
         SliderTemp.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                ((TextView)getView().findViewById(R.id.FridgeViewTemp)).setText(String.valueOf(2 +progress));
-
+                if(fromUser)
+                    ((TextView)getView().findViewById(R.id.FridgeViewTemp)).setText(String.valueOf(2 +progress));
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {}
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {}
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                mViewModel.setTemperature(2 + seekBar.getProgress());
+            }
         });
 
         SeekBar SliderFreezer = root.findViewById(R.id.FridgeSliderFreezer);
@@ -54,14 +63,17 @@ public class FridgeFragment extends Fragment {
         SliderFreezer.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                ((TextView)getView().findViewById(R.id.FridgeViewFreezerTemp)).setText(String.valueOf(-20 +progress));
+                if(fromUser)
+                    ((TextView)getView().findViewById(R.id.FridgeViewFreezerTemp)).setText(String.valueOf(-20 +progress));
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {}
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {}
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                mViewModel.setFreezerTemperature(-20 + seekBar.getProgress());
+            }
         });
 
         Spinner ddl = root.findViewById(R.id.FridgeModeDDL);
@@ -87,7 +99,7 @@ public class FridgeFragment extends Fragment {
         mViewModel = ViewModelProviders.of(this).get(FridgeViewModel.class);
         // TODO: Use the ViewModel
 
-        mViewModel.getModel("").observe(this, new Observer<FridgeModel>() {
+        mViewModel.getModel(getID()).observe(this, new Observer<FridgeModel>() {
             @Override
             public void onChanged(FridgeModel fridgeModel) {
 
@@ -99,17 +111,22 @@ public class FridgeFragment extends Fragment {
                 TextView text2 = (getView().findViewById(R.id.FridgeViewFreezerTemp));
                 text2.setText(String.valueOf(fridgeModel.freezerTemperature));
 
-                //SeekBar seekBar2 =(getView().findViewById(R.id.FridgeSliderFreezer));
-                //seekBar2.setProgress(fridgeModel.freezerTemperature,true);
+                SeekBar seekBar2 =(getView().findViewById(R.id.FridgeSliderFreezer));
+                seekBar2.setProgress(20 +fridgeModel.freezerTemperature,true);
 
-                //SeekBar seekBar1 = getView().findViewById(R.id.FridgeSlidierTemperature);
-                //seekBar1.setProgress(fridgeModel.temperature,true);
+                SeekBar seekBar1 = getView().findViewById(R.id.FridgeSlidierTemperature);
+                seekBar1.setProgress(fridgeModel.temperature-2,true);
 
             }
         });
 
 
     }
+
+    private String getID(){
+        return getArguments().getString("id");
+    }
+
 
 }
 

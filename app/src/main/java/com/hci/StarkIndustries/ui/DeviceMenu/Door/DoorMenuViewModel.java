@@ -10,13 +10,15 @@ public class DoorMenuViewModel extends ViewModel {
 
     private static final String TAG = "DoorMenuViewModel";
     private MutableLiveData<DoorModel> mModel;
-    private String id;
+    private String id = "";
+    private DoorModel model;
 
     public LiveData<DoorModel> getModel(String id){
 
         if(mModel == null){
             mModel = new MutableLiveData<>();
             this.id = id;
+            model =new DoorModel("Puerta",id,"Room1");
             loadModel();
         }
 
@@ -25,31 +27,32 @@ public class DoorMenuViewModel extends ViewModel {
 
     private void loadModel(){
         // Usar el ID que esta en la clase
-        mModel.setValue(new DoorModel("Puerta",id,"Room1"));
+        mModel.setValue(model);
 
     }
 
     public boolean open(){
-        if(id.isEmpty())
-            return false;
 
-        // Do stuff
+
+        model.isOpen = true;
+
         loadModel();
         return true;
     }
 
     public boolean close(){
-        if(id.isEmpty())
-            return false;
 
+
+        model.isOpen = false;
         // Do stuff
         loadModel();
         return true;
     }
 
     public boolean lock(){
-        if(id.isEmpty())
-            return false;
+
+
+        model.islocked = true;
 
         // Do stuff
         loadModel();
@@ -57,8 +60,9 @@ public class DoorMenuViewModel extends ViewModel {
     }
 
     public boolean unlock(){
-        if(id.isEmpty())
-            return false;
+
+
+        model.islocked = false;
 
         // Do stuff
         loadModel();

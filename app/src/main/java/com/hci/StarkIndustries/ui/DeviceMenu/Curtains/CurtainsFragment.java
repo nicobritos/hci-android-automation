@@ -20,13 +20,15 @@ public class CurtainsFragment extends Fragment {
 
     private CurtainsViewModel viewModel;
 
-    public static CurtainsFragment newInstance() {
+    protected CurtainsFragment(){}
 
-        Bundle args = new Bundle();
+    public static CurtainsFragment newInstance(String id) {
 
-        CurtainsFragment fragment = new CurtainsFragment();
-        fragment.setArguments(args);
-        return fragment;
+        CurtainsFragment f = new CurtainsFragment();
+        Bundle arg = new Bundle();
+        arg.putString("id",id);
+        f.setArguments(arg);
+        return f;
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -35,6 +37,17 @@ public class CurtainsFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_courtains_menu, container,false);
 
+        Button button  = root.findViewById(R.id.curtainsButton);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                CurtainsModel model = viewModel.getModel(getID()).getValue();
+
+                viewModel.setState(!model.isOpen);
+            }
+        });
 
 
         return root;
@@ -46,54 +59,28 @@ public class CurtainsFragment extends Fragment {
 
         CurtainsViewModel model = ViewModelProviders.of(this).get(CurtainsViewModel.class);
 
-        model.getModel("9999").observe(this,new LoadModelObserver(view) );
+        model.getModel(getID()).observe(this, new Observer<CurtainsModel>() {
+            @Override
+            public void onChanged(CurtainsModel curtainsModel) {
 
+                Button button  = getView().findViewById(R.id.curtainsButton);
+                ImageView image = getView().findViewById(R.id.curtainsImage);
 
-
-
-    }
-
-
-
-    private class LoadModelObserver implements Observer<CurtainsModel> {
-
-        private View view;
-        public LoadModelObserver(View view) {
-            this.view = view;
-        }
-
-        @Override
-        public void onChanged(CurtainsModel curtainsModel) {
-
-            Button button  = view.findViewById(R.id.curtainsButton);
-            ImageView image = view.findViewById(R.id.curtainsImage);
-
-            if(curtainsModel.isOpen){
-                image.setImageResource(R.drawable.ic_curtain_open);
-                button.setText("Cerrar");
-            }else {
-                image.setImageResource(R.drawable.ic_curtain_closed);
-                button.setText("Abrir");
-            }
-
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    Button button  = view.findViewById(R.id.curtainsButton);
-                    ImageView image = view.findViewById(R.id.curtainsImage);
-
-                    if(button.getText() == "Abrir"){
-                        button.setText("Cerrar");
-                        image.setImageResource(R.drawable.ic_curtain_open);
-                    }
-                    else{
-                        button.setText("Abrir");
-                        image.setImageResource(R.drawable.ic_curtain_closed);
-                    }
+                if(curtainsModel.isOpen){
+                    image.setImageResource(R.drawable.ic_curtain_open);
+                    button.setText(R.string.CourtainsButtonClose);
+                }else {
+                    image.setImageResource(R.drawable.ic_curtain_closed);
+                    button.setText(R.string.CourtainsButtonOpen);
                 }
-            });
 
-        }
+            }
+        });
     }
+
+
+    private String getID(){
+        return getArguments().getString("id");
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.hci.StarkIndustries.ui.home;
+package com.hci.StarkIndustries.ui.RecycleViewAdapters;
 
 import android.content.Context;
 import android.util.Log;
@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hci.StarkIndustries.Models.CommonDeviceModel;
+import com.hci.StarkIndustries.Models.DeviceType;
 import com.hci.StarkIndustries.R;
 
 import java.util.ArrayList;
@@ -24,10 +25,12 @@ public class RecyclerViewDevicesAdapter extends RecyclerView.Adapter<RecyclerVie
     private static final String TAG = "RecyclerViewDevicesAdapter";
     private List<CommonDeviceModel> devices = new ArrayList<>();
     private Context mContext;
+    private DevicesRecyclerViewClickInteface devicesRecyclerViewClickInteface;
 
-    public RecyclerViewDevicesAdapter(List<CommonDeviceModel> devices, Context mContext) {
+    public RecyclerViewDevicesAdapter(List<CommonDeviceModel> devices,DevicesRecyclerViewClickInteface interf, Context mContext) {
         this.devices = devices;
         this.mContext = mContext;
+        devicesRecyclerViewClickInteface = interf;
     }
 
     @NonNull
@@ -46,15 +49,7 @@ public class RecyclerViewDevicesAdapter extends RecyclerView.Adapter<RecyclerVie
 
         holder.roomName.setText( model.Room);
         holder.deviceName.setText(model.Name);
-        holder.image.setImageResource(R.drawable.ic_home_black_24dp);
-
-        holder.image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "onClick:  Clicked on " + model.Name );
-                Toast.makeText(mContext,devices.get(position).Name,Toast.LENGTH_SHORT).show();
-            }
-        });
+        holder.image.setImageResource(getImageResourcesForDevice(model.type));
 
     }
 
@@ -74,6 +69,37 @@ public class RecyclerViewDevicesAdapter extends RecyclerView.Adapter<RecyclerVie
             image = itemView.findViewById(R.id.DeviceImage);
             deviceName = itemView.findViewById(R.id.DeviceName);
             roomName = itemView.findViewById(R.id.Room);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    devicesRecyclerViewClickInteface.onItemClick(devices.get(getAdapterPosition()));
+                }
+            });
+        }
+
+    }
+
+    private int getImageResourcesForDevice(DeviceType type){
+
+        switch (type){
+
+            case Door:
+                return R.drawable.ic_door_locked;
+            case Speaker:
+                return R.drawable.ic_speaker_on;
+            case Fridge:
+                return R.drawable.ic_fridge;
+            case Curtains:
+                return R.drawable.ic_curtain_open;
+            case Lamp:
+                return R.drawable.ic_lightbulb_on;
+            case AC:
+                return R.drawable.ic_air_conditioner_on;
+            case Oven:
+                return R.drawable.ic_oven_on;
+            default:
+                return R.drawable.ic_help_black_24dp;
         }
     }
 }

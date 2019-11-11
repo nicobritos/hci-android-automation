@@ -32,31 +32,16 @@ public class SpeakerFragment extends Fragment {
 
     private SpeakerViewModel mViewModel;
     private SongTimer songProgressTimer;
-    private Handler handler = new Handler();
 
-    public static SpeakerFragment newInstance() {
-        return new SpeakerFragment();
-    }
+    protected SpeakerFragment(){}
 
-    private void PlaySong(){
-        SpeakerModel model = mViewModel.getModel("").getValue();
+    public static SpeakerFragment newInstance(String id) {
 
-        if(songProgressTimer == null) {
-            songProgressTimer = new SongTimer();
-
-
-            int progress = model.SongTimestamp;
-            int duration = model.SongDuration;
-            songProgressTimer.scheduleAtFixedRate(new SongTimerTask(progress, duration), 0, 1000);
-        }
-
-    }
-
-    private void PauseSong(){
-        if( songProgressTimer != null) {
-            songProgressTimer.cancel();
-            songProgressTimer = null;
-        }
+        SpeakerFragment f = new SpeakerFragment();
+        Bundle arg = new Bundle();
+        arg.putString("id",id);
+        f.setArguments(arg);
+        return  f;
     }
 
     @Override
@@ -73,7 +58,7 @@ public class SpeakerFragment extends Fragment {
         playPauseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                SpeakerModel model = mViewModel.getModel("").getValue();
+                SpeakerModel model = mViewModel.getModel(getID()).getValue();
                 switch (model.playState){
                     case Playing:
                         mViewModel.setPlayState(SpeakerModel.PlayState.Paused);
@@ -155,7 +140,7 @@ public class SpeakerFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(SpeakerViewModel.class);
 
-        mViewModel.getModel("").observe(this, new Observer<SpeakerModel>() {
+        mViewModel.getModel(getID()).observe(this, new Observer<SpeakerModel>() {
             @Override
             public void onChanged(SpeakerModel speakerModel) {
                 final FloatingActionButton playPauseButton = getView().findViewById(R.id.SpeakerPlayPauseButton);
@@ -189,10 +174,35 @@ public class SpeakerFragment extends Fragment {
 
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        PauseSong();
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        PauseSong();
+//    }
+
+    private String getID(){
+        return getArguments().getString("id");
+    }
+
+    private void PlaySong(){
+        SpeakerModel model = mViewModel.getModel(getID()).getValue();
+
+        if(songProgressTimer == null) {
+            songProgressTimer = new SongTimer();
+
+
+            int progress = model.SongTimestamp;
+            int duration = model.SongDuration;
+            songProgressTimer.scheduleAtFixedRate(new SongTimerTask(progress, duration), 0, 1000);
+        }
+
+    }
+
+    private void PauseSong(){
+        if( songProgressTimer != null) {
+            songProgressTimer.cancel();
+            songProgressTimer = null;
+        }
     }
 
     private void loadSong(SpeakerModel model){

@@ -39,15 +39,15 @@ public class FavouritesFragment extends Fragment {
         but.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = DeviceMenuContainerFragment.newInstance();
+               // Fragment fragment = DeviceMenuContainerFragment.newInstance();
 
                 // Get the FragmentManager and start a transaction.
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                //FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+               // FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
 
                 // Add the SimpleFragment.
-                fragmentTransaction.add(R.id.nav_host_fragment, fragment).addToBackStack(null).commit();
+                //fragmentTransaction.add(R.id.nav_host_fragment, fragment).addToBackStack(null).commit();
             }
         });
 
