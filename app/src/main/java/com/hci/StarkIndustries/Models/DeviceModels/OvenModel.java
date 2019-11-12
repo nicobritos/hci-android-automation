@@ -12,6 +12,6 @@ public class OvenModel extends CommonDeviceModel {
     public int convectionMode=1;
 
     public OvenModel(String name, String id, String room) {
-        super(name, id, room, DeviceType.Oven);
+        super(name, id, room, DeviceType.Oven,false);
     }
 }

@@ -27,8 +27,7 @@ public class RecyclerViewDevicesAdapter extends RecyclerView.Adapter<RecyclerVie
     private Context mContext;
     private DevicesRecyclerViewClickInteface devicesRecyclerViewClickInteface;
 
-    public RecyclerViewDevicesAdapter(List<CommonDeviceModel> devices,DevicesRecyclerViewClickInteface interf, Context mContext) {
-        this.devices = devices;
+    public RecyclerViewDevicesAdapter(DevicesRecyclerViewClickInteface interf, Context mContext) {
         this.mContext = mContext;
         devicesRecyclerViewClickInteface = interf;
     }
@@ -56,6 +55,11 @@ public class RecyclerViewDevicesAdapter extends RecyclerView.Adapter<RecyclerVie
     @Override
     public int getItemCount() {
         return devices.size();
+    }
+
+    public void setData(List<CommonDeviceModel> newData) {
+        this.devices = newData;
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

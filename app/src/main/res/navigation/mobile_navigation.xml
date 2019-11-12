@@ -22,4 +22,10 @@
         android:name="com.hci.StarkIndustries.ui.Routines.RoutinesFragment"
         android:label="@string/title_routines"
         tools:layout="@layout/fragment_routines" />
+
+    <fragment
+        android:id="@+id/houseRegionFragment"
+        android:name="com.hci.StarkIndustries.ui.Miniatures.HouseRegionFragment.HouseRegionFragment"
+        android:label="fragment_house_region"
+        tools:layout="@layout/house_region_fragment" />
 </navigation>

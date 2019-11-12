@@ -11,7 +11,7 @@ public class FridgeModel extends CommonDeviceModel {
 
 
     public FridgeModel(String name, String id, String room) {
-        super(name, id, room, DeviceType.Fridge);
+        super(name, id, room, DeviceType.Fridge,false);
         temperature = 6;
         freezerTemperature = -10;
         mode = 1;

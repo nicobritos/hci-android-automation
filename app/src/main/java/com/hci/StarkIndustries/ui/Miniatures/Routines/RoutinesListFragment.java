@@ -1,5 +1,6 @@
-package com.hci.StarkIndustries.ui.Miniatures;
+package com.hci.StarkIndustries.ui.Miniatures.Routines;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.hci.StarkIndustries.Models.RoutineModel;
+import com.hci.StarkIndustries.Models.RoutinesListModel;
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.ui.RecycleViewAdapters.RecyclerViewRoutinesAdapter;
 
@@ -23,7 +25,7 @@ import java.util.List;
 
 public class RoutinesListFragment extends Fragment {
 
-    private RoutinesListViewModel mViewModel;
+    protected RoutinesListViewModel mViewModel;
 
     public static RoutinesListFragment newInstance() {
         return new RoutinesListFragment();
@@ -37,30 +39,35 @@ public class RoutinesListFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL,false);
         RecyclerView recyclerView =  view.findViewById(R.id.RecyclerViewRoutines);
         recyclerView.setLayoutManager(layoutManager);
-        RecyclerViewRoutinesAdapter adapter = new RecyclerViewRoutinesAdapter(this.getRoutineModels(),this.getContext());
+        RecyclerViewRoutinesAdapter adapter = new RecyclerViewRoutinesAdapter(this.getContext());
         recyclerView.setAdapter(adapter);
 
         return view;
     }
 
+    public void LoadViewModel(){
+        mViewModel = ViewModelProviders.of(this).get(RoutinesListViewModel.class);
+
+    }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(RoutinesListViewModel.class);
+        LoadViewModel();
+
+        mViewModel.getModel().observe(this, new Observer<RoutinesListModel>() {
+            @Override
+            public void onChanged(RoutinesListModel model) {
+                RecyclerView recyclerView =  getView().findViewById(R.id.RecyclerViewRoutines);
+                ((RecyclerViewRoutinesAdapter)recyclerView.getAdapter()).setData(model.getRoutines());
+            }
+        });
+
+
         // TODO: Use the ViewModel
     }
 
-    private List<RoutineModel> getRoutineModels(){
-        List<RoutineModel> models = new ArrayList<>();
 
-        models.add(new RoutineModel("Routine 1","Description 1"));
-        models.add(new RoutineModel("Routine 2","Description 2"));
-        models.add(new RoutineModel("Routine 3","Description 3"));
-        models.add(new RoutineModel("Routine 4","Description 4"));
-
-
-        return models;
-    }
 
 
 }

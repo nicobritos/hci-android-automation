@@ -39,7 +39,7 @@ public class SpeakerModel extends CommonDeviceModel {
 
 
     public SpeakerModel(String name, String id, String room) {
-        super(name, id, room, DeviceType.Speaker);
+        super(name, id, room, DeviceType.Speaker,false);
 
         songs.add(new SongModel(320,"Cancion 1 Cancion 1 Cancion 1 Cancion 1 Cancion 1 Cancion 1 Cancion 1 Cancion 1 Cancion 1 Cancion 1","Artista"));
         songs.add(new SongModel(120,"Cancion 2","Artista2"));

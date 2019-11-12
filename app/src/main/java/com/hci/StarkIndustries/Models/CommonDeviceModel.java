@@ -4,13 +4,16 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class CommonDeviceModel implements Parcelable {
-    public CommonDeviceModel(String name, String id, String room, DeviceType type) {
+    public CommonDeviceModel(String name, String id, String room, DeviceType type,boolean isFavorite) {
         Name = name;
         Id = id;
         Room = room;
         this.type = type;
+        this.isFavorite = isFavorite;
     }
 
+
+    public boolean isFavorite;
     public String Name;
     public String Id;
     public String Room;

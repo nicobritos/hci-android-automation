@@ -26,33 +26,6 @@ public class FavouritesFragment extends Fragment {
         favouritesViewModel =ViewModelProviders.of(this).get(FavouritesViewModel.class);
 
         View root = inflater.inflate(R.layout.fragment_favourites, container, false);
-        final TextView textView = root.findViewById(R.id.text_dashboard);
-        favouritesViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-
-        Button but = root.findViewById(R.id.Butt);
-
-        but.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               // Fragment fragment = DeviceMenuContainerFragment.newInstance();
-
-                // Get the FragmentManager and start a transaction.
-                //FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-               // FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-
-                // Add the SimpleFragment.
-                //fragmentTransaction.add(R.id.nav_host_fragment, fragment).addToBackStack(null).commit();
-            }
-        });
-
-
-
 
 
         return root;

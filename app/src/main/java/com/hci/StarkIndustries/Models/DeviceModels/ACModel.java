@@ -14,6 +14,6 @@ public class ACModel extends CommonDeviceModel {
 
 
     public ACModel(String name, String id, String room) {
-        super(name, id, room, DeviceType.AC);
+        super(name, id, room, DeviceType.AC,false);
     }
 }

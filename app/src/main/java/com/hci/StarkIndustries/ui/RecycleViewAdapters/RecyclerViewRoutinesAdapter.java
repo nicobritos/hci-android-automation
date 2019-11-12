@@ -24,8 +24,7 @@ public class RecyclerViewRoutinesAdapter extends RecyclerView.Adapter<RecyclerVi
     private Context mContext;
     private static final String TAG = "RecyclerViewRoutinesAdapter";
 
-    public RecyclerViewRoutinesAdapter(List<RoutineModel> routines, Context mContext) {
-        this.routines = routines;
+    public RecyclerViewRoutinesAdapter(Context mContext) {
         this.mContext = mContext;
     }
 
@@ -73,9 +72,14 @@ public class RecyclerViewRoutinesAdapter extends RecyclerView.Adapter<RecyclerVi
                 model.isFavorite = !model.isFavorite;
             }
         });
-
-
     }
+
+    public void setData(List<RoutineModel> routines){
+        this.routines = routines;
+        notifyDataSetChanged();
+    }
+
+
 
     @Override
     public int getItemCount() {

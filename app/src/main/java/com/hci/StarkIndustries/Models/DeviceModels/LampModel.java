@@ -12,7 +12,7 @@ public class LampModel extends CommonDeviceModel {
 
 
     public LampModel(String name, String id, String room) {
-        super(name, id, room, DeviceType.Lamp);
+        super(name, id, room, DeviceType.Lamp,false);
 
         isOn = false;
         intensity = 50;

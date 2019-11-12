@@ -1,6 +1,6 @@
-package com.hci.StarkIndustries.ui.Miniatures;
+package com.hci.StarkIndustries.ui.Miniatures.BaseDeviceFragment;
 
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.Observer;
 
 import android.os.Bundle;
 
@@ -15,27 +15,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.hci.StarkIndustries.Models.CommonDeviceModel;
-import com.hci.StarkIndustries.Models.DeviceType;
+import com.hci.StarkIndustries.Models.DevicesListModel;
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.ui.DeviceMenu.DeviceMenuContainerFragment;
 import com.hci.StarkIndustries.ui.RecycleViewAdapters.DevicesRecyclerViewClickInteface;
 import com.hci.StarkIndustries.ui.RecycleViewAdapters.RecyclerViewDevicesAdapter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class DevicesListFragment extends Fragment implements DevicesRecyclerViewClickInteface {
 
-    private DevicesListViewModel mViewModel;
+    protected DevicesListViewModel mViewModel;
 
-    public static DevicesListFragment newInstance(DevicesSelectionMode mode) {
 
-        return new DevicesListFragment();
-    }
-
-    public static DevicesListFragment newInstance(String roomID) {
-        return new DevicesListFragment();
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -45,7 +35,7 @@ public class DevicesListFragment extends Fragment implements DevicesRecyclerView
         GridLayoutManager layoutManager = new GridLayoutManager(this.getContext(),2, RecyclerView.HORIZONTAL,false);
         RecyclerView recyclerView =  view.findViewById(R.id.RecyclerViewDevices);
         recyclerView.setLayoutManager(layoutManager);
-        RecyclerViewDevicesAdapter adapter = new RecyclerViewDevicesAdapter(this.getModels(),this,this.getContext());
+        RecyclerViewDevicesAdapter adapter = new RecyclerViewDevicesAdapter(this ,this.getContext());
         recyclerView.setAdapter(adapter);
 
         return view;
@@ -54,20 +44,18 @@ public class DevicesListFragment extends Fragment implements DevicesRecyclerView
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(DevicesListViewModel.class);
-        // TODO: Use the ViewModel
+        LoadViewModel();
+        mViewModel.getModel().observe(this, new Observer<DevicesListModel>() {
+            @Override
+            public void onChanged(DevicesListModel devicesListModel) {
+                RecyclerView recyclerView =  getView().findViewById(R.id.RecyclerViewDevices);
+                ((RecyclerViewDevicesAdapter)recyclerView.getAdapter()).setData(devicesListModel.getDevices());
+            }
+        });
     }
 
-    private List<CommonDeviceModel> getModels(){
-        List<CommonDeviceModel> models = new ArrayList<>();
-
-        models.add(new CommonDeviceModel("AC","id1","ROOM1", DeviceType.AC));
-        models.add(new CommonDeviceModel("LAmp","id1","ROOM1", DeviceType.Lamp));
-        models.add(new CommonDeviceModel("Door","id1","ROOM1", DeviceType.Door));
-        models.add(new CommonDeviceModel("Device 4","id1","ROOM1", DeviceType.Speaker));
-        models.add(new CommonDeviceModel("Device 5","id1","ROOM1", DeviceType.Speaker));
-
-        return models;
+    public void LoadViewModel(){
+        throw new RuntimeException("NOT IMPLEMENTED");
     }
 
 

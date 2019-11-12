@@ -9,7 +9,7 @@ public class DoorModel extends CommonDeviceModel {
     public boolean islocked;
     
     public DoorModel(String name, String id, String room) {
-        super(name, id, room, DeviceType.Door);
+        super(name, id, room, DeviceType.Door,false);
         islocked = false;
         isOpen = false;
     }

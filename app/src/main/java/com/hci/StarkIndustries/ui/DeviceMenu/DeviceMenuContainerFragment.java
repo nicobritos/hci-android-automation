@@ -79,11 +79,6 @@ public class DeviceMenuContainerFragment extends DialogFragment {
         ImageButton backButton = view.findViewById(R.id.GoBackDeviceMenuBtn);
         backButton.setOnClickListener(new OnClickExitDialog());
 
-        Button confirmButton = view.findViewById(R.id.ContainerConfirmButton);
-        confirmButton.setOnClickListener(new OnClickExitDialog());
-
-        Button cancelButton = view.findViewById(R.id.ContainerCancelButton);
-        cancelButton.setOnClickListener(new OnClickExitDialog());
 
         ImageButton favoriteButton = view.findViewById(R.id.ContainerFavButton);
         favoriteButton.setOnClickListener(new View.OnClickListener() {
