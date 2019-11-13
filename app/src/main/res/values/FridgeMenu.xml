@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="FridgeTemperatureTitle">Fridge\'s Temperature</string>
+    <string name="FreezerTemperatureTitle">Freezer\'s Temperature</string>
+    <string name="FridgeMode">Mode</string>
+    <string name="FridgeSelectMode">Select Mode</string>
+    <string-array name="FridgeModeOptions">
+        <item>
+            Default
+        </item>
+        <item>
+            Party
+        </item>
+        <item>
+            Vacations
+        </item>
+    </string-array>
+
+</resources>

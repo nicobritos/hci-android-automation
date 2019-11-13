@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.hci.StarkIndustries.ui.DeviceMenu.Door.DoorMenuFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/isDoorLockedImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:tint="@color/Black"
+            ></ImageView>
+
+        <ImageView
+            android:layout_width="200dp"
+            android:maxWidth="300dp"
+            android:maxHeight="400dp"
+            android:layout_height="400dp"
+            app:layout_constraintTop_toBottomOf="@+id/isDoorLockedImage"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:tint="@color/Black"
+            android:id="@+id/IsDoorOpenImage"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/IsDoorOpenImage"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:id="@+id/OpenDoorBtn"
+                android:textOff="@string/DoorButtonOpen"
+                android:textOn="@string/DoorButtonClose"
+                />
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:id="@+id/LockDoorBtn"
+                android:textOff="@string/DoorButtonLock"
+                android:textOn="@string/DoorButtonUnlock"
+                />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</FrameLayout>

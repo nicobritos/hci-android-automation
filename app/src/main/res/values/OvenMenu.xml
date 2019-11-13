@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="OvenTitle">Oven</string>
+    <string name="OvenTemperatureTitle">Oven\'s Temperature</string>
+    <string name="OvenGrillModeTitle">Grill mode</string>
+    <string name="OvenHeatSourceTitle">Heat source</string>
+    <string name="OvenConvectionMode">Convection mode</string>
+    <string-array name="OvenHeatSourceDDL">
+        <item>
+            Default
+        </item>
+        <item>
+            Top
+        </item>
+        <item>
+            Bottom
+        </item>
+    </string-array>
+
+    <string-array name="OvenGrillModeDDL">
+        <item>
+            Off
+        </item>
+        <item>
+            Economy
+        </item>
+        <item>
+            Full
+        </item>
+    </string-array>
+
+    <string-array name="OvenConvectionModeDDL">
+        <item>
+            Off
+        </item>
+        <item>
+            Economy
+        </item>
+        <item>
+            Default
+        </item>
+    </string-array>
+
+</resources>

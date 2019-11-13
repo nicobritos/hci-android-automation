@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ACTemperatureTitle">AC\'s Temperature</string>
+    <string name="ACHorizontalTitle">Horizontal movement</string>
+    <string name="ACVerticalTitle">Vertical movement</string>
+    <string-array name="ACModeList">
+        <item>
+            Fan
+        </item>
+        <item>
+            Cold
+        </item>
+        <item>
+            Warm
+        </item>
+    </string-array>
+    
+    <string-array name="ACVerticalMovementList">
+        <item>
+            Automatic
+        </item>
+        <item>
+            22 degrees
+        </item>
+        <item>
+            45 degrees
+        </item>
+        <item>
+            67 degrees
+        </item>
+        <item>
+            90 degrees
+        </item>
+    </string-array>
+
+    <string-array name="ACHorizontalMovementList">
+        <item>
+            Automatic
+        </item>
+        <item>
+            -90 degrees
+        </item>
+        <item>
+            -45 degrees
+        </item>
+        <item>
+            0 degrees
+        </item>
+        <item>
+            45 degrees
+        </item>
+        <item>
+            90 degrees
+        </item>
+    </string-array>
+
+    <string-array name="ACFanSpeedList">
+        <item>
+            Automatic
+        </item>
+        <item>
+            25 %
+        </item>
+        <item>
+            50 %
+        </item>
+        <item>
+            75 %
+        </item>
+        <item>
+            100 %
+        </item>
+    </string-array>
+    <string name="ACPowerText">AC</string>
+    <string name="ACModeTitle">Mode</string>
+    <string name="ACFanSpeedTitle">Fan Speed</string>
+
+</resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
