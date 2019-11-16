@@ -17,7 +17,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 
-import com.hci.StarkIndustries.Models.DeviceModels.DoorModel;
+import com.hci.StarkIndustries.data.Models.DeviceModels.DoorModel;
 import com.hci.StarkIndustries.R;
 
 public class DoorMenuFragment extends Fragment {

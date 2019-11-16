@@ -1,4 +1,4 @@
-package com.hci.StarkIndustries.Models;
+package com.hci.StarkIndustries.data.Models;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.hci.StarkIndustries.Models.DeviceModels.FridgeModel;
+import com.hci.StarkIndustries.data.Models.DeviceModels.FridgeModel;
 
 public class FridgeViewModel extends ViewModel {
 

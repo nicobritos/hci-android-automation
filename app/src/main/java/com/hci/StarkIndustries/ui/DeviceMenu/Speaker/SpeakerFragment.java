@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +20,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.hci.StarkIndustries.Models.DeviceModels.SpeakerModel;
+import com.hci.StarkIndustries.data.Models.DeviceModels.SpeakerModel;
 import com.hci.StarkIndustries.R;
 
 import java.util.Date;

@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -15,10 +14,8 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.hci.StarkIndustries.MainActivity;
-import com.hci.StarkIndustries.Models.CommonDeviceModel;
-import com.hci.StarkIndustries.Models.DeviceModels.SpeakerModel;
-import com.hci.StarkIndustries.Models.DeviceType;
+import com.hci.StarkIndustries.data.Models.CommonDeviceModel;
+import com.hci.StarkIndustries.data.Models.DeviceType;
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.ui.DeviceMenu.AC.ACFragment;
 import com.hci.StarkIndustries.ui.DeviceMenu.Curtains.CurtainsFragment;

@@ -1,7 +1,7 @@
-package com.hci.StarkIndustries.Models.DeviceModels;
+package com.hci.StarkIndustries.data.Models.DeviceModels;
 
-import com.hci.StarkIndustries.Models.CommonDeviceModel;
-import com.hci.StarkIndustries.Models.DeviceType;
+import com.hci.StarkIndustries.data.Models.CommonDeviceModel;
+import com.hci.StarkIndustries.data.Models.DeviceType;
 
 public class OvenModel extends CommonDeviceModel {
 

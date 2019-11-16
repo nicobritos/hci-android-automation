@@ -3,7 +3,6 @@ package com.hci.StarkIndustries.ui.DeviceMenu.AC;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,7 +20,7 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import com.hci.StarkIndustries.Models.DeviceModels.ACModel;
+import com.hci.StarkIndustries.data.Models.DeviceModels.ACModel;
 import com.hci.StarkIndustries.R;
 
 public class ACFragment extends Fragment {

@@ -3,13 +3,6 @@ package com.hci.StarkIndustries;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.hci.StarkIndustries.ui.DeviceMenu.AC.ACFragment;
-import com.hci.StarkIndustries.ui.DeviceMenu.Curtains.CurtainsFragment;
-import com.hci.StarkIndustries.ui.DeviceMenu.Door.DoorMenuFragment;
-import com.hci.StarkIndustries.ui.DeviceMenu.Fridge.FridgeFragment;
-import com.hci.StarkIndustries.ui.DeviceMenu.Lamp.LampFragment;
-import com.hci.StarkIndustries.ui.DeviceMenu.Oven.OvenFragment;
-import com.hci.StarkIndustries.ui.DeviceMenu.Speaker.SpeakerFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -18,14 +11,11 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-
-    private Map<String,Fragment>fragments = new HashMap<>();
+    private Map<String,Fragment> fragments = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +32,10 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
+        MyApplication application = MyApplication.getInstance();
+        application.getRoomRepository().getRooms();
 
         initializeFragments();
-
     }
 
 //    public Fragment getFragment(String name){

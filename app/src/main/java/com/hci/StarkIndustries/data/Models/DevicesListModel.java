@@ -1,4 +1,4 @@
-package com.hci.StarkIndustries.Models;
+package com.hci.StarkIndustries.data.Models;
 
 import java.util.ArrayList;
 import java.util.List;

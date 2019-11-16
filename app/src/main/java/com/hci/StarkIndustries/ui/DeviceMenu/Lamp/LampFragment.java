@@ -4,7 +4,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.graphics.PorterDuff;
-import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,7 +18,7 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Switch;
 
-import com.hci.StarkIndustries.Models.DeviceModels.LampModel;
+import com.hci.StarkIndustries.data.Models.DeviceModels.LampModel;
 import com.hci.StarkIndustries.R;
 import com.madrapps.pikolo.ColorPicker;
 import com.madrapps.pikolo.RGBColorPicker;

@@ -4,10 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.hci.StarkIndustries.Models.RoutineModel;
-import com.hci.StarkIndustries.Models.RoutinesListModel;
-
-import java.util.List;
+import com.hci.StarkIndustries.data.Models.RoutinesListModel;
 
 public class RoutinesListViewModel extends ViewModel {
 

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.hci.StarkIndustries.Models.RoomModel;
+import com.hci.StarkIndustries.data.Models.RoomModel;
 import com.hci.StarkIndustries.R;
 
 import java.util.ArrayList;

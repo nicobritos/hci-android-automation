@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.hci.StarkIndustries.Models.DeviceModels.ACModel;
+import com.hci.StarkIndustries.data.Models.DeviceModels.ACModel;
 
 public class AcViewModel extends ViewModel {
 

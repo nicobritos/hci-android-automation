@@ -15,13 +15,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.hci.StarkIndustries.Models.RoutineModel;
-import com.hci.StarkIndustries.Models.RoutinesListModel;
+import com.hci.StarkIndustries.data.Models.RoutinesListModel;
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.ui.RecycleViewAdapters.RecyclerViewRoutinesAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class RoutinesListFragment extends Fragment {
 

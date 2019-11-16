@@ -1,4 +1,4 @@
-package com.hci.StarkIndustries.Models;
+package com.hci.StarkIndustries.data.Models;
 
 public class RoutineModel {
 

@@ -4,8 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.hci.StarkIndustries.Models.DeviceModels.SpeakerModel;
-import com.hci.StarkIndustries.R;
+import com.hci.StarkIndustries.data.Models.DeviceModels.SpeakerModel;
 
 public class SpeakerViewModel extends ViewModel {
 

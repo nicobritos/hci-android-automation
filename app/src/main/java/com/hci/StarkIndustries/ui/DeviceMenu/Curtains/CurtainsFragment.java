@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.hci.StarkIndustries.Models.DeviceModels.CurtainsModel;
+import com.hci.StarkIndustries.data.Models.DeviceModels.CurtainsModel;
 import com.hci.StarkIndustries.R;
 
 public class CurtainsFragment extends Fragment {
