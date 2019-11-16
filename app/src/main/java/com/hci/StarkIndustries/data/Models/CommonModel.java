@@ -1,23 +1,11 @@
 package com.hci.StarkIndustries.data.Models;
 
-import android.util.Log;
-
-import androidx.annotation.Nullable;
+import java.util.Map;
 
 public abstract class CommonModel {
-    private String name, meta;
-    private final String id;
-
-    CommonModel(String id, String name, String meta) {
-        if (id == null) {
-            Log.e("com.hci.StarkIndustries.data.Models.CommonModel", "ID is null");
-            throw new IllegalArgumentException("ID is null");
-        }
-
-        this.id = id;
-        this.name = name;
-        this.meta = meta;
-    }
+    protected Map<String, Object> meta;
+    private String name;
+    private String id;
 
     public String getName() {
         return this.name;
@@ -25,14 +13,6 @@ public abstract class CommonModel {
 
     public String getId() {
         return id;
-    }
-
-    public String getMeta() {
-        return meta;
-    }
-
-    public void setMeta(String meta) {
-        this.meta = meta;
     }
 
     public void setName(String name) {

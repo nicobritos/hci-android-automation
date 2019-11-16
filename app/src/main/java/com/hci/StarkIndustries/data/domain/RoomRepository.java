@@ -1,6 +1,7 @@
 package com.hci.StarkIndustries.data.domain;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -37,6 +38,12 @@ public class RoomRepository {
     public LiveData<Result<ArrayList<RoomModel>>> getRooms() {
         final MutableLiveData<Result<ArrayList<RoomModel>>> result = new MutableLiveData<>();
         this.api.getRooms(getListener(result), getErrorListener(api, result));
+        return result;
+    }
+
+    public LiveData<Result<ArrayList<RoomModel>>> getRooms(String regionId) {
+        final MutableLiveData<Result<ArrayList<RoomModel>>> result = new MutableLiveData<>();
+        this.api.getRooms(regionId, getListener(result), getErrorListener(api, result));
         return result;
     }
 

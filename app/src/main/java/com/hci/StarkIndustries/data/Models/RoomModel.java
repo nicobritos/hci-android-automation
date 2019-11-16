@@ -1,16 +1,19 @@
 package com.hci.StarkIndustries.data.Models;
 
-import android.util.Log;
+import java.util.Map;
 
 public class RoomModel extends CommonModel {
-    public String name;
-    public String id;
+    private Map<String, String> region;
 
-    public RoomModel(String id, String name, String meta, String els) {
-        super(id, name, meta);
-        Log.println(Log.INFO, "com.hci", els);
+    public String getRegionId() {
+        return this.region != null? this.region.get("id") : null;
+    }
 
-        this.id = id;
-        this.name =id;
+    public String getRegionName() {
+        return this.region != null? this.region.get("name") : null;
+    }
+
+    public int getDevicesCount() {
+        return this.meta != null? (int) this.meta.get("count") : 0;
     }
 }
