@@ -1,16 +1,22 @@
-package com.hci.StarkIndustries.data.Models;
+package com.hci.StarkIndustries.data.Models.devices;
 
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class FavoriteDevicesModel extends DevicesListModel {
+public class RoomDevicesModel extends DevicesListModel {
+    private String Room;
+    public RoomDevicesModel(String room) {
+        super();
+        this.Room = room;
+    }
+
     @Override
     public List<CommonDeviceModel> filterDevices() {
         return models.stream().filter(new Predicate<CommonDeviceModel>() {
             @Override
             public boolean test(CommonDeviceModel deviceModel) {
-                return deviceModel.isFavorite;
+                return deviceModel.Room == Room;
             }
         }).collect(Collectors.<CommonDeviceModel>toList());
     }

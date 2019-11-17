@@ -14,8 +14,8 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.hci.StarkIndustries.data.Models.CommonDeviceModel;
-import com.hci.StarkIndustries.data.Models.DeviceType;
+import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
+import com.hci.StarkIndustries.data.Models.devices.DeviceType;
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.ui.DeviceMenu.AC.ACFragment;
 import com.hci.StarkIndustries.ui.DeviceMenu.Curtains.CurtainsFragment;

@@ -11,8 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.hci.StarkIndustries.data.Models.CommonDeviceModel;
-import com.hci.StarkIndustries.data.Models.DeviceType;
+import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
+import com.hci.StarkIndustries.data.Models.devices.DeviceType;
 import com.hci.StarkIndustries.R;
 
 import java.util.ArrayList;

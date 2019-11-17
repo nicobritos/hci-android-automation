@@ -20,7 +20,7 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import com.hci.StarkIndustries.data.Models.DeviceModels.ACModel;
+import com.hci.StarkIndustries.data.Models.devices.DeviceModels.ACModel;
 import com.hci.StarkIndustries.R;
 
 public class ACFragment extends Fragment {

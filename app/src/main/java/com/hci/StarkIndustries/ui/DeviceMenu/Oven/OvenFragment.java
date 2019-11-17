@@ -21,7 +21,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.hci.StarkIndustries.R;
-import com.hci.StarkIndustries.data.Models.DeviceModels.OvenModel;
+import com.hci.StarkIndustries.data.Models.devices.DeviceModels.OvenModel;
 
 public class OvenFragment extends Fragment {
 

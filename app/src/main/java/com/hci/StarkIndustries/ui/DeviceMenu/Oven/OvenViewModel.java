@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.hci.StarkIndustries.data.Models.DeviceModels.OvenModel;
+import com.hci.StarkIndustries.data.Models.devices.DeviceModels.OvenModel;
 
 public class OvenViewModel extends ViewModel {
 

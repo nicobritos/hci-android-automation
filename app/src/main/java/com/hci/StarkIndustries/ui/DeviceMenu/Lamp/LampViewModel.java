@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.hci.StarkIndustries.data.Models.DeviceModels.LampModel;
+import com.hci.StarkIndustries.data.Models.devices.DeviceModels.LampModel;
 
 public class LampViewModel extends ViewModel {
 

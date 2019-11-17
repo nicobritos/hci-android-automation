@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.hci.StarkIndustries.data.Models.DeviceModels.CurtainsModel;
+import com.hci.StarkIndustries.data.Models.devices.DeviceModels.CurtainsModel;
 
 public class CurtainsViewModel extends ViewModel {
 

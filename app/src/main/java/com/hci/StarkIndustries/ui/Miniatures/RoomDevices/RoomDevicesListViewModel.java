@@ -3,8 +3,8 @@ package com.hci.StarkIndustries.ui.Miniatures.RoomDevices;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.hci.StarkIndustries.data.Models.DevicesListModel;
-import com.hci.StarkIndustries.data.Models.RoomDevicesModel;
+import com.hci.StarkIndustries.data.Models.devices.DevicesListModel;
+import com.hci.StarkIndustries.data.Models.devices.RoomDevicesModel;
 import com.hci.StarkIndustries.ui.Miniatures.BaseDeviceFragment.DevicesListViewModel;
 
 public class RoomDevicesListViewModel extends DevicesListViewModel {

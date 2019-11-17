@@ -14,18 +14,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.hci.StarkIndustries.data.Models.CommonDeviceModel;
-import com.hci.StarkIndustries.data.Models.DevicesListModel;
+import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
+import com.hci.StarkIndustries.data.Models.devices.DevicesListModel;
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.ui.DeviceMenu.DeviceMenuContainerFragment;
 import com.hci.StarkIndustries.ui.RecycleViewAdapters.DevicesRecyclerViewClickInteface;
 import com.hci.StarkIndustries.ui.RecycleViewAdapters.RecyclerViewDevicesAdapter;
 
 public class DevicesListFragment extends Fragment implements DevicesRecyclerViewClickInteface {
-
     protected DevicesListViewModel mViewModel;
-
-
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -58,11 +55,9 @@ public class DevicesListFragment extends Fragment implements DevicesRecyclerView
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
-
     @Override
     public void onItemClick(CommonDeviceModel device){
         DeviceMenuContainerFragment fragment = DeviceMenuContainerFragment.newInstance(device);
         fragment.show(getFragmentManager(),"fav");
-
     }
 }

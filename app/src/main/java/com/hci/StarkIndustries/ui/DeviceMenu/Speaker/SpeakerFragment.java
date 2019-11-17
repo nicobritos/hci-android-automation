@@ -20,7 +20,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.hci.StarkIndustries.data.Models.DeviceModels.SpeakerModel;
+import com.hci.StarkIndustries.data.Models.devices.DeviceModels.SpeakerModel;
 import com.hci.StarkIndustries.R;
 
 import java.util.Date;

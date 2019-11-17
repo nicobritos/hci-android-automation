@@ -17,7 +17,7 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.hci.StarkIndustries.data.Models.DeviceModels.FridgeModel;
+import com.hci.StarkIndustries.data.Models.devices.DeviceModels.FridgeModel;
 import com.hci.StarkIndustries.R;
 
 public class FridgeFragment extends Fragment {

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.hci.StarkIndustries.data.Models.DevicesListModel;
+import com.hci.StarkIndustries.data.Models.devices.DevicesListModel;
 
 public class DevicesListViewModel extends ViewModel {
 

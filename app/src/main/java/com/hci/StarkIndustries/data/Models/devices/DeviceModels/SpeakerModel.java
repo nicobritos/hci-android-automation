@@ -1,12 +1,18 @@
-package com.hci.StarkIndustries.data.Models.DeviceModels;
+package com.hci.StarkIndustries.data.Models.devices.DeviceModels;
 
-import com.hci.StarkIndustries.data.Models.CommonDeviceModel;
-import com.hci.StarkIndustries.data.Models.DeviceType;
+import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
+import com.hci.StarkIndustries.data.Models.devices.DeviceType;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SpeakerModel extends CommonDeviceModel {
+
+
+
+
+
+
 
     public enum PlayState{
       Playing,Paused,Stopped
@@ -39,7 +45,7 @@ public class SpeakerModel extends CommonDeviceModel {
 
 
     public SpeakerModel(String name, String id, String room) {
-        super(name, id, room, DeviceType.Speaker,false);
+//        super(name, id, room, DeviceType.Speaker,false);
 
         songs.add(new SongModel(320,"Cancion 1 Cancion 1 Cancion 1 Cancion 1 Cancion 1 Cancion 1 Cancion 1 Cancion 1 Cancion 1 Cancion 1","Artista"));
         songs.add(new SongModel(120,"Cancion 2","Artista2"));

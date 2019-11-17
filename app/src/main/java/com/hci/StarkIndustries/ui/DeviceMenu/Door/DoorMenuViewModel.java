@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.hci.StarkIndustries.data.Models.DeviceModels.DoorModel;
+import com.hci.StarkIndustries.data.Models.devices.DeviceModels.DoorModel;
 
 public class DoorMenuViewModel extends ViewModel {
 

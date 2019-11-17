@@ -18,7 +18,7 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Switch;
 
-import com.hci.StarkIndustries.data.Models.DeviceModels.LampModel;
+import com.hci.StarkIndustries.data.Models.devices.DeviceModels.LampModel;
 import com.hci.StarkIndustries.R;
 import com.madrapps.pikolo.ColorPicker;
 import com.madrapps.pikolo.RGBColorPicker;
