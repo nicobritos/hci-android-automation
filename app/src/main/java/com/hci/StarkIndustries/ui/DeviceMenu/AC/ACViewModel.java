@@ -6,11 +6,10 @@ import androidx.lifecycle.ViewModel;
 
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.ACModel;
 
-public class AcViewModel extends ViewModel {
-
+public class ACViewModel extends ViewModel {
     private MutableLiveData<ACModel> mAC;
     private String id = "";
-    private static final String TAG = "AcViewModel";
+    private static final String TAG = "ACViewModel";
     private ACModel model = null;
 
     public LiveData<ACModel> getModel(String id){
@@ -20,7 +19,6 @@ public class AcViewModel extends ViewModel {
             mAC = new MutableLiveData<>();
             model = new ACModel("AIRE",id,"ROOM 2");
             loadModel();
-
         }
         return mAC;
     }

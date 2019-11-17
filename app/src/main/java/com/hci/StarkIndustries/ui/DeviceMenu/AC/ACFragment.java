@@ -25,7 +25,7 @@ import com.hci.StarkIndustries.R;
 
 public class ACFragment extends Fragment {
 
-    private AcViewModel mViewModel;
+    private ACViewModel mViewModel;
 
     protected ACFragment(){}
 
@@ -121,7 +121,7 @@ public class ACFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(AcViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(ACViewModel.class);
 
         mViewModel.getModel(getID()).observe(this, new Observer<ACModel>() {
             @Override
