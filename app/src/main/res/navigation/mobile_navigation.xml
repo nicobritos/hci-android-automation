@@ -9,7 +9,11 @@
         android:id="@+id/navigation_home"
         android:name="com.hci.StarkIndustries.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_room"
+            app:destination="@id/room" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -22,10 +26,14 @@
         android:name="com.hci.StarkIndustries.ui.Routines.RoutinesFragment"
         android:label="@string/title_routines"
         tools:layout="@layout/fragment_routines" />
-
     <fragment
-        android:id="@+id/houseRegionFragment"
-        android:name="com.hci.StarkIndustries.ui.Miniatures.HouseRegionFragment.HouseRegionFragment"
-        android:label="fragment_house_region"
-        tools:layout="@layout/house_region_fragment" />
+        android:id="@+id/room"
+        android:name="com.hci.StarkIndustries.room"
+        android:label="fragment_room"
+        tools:layout="@layout/fragment_room" >
+        <argument
+            android:name="RoomID"
+            app:argType="string" />
+    </fragment>
+
 </navigation>

@@ -3,7 +3,6 @@ package com.hci.StarkIndustries.ui.DeviceMenu.AC;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,19 +22,17 @@ import android.widget.TextView;
 
 import com.hci.StarkIndustries.Models.DeviceModels.ACModel;
 import com.hci.StarkIndustries.R;
+import com.hci.StarkIndustries.ui.DeviceMenu.IPassableID;
 
-public class ACFragment extends Fragment {
+public class ACFragment extends Fragment implements IPassableID {
 
     private AcViewModel mViewModel;
+    private String id = "";
 
     protected ACFragment(){}
 
-    public static ACFragment newInstance(String id) {
+    public static ACFragment newInstance() {
         ACFragment f = new ACFragment();
-
-        Bundle args = new Bundle();
-        args.putString("id",id);
-        f.setArguments(args);
 
         return f;
     }
@@ -169,9 +166,14 @@ public class ACFragment extends Fragment {
 
     }
 
-    private String getID(){
-        return getArguments().getString("id");
+
+    @Override
+    public String getID() {
+        return this.id;
     }
 
-
+    @Override
+    public void setID(String id) {
+        this.id = id;
+    }
 }

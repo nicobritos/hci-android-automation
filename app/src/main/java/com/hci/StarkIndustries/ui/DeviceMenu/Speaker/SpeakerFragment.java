@@ -4,6 +4,7 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,24 +24,24 @@ import android.widget.TextView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.hci.StarkIndustries.Models.DeviceModels.SpeakerModel;
 import com.hci.StarkIndustries.R;
+import com.hci.StarkIndustries.ui.DeviceMenu.IPassableID;
 
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class SpeakerFragment extends Fragment {
+public class SpeakerFragment extends Fragment implements IPassableID {
 
     private SpeakerViewModel mViewModel;
     private SongTimer songProgressTimer;
+    private String id = "";
 
     protected SpeakerFragment(){}
 
-    public static SpeakerFragment newInstance(String id) {
+    public static SpeakerFragment newInstance() {
 
         SpeakerFragment f = new SpeakerFragment();
-        Bundle arg = new Bundle();
-        arg.putString("id",id);
-        f.setArguments(arg);
+
         return  f;
     }
 
@@ -180,8 +181,14 @@ public class SpeakerFragment extends Fragment {
 //        PauseSong();
 //    }
 
-    private String getID(){
-        return getArguments().getString("id");
+    @Override
+    public String getID() {
+        return this.id;
+    }
+
+    @Override
+    public void setID(String id) {
+        this.id = id;
     }
 
     private void PlaySong(){
@@ -193,7 +200,7 @@ public class SpeakerFragment extends Fragment {
 
             int progress = model.SongTimestamp;
             int duration = model.SongDuration;
-            songProgressTimer.scheduleAtFixedRate(new SongTimerTask(progress, duration), 0, 1000);
+            songProgressTimer.scheduleAtFixedRate(new SongTimerTask(), 0, 1000);
         }
 
     }
@@ -219,6 +226,21 @@ public class SpeakerFragment extends Fragment {
             PlaySong();
         else
             PauseSong();
+
+        int timestamp = model.SongTimestamp;
+        int duration = model.SongDuration;
+        int progress = (timestamp - 0)*100 / duration + 0;
+
+        ((TextView) getView().findViewById(R.id.SpeakerSongProgressText))
+                .setText(String
+                        .format("%d%d:%d%d",(timestamp/60)/10,(timestamp/60)%10,(timestamp%60)/10,(timestamp%60)%10));
+
+        ((ProgressBar)getView().findViewById(R.id.SpeakerSongProgress)).setProgress(progress,true);
+
+        if(timestamp > duration){
+            mViewModel.nextSong();
+
+        }
 
 
     }
@@ -254,38 +276,18 @@ public class SpeakerFragment extends Fragment {
     }
 
     private class SongTimerTask extends TimerTask{
-        private int progress = 0;
-        private int timestamp;
-        private int duration;
-
-
-        public SongTimerTask(int progress, int duration) {
-            this.timestamp = progress;
-            this.duration = duration;
-        }
-
         @Override
         public void run() {
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    ((TextView) getView().findViewById(R.id.SpeakerSongProgressText))
-                            .setText(String
-                                    .format("%d%d:%d%d",(timestamp/60)/10,(timestamp/60)%10,(timestamp%60)/10,(timestamp%60)%10));
 
-                    double temp = timestamp;
-                    double temp2 = duration;
-                    progress = (timestamp - 0)*100 / duration + 0;
-                    ((ProgressBar)getView().findViewById(R.id.SpeakerSongProgress)).setProgress(progress,true);
-                    timestamp++;
-
-                    if(progress > duration){
-                        mViewModel.nextSong();
-
+            Activity act =  getActivity();
+            if(act != null){
+                act.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mViewModel.incrementProgress();
                     }
-
-                }
-            });
+                });
+            }
 
 
         }

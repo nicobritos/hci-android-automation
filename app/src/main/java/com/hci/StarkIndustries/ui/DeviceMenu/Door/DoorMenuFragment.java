@@ -19,20 +19,19 @@ import android.widget.Switch;
 
 import com.hci.StarkIndustries.Models.DeviceModels.DoorModel;
 import com.hci.StarkIndustries.R;
+import com.hci.StarkIndustries.ui.DeviceMenu.IPassableID;
 
-public class DoorMenuFragment extends Fragment {
+public class DoorMenuFragment extends Fragment implements IPassableID {
 
     private DoorMenuViewModel mViewModel;
     private static final String TAG = "DoorMenuFragment";
+    private String id = "";
 
     protected DoorMenuFragment(){}
 
-    public static DoorMenuFragment newInstance(String id) {
-
+    public static DoorMenuFragment newInstance() {
         DoorMenuFragment f = new DoorMenuFragment();
-        Bundle args = new Bundle();
-        args.putString("id",id);
-        f.setArguments(args);
+
         return f;
     }
     @Override
@@ -110,9 +109,16 @@ public class DoorMenuFragment extends Fragment {
         });
     }
 
-    private String getID(){
-        return getArguments().getString("id");
+    @Override
+    public String getID() {
+        return this.id;
     }
+
+    @Override
+    public void setID(String id) {
+        this.id = id;
+    }
+
 
 
 }

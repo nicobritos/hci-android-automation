@@ -19,19 +19,17 @@ import android.widget.TextView;
 
 import com.hci.StarkIndustries.Models.DeviceModels.FridgeModel;
 import com.hci.StarkIndustries.R;
+import com.hci.StarkIndustries.ui.DeviceMenu.IPassableID;
 
-public class FridgeFragment extends Fragment {
+public class FridgeFragment extends Fragment implements IPassableID {
 
     private FridgeViewModel mViewModel;
+    private String id = "";
 
     protected FridgeFragment(){}
 
-    public static FridgeFragment newInstance(String id) {
-
+    public static FridgeFragment newInstance() {
         FridgeFragment f = new FridgeFragment();
-        Bundle arg = new Bundle();
-        arg.putString("id", id);
-        f.setArguments(arg);
         return  f;
     }
 
@@ -123,10 +121,15 @@ public class FridgeFragment extends Fragment {
 
     }
 
-    private String getID(){
-        return getArguments().getString("id");
+    @Override
+    public String getID() {
+        return this.id;
     }
 
+    @Override
+    public void setID(String id) {
+        this.id = id;
+    }
 
 }
 
