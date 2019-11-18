@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +23,7 @@ import com.hci.StarkIndustries.Models.DeviceType;
 import com.hci.StarkIndustries.Models.RegionModel;
 import com.hci.StarkIndustries.Models.RoutineModel;
 import com.hci.StarkIndustries.R;
+import com.hci.StarkIndustries.ui.RecycleViewAdapters.IClickableItem;
 import com.hci.StarkIndustries.ui.RecycleViewAdapters.RecyclerViewDevicesAdapter;
 import com.hci.StarkIndustries.ui.RecycleViewAdapters.RecyclerViewRegionsAdapter;
 import com.hci.StarkIndustries.ui.RecycleViewAdapters.RecyclerViewRoutinesAdapter;
@@ -28,7 +31,7 @@ import com.hci.StarkIndustries.ui.RecycleViewAdapters.RecyclerViewRoutinesAdapte
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment  {
+public class HomeFragment extends Fragment implements IClickableItem {
     private HomeViewModel homeViewModel;
 
     private static final String TAG = "HomeFragment";
@@ -41,7 +44,7 @@ public class HomeFragment extends Fragment  {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL,false);
         RecyclerView recyclerView =  root.findViewById(R.id.HouseRegionsRecyclerView);
         recyclerView.setLayoutManager(layoutManager);
-        RecyclerViewRegionsAdapter adapter = new RecyclerViewRegionsAdapter(this.getContext());
+        RecyclerViewRegionsAdapter adapter = new RecyclerViewRegionsAdapter(this,this.getContext());
         recyclerView.setAdapter(adapter);
 
         return root;
@@ -64,4 +67,11 @@ public class HomeFragment extends Fragment  {
     }
 
 
+    @Override
+    public void onItemClick(String id) {
+        NavController navController = Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
+        Bundle args = new Bundle();
+        args.putString("id",id);
+        navController.navigate(R.id.action_navigation_home_to_room,args);
+    }
 }

@@ -1,14 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".room">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.Room.RoomFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        >
 
-</FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/RoomTitle"
+
+            />
+
+<!--        <FrameLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/RoomTitle"-->
+<!--            android:id="@+id/RoomDevicesFragmentContainer"-->
+<!--            />-->
+
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:name="com.hci.StarkIndustries.ui.Miniatures.RoomDevices.RoomDevicesListFragment"
+            app:layout_constraintTop_toBottomOf="@id/RoomTitle"
+            android:id="@+id/RoomDevicesFragmentContainer"
+            />
+
+
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+</ScrollView>

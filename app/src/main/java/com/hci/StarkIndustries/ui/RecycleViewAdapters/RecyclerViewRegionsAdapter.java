@@ -22,9 +22,10 @@ public class RecyclerViewRegionsAdapter extends RecyclerView.Adapter<RecyclerVie
 
     private List<RegionModel> regions = new ArrayList<>();
     private Context mContext;
-
-    public RecyclerViewRegionsAdapter(Context mContext) {
+    private IClickableItem iClickableItem;
+    public RecyclerViewRegionsAdapter(IClickableItem iClickableItem,Context mContext) {
         this.mContext = mContext;
+        this.iClickableItem = iClickableItem;
     }
 
     @NonNull
@@ -45,7 +46,7 @@ public class RecyclerViewRegionsAdapter extends RecyclerView.Adapter<RecyclerVie
 
         GridLayoutManager layoutManager = new GridLayoutManager(holder.recyclerView.getContext(),2, RecyclerView.HORIZONTAL,false);
         holder.recyclerView.setLayoutManager(layoutManager);
-        RecyclerViewRoomsAdapter adapter = new RecyclerViewRoomsAdapter(holder.recyclerView.getContext());
+        RecyclerViewRoomsAdapter adapter = new RecyclerViewRoomsAdapter(holder.recyclerView.getContext(),iClickableItem);
         adapter.setData(region.rooms);
         holder.recyclerView.setAdapter(adapter);
 

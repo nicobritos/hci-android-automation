@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,9 +22,11 @@ public class RecyclerViewRoomsAdapter extends RecyclerView.Adapter<RecyclerViewR
 
     private List<RoomModel> rooms = new ArrayList<>();
     private Context mContext;
+    private IClickableItem clickableItem;
 
-    public RecyclerViewRoomsAdapter(Context mContext) {
+    public RecyclerViewRoomsAdapter(Context mContext, IClickableItem inter) {
         this.mContext = mContext;
+        clickableItem = inter;
     }
 
     @NonNull
@@ -68,6 +71,7 @@ public class RecyclerViewRoomsAdapter extends RecyclerView.Adapter<RecyclerViewR
                 @Override
                 public void onClick(View v) {
 
+                    clickableItem.onItemClick(rooms.get(getAdapterPosition()).id);
 
                 }
             });

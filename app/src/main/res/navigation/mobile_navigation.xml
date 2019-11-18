@@ -28,12 +28,15 @@
         tools:layout="@layout/fragment_routines" />
     <fragment
         android:id="@+id/room"
-        android:name="com.hci.StarkIndustries.room"
+        android:name="com.hci.StarkIndustries.ui.Room.RoomFragment"
         android:label="fragment_room"
         tools:layout="@layout/fragment_room" >
         <argument
             android:name="RoomID"
             app:argType="string" />
+        <action
+            android:id="@+id/action_room_to_navigation_home"
+            app:destination="@id/navigation_home" />
     </fragment>
 
 </navigation>

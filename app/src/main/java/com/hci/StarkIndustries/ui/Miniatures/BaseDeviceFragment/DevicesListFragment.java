@@ -26,13 +26,12 @@ public class DevicesListFragment extends Fragment implements DevicesRecyclerView
     protected DevicesListViewModel mViewModel;
 
 
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.devices_list_fragment, container, false);
 
-        GridLayoutManager layoutManager = new GridLayoutManager(this.getContext(),2, RecyclerView.HORIZONTAL,false);
+        GridLayoutManager layoutManager = new GridLayoutManager(this.getContext(),2, getOrientation(),false);
         RecyclerView recyclerView =  view.findViewById(R.id.RecyclerViewDevices);
         recyclerView.setLayoutManager(layoutManager);
         RecyclerViewDevicesAdapter adapter = new RecyclerViewDevicesAdapter(this ,this.getContext());
@@ -56,6 +55,10 @@ public class DevicesListFragment extends Fragment implements DevicesRecyclerView
 
     public void LoadViewModel(){
         throw new RuntimeException("NOT IMPLEMENTED");
+    }
+
+    protected int getOrientation(){
+        return RecyclerView.HORIZONTAL;
     }
 
 
