@@ -24,9 +24,8 @@ public class CommonDeviceModel extends CommonModel implements Parcelable {
         }
     };
 
-    private Map<String, Object> state;
-    private RoomModel room;
     private DeviceType type;
+    private RoomModel room;
 
 //    private CommonDeviceModel(Parcel in) {
 //        this.setName(in.readString());
@@ -50,39 +49,5 @@ public class CommonDeviceModel extends CommonModel implements Parcelable {
 
     public DeviceTypeEnum getDeviceType() {
         return type.getDeviceType();
-    }
-
-    protected boolean equalsStatus(String status) {
-        String s = this.getPropertyString("status");
-        if (s != null) return s.equalsIgnoreCase(status);
-        return false;
-    }
-
-    protected Map getPropertyMap(String property) {
-        Object o = state.get(property);
-        if (o instanceof Map) return (Map) o;
-        return null;
-    }
-
-    protected int getPropertyInt(String property) {
-        Object o = state.get(property);
-        if (o instanceof Integer) return (int) o;
-        return 0;
-    }
-
-    protected boolean getPropertyBoolean(String property) {
-        Object o = state.get(property);
-        if (o instanceof Boolean) return (Boolean) o;
-        return false;
-    }
-
-    protected String getPropertyString(String property) {
-        Object o = state.get(property);
-        if (o instanceof String) return (String) o;
-        return null;
-    }
-
-    protected Object getProperty(String property) {
-        return state.get(property);
     }
 }

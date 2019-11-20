@@ -20,7 +20,11 @@ public class DeviceRepository {
         this.api = Api.getInstance(application);
     }
 
-    public static synchronized DeviceRepository get(Application application) {
+    public static synchronized DeviceRepository get() {
+        return instance;
+    }
+
+    public static synchronized DeviceRepository create(Application application) {
         if (instance == null) {
             instance = new DeviceRepository(application);
         }

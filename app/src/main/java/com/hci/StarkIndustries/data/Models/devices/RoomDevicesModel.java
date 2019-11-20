@@ -16,7 +16,8 @@ public class RoomDevicesModel extends DevicesListModel {
         return models.stream().filter(new Predicate<CommonDeviceModel>() {
             @Override
             public boolean test(CommonDeviceModel deviceModel) {
-                return deviceModel.Room == Room;
+//                return deviceModel.Room == Room;
+                return true;
             }
         }).collect(Collectors.<CommonDeviceModel>toList());
     }

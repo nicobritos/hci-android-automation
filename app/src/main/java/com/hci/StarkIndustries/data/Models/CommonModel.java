@@ -19,6 +19,12 @@ public abstract class CommonModel {
         this.name = name;
     }
 
+    public boolean isFavorite() {
+        Object o = meta.get("favourite");
+        if (o instanceof Boolean) return (boolean) o;
+        return false;
+    }
+
     @Override
     public int hashCode() {
         return id.hashCode();

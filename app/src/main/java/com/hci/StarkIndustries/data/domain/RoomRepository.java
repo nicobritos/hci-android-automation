@@ -22,7 +22,11 @@ public class RoomRepository {
         this.api = Api.getInstance(application);
     }
 
-    public static synchronized RoomRepository get(Application application) {
+    public static synchronized RoomRepository get() {
+        return instance;
+    }
+
+    public static synchronized RoomRepository create(Application application) {
         if (instance == null) {
             instance = new RoomRepository(application);
         }

@@ -4,12 +4,33 @@ import com.hci.StarkIndustries.data.Models.devices.DeviceType;
 import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
 
 public class DoorModel extends CommonDeviceModel {
+    private CurtainsState state;
+
     public String getStatus() {
-        return this.getPropertyString("status");
+        return this.state.getStatus();
+    }
+
+    public String getLockStatus() {
+        return this.state.getLockStatus();
     }
 
     public boolean isLocked() {
-        String s = this.getPropertyString("lock");
-        return s != null && s.equalsIgnoreCase("locked");
+        return this.state.isLocked();
+    }
+
+    private class CurtainsState {
+        private String status, lock;
+
+        public String getStatus() {
+            return status != null ? status : "";
+        }
+
+        public String getLockStatus() {
+            return lock != null ? lock : "";
+        }
+
+        public boolean isLocked() {
+            return this.getLockStatus().equalsIgnoreCase("locked");
+        }
     }
 }

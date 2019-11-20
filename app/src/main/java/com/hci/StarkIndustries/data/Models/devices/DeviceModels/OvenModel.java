@@ -4,25 +4,74 @@ import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
 import com.hci.StarkIndustries.data.Models.devices.DeviceType;
 
 public class OvenModel extends CommonDeviceModel {
-    public String getHeatMode() {
-        return this.getPropertyString("heat");
+    private OvenState state;
+
+    public String getStatus() {
+        return this.state.getStatus();
     }
 
-    public boolean isPowered() {
-        return this.equalsStatus("on");
+    public String getHeat() {
+        return this.state.getHeat();
     }
 
-    public boolean isGrilling() {
-        String s = this.getPropertyString("grill");
-        return s != null && s.equalsIgnoreCase("on");
+    public String getGrill() {
+        return this.state.getGrill();
+    }
+
+    public String getConvection() {
+        return this.state.getConvection();
+    }
+
+    public Integer getTemperature() {
+        return this.state.getTemperature();
     }
 
     public boolean usingConvection() {
-        String s = this.getPropertyString("convection");
-        return s != null && s.equalsIgnoreCase("on");
+        return this.state.usingConvection();
     }
 
-    public int getTemperature() {
-        return this.getPropertyInt("temperature");
+    public boolean usingGrill() {
+        return this.state.usingGrill();
+    }
+
+    public boolean isPowered() {
+        return this.state.isPowered();
+    }
+
+    private class OvenState {
+        private String status, heat, grill, convection;
+        private Integer temperature;
+
+        public String getStatus() {
+            return status != null ? status : "";
+        }
+
+        public String getHeat() {
+            return heat != null ? heat : "";
+        }
+
+        public String getGrill() {
+            return grill != null ? grill : "";
+        }
+
+        public String getConvection() {
+            return convection != null ? convection : "";
+        }
+
+        public Integer getTemperature() {
+            return temperature != null ? temperature : 0;
+        }
+
+        public boolean usingConvection() {
+            return this.getConvection().equalsIgnoreCase("on");
+        }
+
+        public boolean usingGrill() {
+            return this.getGrill().equalsIgnoreCase("on");
+        }
+
+        public boolean isPowered() {
+            return this.getStatus().equalsIgnoreCase("on");
+        }
     }
 }
