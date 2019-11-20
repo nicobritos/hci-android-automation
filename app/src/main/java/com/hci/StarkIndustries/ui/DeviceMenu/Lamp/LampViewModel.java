@@ -17,25 +17,25 @@ public class LampViewModel extends ViewModel {
     // temp
     private LampModel model;
 
-    public LiveData<LampModel> getModel(String id){
+    public LiveData<LampModel> getModel(String id) {
 
-        if(mLamp == null){
-            Log.d(TAG, "getModel: Loading Model. ID: "+ id);
+        if (mLamp == null) {
+            Log.d(TAG, "getModel: Loading Model. ID: " + id);
             this.id = id;
             mLamp = new MutableLiveData<LampModel>();
-            model = new LampModel("Lampara",id,"Room1");
+            model = new LampModel("Lampara", id, "Room1");
             loadModel();
         }
 
         return mLamp;
     }
 
-    private void loadModel(){
+    private void loadModel() {
         // Aca habria que hablar con la API
         mLamp.setValue(model);
     }
 
-    public boolean setIntensity(int intensity){
+    public boolean setIntensity(int intensity) {
 
 
         Log.d(TAG, "setIntensity to " + intensity);
@@ -47,10 +47,10 @@ public class LampViewModel extends ViewModel {
     }
 
 
-    public boolean setColor(int color){
+    public boolean setColor(int color) {
 
 
-        Log.d(TAG, "setColor to 0X" + String.format("%x",color));
+        Log.d(TAG, "setColor to 0X" + String.format("%x", color));
 
         model.color = color;
 
@@ -60,7 +60,7 @@ public class LampViewModel extends ViewModel {
     }
 
 
-    public boolean setEnabled(boolean enabled){
+    public boolean setEnabled(boolean enabled) {
 
 
         Log.d(TAG, "setEnabled to " + enabled);
@@ -71,7 +71,6 @@ public class LampViewModel extends ViewModel {
         loadModel();
         return true;
     }
-
 
 
 }

@@ -1,18 +1,16 @@
 package com.hci.StarkIndustries.data.domain;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.android.volley.Response;
-
-import java.util.ArrayList;
-
 import com.hci.StarkIndustries.data.Models.Result;
 import com.hci.StarkIndustries.data.Models.RoomModel;
 import com.hci.StarkIndustries.data.remote.Api;
+
+import java.util.ArrayList;
 
 public class RoomRepository {
     private static RoomRepository instance;

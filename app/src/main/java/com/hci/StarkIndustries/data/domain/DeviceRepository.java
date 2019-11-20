@@ -6,8 +6,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.android.volley.Response;
-import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
 import com.hci.StarkIndustries.data.Models.Result;
+import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
 import com.hci.StarkIndustries.data.remote.Api;
 
 import java.util.ArrayList;

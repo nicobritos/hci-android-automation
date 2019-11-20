@@ -14,9 +14,9 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
 import com.hci.StarkIndustries.data.Models.devices.DeviceType;
-import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.ui.DeviceMenu.AC.ACFragment;
 import com.hci.StarkIndustries.ui.DeviceMenu.Curtains.CurtainsFragment;
 import com.hci.StarkIndustries.ui.DeviceMenu.Door.DoorMenuFragment;
@@ -31,7 +31,8 @@ public class DeviceMenuContainerFragment extends DialogFragment {
 
     private DeviceMenuContainerViewModel viewModel;
 
-    protected DeviceMenuContainerFragment(){}
+    protected DeviceMenuContainerFragment() {
+    }
 
     public static DeviceMenuContainerFragment newInstance(CommonDeviceModel deviceModel) {
         Bundle args = new Bundle();
@@ -63,7 +64,7 @@ public class DeviceMenuContainerFragment extends DialogFragment {
         // Sets view of the device
         Fragment fragment = getCorrectFragment();
         FragmentTransaction ft = this.getChildFragmentManager().beginTransaction();
-        ft.replace(R.id.fragmentContainer123,fragment );
+        ft.replace(R.id.fragmentContainer123, fragment);
         ft.commit();
 
         CommonDeviceModel model = getArguments().getParcelable("device");
@@ -86,7 +87,6 @@ public class DeviceMenuContainerFragment extends DialogFragment {
         });
 
 
-
         return view;
     }
 
@@ -96,7 +96,7 @@ public class DeviceMenuContainerFragment extends DialogFragment {
 
 //        MainActivity act = (MainActivity) getActivity();
 
-        switch (type){
+        switch (type) {
             case AC:
                 return ACFragment.newInstance(model.Id); //act.getFragment("AC");
             case Door:
@@ -118,8 +118,7 @@ public class DeviceMenuContainerFragment extends DialogFragment {
     }
 
 
-
-    private class OnClickExitDialog implements View.OnClickListener{
+    private class OnClickExitDialog implements View.OnClickListener {
         @Override
         public void onClick(View v) {
             getDialog().cancel();

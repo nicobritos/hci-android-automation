@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.hci.StarkIndustries.data.Models.RoomModel;
 import com.hci.StarkIndustries.R;
+import com.hci.StarkIndustries.data.Models.RoomModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ public class RecyclerViewRoomsAdapter extends RecyclerView.Adapter<RecyclerViewR
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // CAMBIAR
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_device_miniature,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_device_miniature, parent, false);
         return new ViewHolder(view);
     }
 
@@ -41,11 +41,11 @@ public class RecyclerViewRoomsAdapter extends RecyclerView.Adapter<RecyclerViewR
         return rooms.size();
     }
 
-    public void setData(List<RoomModel>rooms){
+    public void setData(List<RoomModel> rooms) {
         this.rooms = rooms;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

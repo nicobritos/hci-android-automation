@@ -11,9 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
 import com.hci.StarkIndustries.data.Models.devices.DeviceType;
-import com.hci.StarkIndustries.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +35,7 @@ public class RecyclerViewDevicesAdapter extends RecyclerView.Adapter<RecyclerVie
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_device_miniature,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_device_miniature, parent, false);
         return new ViewHolder(view);
     }
 
@@ -45,7 +45,7 @@ public class RecyclerViewDevicesAdapter extends RecyclerView.Adapter<RecyclerVie
 
         final CommonDeviceModel model = devices.get(position);
 
-        holder.roomName.setText( model.Room);
+        holder.roomName.setText(model.Room);
         holder.deviceName.setText(model.Name);
         holder.image.setImageResource(getImageResourcesForDevice(model.type));
 
@@ -61,7 +61,7 @@ public class RecyclerViewDevicesAdapter extends RecyclerView.Adapter<RecyclerVie
         notifyDataSetChanged();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView image;
         private TextView deviceName;
@@ -83,9 +83,9 @@ public class RecyclerViewDevicesAdapter extends RecyclerView.Adapter<RecyclerVie
 
     }
 
-    private int getImageResourcesForDevice(DeviceType type){
+    private int getImageResourcesForDevice(DeviceType type) {
 
-        switch (type){
+        switch (type) {
 
             case Door:
                 return R.drawable.ic_door_locked;

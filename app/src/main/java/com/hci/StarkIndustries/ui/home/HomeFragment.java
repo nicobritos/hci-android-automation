@@ -5,13 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.hci.StarkIndustries.R;
-import com.hci.StarkIndustries.data.domain.RoomRepository;
 
 public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
@@ -24,8 +23,6 @@ public class HomeFragment extends Fragment {
 
         return root;
     }
-
-
 
 
     @Override

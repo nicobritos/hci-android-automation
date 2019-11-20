@@ -16,36 +16,36 @@ public class FridgeViewModel extends ViewModel {
     private FridgeModel model;
 
 
-    public LiveData<FridgeModel> getModel(String id){
+    public LiveData<FridgeModel> getModel(String id) {
 
-        if(mFridge == null){
+        if (mFridge == null) {
             mFridge = new MutableLiveData<>();
-            this.id =id;
-            model = new  FridgeModel("Heladera",id,"ROOM 1");
+            this.id = id;
+            model = new FridgeModel("Heladera", id, "ROOM 1");
             loadModel();
         }
 
         return mFridge;
     }
 
-    private void loadModel(){
+    private void loadModel() {
         mFridge.setValue(model);
     }
 
-    public void setTemperature(int temperature){
+    public void setTemperature(int temperature) {
 
-       model.temperature = temperature;
-       loadModel();
+        model.temperature = temperature;
+        loadModel();
     }
 
 
-    public void setFreezerTemperature(int temperature){
-       model.freezerTemperature = temperature;
-       loadModel();
+    public void setFreezerTemperature(int temperature) {
+        model.freezerTemperature = temperature;
+        loadModel();
     }
 
 
-    public void setMode(int mode){
+    public void setMode(int mode) {
 
         model.mode = mode;
         loadModel();

@@ -12,6 +12,6 @@ public class FavoriteRoutinesListModel extends RoutinesListModel {
             public boolean test(RoutineModel routineModel) {
                 return routineModel.isFavorite;
             }
-        }).collect(Collectors.<RoutineModel>toList());
+        }).collect(Collectors.toList());
     }
 }

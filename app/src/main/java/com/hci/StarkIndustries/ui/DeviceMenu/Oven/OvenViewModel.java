@@ -17,24 +17,24 @@ public class OvenViewModel extends ViewModel {
 
     private OvenModel model;
 
-    public LiveData<OvenModel> getModel(String Id){
+    public LiveData<OvenModel> getModel(String Id) {
 
-        if(mOven == null){
+        if (mOven == null) {
             mOven = new MutableLiveData<>();
             this.id = Id;
-            model =new OvenModel("Horno",id,"ROOM 1");
+            model = new OvenModel("Horno", id, "ROOM 1");
             loadModel();
         }
 
         return mOven;
     }
 
-    private void loadModel(){
+    private void loadModel() {
         mOven.setValue(model);
     }
 
 
-    void setTemperature(int temperature){
+    void setTemperature(int temperature) {
         model.temperature = temperature;
         loadModel();
     }

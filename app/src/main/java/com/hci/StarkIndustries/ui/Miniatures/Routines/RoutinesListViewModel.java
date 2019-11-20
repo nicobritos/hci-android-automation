@@ -11,16 +11,18 @@ public class RoutinesListViewModel extends ViewModel {
     protected MutableLiveData<RoutinesListModel> mRoutine;
     protected RoutinesListModel model;
 
-    public LiveData<RoutinesListModel> getModel(){
+    public LiveData<RoutinesListModel> getModel() {
 
-        if(mRoutine == null){
+        if (mRoutine == null) {
             mRoutine = new MutableLiveData<>();
             model = new RoutinesListModel();
             loadModel();
         }
-        return  mRoutine;
+        return mRoutine;
     }
 
-    protected void loadModel(){mRoutine.setValue(model);}
+    protected void loadModel() {
+        mRoutine.setValue(model);
+    }
 
 }

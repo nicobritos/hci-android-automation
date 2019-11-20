@@ -10,7 +10,7 @@ public class VolleySingleton {
     private final RequestQueue requestQueue;
 
     private VolleySingleton(Context context) {
-        this.requestQueue =  Volley.newRequestQueue(context.getApplicationContext());
+        this.requestQueue = Volley.newRequestQueue(context.getApplicationContext());
     }
 
     public static synchronized VolleySingleton getInstance(Context context) {

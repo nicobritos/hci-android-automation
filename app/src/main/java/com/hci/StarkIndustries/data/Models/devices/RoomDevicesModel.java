@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 public class RoomDevicesModel extends DevicesListModel {
     private String Room;
+
     public RoomDevicesModel(String room) {
         super();
         this.Room = room;
@@ -19,6 +20,6 @@ public class RoomDevicesModel extends DevicesListModel {
 //                return deviceModel.Room == Room;
                 return true;
             }
-        }).collect(Collectors.<CommonDeviceModel>toList());
+        }).collect(Collectors.toList());
     }
 }

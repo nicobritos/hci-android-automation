@@ -1,7 +1,6 @@
 package com.hci.StarkIndustries.data.Models.devices.DeviceModels;
 
 import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
-import com.hci.StarkIndustries.data.Models.devices.DeviceType;
 
 public class OvenModel extends CommonDeviceModel {
     private OvenState state;

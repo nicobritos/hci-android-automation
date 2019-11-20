@@ -3,6 +3,9 @@ package com.hci.StarkIndustries.data.Models.devices.DeviceModels;
 import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
 
 public class ACModel extends CommonDeviceModel {
+    public static final int TEMPERATURE_MAX = 38;
+    public static final int TEMPERATURE_MIN = 18;
+
     private ACState state;
 
     public boolean isPowered() {
@@ -30,8 +33,7 @@ public class ACModel extends CommonDeviceModel {
     }
 
     private class ACState {
-        private String status;
-        private String mode, verticalSwing, horizontalSwing, fanSpeed;
+        private String status, mode, verticalSwing, horizontalSwing, fanSpeed;
         private Integer temperature;
 
         public String getStatus() {

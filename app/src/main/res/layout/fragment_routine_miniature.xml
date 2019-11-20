@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <com.google.android.material.card.MaterialCardView
@@ -23,9 +21,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            >
-
+            android:layout_height="100dp">
 
 
             <ImageView
@@ -35,8 +31,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/ic_star_white_48dp"
-                android:scaleType="centerCrop"
-                 />
+                android:scaleType="centerCrop" />
 
             <TextView
 
@@ -49,8 +44,7 @@
                 android:id="@+id/RoutineName"
                 android:layout_centerVertical="true"
                 android:gravity="center"
-                android:textColor="@color/Black"
-                />
+                android:textColor="@color/Black" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -58,8 +52,7 @@
                 android:layout_below="@id/RoutineName"
                 android:layout_alignLeft="@id/RoutineName"
                 android:id="@+id/RoutineDescription"
-                android:text="ADSADSDA"
-                />
+                android:text="ADSADSDA" />
 
             <ImageView
                 android:layout_width="90dp"
@@ -68,12 +61,10 @@
                 android:id="@+id/PlayRoutine"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/ic_play_arrow_white_48dp"
-                android:scaleType="centerCrop"
-                />
+                android:scaleType="centerCrop" />
 
 
         </RelativeLayout>
-
 
 
     </com.google.android.material.card.MaterialCardView>

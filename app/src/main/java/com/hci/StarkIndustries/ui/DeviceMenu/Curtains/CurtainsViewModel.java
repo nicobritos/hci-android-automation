@@ -12,23 +12,23 @@ public class CurtainsViewModel extends ViewModel {
     private CurtainsModel model;
     private String id = "";
 
-    public LiveData<CurtainsModel> getModel(String id){
+    public LiveData<CurtainsModel> getModel(String id) {
 
-        if(mCurtains == null){
+        if (mCurtains == null) {
             mCurtains = new MutableLiveData<CurtainsModel>();
-            model = new CurtainsModel("Cortinitas",id,"Room1");
+            model = new CurtainsModel("Cortinitas", id, "Room1");
             loadModel();
         }
 
         return mCurtains;
     }
 
-    private void loadModel(){
+    private void loadModel() {
         // Aca habria que hablar con la API
         mCurtains.setValue(model);
     }
 
-    public void setState(boolean state){
+    public void setState(boolean state) {
         model.isOpen = state;
         loadModel();
     }

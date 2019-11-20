@@ -1,7 +1,6 @@
 package com.hci.StarkIndustries;
 
 import android.app.Application;
-import android.util.Log;
 
 import com.hci.StarkIndustries.data.domain.DeviceRepository;
 import com.hci.StarkIndustries.data.domain.RoomRepository;

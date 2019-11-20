@@ -11,7 +11,7 @@ public class DevicesListViewModel extends ViewModel {
     protected MutableLiveData<DevicesListModel> mDeviceList;
     protected DevicesListModel model;
 
-    public LiveData<DevicesListModel> getModel(){
+    public LiveData<DevicesListModel> getModel() {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
@@ -20,7 +20,7 @@ public class DevicesListViewModel extends ViewModel {
     }
 
 
-    public void remove(int pos){
+    public void remove(int pos) {
         // Implement
     }
 

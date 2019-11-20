@@ -6,10 +6,6 @@ import android.os.Parcelable;
 import com.hci.StarkIndustries.data.Models.CommonModel;
 import com.hci.StarkIndustries.data.Models.RoomModel;
 
-import org.json.JSONObject;
-
-import java.util.Map;
-
 public class CommonDeviceModel extends CommonModel implements Parcelable {
     public static final Creator<CommonDeviceModel> CREATOR = new Creator<CommonDeviceModel>() {
         @Override

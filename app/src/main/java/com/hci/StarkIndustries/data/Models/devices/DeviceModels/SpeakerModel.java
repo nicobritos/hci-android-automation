@@ -1,10 +1,6 @@
 package com.hci.StarkIndustries.data.Models.devices.DeviceModels;
 
 import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
-import com.hci.StarkIndustries.data.Models.devices.DeviceType;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class SpeakerModel extends CommonDeviceModel {
     private SpeakerState state;

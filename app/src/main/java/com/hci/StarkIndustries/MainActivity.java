@@ -2,8 +2,6 @@ package com.hci.StarkIndustries;
 
 import android.os.Bundle;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
@@ -11,11 +9,13 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-    private Map<String,Fragment> fragments = new HashMap<>();
+    private Map<String, Fragment> fragments = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +39,11 @@ public class MainActivity extends AppCompatActivity {
 //        return fragments.get(adaptName(name));
 //    }
 
-    private String adaptName(String name){
+    private String adaptName(String name) {
         return name.toLowerCase();
     }
 
-    private void initializeFragments(){
+    private void initializeFragments() {
 
 //        fragments.put(adaptName("AC"), ACFragment.newInstance());
 //        fragments.put(adaptName("Door"), DoorMenuFragment.newInstance());
@@ -52,8 +52,6 @@ public class MainActivity extends AppCompatActivity {
 //        fragments.put(adaptName("Curtains"), CurtainsFragment.newInstance());
 //        fragments.put(adaptName("Lamp"), LampFragment.newInstance());
 //        fragments.put(adaptName("Speaker"), SpeakerFragment.newInstance());
-
-
 
 
     }

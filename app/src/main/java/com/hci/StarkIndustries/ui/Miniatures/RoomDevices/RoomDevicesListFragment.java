@@ -8,11 +8,11 @@ import com.hci.StarkIndustries.ui.Miniatures.BaseDeviceFragment.DevicesListFragm
 
 public class RoomDevicesListFragment extends DevicesListFragment {
 
-    public RoomDevicesListFragment newInstance(String roomID){
+    public RoomDevicesListFragment newInstance(String roomID) {
         RoomDevicesListFragment f = new RoomDevicesListFragment();
 
         Bundle args = new Bundle();
-        args.putString("roomId",roomID);
+        args.putString("roomId", roomID);
         f.setArguments(args);
 
         return f;
@@ -20,10 +20,10 @@ public class RoomDevicesListFragment extends DevicesListFragment {
     }
 
 
-    public void LoadViewModel(){
+    public void LoadViewModel() {
         mViewModel = ViewModelProviders.of(this).get(RoomDevicesListViewModel.class);
 
-        ((RoomDevicesListViewModel)mViewModel).SetID(this.getArguments().getString("roomId"));
+        ((RoomDevicesListViewModel) mViewModel).SetID(this.getArguments().getString("roomId"));
 
     }
 

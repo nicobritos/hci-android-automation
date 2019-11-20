@@ -12,6 +12,6 @@ public class FavoriteDevicesModel extends DevicesListModel {
             public boolean test(CommonDeviceModel deviceModel) {
                 return deviceModel.isFavorite();
             }
-        }).collect(Collectors.<CommonDeviceModel>toList());
+        }).collect(Collectors.toList());
     }
 }

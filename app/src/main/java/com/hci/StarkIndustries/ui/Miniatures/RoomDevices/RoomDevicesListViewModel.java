@@ -11,11 +11,14 @@ public class RoomDevicesListViewModel extends DevicesListViewModel {
 
     protected String id = "";
 
-    public void SetID(String id){this.id = id;}
+    public void SetID(String id) {
+        this.id = id;
+    }
+
     @Override
     public LiveData<DevicesListModel> getModel() {
 
-        if(mDeviceList == null){
+        if (mDeviceList == null) {
             mDeviceList = new MutableLiveData<>();
             model = new RoomDevicesModel(this.id);
             loadModel();

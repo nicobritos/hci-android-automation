@@ -11,6 +11,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.hci.StarkIndustries.data.Models.RoomModel;
+import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,9 +21,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.UUID;
-
-import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
-import com.hci.StarkIndustries.data.Models.RoomModel;
 
 public class Api {
     private final static String TAG = "ar.edu.itba.api";
@@ -51,7 +50,8 @@ public class Api {
     // Regions
     public String getRegions(Response.Listener<ArrayList<RoomModel>> listener, Response.ErrorListener errorListener) {
         GsonRequest<Object, ArrayList<RoomModel>> request =
-                new GsonRequest<>(Request.Method.GET, this.formatUrl(API_REGIONS), null, "result", new TypeToken<ArrayList<RoomModel>>(){}, null, listener, errorListener);
+                new GsonRequest<>(Request.Method.GET, this.formatUrl(API_REGIONS), null, "result", new TypeToken<ArrayList<RoomModel>>() {
+                }, null, listener, errorListener);
         String uuid = UUID.randomUUID().toString();
         request.setTag(uuid);
         requestQueue.add(request);
@@ -60,7 +60,8 @@ public class Api {
 
     public String getRegion(String id, Response.Listener<ArrayList<RoomModel>> listener, Response.ErrorListener errorListener) {
         GsonRequest<Object, ArrayList<RoomModel>> request =
-                new GsonRequest<>(Request.Method.GET, this.formatUrl(API_REGIONS, id), null, "result", new TypeToken<ArrayList<RoomModel>>(){}, null, listener, errorListener);
+                new GsonRequest<>(Request.Method.GET, this.formatUrl(API_REGIONS, id), null, "result", new TypeToken<ArrayList<RoomModel>>() {
+                }, null, listener, errorListener);
         String uuid = UUID.randomUUID().toString();
         request.setTag(uuid);
         requestQueue.add(request);
@@ -70,7 +71,8 @@ public class Api {
     // Rooms
     public String getRooms(Response.Listener<ArrayList<RoomModel>> listener, Response.ErrorListener errorListener) {
         GsonRequest<Object, ArrayList<RoomModel>> request =
-                new GsonRequest<>(Request.Method.GET, this.formatUrl(API_ROOMS), null, "result", new TypeToken<ArrayList<RoomModel>>(){}, null, listener, errorListener);
+                new GsonRequest<>(Request.Method.GET, this.formatUrl(API_ROOMS), null, "result", new TypeToken<ArrayList<RoomModel>>() {
+                }, null, listener, errorListener);
         String uuid = UUID.randomUUID().toString();
         request.setTag(uuid);
         requestQueue.add(request);
@@ -79,7 +81,8 @@ public class Api {
 
     public String getRooms(String sectionId, Response.Listener<ArrayList<RoomModel>> listener, Response.ErrorListener errorListener) {
         GsonRequest<Object, ArrayList<RoomModel>> request =
-                new GsonRequest<>(Request.Method.GET, this.formatUrl(API_REGIONS, sectionId, API_ROOMS), null, "result", new TypeToken<ArrayList<RoomModel>>(){}, null, listener, errorListener);
+                new GsonRequest<>(Request.Method.GET, this.formatUrl(API_REGIONS, sectionId, API_ROOMS), null, "result", new TypeToken<ArrayList<RoomModel>>() {
+                }, null, listener, errorListener);
         String uuid = UUID.randomUUID().toString();
         request.setTag(uuid);
         requestQueue.add(request);
@@ -88,7 +91,8 @@ public class Api {
 
     public String getRoom(String id, Response.Listener<RoomModel> listener, Response.ErrorListener errorListener) {
         GsonRequest<Object, RoomModel> request =
-                new GsonRequest<>(Request.Method.GET, this.formatUrl(API_ROOMS, id), null, "result", new TypeToken<RoomModel>(){}, null, listener, errorListener);
+                new GsonRequest<>(Request.Method.GET, this.formatUrl(API_ROOMS, id), null, "result", new TypeToken<RoomModel>() {
+                }, null, listener, errorListener);
         String uuid = UUID.randomUUID().toString();
         request.setTag(uuid);
         requestQueue.add(request);
@@ -99,7 +103,8 @@ public class Api {
     // Devices
     public String getDevices(Response.Listener<ArrayList<CommonDeviceModel>> listener, Response.ErrorListener errorListener) {
         GsonRequest<Object, ArrayList<CommonDeviceModel>> request =
-                new GsonRequest<>(Request.Method.GET, this.formatUrl(API_DEVICES), null, "devices", new TypeToken<ArrayList<CommonDeviceModel>>(){}, null, listener, errorListener);
+                new GsonRequest<>(Request.Method.GET, this.formatUrl(API_DEVICES), null, "devices", new TypeToken<ArrayList<CommonDeviceModel>>() {
+                }, null, listener, errorListener);
         String uuid = UUID.randomUUID().toString();
         request.setTag(uuid);
         requestQueue.add(request);
@@ -108,7 +113,8 @@ public class Api {
 
     public String getDevices(String roomId, Response.Listener<ArrayList<CommonDeviceModel>> listener, Response.ErrorListener errorListener) {
         GsonRequest<Object, ArrayList<CommonDeviceModel>> request =
-                new GsonRequest<>(Request.Method.GET, this.formatUrl(API_ROOMS, roomId, API_DEVICES), null, "result", new TypeToken<ArrayList<CommonDeviceModel>>(){}, null, listener, errorListener);
+                new GsonRequest<>(Request.Method.GET, this.formatUrl(API_ROOMS, roomId, API_DEVICES), null, "result", new TypeToken<ArrayList<CommonDeviceModel>>() {
+                }, null, listener, errorListener);
         String uuid = UUID.randomUUID().toString();
         request.setTag(uuid);
         requestQueue.add(request);
@@ -117,7 +123,8 @@ public class Api {
 
     public String getDevice(String id, Response.Listener<CommonDeviceModel> listener, Response.ErrorListener errorListener) {
         GsonRequest<Object, CommonDeviceModel> request =
-                new GsonRequest<>(Request.Method.GET, this.formatUrl(API_DEVICES, id), null, "result", new TypeToken<CommonDeviceModel>(){}, null, listener, errorListener);
+                new GsonRequest<>(Request.Method.GET, this.formatUrl(API_DEVICES, id), null, "result", new TypeToken<CommonDeviceModel>() {
+                }, null, listener, errorListener);
         String uuid = UUID.randomUUID().toString();
         request.setTag(uuid);
         requestQueue.add(request);
@@ -127,7 +134,8 @@ public class Api {
     // Routines
     public String getRoutines(Response.Listener<ArrayList<RoomModel>> listener, Response.ErrorListener errorListener) {
         GsonRequest<Object, ArrayList<RoomModel>> request =
-                new GsonRequest<>(Request.Method.GET, this.formatUrl(API_ROUTINES), null, "result", new TypeToken<ArrayList<RoomModel>>(){}, null, listener, errorListener);
+                new GsonRequest<>(Request.Method.GET, this.formatUrl(API_ROUTINES), null, "result", new TypeToken<ArrayList<RoomModel>>() {
+                }, null, listener, errorListener);
         String uuid = UUID.randomUUID().toString();
         request.setTag(uuid);
         requestQueue.add(request);
@@ -136,7 +144,8 @@ public class Api {
 
     public String getRoutine(String id, Response.Listener<ArrayList<RoomModel>> listener, Response.ErrorListener errorListener) {
         GsonRequest<Object, ArrayList<RoomModel>> request =
-                new GsonRequest<>(Request.Method.GET, this.formatUrl(API_ROUTINES, id), null, "result", new TypeToken<ArrayList<RoomModel>>(){}, null, listener, errorListener);
+                new GsonRequest<>(Request.Method.GET, this.formatUrl(API_ROUTINES, id), null, "result", new TypeToken<ArrayList<RoomModel>>() {
+                }, null, listener, errorListener);
         String uuid = UUID.randomUUID().toString();
         request.setTag(uuid);
         requestQueue.add(request);

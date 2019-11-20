@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<string name="DoorButtonOpen">Open Door</string>
+    <string name="DoorButtonOpen">Open Door</string>
     <string name="DoorButtonClose">Close Door</string>
     <string name="DoorButtonLock">Lock Door</string>
     <string name="DoorButtonUnlock">Unlock Door</string>

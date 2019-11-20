@@ -1,39 +1,32 @@
 package com.hci.StarkIndustries.ui.DeviceMenu.AC;
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import com.hci.StarkIndustries.data.Models.devices.DeviceModels.ACModel;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.hci.StarkIndustries.R;
+import com.hci.StarkIndustries.data.Models.devices.DeviceModels.ACModel;
 
 public class ACFragment extends Fragment {
-
     private ACViewModel mViewModel;
-
-    protected ACFragment(){}
 
     public static ACFragment newInstance(String id) {
         ACFragment f = new ACFragment();
 
         Bundle args = new Bundle();
-        args.putString("id",id);
+        args.putString("id", id);
         f.setArguments(args);
 
         return f;
@@ -51,13 +44,16 @@ public class ACFragment extends Fragment {
         tempSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                tempView.setText(String.valueOf(18 + progress));
+                tempView.setText(String.valueOf(ACModel.TEMPERATURE_MIN + progress));
             }
+
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                mViewModel.setTemperature(18 + seekBar.getProgress());
+                mViewModel.setTemperature(ACModel.TEMPERATURE_MIN + seekBar.getProgress());
             }
         });
 
@@ -70,7 +66,8 @@ public class ACFragment extends Fragment {
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         });
 
         final Spinner fanSpeedDDL = root.findViewById(R.id.ACFanSpeedDDL);
@@ -81,7 +78,8 @@ public class ACFragment extends Fragment {
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         });
 
         final Spinner horizMovDDL = root.findViewById(R.id.ACHorizontalDDL);
@@ -93,7 +91,8 @@ public class ACFragment extends Fragment {
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         });
 
         final Spinner vertMovDDL = root.findViewById(R.id.ACVerticalDDL);
@@ -104,16 +103,12 @@ public class ACFragment extends Fragment {
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         });
 
         Switch power = root.findViewById(R.id.ACPower);
-        power.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mViewModel.setPower(isChecked);
-            }
-        });
+        power.setOnCheckedChangeListener((buttonView, isChecked) -> mViewModel.setPower(isChecked));
 
         return root;
     }
@@ -123,54 +118,44 @@ public class ACFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(ACViewModel.class);
 
-        mViewModel.getModel(getID()).observe(this, new Observer<ACModel>() {
-            @Override
-            public void onChanged(ACModel acModel) {
+        mViewModel.getModel(getID()).observe(this, acModel -> {
+            TextView tempView = getView().findViewById(R.id.ACTemperatureView);
+            SeekBar tempSlider = getView().findViewById(R.id.ACTemperatureSlider);
 
-                TextView tempView = getView().findViewById(R.id.ACTemperatureView);
-                SeekBar tempSlider = getView().findViewById(R.id.ACTemperatureSlider);
+            tempSlider.setProgress(acModel.getTemperature() - ACModel.TEMPERATURE_MIN, true);
+            tempView.setText(String.valueOf(acModel.getTemperature()));
 
-                tempSlider.setProgress(acModel.temperature-18,true);
-                tempView.setText(String.valueOf(acModel.temperature));
+            Spinner modeDDL = getView().findViewById(R.id.ACModeDDL);
+            modeDDL.setSelection(mViewModel.getModeInt(), true);
 
-                Spinner modeDDL = getView().findViewById(R.id.ACModeDDL);
-                modeDDL.setSelection(acModel.mode,true);
+            Spinner fanSpeedDDL = getView().findViewById(R.id.ACFanSpeedDDL);
+            fanSpeedDDL.setSelection(mViewModel.getFanSpeedInt(), true);
 
-                Spinner fanSpeedDDL = getView().findViewById(R.id.ACFanSpeedDDL);
-                fanSpeedDDL.setSelection(acModel.fanSpeed,true);
+            Spinner horizMovDDL = getView().findViewById(R.id.ACHorizontalDDL);
+            horizMovDDL.setSelection(mViewModel.getHorizontalSwingInt(), true);
 
-                Spinner horizMovDDL = getView().findViewById(R.id.ACHorizontalDDL);
-                horizMovDDL.setSelection(acModel.horizontalMov,true);
+            Spinner vertMovDDL = getView().findViewById(R.id.ACVerticalDDL);
+            vertMovDDL.setSelection(mViewModel.getVerticalSwingInt(), true);
 
-                Spinner vertMovDDL = getView().findViewById(R.id.ACVerticalDDL);
-                vertMovDDL.setSelection(acModel.verticalMov,true);
+            Switch power = getView().findViewById(R.id.ACPower);
+            power.setChecked(acModel.isPowered());
 
-                Switch power = getView().findViewById(R.id.ACPower);
-                power.setChecked(acModel.power);
+            ImageView imageView = getView().findViewById(R.id.ACImage);
 
-                ImageView imageView = getView().findViewById(R.id.ACImage);
+            if (acModel.isPowered())
+                imageView.setImageResource(R.drawable.ic_air_conditioner_on);
+            else
+                imageView.setImageResource(R.drawable.ic_air_conditioner_off);
 
-                if(acModel.power)
-                    imageView.setImageResource(R.drawable.ic_air_conditioner_on);
-                else
-                    imageView.setImageResource(R.drawable.ic_air_conditioner_off);
-
-                tempSlider.setEnabled(acModel.power);
-                fanSpeedDDL.setEnabled(acModel.power);
-                horizMovDDL.setEnabled(acModel.power);
-                modeDDL.setEnabled(acModel.power);
-                vertMovDDL.setEnabled(acModel.power);
-
-            }
+            tempSlider.setEnabled(acModel.isPowered());
+            fanSpeedDDL.setEnabled(acModel.isPowered());
+            horizMovDDL.setEnabled(acModel.isPowered());
+            modeDDL.setEnabled(acModel.isPowered());
+            vertMovDDL.setEnabled(acModel.isPowered());
         });
-
-
-
     }
 
-    private String getID(){
+    private String getID() {
         return getArguments().getString("id");
     }
-
-
 }

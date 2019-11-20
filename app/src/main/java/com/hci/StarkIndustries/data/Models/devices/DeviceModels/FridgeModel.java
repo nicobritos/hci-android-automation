@@ -1,6 +1,5 @@
 package com.hci.StarkIndustries.data.Models.devices.DeviceModels;
 
-import com.hci.StarkIndustries.data.Models.devices.DeviceType;
 import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
 
 public class FridgeModel extends CommonDeviceModel {

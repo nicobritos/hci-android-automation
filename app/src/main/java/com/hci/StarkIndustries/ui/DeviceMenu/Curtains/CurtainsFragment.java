@@ -13,20 +13,21 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.hci.StarkIndustries.data.Models.devices.DeviceModels.CurtainsModel;
 import com.hci.StarkIndustries.R;
+import com.hci.StarkIndustries.data.Models.devices.DeviceModels.CurtainsModel;
 
 public class CurtainsFragment extends Fragment {
 
     private CurtainsViewModel viewModel;
 
-    protected CurtainsFragment(){}
+    protected CurtainsFragment() {
+    }
 
     public static CurtainsFragment newInstance(String id) {
 
         CurtainsFragment f = new CurtainsFragment();
         Bundle arg = new Bundle();
-        arg.putString("id",id);
+        arg.putString("id", id);
         f.setArguments(arg);
         return f;
     }
@@ -35,9 +36,9 @@ public class CurtainsFragment extends Fragment {
 
         viewModel = ViewModelProviders.of(this).get(CurtainsViewModel.class);
 
-        View root = inflater.inflate(R.layout.fragment_courtains_menu, container,false);
+        View root = inflater.inflate(R.layout.fragment_courtains_menu, container, false);
 
-        Button button  = root.findViewById(R.id.curtainsButton);
+        Button button = root.findViewById(R.id.curtainsButton);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,13 +64,13 @@ public class CurtainsFragment extends Fragment {
             @Override
             public void onChanged(CurtainsModel curtainsModel) {
 
-                Button button  = getView().findViewById(R.id.curtainsButton);
+                Button button = getView().findViewById(R.id.curtainsButton);
                 ImageView image = getView().findViewById(R.id.curtainsImage);
 
-                if(curtainsModel.isOpen){
+                if (curtainsModel.isOpen) {
                     image.setImageResource(R.drawable.ic_curtain_open);
                     button.setText(R.string.CourtainsButtonClose);
-                }else {
+                } else {
                     image.setImageResource(R.drawable.ic_curtain_closed);
                     button.setText(R.string.CourtainsButtonOpen);
                 }
@@ -79,7 +80,7 @@ public class CurtainsFragment extends Fragment {
     }
 
 
-    private String getID(){
+    private String getID() {
         return getArguments().getString("id");
     }
 

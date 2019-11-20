@@ -12,8 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.hci.StarkIndustries.data.Models.RoutineModel;
 import com.hci.StarkIndustries.R;
+import com.hci.StarkIndustries.data.Models.RoutineModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ public class RecyclerViewRoutinesAdapter extends RecyclerView.Adapter<RecyclerVi
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_routine_miniature,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_routine_miniature, parent, false);
         return new ViewHolder(view);
     }
 
@@ -45,7 +45,7 @@ public class RecyclerViewRoutinesAdapter extends RecyclerView.Adapter<RecyclerVi
         holder.description.setText(model.Description);
         holder.playImage.setImageResource(R.drawable.ic_play_arrow_white_48dp);
 
-        if(model.isFavorite)
+        if (model.isFavorite)
             holder.favImage.setImageResource(R.drawable.ic_star_white_48dp);
         else
             holder.favImage.setImageResource(R.drawable.ic_star_black_24dp);
@@ -54,7 +54,7 @@ public class RecyclerViewRoutinesAdapter extends RecyclerView.Adapter<RecyclerVi
             @Override
             public void onClick(View v) {
                 // Play routine
-                Toast.makeText(mContext,"Running routine",Toast.LENGTH_LONG);
+                Toast.makeText(mContext, "Running routine", Toast.LENGTH_LONG);
             }
         });
 
@@ -64,7 +64,7 @@ public class RecyclerViewRoutinesAdapter extends RecyclerView.Adapter<RecyclerVi
 
                 ImageView imageView = (ImageView) v;
 
-                if(model.isFavorite)
+                if (model.isFavorite)
                     imageView.setImageResource(R.drawable.ic_star_black_24dp);
                 else
                     imageView.setImageResource(R.drawable.ic_star_white_48dp);
@@ -74,11 +74,10 @@ public class RecyclerViewRoutinesAdapter extends RecyclerView.Adapter<RecyclerVi
         });
     }
 
-    public void setData(List<RoutineModel> routines){
+    public void setData(List<RoutineModel> routines) {
         this.routines = routines;
         notifyDataSetChanged();
     }
-
 
 
     @Override
@@ -87,12 +86,12 @@ public class RecyclerViewRoutinesAdapter extends RecyclerView.Adapter<RecyclerVi
     }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView favImage;
         public ImageView playImage;
         public TextView name;
-        public  TextView description;
+        public TextView description;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

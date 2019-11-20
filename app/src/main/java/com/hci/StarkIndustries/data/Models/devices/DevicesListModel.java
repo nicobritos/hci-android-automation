@@ -1,10 +1,5 @@
 package com.hci.StarkIndustries.data.Models.devices;
 
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LifecycleService;
-
-import com.hci.StarkIndustries.data.domain.DeviceRepository;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +19,7 @@ public abstract class DevicesListModel {
 
     public abstract List<CommonDeviceModel> filterDevices();
 
-    public List<CommonDeviceModel> getDevices(){
+    public List<CommonDeviceModel> getDevices() {
         return filterDevices();
     }
 }

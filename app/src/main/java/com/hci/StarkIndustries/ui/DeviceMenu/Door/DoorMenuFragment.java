@@ -1,14 +1,6 @@
 package com.hci.StarkIndustries.ui.DeviceMenu.Door;
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,24 +9,32 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 
-import com.hci.StarkIndustries.data.Models.devices.DeviceModels.DoorModel;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.hci.StarkIndustries.R;
+import com.hci.StarkIndustries.data.Models.devices.DeviceModels.DoorModel;
 
 public class DoorMenuFragment extends Fragment {
 
     private DoorMenuViewModel mViewModel;
     private static final String TAG = "DoorMenuFragment";
 
-    protected DoorMenuFragment(){}
+    protected DoorMenuFragment() {
+    }
 
     public static DoorMenuFragment newInstance(String id) {
 
         DoorMenuFragment f = new DoorMenuFragment();
         Bundle args = new Bundle();
-        args.putString("id",id);
+        args.putString("id", id);
         f.setArguments(args);
         return f;
     }
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class DoorMenuFragment extends Fragment {
         openDoorButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                if(isChecked)
+                if (isChecked)
                     mViewModel.open();
                 else
                     mViewModel.close();
@@ -62,13 +62,12 @@ public class DoorMenuFragment extends Fragment {
         lockDoorButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                if(isChecked)
+                if (isChecked)
                     mViewModel.lock();
                 else
                     mViewModel.unlock();
             }
         });
-
 
 
         return root;
@@ -84,33 +83,31 @@ public class DoorMenuFragment extends Fragment {
         mViewModel.getModel(getID()).observe(this, new Observer<DoorModel>() {
             @Override
             public void onChanged(DoorModel doorModel) {
-                Log.d(TAG, "onChanged: isOpen: "+doorModel.isOpen + " isLocked: " + doorModel.islocked);
-                if(doorModel.isOpen) {
+                Log.d(TAG, "onChanged: isOpen: " + doorModel.isOpen + " isLocked: " + doorModel.islocked);
+                if (doorModel.isOpen) {
                     ((ImageView) getView().findViewById(R.id.IsDoorOpenImage)).setImageResource(R.drawable.ic_open_door);
-                    ((Switch)getView().findViewById(R.id.OpenDoorBtn)).setText(R.string.DoorButtonClose);
+                    ((Switch) getView().findViewById(R.id.OpenDoorBtn)).setText(R.string.DoorButtonClose);
 
-                }
-                else {
+                } else {
                     ((ImageView) getView().findViewById(R.id.IsDoorOpenImage)).setImageResource(R.drawable.ic_closed_door);
-                    ((Switch)getView().findViewById(R.id.OpenDoorBtn)).setText(R.string.DoorButtonOpen);
+                    ((Switch) getView().findViewById(R.id.OpenDoorBtn)).setText(R.string.DoorButtonOpen);
                 }
-                ((Switch)getView().findViewById(R.id.LockDoorBtn)).setEnabled(!doorModel.isOpen);
+                getView().findViewById(R.id.LockDoorBtn).setEnabled(!doorModel.isOpen);
 
-                if(doorModel.islocked) {
+                if (doorModel.islocked) {
                     ((ImageView) getView().findViewById(R.id.isDoorLockedImage)).setImageResource(R.drawable.ic_door_locked);
                     ((Switch) getView().findViewById(R.id.LockDoorBtn)).setText(R.string.DoorButtonUnlock);
-                }
-                else {
+                } else {
                     ((ImageView) getView().findViewById(R.id.isDoorLockedImage)).setImageResource(R.drawable.ic_door_unlocked);
                     ((Switch) getView().findViewById(R.id.LockDoorBtn)).setText(R.string.DoorButtonLock);
                 }
-                ((Switch)getView().findViewById(R.id.OpenDoorBtn)).setEnabled(!doorModel.islocked);
+                getView().findViewById(R.id.OpenDoorBtn).setEnabled(!doorModel.islocked);
 
             }
         });
     }
 
-    private String getID(){
+    private String getID() {
         return getArguments().getString("id");
     }
 

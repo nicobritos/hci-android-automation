@@ -10,7 +10,7 @@ import com.hci.StarkIndustries.ui.Miniatures.BaseDeviceFragment.DevicesListViewM
 public class FavoriteDevicesListViewModel extends DevicesListViewModel {
     @Override
     public LiveData<DevicesListModel> getModel() {
-        if(mDeviceList == null){
+        if (mDeviceList == null) {
             mDeviceList = new MutableLiveData<>();
             model = new FavoriteDevicesModel();
             loadModel();
