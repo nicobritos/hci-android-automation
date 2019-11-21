@@ -20,7 +20,7 @@ public class OvenViewModel extends ViewModel {
     public static final int HEAT_BOTTOM = 2;
 
     private static final String TAG = "OvenViewModel";
-    
+
     private MutableLiveData<OvenModel> mOven;
     private String id = "";
 

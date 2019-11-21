@@ -1,7 +1,6 @@
 package com.hci.StarkIndustries.ui.Miniatures.BaseDeviceFragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,13 +8,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
-import com.hci.StarkIndustries.data.Models.devices.DevicesListModel;
 import com.hci.StarkIndustries.ui.DeviceMenu.DeviceMenuContainerFragment;
 import com.hci.StarkIndustries.ui.RecycleViewAdapters.DevicesRecyclerViewClickInteface;
 import com.hci.StarkIndustries.ui.RecycleViewAdapters.RecyclerViewDevicesAdapter;
@@ -28,7 +25,7 @@ public abstract class DevicesListFragment extends Fragment implements DevicesRec
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.devices_list_fragment, container, false);
 
-      
+
         GridLayoutManager layoutManager = new GridLayoutManager(this.getContext(), 2, RecyclerView.HORIZONTAL, false);
         RecyclerView recyclerView = view.findViewById(R.id.RecyclerViewDevices);
         recyclerView.setLayoutManager(layoutManager);
@@ -56,7 +53,7 @@ public abstract class DevicesListFragment extends Fragment implements DevicesRec
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
-    protected int getOrientation(){
+    protected int getOrientation() {
         return RecyclerView.HORIZONTAL;
     }
 

@@ -1,38 +1,30 @@
 package com.hci.StarkIndustries.ui.DeviceMenu.Lamp;
 
-import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.LampModel;
+import com.hci.StarkIndustries.ui.DeviceMenu.IPassableIDFragment;
 import com.madrapps.pikolo.ColorPicker;
 import com.madrapps.pikolo.RGBColorPicker;
 import com.madrapps.pikolo.listeners.SimpleColorSelectionListener;
 
-public class LampFragment extends Fragment {
+public class LampFragment extends IPassableIDFragment {
     private LampViewModel mViewModel;
-    private String id = "";
 
-    public static LampFragment newInstance(String id) {
-        LampFragment f = new LampFragment();
-        Bundle args = new Bundle();
-        args.putString("id", id);
-        f.setArguments(args);
-        return f;
+    public static LampFragment newInstance() {
+        return new LampFragment();
     }
 
     @Override
@@ -99,9 +91,5 @@ public class LampFragment extends Fragment {
 
             getView().findViewById(R.id.imageView).getBackground().setTint(lampModel.getColorInt());
         });
-    }
-
-    private String getID() {
-        return getArguments().getString("id");
     }
 }

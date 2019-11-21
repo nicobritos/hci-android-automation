@@ -44,8 +44,8 @@ public class SpeakerViewModel extends ViewModel {
         loadModel();
     }
 
-    public void incrementProgress(){
-        speaker.SongTimestamp++;
+    public void incrementProgress() {
+//        speaker.SongTimestamp++;
         loadModel();
     }
 

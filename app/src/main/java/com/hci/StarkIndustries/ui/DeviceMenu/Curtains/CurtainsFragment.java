@@ -9,27 +9,18 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.CurtainsModel;
+import com.hci.StarkIndustries.ui.DeviceMenu.IPassableIDFragment;
 
-public class CurtainsFragment extends Fragment implements IPassableID {
-
+public class CurtainsFragment extends IPassableIDFragment {
     private CurtainsViewModel viewModel;
-    private String id = "";
-
-    protected CurtainsFragment() {
-    }
 
     public static CurtainsFragment newInstance() {
-        CurtainsFragment f = new CurtainsFragment();
-        Bundle arg = new Bundle();
-        arg.putString("id", id);
-        f.setArguments(arg);
-        return f;
+        return new CurtainsFragment();
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -73,15 +64,5 @@ public class CurtainsFragment extends Fragment implements IPassableID {
 
             }
         });
-    }
-
-
-    private String getID() {
-        return getArguments().getString("id");
-    }
-
-    @Override
-    public void setID(String id) {
-        this.id = id;
     }
 }

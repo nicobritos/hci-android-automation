@@ -5,14 +5,11 @@ import android.app.Application;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.android.volley.Response;
 import com.hci.StarkIndustries.data.Models.CommonModel;
 import com.hci.StarkIndustries.data.Models.Result;
 import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
-import com.hci.StarkIndustries.data.remote.Api;
 
 import java.util.ArrayList;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class DeviceRepository extends CommonRepository {
@@ -50,10 +47,10 @@ public class DeviceRepository extends CommonRepository {
         final MutableLiveData<Result<ArrayList<CommonDeviceModel>>> result = new MutableLiveData<>();
 
         this.api.getDevices(
-            getListener(result, commonDeviceModels -> {
-                return commonDeviceModels.stream().filter(CommonModel::isFavorite).collect(Collectors.toCollection(ArrayList::new));
-            }),
-            getErrorListener(api, result)
+                getListener(result, commonDeviceModels -> {
+                    return commonDeviceModels.stream().filter(CommonModel::isFavorite).collect(Collectors.toCollection(ArrayList::new));
+                }),
+                getErrorListener(api, result)
         );
 
         return result;

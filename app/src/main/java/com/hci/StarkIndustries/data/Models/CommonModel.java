@@ -11,12 +11,12 @@ public abstract class CommonModel {
         return this.name;
     }
 
-    public String getId() {
-        return id;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public boolean isFavorite() {

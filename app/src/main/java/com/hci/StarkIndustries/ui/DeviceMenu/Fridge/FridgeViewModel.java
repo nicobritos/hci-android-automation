@@ -10,11 +10,9 @@ public class FridgeViewModel extends ViewModel {
     public static final int MODE_DEFAULT = 0;
     public static final int MODE_PARTY = 1;
     public static final int MODE_VACATIONS = 2;
-
+    private static final String TAG = "FridgeViewModel";
     private MutableLiveData<FridgeModel> mFridge;
     private String id;
-    private static final String TAG = "FridgeViewModel";
-
     // temp
     private FridgeModel model;
 

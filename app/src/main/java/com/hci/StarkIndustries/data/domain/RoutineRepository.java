@@ -5,14 +5,11 @@ import android.app.Application;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.android.volley.Response;
 import com.hci.StarkIndustries.data.Models.CommonModel;
 import com.hci.StarkIndustries.data.Models.Result;
 import com.hci.StarkIndustries.data.Models.RoutineModel;
-import com.hci.StarkIndustries.data.remote.Api;
 
 import java.util.ArrayList;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class RoutineRepository extends CommonRepository {
@@ -49,10 +46,10 @@ public class RoutineRepository extends CommonRepository {
         final MutableLiveData<Result<ArrayList<RoutineModel>>> result = new MutableLiveData<>();
 
         this.api.getRoutines(
-            getListener(result, routineModels -> {
-                return routineModels.stream().filter(CommonModel::isFavorite).collect(Collectors.toCollection(ArrayList::new));
-            }),
-            getErrorListener(api, result)
+                getListener(result, routineModels -> {
+                    return routineModels.stream().filter(CommonModel::isFavorite).collect(Collectors.toCollection(ArrayList::new));
+                }),
+                getErrorListener(api, result)
         );
 
         return result;

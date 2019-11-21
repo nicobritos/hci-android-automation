@@ -11,19 +11,19 @@ public class Error {
         this.description = description;
     }
 
-    public void setCode(int code) {
-        this.code = code;
-    }
-
     public int getCode() {
         return this.code;
     }
 
-    public void setDescription(ArrayList<String> description) {
-        this.description = description;
+    public void setCode(int code) {
+        this.code = code;
     }
 
     public ArrayList<String> getDescription() {
         return this.description;
+    }
+
+    public void setDescription(ArrayList<String> description) {
+        this.description = description;
     }
 }

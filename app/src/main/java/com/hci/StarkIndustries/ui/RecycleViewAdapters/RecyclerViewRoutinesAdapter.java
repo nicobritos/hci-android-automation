@@ -20,9 +20,9 @@ import java.util.List;
 
 public class RecyclerViewRoutinesAdapter extends RecyclerView.Adapter<RecyclerViewRoutinesAdapter.ViewHolder> {
 
+    private static final String TAG = "RecyclerViewRoutinesAdapter";
     private List<RoutineModel> routines = new ArrayList<>();
     private Context mContext;
-    private static final String TAG = "RecyclerViewRoutinesAdapter";
 
     public RecyclerViewRoutinesAdapter(Context mContext) {
         this.mContext = mContext;

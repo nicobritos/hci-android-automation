@@ -13,23 +13,17 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.ACModel;
+import com.hci.StarkIndustries.ui.DeviceMenu.IPassableIDFragment;
 
-public class ACFragment extends Fragment {
+public class ACFragment extends IPassableIDFragment {
     private ACViewModel mViewModel;
 
     public static ACFragment newInstance() {
-        ACFragment f = new ACFragment();
-
-        Bundle args = new Bundle();
-        args.putString("id", id);
-        f.setArguments(args);
-
-      return f;
+        return new ACFragment();
     }
 
     @Override
@@ -153,9 +147,5 @@ public class ACFragment extends Fragment {
             modeDDL.setEnabled(acModel.isPowered());
             vertMovDDL.setEnabled(acModel.isPowered());
         });
-    }
-
-    private String getID() {
-        return getArguments().getString("id");
     }
 }

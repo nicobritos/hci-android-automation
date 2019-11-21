@@ -16,7 +16,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
-import com.hci.StarkIndustries.data.Models.devices.DeviceType;
 import com.hci.StarkIndustries.data.Models.devices.DeviceTypeEnum;
 import com.hci.StarkIndustries.ui.DeviceMenu.AC.ACFragment;
 import com.hci.StarkIndustries.ui.DeviceMenu.Curtains.CurtainsFragment;
@@ -94,22 +93,22 @@ public class DeviceMenuContainerFragment extends DialogFragment {
         CommonDeviceModel model = getArguments().getParcelable("device");
         DeviceTypeEnum type = model.getDeviceType();
 
-        switch (type) {
-            case AC:
-                return ACFragment.newInstance(model.getId());
-            case Door:
-                return DoorMenuFragment.newInstance(model.getId());
-            case Curtains:
-                return CurtainsFragment.newInstance(model.getId());
-            case Lamp:
-                return LampFragment.newInstance(model.getId());
-            case Fridge:
-                return FridgeFragment.newInstance(model.getId());
-            case Oven:
-                return OvenFragment.newInstance(model.getId());
-            case Speaker:
-                return SpeakerFragment.newInstance(model.getId());
-        }
+//        switch (type) {
+//            case AC:
+//                return ACFragment.newInstance(model.getId());
+//            case Door:
+//                return DoorMenuFragment.newInstance(model.getId());
+//            case Curtains:
+//                return CurtainsFragment.newInstance(model.getId());
+//            case Lamp:
+//                return LampFragment.newInstance(model.getId());
+//            case Fridge:
+//                return FridgeFragment.newInstance(model.getId());
+//            case Oven:
+//                return OvenFragment.newInstance(model.getId());
+//            case Speaker:
+//                return SpeakerFragment.newInstance(model.getId());
+//        }
 
         Log.d(TAG, "getCorrectFragment: FRAGMENT NOT FOUND");
         return null;

@@ -9,6 +9,10 @@ import com.hci.StarkIndustries.data.domain.RoutineRepository;
 public class MyApplication extends Application {
     private static MyApplication instance;
 
+    public synchronized static MyApplication getInstance() {
+        return instance;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -18,9 +22,5 @@ public class MyApplication extends Application {
         RoutineRepository.create(this);
 
         instance = this;
-    }
-
-    public synchronized static MyApplication getInstance() {
-        return instance;
     }
 }

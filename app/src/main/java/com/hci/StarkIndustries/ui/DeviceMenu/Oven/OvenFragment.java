@@ -14,26 +14,17 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.OvenModel;
+import com.hci.StarkIndustries.ui.DeviceMenu.IPassableIDFragment;
 
-import java.security.spec.InvalidParameterSpecException;
-
-public class OvenFragment extends Fragment implements IPassableID {
-
+public class OvenFragment extends IPassableIDFragment {
     private OvenViewModel mViewModel;
-    private String id = "";
 
-    public static OvenFragment newInstance(String id) {
-        OvenFragment f = new OvenFragment();
-        Bundle arg = new Bundle();
-        arg.putString("id", id);
-        f.setArguments(arg);
-        return f;
+    public static OvenFragment newInstance() {
+        return new OvenFragment();
     }
 
     @Override
@@ -146,10 +137,5 @@ public class OvenFragment extends Fragment implements IPassableID {
             Switch power = getView().findViewById(R.id.OvenPower);
             power.setChecked(ovenModel.isPowered());
         });
-
-    }
-  
-    private String getID() {
-        return getArguments().getString("id");
     }
 }

@@ -11,28 +11,17 @@ import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.hci.StarkIndustries.R;
-import com.hci.StarkIndustries.data.Models.devices.DeviceModels.DoorModel;
+import com.hci.StarkIndustries.ui.DeviceMenu.IPassableIDFragment;
 
-public class DoorMenuFragment extends Fragment implements IPassableID {
-
-    private DoorMenuViewModel mViewModel;
+public class DoorMenuFragment extends IPassableIDFragment {
     private static final String TAG = "DoorMenuFragment";
-    private String id = "";
-
-    protected DoorMenuFragment() {
-    }
+    private DoorMenuViewModel mViewModel;
 
     public static DoorMenuFragment newInstance() {
-        DoorMenuFragment f = new DoorMenuFragment();
-        Bundle args = new Bundle();
-        args.putString("id", id);
-        f.setArguments(args);
-        return f;
+        return new DoorMenuFragment();
     }
 
     @Override
@@ -103,16 +92,4 @@ public class DoorMenuFragment extends Fragment implements IPassableID {
 
         });
     }
-
-    private String getID() {
-        return getArguments().getString("id");
-    }
-
-    @Override
-    public void setID(String id) {
-        this.id = id;
-    }
-
-
-
 }

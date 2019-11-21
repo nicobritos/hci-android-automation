@@ -4,8 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.hci.StarkIndustries.Models.RoomModel;
-import com.hci.StarkIndustries.ui.RecycleViewAdapters.DevicesRecyclerViewClickInteface;
+import com.hci.StarkIndustries.data.Models.RoomModel;
 
 public class RoomViewModel extends ViewModel {
 
@@ -13,19 +12,20 @@ public class RoomViewModel extends ViewModel {
     private RoomModel model;
 
 
-    public LiveData<RoomModel> getModel(String id){
+    public LiveData<RoomModel> getModel(String id) {
 
-        if(mData == null){
+        if (mData == null) {
             mData = new MutableLiveData<>();
-            model = new RoomModel(id);
+//            model = new RoomModel(id);
+            model = new RoomModel();
             loadModel();
         }
 
 
-        return  mData;
+        return mData;
     }
 
-    private void loadModel(){
+    private void loadModel() {
         mData.setValue(model);
     }
 }

@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
-import com.hci.StarkIndustries.data.Models.devices.DeviceType;
 import com.hci.StarkIndustries.data.Models.devices.DeviceTypeEnum;
 
 import java.util.ArrayList;
@@ -59,25 +58,6 @@ public class RecyclerViewDevicesAdapter extends RecyclerView.Adapter<RecyclerVie
         notifyDataSetChanged();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-
-        private ImageView image;
-        private TextView deviceName;
-        private TextView roomName;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            image = itemView.findViewById(R.id.DeviceImage);
-            deviceName = itemView.findViewById(R.id.DeviceName);
-            roomName = itemView.findViewById(R.id.Room);
-
-            itemView.setOnClickListener(v -> {
-                devicesRecyclerViewClickInteface.onItemClick(devices.get(getAdapterPosition()));
-            });
-        }
-
-    }
-
     private int getImageResourcesForDevice(DeviceTypeEnum type) {
 
         switch (type) {
@@ -98,5 +78,24 @@ public class RecyclerViewDevicesAdapter extends RecyclerView.Adapter<RecyclerVie
             default:
                 return R.drawable.ic_help_black_24dp;
         }
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+        private ImageView image;
+        private TextView deviceName;
+        private TextView roomName;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            image = itemView.findViewById(R.id.DeviceImage);
+            deviceName = itemView.findViewById(R.id.DeviceName);
+            roomName = itemView.findViewById(R.id.Room);
+
+            itemView.setOnClickListener(v -> {
+                devicesRecyclerViewClickInteface.onItemClick(devices.get(getAdapterPosition()));
+            });
+        }
+
     }
 }

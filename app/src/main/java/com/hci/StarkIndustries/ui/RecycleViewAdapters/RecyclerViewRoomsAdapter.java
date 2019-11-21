@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hci.StarkIndustries.R;
@@ -17,7 +15,7 @@ import com.hci.StarkIndustries.data.Models.RoomModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerViewRoomsAdapter extends RecyclerView.Adapter<RecyclerViewRoomsAdapter.ViewHolder>  {
+public class RecyclerViewRoomsAdapter extends RecyclerView.Adapter<RecyclerViewRoomsAdapter.ViewHolder> {
 
     private List<RoomModel> rooms = new ArrayList<>();
     private Context mContext;
@@ -31,7 +29,7 @@ public class RecyclerViewRoomsAdapter extends RecyclerView.Adapter<RecyclerViewR
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_room_miniature,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_room_miniature, parent, false);
         return new ViewHolder(view);
     }
 
@@ -40,7 +38,7 @@ public class RecyclerViewRoomsAdapter extends RecyclerView.Adapter<RecyclerViewR
 
         RoomModel room = rooms.get(position);
 
-        holder.name.setText(room.name);
+//        holder.name.setText(room.name);
 
     }
 
@@ -65,7 +63,7 @@ public class RecyclerViewRoomsAdapter extends RecyclerView.Adapter<RecyclerViewR
                 @Override
                 public void onClick(View v) {
 
-                    clickableItem.onItemClick(rooms.get(getAdapterPosition()).id);
+                    clickableItem.onItemClick(rooms.get(getAdapterPosition()).getId());
 
                 }
             });
