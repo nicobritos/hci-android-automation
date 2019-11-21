@@ -21,22 +21,21 @@ import android.widget.Switch;
 
 import com.hci.StarkIndustries.Models.DeviceModels.LampModel;
 import com.hci.StarkIndustries.R;
+import com.hci.StarkIndustries.ui.DeviceMenu.IPassableID;
 import com.madrapps.pikolo.ColorPicker;
 import com.madrapps.pikolo.RGBColorPicker;
 import com.madrapps.pikolo.listeners.SimpleColorSelectionListener;
 
-public class LampFragment extends Fragment {
+public class LampFragment extends Fragment implements IPassableID {
 
     private LampViewModel mViewModel;
+    private String id = "";
 
     protected LampFragment(){}
 
-    public static LampFragment newInstance(String id) {
-
+    public static LampFragment newInstance() {
         LampFragment f = new LampFragment();
-        Bundle args = new Bundle();
-        args.putString("id",id);
-        f.setArguments(args);
+
         return f;
     }
 
@@ -115,9 +114,14 @@ public class LampFragment extends Fragment {
 
     }
 
-    private String getID(){
-        return getArguments().getString("id");
+    @Override
+    public String getID() {
+        return this.id;
     }
 
+    @Override
+    public void setID(String id) {
+        this.id = id;
+    }
 
 }

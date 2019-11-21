@@ -7,6 +7,7 @@ import com.hci.StarkIndustries.ui.DeviceMenu.AC.ACFragment;
 import com.hci.StarkIndustries.ui.DeviceMenu.Curtains.CurtainsFragment;
 import com.hci.StarkIndustries.ui.DeviceMenu.Door.DoorMenuFragment;
 import com.hci.StarkIndustries.ui.DeviceMenu.Fridge.FridgeFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.IPassableID;
 import com.hci.StarkIndustries.ui.DeviceMenu.Lamp.LampFragment;
 import com.hci.StarkIndustries.ui.DeviceMenu.Oven.OvenFragment;
 import com.hci.StarkIndustries.ui.DeviceMenu.Speaker.SpeakerFragment;
@@ -43,13 +44,14 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
 
+
         initializeFragments();
 
     }
 
-//    public Fragment getFragment(String name){
-//        return fragments.get(adaptName(name));
-//    }
+    public IPassableID getFragment(String name){
+        return (IPassableID)fragments.get(adaptName(name));
+    }
 
     private String adaptName(String name){
         return name.toLowerCase();
@@ -57,13 +59,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void initializeFragments(){
 
-//        fragments.put(adaptName("AC"), ACFragment.newInstance());
-//        fragments.put(adaptName("Door"), DoorMenuFragment.newInstance());
-//        fragments.put(adaptName("Oven"), OvenFragment.newInstance());
-//        fragments.put(adaptName("Fridge"), FridgeFragment.newInstance());
-//        fragments.put(adaptName("Curtains"), CurtainsFragment.newInstance());
-//        fragments.put(adaptName("Lamp"), LampFragment.newInstance());
-//        fragments.put(adaptName("Speaker"), SpeakerFragment.newInstance());
+        fragments.put(adaptName("AC"), ACFragment.newInstance());
+        fragments.put(adaptName("Door"), DoorMenuFragment.newInstance());
+        fragments.put(adaptName("Oven"), OvenFragment.newInstance());
+        fragments.put(adaptName("Fridge"), FridgeFragment.newInstance());
+        fragments.put(adaptName("Curtains"), CurtainsFragment.newInstance());
+        fragments.put(adaptName("Lamp"), LampFragment.newInstance());
+        fragments.put(adaptName("Speaker"), SpeakerFragment.newInstance());
 
 
 

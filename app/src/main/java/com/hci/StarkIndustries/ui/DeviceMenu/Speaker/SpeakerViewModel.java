@@ -44,6 +44,11 @@ public class SpeakerViewModel extends ViewModel {
         loadModel();
     }
 
+    public void incrementProgress(){
+        speaker.SongTimestamp++;
+        loadModel();
+    }
+
 
     public void prevSong(){
         speaker.seletedSong = (speaker.seletedSong >= 1) ? speaker.seletedSong -1 : speaker.songs.size()-1;

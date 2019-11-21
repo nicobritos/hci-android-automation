@@ -15,19 +15,18 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.hci.StarkIndustries.Models.DeviceModels.CurtainsModel;
 import com.hci.StarkIndustries.R;
+import com.hci.StarkIndustries.ui.DeviceMenu.IPassableID;
 
-public class CurtainsFragment extends Fragment {
+public class CurtainsFragment extends Fragment implements IPassableID {
 
     private CurtainsViewModel viewModel;
+    private String id = "";
 
     protected CurtainsFragment(){}
 
-    public static CurtainsFragment newInstance(String id) {
-
+    public static CurtainsFragment newInstance() {
         CurtainsFragment f = new CurtainsFragment();
-        Bundle arg = new Bundle();
-        arg.putString("id",id);
-        f.setArguments(arg);
+
         return f;
     }
 
@@ -79,8 +78,13 @@ public class CurtainsFragment extends Fragment {
     }
 
 
-    private String getID(){
-        return getArguments().getString("id");
+    @Override
+    public String getID() {
+        return this.id;
     }
 
+    @Override
+    public void setID(String id) {
+        this.id = id;
+    }
 }

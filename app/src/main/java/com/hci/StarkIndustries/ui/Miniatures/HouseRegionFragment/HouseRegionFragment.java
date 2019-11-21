@@ -7,12 +7,14 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.hci.StarkIndustries.R;
+import com.hci.StarkIndustries.ui.RecycleViewAdapters.RecyclerViewRegionsAdapter;
 
 public class HouseRegionFragment extends Fragment {
 
@@ -32,7 +34,13 @@ public class HouseRegionFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(HouseRegionViewModel.class);
-        // TODO: Use the ViewModel
+//        if(regionModels.size() != 0) {
+//            ((RecyclerViewRegionsAdapter) ((RecyclerView) getView().findViewById(R.id.HouseRegionsRecyclerView))
+//                    .getAdapter()).setData(regionModels);
+//        }else{
+//            getChildFragmentManager()
+//                    .findFragmentById(R.id.EmptyRegionFragment).getView().setVisibility(View.GONE);
+//        }
     }
 
 }

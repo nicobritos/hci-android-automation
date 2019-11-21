@@ -97,26 +97,38 @@ public class DeviceMenuContainerFragment extends DialogFragment {
         DeviceType type = DeviceType.valueOf(getArguments().getString("deviceType"));
         CommonDeviceModel model = getArguments().getParcelable("device");
 
-//        MainActivity act = (MainActivity) getActivity();
+        MainActivity act = (MainActivity) getActivity();
+        IPassableID fragment = null;
 
         switch (type){
             case AC:
-                return ACFragment.newInstance(model.Id); //act.getFragment("AC");
+                fragment = act.getFragment("AC");
+                break;
             case Door:
-                return DoorMenuFragment.newInstance(model.Id);// act.getFragment("Door");
+                fragment = act.getFragment("Door");
+                break;
             case Curtains:
-                return CurtainsFragment.newInstance(model.Id);// act.getFragment("Curtains");
+                fragment = act.getFragment("Curtains");
+                break;
             case Lamp:
-                return LampFragment.newInstance(model.Id);// act.getFragment("Lamp");
+                fragment =  act.getFragment("Lamp");
+                break;
             case Fridge:
-                return FridgeFragment.newInstance(model.Id); //act.getFragment("Fridge");
+                fragment = act.getFragment("Fridge");
+                break;
             case Oven:
-                return OvenFragment.newInstance(model.Id);//act.getFragment("Oven");
+                fragment = act.getFragment("Oven");
+                break;
             case Speaker:
-                return SpeakerFragment.newInstance(model.Id);// act.getFragment("Speaker");
+                fragment =  act.getFragment("Speaker");
+                break;
         }
-        Log.d(TAG, "getCorrectFragment: FRAGMENT NOT FOUND");
-        return null;
+
+        if(fragment != null){
+            fragment.setID(model.Id);
+        }
+
+        return (Fragment) fragment;
 
     }
 
