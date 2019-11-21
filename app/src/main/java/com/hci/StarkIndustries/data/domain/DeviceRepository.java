@@ -6,18 +6,20 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.android.volley.Response;
+import com.hci.StarkIndustries.data.Models.CommonModel;
 import com.hci.StarkIndustries.data.Models.Result;
 import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
 import com.hci.StarkIndustries.data.remote.Api;
 
 import java.util.ArrayList;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
-public class DeviceRepository {
+public class DeviceRepository extends CommonRepository {
     private static DeviceRepository instance;
-    private final Api api;
 
     private DeviceRepository(Application application) {
-        this.api = Api.getInstance(application);
+        super(application);
     }
 
     public static synchronized DeviceRepository get() {
@@ -43,17 +45,23 @@ public class DeviceRepository {
         return result;
     }
 
+    public LiveData<Result<ArrayList<CommonDeviceModel>>> getFavouriteDevices() {
+        final MutableLiveData<Result<ArrayList<CommonDeviceModel>>> resultFavourites = new MutableLiveData<>();
+        final MutableLiveData<Result<ArrayList<CommonDeviceModel>>> result = new MutableLiveData<>();
+
+        this.api.getDevices(
+            getListener(result, commonDeviceModels -> {
+                return commonDeviceModels.stream().filter(CommonModel::isFavorite).collect(Collectors.toCollection(ArrayList::new));
+            }),
+            getErrorListener(api, result)
+        );
+
+        return result;
+    }
+
     public LiveData<Result<ArrayList<CommonDeviceModel>>> getDevices(String roomId) {
         final MutableLiveData<Result<ArrayList<CommonDeviceModel>>> result = new MutableLiveData<>();
         this.api.getDevices(roomId, getListener(result), getErrorListener(api, result));
         return result;
-    }
-
-    private static <T> Response.Listener<T> getListener(final MutableLiveData<Result<T>> result) {
-        return (response) -> result.setValue(new Result<>(response));
-    }
-
-    private static <T> Response.ErrorListener getErrorListener(final Api api, final MutableLiveData<Result<T>> result) {
-        return (error) -> result.setValue(new Result<>(null, api.handleError(error)));
     }
 }

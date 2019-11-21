@@ -1,6 +1,7 @@
 package com.hci.StarkIndustries.ui.Miniatures.Routines;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.RoutinesListModel;
+import com.hci.StarkIndustries.ui.RecycleViewAdapters.RecyclerViewDevicesAdapter;
 import com.hci.StarkIndustries.ui.RecycleViewAdapters.RecyclerViewRoutinesAdapter;
 
 public class RoutinesListFragment extends Fragment {
-
     protected RoutinesListViewModel mViewModel;
 
     public static RoutinesListFragment newInstance() {
@@ -41,25 +42,21 @@ public class RoutinesListFragment extends Fragment {
 
     public void LoadViewModel() {
         mViewModel = ViewModelProviders.of(this).get(RoutinesListViewModel.class);
-
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         LoadViewModel();
-
-        mViewModel.getModel().observe(this, new Observer<RoutinesListModel>() {
-            @Override
-            public void onChanged(RoutinesListModel model) {
-                RecyclerView recyclerView = getView().findViewById(R.id.RecyclerViewRoutines);
-                ((RecyclerViewRoutinesAdapter) recyclerView.getAdapter()).setData(model.getRoutines());
+        mViewModel.getModel().observe(this, arrayListResult -> {
+            RecyclerView recyclerView = getView().findViewById(R.id.RecyclerViewRoutines);
+            if (arrayListResult.ok()) {
+                ((RecyclerViewRoutinesAdapter) recyclerView.getAdapter()).setData(arrayListResult.getResult());
+            } else {
+                // TODO: ERROR
             }
         });
 
-
         // TODO: Use the ViewModel
     }
-
-
 }

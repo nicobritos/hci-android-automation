@@ -12,12 +12,11 @@ import com.hci.StarkIndustries.data.remote.Api;
 
 import java.util.ArrayList;
 
-public class RoomRepository {
+public class RoomRepository extends CommonRepository {
     private static RoomRepository instance;
-    private final Api api;
 
     private RoomRepository(Application application) {
-        this.api = Api.getInstance(application);
+        super(application);
     }
 
     public static synchronized RoomRepository get() {
@@ -47,13 +46,5 @@ public class RoomRepository {
         final MutableLiveData<Result<ArrayList<RoomModel>>> result = new MutableLiveData<>();
         this.api.getRooms(regionId, getListener(result), getErrorListener(api, result));
         return result;
-    }
-
-    private static <T> Response.Listener<T> getListener(final MutableLiveData<Result<T>> result) {
-        return (response) -> result.setValue(new Result<>(response));
-    }
-
-    private static <T> Response.ErrorListener getErrorListener(final Api api, final MutableLiveData<Result<T>> result) {
-        return (error) -> result.setValue(new Result<>(null, api.handleError(error)));
     }
 }

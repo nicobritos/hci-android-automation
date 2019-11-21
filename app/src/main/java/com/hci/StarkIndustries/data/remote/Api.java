@@ -12,6 +12,7 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.hci.StarkIndustries.data.Models.RoomModel;
+import com.hci.StarkIndustries.data.Models.RoutineModel;
 import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
 
 import org.json.JSONException;
@@ -132,9 +133,9 @@ public class Api {
     }
 
     // Routines
-    public String getRoutines(Response.Listener<ArrayList<RoomModel>> listener, Response.ErrorListener errorListener) {
-        GsonRequest<Object, ArrayList<RoomModel>> request =
-                new GsonRequest<>(Request.Method.GET, this.formatUrl(API_ROUTINES), null, "result", new TypeToken<ArrayList<RoomModel>>() {
+    public String getRoutines(Response.Listener<ArrayList<RoutineModel>> listener, Response.ErrorListener errorListener) {
+        GsonRequest<Object, ArrayList<RoutineModel>> request =
+                new GsonRequest<>(Request.Method.GET, this.formatUrl(API_ROUTINES), null, "result", new TypeToken<ArrayList<RoutineModel>>() {
                 }, null, listener, errorListener);
         String uuid = UUID.randomUUID().toString();
         request.setTag(uuid);
@@ -142,9 +143,9 @@ public class Api {
         return uuid;
     }
 
-    public String getRoutine(String id, Response.Listener<ArrayList<RoomModel>> listener, Response.ErrorListener errorListener) {
-        GsonRequest<Object, ArrayList<RoomModel>> request =
-                new GsonRequest<>(Request.Method.GET, this.formatUrl(API_ROUTINES, id), null, "result", new TypeToken<ArrayList<RoomModel>>() {
+    public String getRoutine(String id, Response.Listener<RoutineModel> listener, Response.ErrorListener errorListener) {
+        GsonRequest<Object, RoutineModel> request =
+                new GsonRequest<>(Request.Method.GET, this.formatUrl(API_ROUTINES, id), null, "result", new TypeToken<RoutineModel>() {
                 }, null, listener, errorListener);
         String uuid = UUID.randomUUID().toString();
         request.setTag(uuid);

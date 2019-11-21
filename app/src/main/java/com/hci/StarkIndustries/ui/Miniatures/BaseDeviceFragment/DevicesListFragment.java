@@ -1,6 +1,7 @@
 package com.hci.StarkIndustries.ui.Miniatures.BaseDeviceFragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,7 @@ import com.hci.StarkIndustries.ui.DeviceMenu.DeviceMenuContainerFragment;
 import com.hci.StarkIndustries.ui.RecycleViewAdapters.DevicesRecyclerViewClickInteface;
 import com.hci.StarkIndustries.ui.RecycleViewAdapters.RecyclerViewDevicesAdapter;
 
-public class DevicesListFragment extends Fragment implements DevicesRecyclerViewClickInteface {
+public abstract class DevicesListFragment extends Fragment implements DevicesRecyclerViewClickInteface {
     protected DevicesListViewModel mViewModel;
 
     @Override
@@ -40,11 +41,12 @@ public class DevicesListFragment extends Fragment implements DevicesRecyclerView
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         LoadViewModel();
-        mViewModel.getModel().observe(this, new Observer<DevicesListModel>() {
-            @Override
-            public void onChanged(DevicesListModel devicesListModel) {
-                RecyclerView recyclerView = getView().findViewById(R.id.RecyclerViewDevices);
-                ((RecyclerViewDevicesAdapter) recyclerView.getAdapter()).setData(devicesListModel.getDevices());
+        mViewModel.getModel().observe(this, devicesListModel -> {
+            RecyclerView recyclerView = getView().findViewById(R.id.RecyclerViewDevices);
+            if (devicesListModel.ok()) {
+                ((RecyclerViewDevicesAdapter) recyclerView.getAdapter()).setData(devicesListModel.getResult());
+            } else {
+                // TODO: ERROR
             }
         });
     }

@@ -21,21 +21,20 @@ import java.util.List;
 
 
 public class RecyclerViewDevicesAdapter extends RecyclerView.Adapter<RecyclerViewDevicesAdapter.ViewHolder> {
-
     private static final String TAG = "RecyclerViewDevicesAdapter";
+
+    private DevicesRecyclerViewClickInteface devicesRecyclerViewClickInteface;
     private List<CommonDeviceModel> devices = new ArrayList<>();
     private Context mContext;
-    private DevicesRecyclerViewClickInteface devicesRecyclerViewClickInteface;
 
-    public RecyclerViewDevicesAdapter(DevicesRecyclerViewClickInteface interf, Context mContext) {
+    public RecyclerViewDevicesAdapter(DevicesRecyclerViewClickInteface interface_, Context mContext) {
         this.mContext = mContext;
-        devicesRecyclerViewClickInteface = interf;
+        devicesRecyclerViewClickInteface = interface_;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_device_miniature, parent, false);
         return new ViewHolder(view);
     }
@@ -44,12 +43,10 @@ public class RecyclerViewDevicesAdapter extends RecyclerView.Adapter<RecyclerVie
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: called");
 
-        final CommonDeviceModel model = devices.get(position);
-
-//        holder.roomName.setText(model.Room);
-//        holder.deviceName.setText(model.Name);
-//        holder.image.setImageResource(getImageResourcesForDevice(model.type));
-
+        CommonDeviceModel model = devices.get(position);
+        holder.roomName.setText(model.getRoom() != null ? model.getRoom().getName() : "NO TENGO DUENO");
+        holder.deviceName.setText(model.getName());
+        holder.image.setImageResource(getImageResourcesForDevice(model.getDeviceType()));
     }
 
     @Override
@@ -74,11 +71,8 @@ public class RecyclerViewDevicesAdapter extends RecyclerView.Adapter<RecyclerVie
             deviceName = itemView.findViewById(R.id.DeviceName);
             roomName = itemView.findViewById(R.id.Room);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    devicesRecyclerViewClickInteface.onItemClick(devices.get(getAdapterPosition()));
-                }
+            itemView.setOnClickListener(v -> {
+                devicesRecyclerViewClickInteface.onItemClick(devices.get(getAdapterPosition()));
             });
         }
 
@@ -87,21 +81,20 @@ public class RecyclerViewDevicesAdapter extends RecyclerView.Adapter<RecyclerVie
     private int getImageResourcesForDevice(DeviceTypeEnum type) {
 
         switch (type) {
-
-//            case Door:
-//                return R.drawable.ic_door_locked;
-//            case Speaker:
-//                return R.drawable.ic_speaker_on;
-//            case Fridge:
-//                return R.drawable.ic_fridge;
-//            case Curtains:
-//                return R.drawable.ic_curtain_open;
-//            case Lamp:
-//                return R.drawable.ic_lightbulb_on;
-//            case AC:
-//                return R.drawable.ic_air_conditioner_on;
-//            case Oven:
-//                return R.drawable.ic_oven_on;
+            case Door:
+                return R.drawable.ic_door_locked;
+            case Speaker:
+                return R.drawable.ic_speaker_on;
+            case Fridge:
+                return R.drawable.ic_fridge;
+            case Curtains:
+                return R.drawable.ic_curtain_open;
+            case Lamp:
+                return R.drawable.ic_lightbulb_on;
+            case AC:
+                return R.drawable.ic_air_conditioner_on;
+            case Oven:
+                return R.drawable.ic_oven_on;
             default:
                 return R.drawable.ic_help_black_24dp;
         }

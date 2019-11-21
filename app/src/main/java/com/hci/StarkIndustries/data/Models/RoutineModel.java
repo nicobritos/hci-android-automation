@@ -1,6 +1,6 @@
 package com.hci.StarkIndustries.data.Models;
 
-public class RoutineModel {
+public class RoutineModel extends CommonModel {
 
     public String Name;
     public String Description;

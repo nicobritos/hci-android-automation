@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModelProviders;
 import com.hci.StarkIndustries.ui.Miniatures.BaseDeviceFragment.DevicesListFragment;
 
 public class RoomDevicesListFragment extends DevicesListFragment {
-
     public RoomDevicesListFragment newInstance(String roomID) {
         RoomDevicesListFragment f = new RoomDevicesListFragment();
 
@@ -16,16 +15,11 @@ public class RoomDevicesListFragment extends DevicesListFragment {
         f.setArguments(args);
 
         return f;
-
     }
-
 
     public void LoadViewModel() {
         mViewModel = ViewModelProviders.of(this).get(RoomDevicesListViewModel.class);
 
         ((RoomDevicesListViewModel) mViewModel).SetID(this.getArguments().getString("roomId"));
-
     }
-
-
 }

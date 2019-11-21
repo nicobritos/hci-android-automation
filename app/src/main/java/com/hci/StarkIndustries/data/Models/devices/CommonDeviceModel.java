@@ -22,7 +22,6 @@ public class CommonDeviceModel extends CommonModel implements Parcelable {
 
     private DeviceType type;
     private RoomModel room;
-    private String name;
 
 //    private CommonDeviceModel(Parcel in) {
 //        this.setName(in.readString());
