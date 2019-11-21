@@ -1,14 +1,6 @@
 package com.hci.StarkIndustries.ui.DeviceMenu.Door;
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +9,14 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 
-import com.hci.StarkIndustries.Models.DeviceModels.DoorModel;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.hci.StarkIndustries.R;
-import com.hci.StarkIndustries.ui.DeviceMenu.IPassableID;
+import com.hci.StarkIndustries.data.Models.devices.DeviceModels.DoorModel;
 
 public class DoorMenuFragment extends Fragment implements IPassableID {
 
@@ -27,13 +24,17 @@ public class DoorMenuFragment extends Fragment implements IPassableID {
     private static final String TAG = "DoorMenuFragment";
     private String id = "";
 
-    protected DoorMenuFragment(){}
+    protected DoorMenuFragment() {
+    }
 
     public static DoorMenuFragment newInstance() {
         DoorMenuFragment f = new DoorMenuFragment();
-
+        Bundle args = new Bundle();
+        args.putString("id", id);
+        f.setArguments(args);
         return f;
     }
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class DoorMenuFragment extends Fragment implements IPassableID {
         openDoorButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                if(isChecked)
+                if (isChecked)
                     mViewModel.open();
                 else
                     mViewModel.close();
@@ -61,13 +62,12 @@ public class DoorMenuFragment extends Fragment implements IPassableID {
         lockDoorButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                if(isChecked)
+                if (isChecked)
                     mViewModel.lock();
                 else
                     mViewModel.unlock();
             }
         });
-
 
 
         return root;
@@ -80,38 +80,32 @@ public class DoorMenuFragment extends Fragment implements IPassableID {
 
         Log.d(TAG, "onActivityCreated: Por entrar al GetModel");
 
-        mViewModel.getModel(getID()).observe(this, new Observer<DoorModel>() {
-            @Override
-            public void onChanged(DoorModel doorModel) {
-                Log.d(TAG, "onChanged: isOpen: "+doorModel.isOpen + " isLocked: " + doorModel.islocked);
-                if(doorModel.isOpen) {
-                    ((ImageView) getView().findViewById(R.id.IsDoorOpenImage)).setImageResource(R.drawable.ic_open_door);
-                    ((Switch)getView().findViewById(R.id.OpenDoorBtn)).setText(R.string.DoorButtonClose);
+        mViewModel.getModel(getID()).observe(this, doorModel -> {
+            Log.d(TAG, "onChanged: isOpen: " + doorModel.isOpen() + " isLocked: " + doorModel.isLocked());
+            if (doorModel.isOpen()) {
+                ((ImageView) getView().findViewById(R.id.IsDoorOpenImage)).setImageResource(R.drawable.ic_open_door);
+                ((Switch) getView().findViewById(R.id.OpenDoorBtn)).setText(R.string.DoorButtonClose);
 
-                }
-                else {
-                    ((ImageView) getView().findViewById(R.id.IsDoorOpenImage)).setImageResource(R.drawable.ic_closed_door);
-                    ((Switch)getView().findViewById(R.id.OpenDoorBtn)).setText(R.string.DoorButtonOpen);
-                }
-                ((Switch)getView().findViewById(R.id.LockDoorBtn)).setEnabled(!doorModel.isOpen);
-
-                if(doorModel.islocked) {
-                    ((ImageView) getView().findViewById(R.id.isDoorLockedImage)).setImageResource(R.drawable.ic_door_locked);
-                    ((Switch) getView().findViewById(R.id.LockDoorBtn)).setText(R.string.DoorButtonUnlock);
-                }
-                else {
-                    ((ImageView) getView().findViewById(R.id.isDoorLockedImage)).setImageResource(R.drawable.ic_door_unlocked);
-                    ((Switch) getView().findViewById(R.id.LockDoorBtn)).setText(R.string.DoorButtonLock);
-                }
-                ((Switch)getView().findViewById(R.id.OpenDoorBtn)).setEnabled(!doorModel.islocked);
-
+            } else {
+                ((ImageView) getView().findViewById(R.id.IsDoorOpenImage)).setImageResource(R.drawable.ic_closed_door);
+                ((Switch) getView().findViewById(R.id.OpenDoorBtn)).setText(R.string.DoorButtonOpen);
             }
+            getView().findViewById(R.id.LockDoorBtn).setEnabled(!doorModel.isOpen());
+
+            if (doorModel.isLocked()) {
+                ((ImageView) getView().findViewById(R.id.isDoorLockedImage)).setImageResource(R.drawable.ic_door_locked);
+                ((Switch) getView().findViewById(R.id.LockDoorBtn)).setText(R.string.DoorButtonUnlock);
+            } else {
+                ((ImageView) getView().findViewById(R.id.isDoorLockedImage)).setImageResource(R.drawable.ic_door_unlocked);
+                ((Switch) getView().findViewById(R.id.LockDoorBtn)).setText(R.string.DoorButtonLock);
+            }
+            getView().findViewById(R.id.OpenDoorBtn).setEnabled(!doorModel.isLocked());
+
         });
     }
 
-    @Override
-    public String getID() {
-        return this.id;
+    private String getID() {
+        return getArguments().getString("id");
     }
 
     @Override

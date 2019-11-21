@@ -7,36 +7,35 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.hci.StarkIndustries.Models.CommonDeviceModel;
-import com.hci.StarkIndustries.Models.DeviceType;
 import com.hci.StarkIndustries.R;
+import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
+import com.hci.StarkIndustries.data.Models.devices.DeviceType;
+import com.hci.StarkIndustries.data.Models.devices.DeviceTypeEnum;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class RecyclerViewDevicesAdapter extends RecyclerView.Adapter<RecyclerViewDevicesAdapter.ViewHolder> {
-
     private static final String TAG = "RecyclerViewDevicesAdapter";
+
+    private DevicesRecyclerViewClickInteface devicesRecyclerViewClickInteface;
     private List<CommonDeviceModel> devices = new ArrayList<>();
     private Context mContext;
-    private DevicesRecyclerViewClickInteface devicesRecyclerViewClickInteface;
 
-    public RecyclerViewDevicesAdapter(DevicesRecyclerViewClickInteface interf, Context mContext) {
+    public RecyclerViewDevicesAdapter(DevicesRecyclerViewClickInteface interface_, Context mContext) {
         this.mContext = mContext;
-        devicesRecyclerViewClickInteface = interf;
+        devicesRecyclerViewClickInteface = interface_;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_device_miniature,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_device_miniature, parent, false);
         return new ViewHolder(view);
     }
 
@@ -44,12 +43,10 @@ public class RecyclerViewDevicesAdapter extends RecyclerView.Adapter<RecyclerVie
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: called");
 
-        final CommonDeviceModel model = devices.get(position);
-
-        holder.roomName.setText( model.Room);
-        holder.deviceName.setText(model.Name);
-        holder.image.setImageResource(getImageResourcesForDevice(model.type));
-
+        CommonDeviceModel model = devices.get(position);
+        holder.roomName.setText(model.getRoom() != null ? model.getRoom().getName() : "NO TENGO DUENO");
+        holder.deviceName.setText(model.getName());
+        holder.image.setImageResource(getImageResourcesForDevice(model.getDeviceType()));
     }
 
     @Override
@@ -62,7 +59,7 @@ public class RecyclerViewDevicesAdapter extends RecyclerView.Adapter<RecyclerVie
         notifyDataSetChanged();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView image;
         private TextView deviceName;
@@ -74,20 +71,16 @@ public class RecyclerViewDevicesAdapter extends RecyclerView.Adapter<RecyclerVie
             deviceName = itemView.findViewById(R.id.DeviceName);
             roomName = itemView.findViewById(R.id.Room);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    devicesRecyclerViewClickInteface.onItemClick(devices.get(getAdapterPosition()));
-                }
+            itemView.setOnClickListener(v -> {
+                devicesRecyclerViewClickInteface.onItemClick(devices.get(getAdapterPosition()));
             });
         }
 
     }
 
-    private int getImageResourcesForDevice(DeviceType type){
+    private int getImageResourcesForDevice(DeviceTypeEnum type) {
 
-        switch (type){
-
+        switch (type) {
             case Door:
                 return R.drawable.ic_door_locked;
             case Speaker:

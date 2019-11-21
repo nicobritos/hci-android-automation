@@ -8,16 +8,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:id="@+id/ACImageLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="10dp"
-            >
+            android:layout_marginTop="10dp">
 
             <Switch
                 android:id="@+id/ACPower"
@@ -26,8 +24,7 @@
                 android:text="@string/ACPowerText"
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="20dp"
-                android:layout_centerVertical="true"
-                />
+                android:layout_centerVertical="true" />
 
 
             <ImageView
@@ -37,8 +34,7 @@
                 android:src="@drawable/ic_air_conditioner_on"
                 android:tint="@color/Black"
                 android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                />
+                android:layout_centerHorizontal="true" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -46,20 +42,17 @@
                 android:orientation="vertical"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"
-                >
+                android:layout_marginRight="20dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/ACTemperatureTitle"
-                    android:textAlignment="center"
-                    />
+                    android:textAlignment="center" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    >
+                    android:layout_height="wrap_content">
 
                     <ImageView
                         android:layout_width="85dp"
@@ -75,8 +68,7 @@
                         android:id="@+id/ACTemperatureView"
                         android:text="0"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="25sp"
-                        />
+                        android:textSize="25sp" />
                 </RelativeLayout>
 
             </LinearLayout>
@@ -92,8 +84,7 @@
             android:text="@string/ACTemperatureTitle"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="40dp"
-            />
+            android:layout_marginTop="40dp" />
 
         <SeekBar
             android:id="@+id/ACTemperatureSlider"
@@ -104,9 +95,7 @@
             android:progress="3"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toRightOf="@id/ACTemperatureTitle"
-            app:layout_constraintTop_toTopOf="@id/ACTemperatureTitle"
-            />
-
+            app:layout_constraintTop_toTopOf="@id/ACTemperatureTitle" />
 
 
         <TextView
@@ -116,8 +105,7 @@
             android:text="@string/ACModeTitle"
             app:layout_constraintTop_toBottomOf="@id/ACTemperatureTitle"
             app:layout_constraintLeft_toLeftOf="@id/ACTemperatureTitle"
-            android:layout_marginTop="40dp"
-            />
+            android:layout_marginTop="40dp" />
 
         <Spinner
             android:id="@+id/ACModeDDL"
@@ -129,6 +117,7 @@
             android:entries="@array/ACModeList"
 
             />
+
         <TextView
             android:id="@+id/ACFanSpeedTitle"
             android:layout_width="wrap_content"
@@ -137,8 +126,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="40dp"
-            app:layout_constraintTop_toBottomOf="@id/ACModeTitle"
-            />
+            app:layout_constraintTop_toBottomOf="@id/ACModeTitle" />
 
 
         <Spinner
@@ -148,8 +136,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toRightOf="@id/ACFanSpeedTitle"
             app:layout_constraintTop_toTopOf="@id/ACFanSpeedTitle"
-            android:entries="@array/ACFanSpeedList"
-            />
+            android:entries="@array/ACFanSpeedList" />
 
         <TextView
             android:id="@+id/ACHorizontalTitle"
@@ -159,8 +146,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginLeft="15dp"
             app:layout_constraintTop_toBottomOf="@id/ACFanSpeedTitle"
-            android:layout_marginTop="40dp"
-            />
+            android:layout_marginTop="40dp" />
 
         <Spinner
             android:id="@+id/ACHorizontalDDL"
@@ -169,8 +155,7 @@
             app:layout_constraintTop_toTopOf="@id/ACHorizontalTitle"
             app:layout_constraintLeft_toRightOf="@id/ACHorizontalTitle"
             app:layout_constraintRight_toRightOf="parent"
-            android:entries="@array/ACHorizontalMovementList"
-            />
+            android:entries="@array/ACHorizontalMovementList" />
 
 
         <TextView
@@ -181,8 +166,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginLeft="15dp"
             app:layout_constraintTop_toBottomOf="@id/ACHorizontalTitle"
-            android:layout_marginTop="40dp"
-            />
+            android:layout_marginTop="40dp" />
 
         <Spinner
             android:id="@+id/ACVerticalDDL"
@@ -191,14 +175,10 @@
             app:layout_constraintTop_toTopOf="@id/ACVerticalTitle"
             app:layout_constraintLeft_toRightOf="@id/ACVerticalTitle"
             app:layout_constraintRight_toRightOf="parent"
-            android:entries="@array/ACVerticalMovementList"
-            />
-
-
+            android:entries="@array/ACVerticalMovementList" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </FrameLayout>

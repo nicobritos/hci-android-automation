@@ -4,8 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.hci.StarkIndustries.Models.DeviceModels.CurtainsModel;
-import com.hci.StarkIndustries.Models.DeviceType;
+import com.hci.StarkIndustries.data.Models.devices.DeviceModels.CurtainsModel;
 
 public class CurtainsViewModel extends ViewModel {
 
@@ -13,24 +12,25 @@ public class CurtainsViewModel extends ViewModel {
     private CurtainsModel model;
     private String id = "";
 
-    public LiveData<CurtainsModel> getModel(String id){
+    public LiveData<CurtainsModel> getModel(String id) {
 
-        if(mCurtains == null){
+        if (mCurtains == null) {
             mCurtains = new MutableLiveData<CurtainsModel>();
-            model = new CurtainsModel("Cortinitas",id,"Room1");
+//            model = new CurtainsModel("Cortinitas", id, "Room1");
+            model = new CurtainsModel();
             loadModel();
         }
 
         return mCurtains;
     }
 
-    private void loadModel(){
+    private void loadModel() {
         // Aca habria que hablar con la API
         mCurtains.setValue(model);
     }
 
-    public void setState(boolean state){
-        model.isOpen = state;
+    public void setState(boolean state) {
+//        model.isOpen = state;
         loadModel();
     }
 

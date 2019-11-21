@@ -5,8 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.Miniatures.HouseRegionFragment.HouseRegionFragment">
 
-
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RecyclerViewHouseRegions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"></androidx.recyclerview.widget.RecyclerView>
 
 
 </ScrollView>

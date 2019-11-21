@@ -1,4 +1,4 @@
-package com.hci.StarkIndustries.Models;
+package com.hci.StarkIndustries.data.Models.devices;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -10,8 +10,8 @@ public class FavoriteDevicesModel extends DevicesListModel {
         return models.stream().filter(new Predicate<CommonDeviceModel>() {
             @Override
             public boolean test(CommonDeviceModel deviceModel) {
-                return deviceModel.isFavorite;
+                return deviceModel.isFavorite();
             }
-        }).collect(Collectors.<CommonDeviceModel>toList());
+        }).collect(Collectors.toList());
     }
 }

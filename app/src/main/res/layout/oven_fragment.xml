@@ -8,16 +8,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:id="@+id/OvenImageLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="15dp"
-            >
+            android:layout_marginTop="15dp">
 
             <Switch
                 android:id="@+id/OvenPower"
@@ -26,8 +24,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:text="@string/OvenTitle"
-                android:layout_marginLeft="20dp"
-                />
+                android:layout_marginLeft="20dp" />
 
             <ImageView
                 android:id="@+id/OvenImage"
@@ -35,8 +32,7 @@
                 android:layout_height="150dp"
                 android:src="@drawable/ic_oven_on"
                 android:tint="@color/Black"
-                android:layout_centerHorizontal="true"
-                />
+                android:layout_centerHorizontal="true" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -44,20 +40,17 @@
                 android:orientation="vertical"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"
-                >
+                android:layout_marginRight="20dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/OvenTemperatureTitle"
-                    android:textAlignment="center"
-                    />
+                    android:textAlignment="center" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    >
+                    android:layout_height="wrap_content">
 
                     <ImageView
                         android:layout_width="85dp"
@@ -73,8 +66,7 @@
                         android:id="@+id/OventTemperatureView"
                         android:text="0"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="25sp"
-                        />
+                        android:textSize="25sp" />
                 </RelativeLayout>
 
             </LinearLayout>
@@ -101,8 +93,7 @@
             android:progress="40"
             app:layout_constraintTop_toTopOf="@+id/OvenTemperatureTitle"
             app:layout_constraintLeft_toRightOf="@id/OvenTemperatureTitle"
-            app:layout_constraintRight_toRightOf="parent"
-            />
+            app:layout_constraintRight_toRightOf="parent" />
 
 
         <TextView
@@ -124,8 +115,7 @@
             app:layout_constraintLeft_toRightOf="@id/OvenGrillTitle"
             app:layout_constraintTop_toTopOf="@id/OvenGrillTitle"
             app:layout_constraintRight_toRightOf="parent"
-            android:entries="@array/OvenGrillModeDDL"
-            />
+            android:entries="@array/OvenGrillModeDDL" />
 
 
         <TextView
@@ -147,8 +137,7 @@
             app:layout_constraintLeft_toRightOf="@id/OvenHeatSourceTitle"
             app:layout_constraintTop_toTopOf="@id/OvenHeatSourceTitle"
             app:layout_constraintRight_toRightOf="parent"
-            android:entries="@array/OvenHeatSourceDDL"
-            />
+            android:entries="@array/OvenHeatSourceDDL" />
 
         <TextView
             android:id="@+id/OvenConvectionTitle"
@@ -169,11 +158,7 @@
             app:layout_constraintLeft_toRightOf="@id/OvenConvectionTitle"
             app:layout_constraintTop_toTopOf="@id/OvenConvectionTitle"
             app:layout_constraintRight_toRightOf="parent"
-            android:entries="@array/OvenConvectionModeDDL"
-            />
-
-
-
+            android:entries="@array/OvenConvectionModeDDL" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

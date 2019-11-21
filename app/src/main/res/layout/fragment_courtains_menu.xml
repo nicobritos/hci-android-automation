@@ -14,8 +14,7 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="20dp"
         android:tintMode="src_atop"
-        android:tint="@color/Black"
-        />
+        android:tint="@color/Black" />
 
     <Button
         android:id="@+id/curtainsButton"

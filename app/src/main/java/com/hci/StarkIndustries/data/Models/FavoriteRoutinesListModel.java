@@ -1,6 +1,4 @@
-package com.hci.StarkIndustries.Models;
-
-import com.hci.StarkIndustries.ui.Miniatures.Routines.RoutinesListViewModel;
+package com.hci.StarkIndustries.data.Models;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -14,6 +12,6 @@ public class FavoriteRoutinesListModel extends RoutinesListModel {
             public boolean test(RoutineModel routineModel) {
                 return routineModel.isFavorite;
             }
-        }).collect(Collectors.<RoutineModel>toList());
+        }).collect(Collectors.toList());
     }
 }

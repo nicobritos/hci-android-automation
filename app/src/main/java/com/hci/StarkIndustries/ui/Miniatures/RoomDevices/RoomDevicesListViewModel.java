@@ -3,23 +3,24 @@ package com.hci.StarkIndustries.ui.Miniatures.RoomDevices;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.hci.StarkIndustries.Models.DevicesListModel;
-import com.hci.StarkIndustries.Models.RoomDevicesModel;
+import com.hci.StarkIndustries.data.Models.Result;
+import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
+import com.hci.StarkIndustries.data.Models.devices.DevicesListModel;
+import com.hci.StarkIndustries.data.Models.devices.RoomDevicesModel;
+import com.hci.StarkIndustries.data.domain.DeviceRepository;
 import com.hci.StarkIndustries.ui.Miniatures.BaseDeviceFragment.DevicesListViewModel;
 
-public class RoomDevicesListViewModel extends DevicesListViewModel {
+import java.util.ArrayList;
 
+public class RoomDevicesListViewModel extends DevicesListViewModel {
     protected String id = "";
 
-    public void SetID(String id){this.id = id;}
-    @Override
-    public LiveData<DevicesListModel> getModel() {
+    public void SetID(String id) {
+        this.id = id;
+    }
 
-        if(mDeviceList == null){
-            mDeviceList = new MutableLiveData<>();
-            model = new RoomDevicesModel(this.id);
-            loadModel();
-        }
-        return mDeviceList;
+    @Override
+    public LiveData<Result<ArrayList<CommonDeviceModel>>> getModel() {
+        return DeviceRepository.get().getDevices(id);
     }
 }

@@ -11,9 +11,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.hci.StarkIndustries.Models.CommonDeviceModel;
-import com.hci.StarkIndustries.Models.RoomModel;
 import com.hci.StarkIndustries.R;
+import com.hci.StarkIndustries.data.Models.RoomModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,17 +49,12 @@ public class RecyclerViewRoomsAdapter extends RecyclerView.Adapter<RecyclerViewR
         return rooms.size();
     }
 
-    public void setData(List<RoomModel>rooms){
+    public void setData(List<RoomModel> rooms) {
         this.rooms = rooms;
         notifyDataSetChanged();
     }
 
-
-
-
-
-    public class ViewHolder extends RecyclerView.ViewHolder{
-
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView name;
 
         public ViewHolder(@NonNull View itemView) {

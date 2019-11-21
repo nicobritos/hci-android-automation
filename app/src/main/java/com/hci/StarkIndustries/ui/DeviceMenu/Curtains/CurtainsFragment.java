@@ -13,20 +13,22 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.hci.StarkIndustries.Models.DeviceModels.CurtainsModel;
 import com.hci.StarkIndustries.R;
-import com.hci.StarkIndustries.ui.DeviceMenu.IPassableID;
+import com.hci.StarkIndustries.data.Models.devices.DeviceModels.CurtainsModel;
 
 public class CurtainsFragment extends Fragment implements IPassableID {
 
     private CurtainsViewModel viewModel;
     private String id = "";
 
-    protected CurtainsFragment(){}
+    protected CurtainsFragment() {
+    }
 
     public static CurtainsFragment newInstance() {
         CurtainsFragment f = new CurtainsFragment();
-
+        Bundle arg = new Bundle();
+        arg.putString("id", id);
+        f.setArguments(arg);
         return f;
     }
 
@@ -34,18 +36,14 @@ public class CurtainsFragment extends Fragment implements IPassableID {
 
         viewModel = ViewModelProviders.of(this).get(CurtainsViewModel.class);
 
-        View root = inflater.inflate(R.layout.fragment_courtains_menu, container,false);
+        View root = inflater.inflate(R.layout.fragment_courtains_menu, container, false);
 
-        Button button  = root.findViewById(R.id.curtainsButton);
+        Button button = root.findViewById(R.id.curtainsButton);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        button.setOnClickListener(v -> {
+            CurtainsModel model = viewModel.getModel(getID()).getValue();
 
-                CurtainsModel model = viewModel.getModel(getID()).getValue();
-
-                viewModel.setState(!model.isOpen);
-            }
+            viewModel.setState(!model.isOpen());
         });
 
 
@@ -62,13 +60,13 @@ public class CurtainsFragment extends Fragment implements IPassableID {
             @Override
             public void onChanged(CurtainsModel curtainsModel) {
 
-                Button button  = getView().findViewById(R.id.curtainsButton);
+                Button button = getView().findViewById(R.id.curtainsButton);
                 ImageView image = getView().findViewById(R.id.curtainsImage);
 
-                if(curtainsModel.isOpen){
+                if (curtainsModel.isOpen()) {
                     image.setImageResource(R.drawable.ic_curtain_open);
                     button.setText(R.string.CourtainsButtonClose);
-                }else {
+                } else {
                     image.setImageResource(R.drawable.ic_curtain_closed);
                     button.setText(R.string.CourtainsButtonOpen);
                 }
@@ -78,9 +76,8 @@ public class CurtainsFragment extends Fragment implements IPassableID {
     }
 
 
-    @Override
-    public String getID() {
-        return this.id;
+    private String getID() {
+        return getArguments().getString("id");
     }
 
     @Override
