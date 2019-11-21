@@ -90,7 +90,6 @@ public class FridgeFragment extends Fragment {
             }
         });
 
-
         return root;
     }
 
@@ -100,28 +99,21 @@ public class FridgeFragment extends Fragment {
         mViewModel = ViewModelProviders.of(this).get(FridgeViewModel.class);
         // TODO: Use the ViewModel
 
-        mViewModel.getModel(getID()).observe(this, new Observer<FridgeModel>() {
-            @Override
-            public void onChanged(FridgeModel fridgeModel) {
+        mViewModel.getModel(getID()).observe(this, fridgeModel -> {
+            ((Spinner) getView().findViewById(R.id.FridgeModeDDL)).setSelection(mViewModel.getModeInt(), true);
 
-                ((Spinner) getView().findViewById(R.id.FridgeModeDDL)).setSelection(fridgeModel.mode, true);
+            TextView text = getView().findViewById(R.id.FridgeViewTemp);
+            text.setText(String.valueOf(fridgeModel.getTemperature()));
 
-                TextView text = getView().findViewById(R.id.FridgeViewTemp);
-                text.setText(String.valueOf(fridgeModel.temperature));
+            TextView text2 = (getView().findViewById(R.id.FridgeViewFreezerTemp));
+            text2.setText(String.valueOf(fridgeModel.getFreezerTemperature()));
 
-                TextView text2 = (getView().findViewById(R.id.FridgeViewFreezerTemp));
-                text2.setText(String.valueOf(fridgeModel.freezerTemperature));
+            SeekBar seekBar2 = (getView().findViewById(R.id.FridgeSliderFreezer));
+            seekBar2.setProgress(fridgeModel.getFreezerTemperature() - FridgeModel.FREEZER_MIN_TEMPERATURE, true);
 
-                SeekBar seekBar2 = (getView().findViewById(R.id.FridgeSliderFreezer));
-                seekBar2.setProgress(20 + fridgeModel.freezerTemperature, true);
-
-                SeekBar seekBar1 = getView().findViewById(R.id.FridgeSlidierTemperature);
-                seekBar1.setProgress(fridgeModel.temperature - 2, true);
-
-            }
+            SeekBar seekBar1 = getView().findViewById(R.id.FridgeSlidierTemperature);
+            seekBar1.setProgress(fridgeModel.getTemperature() - FridgeModel.MIN_TEMPERATURE, true);
         });
-
-
     }
 
     private String getID() {

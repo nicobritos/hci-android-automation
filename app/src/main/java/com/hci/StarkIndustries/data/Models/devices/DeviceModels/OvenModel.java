@@ -3,6 +3,9 @@ package com.hci.StarkIndustries.data.Models.devices.DeviceModels;
 import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
 
 public class OvenModel extends CommonDeviceModel {
+    public static final int MIN_TEMPERATURE = 90;
+    public static final int MAX_TEMPERATURE = 230;
+
     private OvenState state;
 
     public String getStatus() {

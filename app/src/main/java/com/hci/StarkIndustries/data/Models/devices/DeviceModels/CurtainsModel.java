@@ -13,6 +13,10 @@ public class CurtainsModel extends CommonDeviceModel {
         return this.state.getLevel();
     }
 
+    public boolean isOpen() {
+        return this.state.isOpen();
+    }
+
     private class CurtainsState {
         private String status;
         private Integer level;
@@ -23,6 +27,10 @@ public class CurtainsModel extends CommonDeviceModel {
 
         public Integer getLevel() {
             return level != null ? level : 0;
+        }
+
+        public boolean isOpen() {
+            return !this.getStatus().equals("closed");
         }
     }
 }

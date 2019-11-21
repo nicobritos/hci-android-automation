@@ -3,6 +3,10 @@ package com.hci.StarkIndustries.data.Models.devices.DeviceModels;
 import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
 
 public class FridgeModel extends CommonDeviceModel {
+    public static final int FREEZER_MIN_TEMPERATURE = -20;
+    public static final int FREEZER_MAX_TEMPERATURE = -8;
+    public static final int MIN_TEMPERATURE = 2;
+    public static final int MAX_TEMPERATURE = 8;
     private FridgeState state;
 
     public String getMode() {

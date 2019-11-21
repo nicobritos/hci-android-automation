@@ -25,11 +25,7 @@ public class OvenFragment extends Fragment {
 
     private OvenViewModel mViewModel;
 
-    protected OvenFragment() {
-    }
-
     public static OvenFragment newInstance(String id) {
-
         OvenFragment f = new OvenFragment();
         Bundle arg = new Bundle();
         arg.putString("id", id);
@@ -58,7 +54,7 @@ public class OvenFragment extends Fragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                mViewModel.setTemperature(seekBar.getProgress() + 90);
+                mViewModel.setTemperature(seekBar.getProgress() + OvenModel.MIN_TEMPERATURE);
             }
         });
 
@@ -108,7 +104,6 @@ public class OvenFragment extends Fragment {
             }
         });
 
-
         return root;
     }
 
@@ -118,43 +113,35 @@ public class OvenFragment extends Fragment {
         mViewModel = ViewModelProviders.of(this).get(OvenViewModel.class);
         // TODO: Use the ViewModel
 
+        mViewModel.getModel(getID()).observe(this, ovenModel -> {
+            SeekBar temperatureSlider = getView().findViewById(R.id.OvenTemperatureSlider);
+            temperatureSlider.setProgress(ovenModel.getTemperature() - OvenModel.MIN_TEMPERATURE, true);
+            temperatureSlider.setEnabled(ovenModel.isPowered());
 
-        mViewModel.getModel(getID()).observe(this, new Observer<OvenModel>() {
-            @Override
-            public void onChanged(OvenModel ovenModel) {
+            Spinner heatSource = getView().findViewById(R.id.OvenHeatSourceDDL);
+            heatSource.setSelection(mViewModel.getHeatInt(), true);
+            heatSource.setEnabled(ovenModel.isPowered());
 
-                SeekBar temperatureSlider = getView().findViewById(R.id.OvenTemperatureSlider);
-                temperatureSlider.setProgress(ovenModel.temperature - 90, true);
-                temperatureSlider.setEnabled(ovenModel.isOn);
+            Spinner grillMode = getView().findViewById(R.id.OvenGrillDDL);
+            grillMode.setSelection(mViewModel.getGrillInt(), true);
+            grillMode.setEnabled(ovenModel.isPowered());
 
-                Spinner heatSource = getView().findViewById(R.id.OvenHeatSourceDDL);
-                heatSource.setSelection(ovenModel.heatSource, true);
-                heatSource.setEnabled(ovenModel.isOn);
+            Spinner convectionMode = getView().findViewById(R.id.OvenConvectionDDL);
+            convectionMode.setSelection(mViewModel.getConvectionInt(), true);
+            convectionMode.setEnabled(ovenModel.isPowered());
 
-                Spinner grillMode = getView().findViewById(R.id.OvenGrillDDL);
-                grillMode.setSelection(ovenModel.grillMode, true);
-                grillMode.setEnabled(ovenModel.isOn);
+            TextView tempView = getView().findViewById(R.id.OventTemperatureView);
+            tempView.setText(String.valueOf(ovenModel.getTemperature()));
 
-                Spinner convectionMode = getView().findViewById(R.id.OvenConvectionDDL);
-                convectionMode.setSelection(ovenModel.convectionMode, true);
-                convectionMode.setEnabled(ovenModel.isOn);
+            ImageView OvenImage = getView().findViewById(R.id.OvenImage);
 
-                TextView tempView = getView().findViewById(R.id.OventTemperatureView);
-                tempView.setText(String.valueOf(ovenModel.temperature));
+            if (ovenModel.isPowered())
+                OvenImage.setImageResource(R.drawable.ic_oven_on);
+            else
+                OvenImage.setImageResource(R.drawable.ic_oven_off);
 
-                ImageView OvenImage = getView().findViewById(R.id.OvenImage);
-
-                if (ovenModel.isOn)
-                    OvenImage.setImageResource(R.drawable.ic_oven_on);
-                else
-                    OvenImage.setImageResource(R.drawable.ic_oven_off);
-
-
-                Switch power = getView().findViewById(R.id.OvenPower);
-                power.setChecked(ovenModel.isOn);
-
-
-            }
+            Switch power = getView().findViewById(R.id.OvenPower);
+            power.setChecked(ovenModel.isPowered());
         });
 
     }
@@ -162,5 +149,4 @@ public class OvenFragment extends Fragment {
     private String getID() {
         return getArguments().getString("id");
     }
-
 }

@@ -18,7 +18,8 @@ public class SpeakerViewModel extends ViewModel {
 
         if (mSpeaker == null) {
             mSpeaker = new MutableLiveData<>();
-            speaker = new SpeakerModel("PARLANTE", id, "ROOM2");
+//            speaker = new SpeakerModel("PARLANTE", id, "ROOM2");
+            speaker = new SpeakerModel();
             this.id = id;
             loadModel();
         }
@@ -32,39 +33,39 @@ public class SpeakerViewModel extends ViewModel {
 
     // IMPLEMENTAR EL RESTO DE  LA API
 
-    public void setPlayState(SpeakerModel.PlayState state) {
-        speaker.playState = state;
+    public void setPlayState() {
+//        speaker.playState = state;
         loadModel();
     }
 
     public void nextSong() {
-        speaker.seletedSong = (1 + speaker.seletedSong) % speaker.songs.size();
-        speaker.loadSong();
+//        speaker.seletedSong = (1 + speaker.seletedSong) % speaker.songs.size();
+//        speaker.loadSong();
         loadModel();
     }
 
 
     public void prevSong() {
-        speaker.seletedSong = (speaker.seletedSong >= 1) ? speaker.seletedSong - 1 : speaker.songs.size() - 1;
-        speaker.loadSong();
+//        speaker.seletedSong = (speaker.seletedSong >= 1) ? speaker.seletedSong - 1 : speaker.songs.size() - 1;
+//        speaker.loadSong();
         loadModel();
     }
 
     public void stop() {
-        speaker.SongTimestamp = 0;
-        speaker.SongDuration = 0;
-        speaker.SongArtist = "";
-        speaker.playState = SpeakerModel.PlayState.Stopped;
+//        speaker.SongTimestamp = 0;
+//        speaker.SongDuration = 0;
+//        speaker.SongArtist = "";
+//        speaker.playState = SpeakerModel.PlayState.Stopped;
         loadModel();
     }
 
     public void setVolume(int volume) {
-        speaker.volume = volume;
+//        speaker.volume = volume;
         loadModel();
     }
 
     public void setGenre(int genre) {
-        speaker.genre = genre;
+//        speaker.genre = genre;
         loadModel();
     }
 

@@ -1,5 +1,6 @@
 package com.hci.StarkIndustries.ui.DeviceMenu.Lamp;
 
+import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -23,14 +24,9 @@ import com.madrapps.pikolo.RGBColorPicker;
 import com.madrapps.pikolo.listeners.SimpleColorSelectionListener;
 
 public class LampFragment extends Fragment {
-
     private LampViewModel mViewModel;
 
-    protected LampFragment() {
-    }
-
     public static LampFragment newInstance(String id) {
-
         LampFragment f = new LampFragment();
         Bundle args = new Bundle();
         args.putString("id", id);
@@ -62,12 +58,7 @@ public class LampFragment extends Fragment {
         });
 
         final Switch switch_ = root.findViewById(R.id.LampSwitch);
-        switch_.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mViewModel.setEnabled(isChecked);
-            }
-        });
+        switch_.setOnCheckedChangeListener((buttonView, isChecked) -> mViewModel.setEnabled(isChecked));
 
         final ColorPicker colorPicker = root.findViewById(R.id.colorPicker);
         colorPicker.setColorSelectionListener(new SimpleColorSelectionListener() {
@@ -80,9 +71,8 @@ public class LampFragment extends Fragment {
                     mViewModel.setColor(color);
                 } else {
                     LampModel model = mViewModel.getModel(getID()).getValue();
-                    imageView.getBackground().setColorFilter(model.color, PorterDuff.Mode.MULTIPLY);
-                    colorPicker.setColor(model.color);
-
+                    imageView.getBackground().setColorFilter(model.getColorInt(), PorterDuff.Mode.MULTIPLY);
+                    colorPicker.setColor(model.getColorInt());
                 }
             }
         });
@@ -97,27 +87,20 @@ public class LampFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(LampViewModel.class);
 
-        mViewModel.getModel(getID()).observe(this, new Observer<LampModel>() {
-            @Override
-            public void onChanged(LampModel lampModel) {
-                ((SeekBar) getView().findViewById(R.id.LampSeekBar)).setEnabled(lampModel.isOn);
+        mViewModel.getModel(getID()).observe(this, lampModel -> {
+            getView().findViewById(R.id.LampSeekBar).setEnabled(lampModel.isPowered());
 
-                ((Switch) getView().findViewById(R.id.LampSwitch)).setChecked(lampModel.isOn);
+            ((Switch) getView().findViewById(R.id.LampSwitch)).setChecked(lampModel.isPowered());
 
-                ((SeekBar) getView().findViewById(R.id.LampSeekBar)).setProgress(lampModel.intensity);
+            ((SeekBar) getView().findViewById(R.id.LampSeekBar)).setProgress(lampModel.getBrightness());
 
-                ((RGBColorPicker) getView().findViewById(R.id.colorPicker)).setColor(lampModel.color);
+            ((RGBColorPicker) getView().findViewById(R.id.colorPicker)).setColor(lampModel.getColorInt());
 
-                getView().findViewById(R.id.imageView).
-                        getBackground().setTint(lampModel.color);
-            }
+            getView().findViewById(R.id.imageView).getBackground().setTint(lampModel.getColorInt());
         });
-
     }
 
     private String getID() {
         return getArguments().getString("id");
     }
-
-
 }

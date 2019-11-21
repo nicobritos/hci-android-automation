@@ -18,7 +18,8 @@ public class DoorMenuViewModel extends ViewModel {
         if (mModel == null) {
             mModel = new MutableLiveData<>();
             this.id = id;
-            model = new DoorModel("Puerta", id, "Room1");
+            model = new DoorModel();
+//            model = new DoorModel("Puerta", id, "Room1");
             loadModel();
         }
 
@@ -34,7 +35,7 @@ public class DoorMenuViewModel extends ViewModel {
     public boolean open() {
 
 
-        model.isOpen = true;
+//        model.isOpen = true;
 
         loadModel();
         return true;
@@ -43,7 +44,7 @@ public class DoorMenuViewModel extends ViewModel {
     public boolean close() {
 
 
-        model.isOpen = false;
+//        model.isOpen = false;
         // Do stuff
         loadModel();
         return true;
@@ -52,7 +53,7 @@ public class DoorMenuViewModel extends ViewModel {
     public boolean lock() {
 
 
-        model.islocked = true;
+//        model.islocked = true;
 
         // Do stuff
         loadModel();
@@ -62,7 +63,7 @@ public class DoorMenuViewModel extends ViewModel {
     public boolean unlock() {
 
 
-        model.islocked = false;
+//        model.islocked = false;
 
         // Do stuff
         loadModel();

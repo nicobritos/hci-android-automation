@@ -40,14 +40,10 @@ public class CurtainsFragment extends Fragment {
 
         Button button = root.findViewById(R.id.curtainsButton);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        button.setOnClickListener(v -> {
+            CurtainsModel model = viewModel.getModel(getID()).getValue();
 
-                CurtainsModel model = viewModel.getModel(getID()).getValue();
-
-                viewModel.setState(!model.isOpen);
-            }
+            viewModel.setState(!model.isOpen());
         });
 
 
@@ -67,7 +63,7 @@ public class CurtainsFragment extends Fragment {
                 Button button = getView().findViewById(R.id.curtainsButton);
                 ImageView image = getView().findViewById(R.id.curtainsImage);
 
-                if (curtainsModel.isOpen) {
+                if (curtainsModel.isOpen()) {
                     image.setImageResource(R.drawable.ic_curtain_open);
                     button.setText(R.string.CourtainsButtonClose);
                 } else {

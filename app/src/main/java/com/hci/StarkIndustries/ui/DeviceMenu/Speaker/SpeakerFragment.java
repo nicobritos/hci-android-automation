@@ -57,17 +57,17 @@ public class SpeakerFragment extends Fragment {
             @Override
             public void onClick(final View v) {
                 SpeakerModel model = mViewModel.getModel(getID()).getValue();
-                switch (model.playState) {
-                    case Playing:
-                        mViewModel.setPlayState(SpeakerModel.PlayState.Paused);
-                        break;
-                    case Paused:
-                        mViewModel.setPlayState(SpeakerModel.PlayState.Playing);
-                        break;
-                    case Stopped:
-                        mViewModel.setPlayState(SpeakerModel.PlayState.Playing);
-                        break;
-                }
+//                switch (model.playState) {
+//                    case Playing:
+//                        mViewModel.setPlayState(SpeakerModel.PlayState.Paused);
+//                        break;
+//                    case Paused:
+//                        mViewModel.setPlayState(SpeakerModel.PlayState.Playing);
+//                        break;
+//                    case Stopped:
+//                        mViewModel.setPlayState(SpeakerModel.PlayState.Playing);
+//                        break;
+//                }
 
             }
         });
@@ -147,24 +147,24 @@ public class SpeakerFragment extends Fragment {
             public void onChanged(SpeakerModel speakerModel) {
                 final FloatingActionButton playPauseButton = getView().findViewById(R.id.SpeakerPlayPauseButton);
 
-                if (speakerModel.playState == SpeakerModel.PlayState.Playing) {
-                    playPauseButton.setForeground(ContextCompat
-                            .getDrawable(getActivity(), R.drawable.ic_pause_black_24dp));
-
-                } else {
-                    playPauseButton.setForeground(ContextCompat
-                            .getDrawable(getActivity(), R.drawable.ic_play_arrow_white_48dp));
-
-                    if (speakerModel.playState == SpeakerModel.PlayState.Stopped) {
-                        ((TextView) getView().findViewById(R.id.SpeakerSongName)).setText(R.string.SpeakerNoSong);
-                    }
-                }
-
-
-                loadSong(speakerModel);
-                final Spinner modeDDL = getView().findViewById(R.id.SpeakerModeDDL);
-
-                modeDDL.setSelection(speakerModel.genre, true);
+//                if (speakerModel.playState == SpeakerModel.PlayState.Playing) {
+//                    playPauseButton.setForeground(ContextCompat
+//                            .getDrawable(getActivity(), R.drawable.ic_pause_black_24dp));
+//
+//                } else {
+//                    playPauseButton.setForeground(ContextCompat
+//                            .getDrawable(getActivity(), R.drawable.ic_play_arrow_white_48dp));
+//
+//                    if (speakerModel.playState == SpeakerModel.PlayState.Stopped) {
+//                        ((TextView) getView().findViewById(R.id.SpeakerSongName)).setText(R.string.SpeakerNoSong);
+//                    }
+//                }
+//
+//
+//                loadSong(speakerModel);
+//                final Spinner modeDDL = getView().findViewById(R.id.SpeakerModeDDL);
+//
+//                modeDDL.setSelection(speakerModel.genre, true);
 
 
             }
@@ -190,9 +190,9 @@ public class SpeakerFragment extends Fragment {
             songProgressTimer = new SongTimer();
 
 
-            int progress = model.SongTimestamp;
-            int duration = model.SongDuration;
-            songProgressTimer.scheduleAtFixedRate(new SongTimerTask(progress, duration), 0, 1000);
+//            int progress = model.SongTimestamp;
+//            int duration = model.SongDuration;
+//            songProgressTimer.scheduleAtFixedRate(new SongTimerTask(progress, duration), 0, 1000);
         }
 
     }
@@ -205,20 +205,20 @@ public class SpeakerFragment extends Fragment {
     }
 
     private void loadSong(SpeakerModel model) {
-        ((TextView) getView().findViewById(R.id.SpeakerSongDurationText))
-                .setText(String.format("%d%d:%d%d", (model.SongDuration / 60) / 10, (model.SongDuration / 60) % 10, (model.SongDuration % 60) / 10, (model.SongDuration % 60) % 10));
-        final TextView songName = getView().findViewById(R.id.SpeakerSongName);
-        songName.setSelected(true);
-        songName.setText(model.SongName);
-
-        ((TextView) getView().findViewById(R.id.SpeakerSongProgressText))
-                .setText(String.format("%d%d:%d%d", (model.SongTimestamp / 60) / 10, (model.SongTimestamp / 60) % 10, (model.SongTimestamp % 60) / 10, (model.SongTimestamp % 60) % 10));
-
-        if (model.playState == SpeakerModel.PlayState.Playing)
-            PlaySong();
-        else
-            PauseSong();
-
+//        ((TextView) getView().findViewById(R.id.SpeakerSongDurationText))
+//                .setText(String.format("%d%d:%d%d", (model.SongDuration / 60) / 10, (model.SongDuration / 60) % 10, (model.SongDuration % 60) / 10, (model.SongDuration % 60) % 10));
+//        final TextView songName = getView().findViewById(R.id.SpeakerSongName);
+//        songName.setSelected(true);
+//        songName.setText(model.SongName);
+//
+//        ((TextView) getView().findViewById(R.id.SpeakerSongProgressText))
+//                .setText(String.format("%d%d:%d%d", (model.SongTimestamp / 60) / 10, (model.SongTimestamp / 60) % 10, (model.SongTimestamp % 60) / 10, (model.SongTimestamp % 60) % 10));
+//
+//        if (model.playState == SpeakerModel.PlayState.Playing)
+//            PlaySong();
+//        else
+//            PauseSong();
+//
 
     }
 

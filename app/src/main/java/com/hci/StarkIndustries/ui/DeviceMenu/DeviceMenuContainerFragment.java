@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
 import com.hci.StarkIndustries.data.Models.devices.DeviceType;
+import com.hci.StarkIndustries.data.Models.devices.DeviceTypeEnum;
 import com.hci.StarkIndustries.ui.DeviceMenu.AC.ACFragment;
 import com.hci.StarkIndustries.ui.DeviceMenu.Curtains.CurtainsFragment;
 import com.hci.StarkIndustries.ui.DeviceMenu.Door.DoorMenuFragment;
@@ -37,7 +38,6 @@ public class DeviceMenuContainerFragment extends DialogFragment {
     public static DeviceMenuContainerFragment newInstance(CommonDeviceModel deviceModel) {
         Bundle args = new Bundle();
         args.putParcelable("device", deviceModel);
-        args.putString("deviceType", deviceModel.type.name());
 
         DeviceMenuContainerFragment f = new DeviceMenuContainerFragment();
         f.setArguments(args);
@@ -71,7 +71,7 @@ public class DeviceMenuContainerFragment extends DialogFragment {
 
         // Sets name of the device
         TextView nameText = view.findViewById(R.id.DeviceName);
-        nameText.setText(model.Name);
+        nameText.setText(model.getName());
 
         // Sets controllers of the view (Mostly returns)
         ImageButton backButton = view.findViewById(R.id.GoBackDeviceMenuBtn);
@@ -91,30 +91,28 @@ public class DeviceMenuContainerFragment extends DialogFragment {
     }
 
     private Fragment getCorrectFragment() {
-        DeviceType type = DeviceType.valueOf(getArguments().getString("deviceType"));
         CommonDeviceModel model = getArguments().getParcelable("device");
-
-//        MainActivity act = (MainActivity) getActivity();
+        DeviceTypeEnum type = model.getDeviceType();
 
         switch (type) {
             case AC:
-                return ACFragment.newInstance(model.Id); //act.getFragment("AC");
+                return ACFragment.newInstance(model.getId());
             case Door:
-                return DoorMenuFragment.newInstance(model.Id);// act.getFragment("Door");
+                return DoorMenuFragment.newInstance(model.getId());
             case Curtains:
-                return CurtainsFragment.newInstance(model.Id);// act.getFragment("Curtains");
+                return CurtainsFragment.newInstance(model.getId());
             case Lamp:
-                return LampFragment.newInstance(model.Id);// act.getFragment("Lamp");
+                return LampFragment.newInstance(model.getId());
             case Fridge:
-                return FridgeFragment.newInstance(model.Id); //act.getFragment("Fridge");
+                return FridgeFragment.newInstance(model.getId());
             case Oven:
-                return OvenFragment.newInstance(model.Id);//act.getFragment("Oven");
+                return OvenFragment.newInstance(model.getId());
             case Speaker:
-                return SpeakerFragment.newInstance(model.Id);// act.getFragment("Speaker");
+                return SpeakerFragment.newInstance(model.getId());
         }
+
         Log.d(TAG, "getCorrectFragment: FRAGMENT NOT FOUND");
         return null;
-
     }
 
 

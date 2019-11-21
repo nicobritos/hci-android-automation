@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModel;
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.LampModel;
 
 public class LampViewModel extends ViewModel {
-
     private static final String TAG = "LampViewModel";
     private MutableLiveData<LampModel> mLamp;
     private String id = "";
@@ -22,8 +21,9 @@ public class LampViewModel extends ViewModel {
         if (mLamp == null) {
             Log.d(TAG, "getModel: Loading Model. ID: " + id);
             this.id = id;
-            mLamp = new MutableLiveData<LampModel>();
-            model = new LampModel("Lampara", id, "Room1");
+            mLamp = new MutableLiveData<>();
+//            model = new LampModel("Lampara", id, "Room1");
+            model = new LampModel();
             loadModel();
         }
 
@@ -40,39 +40,35 @@ public class LampViewModel extends ViewModel {
 
         Log.d(TAG, "setIntensity to " + intensity);
 
-        model.intensity = intensity;
+//        model.intensity = intensity;
         // API
         loadModel();
         return true;
     }
-
 
     public boolean setColor(int color) {
 
 
         Log.d(TAG, "setColor to 0X" + String.format("%x", color));
 
-        model.color = color;
+//        model.color = color;
 
         // API
         loadModel();
         return true;
     }
-
 
     public boolean setEnabled(boolean enabled) {
 
 
         Log.d(TAG, "setEnabled to " + enabled);
 
-        model.isOn = enabled;
+//        model.isOn = enabled;
 
         // API
         loadModel();
         return true;
     }
-
-
 }
 
 

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
 import com.hci.StarkIndustries.data.Models.devices.DeviceType;
+import com.hci.StarkIndustries.data.Models.devices.DeviceTypeEnum;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,9 +46,9 @@ public class RecyclerViewDevicesAdapter extends RecyclerView.Adapter<RecyclerVie
 
         final CommonDeviceModel model = devices.get(position);
 
-        holder.roomName.setText(model.Room);
-        holder.deviceName.setText(model.Name);
-        holder.image.setImageResource(getImageResourcesForDevice(model.type));
+//        holder.roomName.setText(model.Room);
+//        holder.deviceName.setText(model.Name);
+//        holder.image.setImageResource(getImageResourcesForDevice(model.type));
 
     }
 
@@ -83,24 +84,24 @@ public class RecyclerViewDevicesAdapter extends RecyclerView.Adapter<RecyclerVie
 
     }
 
-    private int getImageResourcesForDevice(DeviceType type) {
+    private int getImageResourcesForDevice(DeviceTypeEnum type) {
 
         switch (type) {
 
-            case Door:
-                return R.drawable.ic_door_locked;
-            case Speaker:
-                return R.drawable.ic_speaker_on;
-            case Fridge:
-                return R.drawable.ic_fridge;
-            case Curtains:
-                return R.drawable.ic_curtain_open;
-            case Lamp:
-                return R.drawable.ic_lightbulb_on;
-            case AC:
-                return R.drawable.ic_air_conditioner_on;
-            case Oven:
-                return R.drawable.ic_oven_on;
+//            case Door:
+//                return R.drawable.ic_door_locked;
+//            case Speaker:
+//                return R.drawable.ic_speaker_on;
+//            case Fridge:
+//                return R.drawable.ic_fridge;
+//            case Curtains:
+//                return R.drawable.ic_curtain_open;
+//            case Lamp:
+//                return R.drawable.ic_lightbulb_on;
+//            case AC:
+//                return R.drawable.ic_air_conditioner_on;
+//            case Oven:
+//                return R.drawable.ic_oven_on;
             default:
                 return R.drawable.ic_help_black_24dp;
         }

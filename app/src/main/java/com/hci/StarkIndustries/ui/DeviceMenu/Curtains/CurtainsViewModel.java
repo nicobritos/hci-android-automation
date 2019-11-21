@@ -16,7 +16,8 @@ public class CurtainsViewModel extends ViewModel {
 
         if (mCurtains == null) {
             mCurtains = new MutableLiveData<CurtainsModel>();
-            model = new CurtainsModel("Cortinitas", id, "Room1");
+//            model = new CurtainsModel("Cortinitas", id, "Room1");
+            model = new CurtainsModel();
             loadModel();
         }
 
@@ -29,7 +30,7 @@ public class CurtainsViewModel extends ViewModel {
     }
 
     public void setState(boolean state) {
-        model.isOpen = state;
+//        model.isOpen = state;
         loadModel();
     }
 

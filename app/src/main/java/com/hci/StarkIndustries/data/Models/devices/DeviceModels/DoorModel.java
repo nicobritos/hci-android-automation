@@ -17,6 +17,10 @@ public class DoorModel extends CommonDeviceModel {
         return this.state.isLocked();
     }
 
+    public boolean isOpen() {
+        return this.state.isOpen();
+    }
+
     private class CurtainsState {
         private String status, lock;
 
@@ -30,6 +34,10 @@ public class DoorModel extends CommonDeviceModel {
 
         public boolean isLocked() {
             return this.getLockStatus().equalsIgnoreCase("locked");
+        }
+
+        public boolean isOpen() {
+            return !this.getLockStatus().equalsIgnoreCase("closed");
         }
     }
 }

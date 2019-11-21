@@ -80,30 +80,27 @@ public class DoorMenuFragment extends Fragment {
 
         Log.d(TAG, "onActivityCreated: Por entrar al GetModel");
 
-        mViewModel.getModel(getID()).observe(this, new Observer<DoorModel>() {
-            @Override
-            public void onChanged(DoorModel doorModel) {
-                Log.d(TAG, "onChanged: isOpen: " + doorModel.isOpen + " isLocked: " + doorModel.islocked);
-                if (doorModel.isOpen) {
-                    ((ImageView) getView().findViewById(R.id.IsDoorOpenImage)).setImageResource(R.drawable.ic_open_door);
-                    ((Switch) getView().findViewById(R.id.OpenDoorBtn)).setText(R.string.DoorButtonClose);
+        mViewModel.getModel(getID()).observe(this, doorModel -> {
+            Log.d(TAG, "onChanged: isOpen: " + doorModel.isOpen() + " isLocked: " + doorModel.isLocked());
+            if (doorModel.isOpen()) {
+                ((ImageView) getView().findViewById(R.id.IsDoorOpenImage)).setImageResource(R.drawable.ic_open_door);
+                ((Switch) getView().findViewById(R.id.OpenDoorBtn)).setText(R.string.DoorButtonClose);
 
-                } else {
-                    ((ImageView) getView().findViewById(R.id.IsDoorOpenImage)).setImageResource(R.drawable.ic_closed_door);
-                    ((Switch) getView().findViewById(R.id.OpenDoorBtn)).setText(R.string.DoorButtonOpen);
-                }
-                getView().findViewById(R.id.LockDoorBtn).setEnabled(!doorModel.isOpen);
-
-                if (doorModel.islocked) {
-                    ((ImageView) getView().findViewById(R.id.isDoorLockedImage)).setImageResource(R.drawable.ic_door_locked);
-                    ((Switch) getView().findViewById(R.id.LockDoorBtn)).setText(R.string.DoorButtonUnlock);
-                } else {
-                    ((ImageView) getView().findViewById(R.id.isDoorLockedImage)).setImageResource(R.drawable.ic_door_unlocked);
-                    ((Switch) getView().findViewById(R.id.LockDoorBtn)).setText(R.string.DoorButtonLock);
-                }
-                getView().findViewById(R.id.OpenDoorBtn).setEnabled(!doorModel.islocked);
-
+            } else {
+                ((ImageView) getView().findViewById(R.id.IsDoorOpenImage)).setImageResource(R.drawable.ic_closed_door);
+                ((Switch) getView().findViewById(R.id.OpenDoorBtn)).setText(R.string.DoorButtonOpen);
             }
+            getView().findViewById(R.id.LockDoorBtn).setEnabled(!doorModel.isOpen());
+
+            if (doorModel.isLocked()) {
+                ((ImageView) getView().findViewById(R.id.isDoorLockedImage)).setImageResource(R.drawable.ic_door_locked);
+                ((Switch) getView().findViewById(R.id.LockDoorBtn)).setText(R.string.DoorButtonUnlock);
+            } else {
+                ((ImageView) getView().findViewById(R.id.isDoorLockedImage)).setImageResource(R.drawable.ic_door_unlocked);
+                ((Switch) getView().findViewById(R.id.LockDoorBtn)).setText(R.string.DoorButtonLock);
+            }
+            getView().findViewById(R.id.OpenDoorBtn).setEnabled(!doorModel.isLocked());
+
         });
     }
 
