@@ -49,6 +49,13 @@ public class DevicesListFragment extends Fragment implements DevicesRecyclerView
             public void onChanged(DevicesListModel devicesListModel) {
                 RecyclerView recyclerView =  getView().findViewById(R.id.RecyclerViewDevices);
                 ((RecyclerViewDevicesAdapter)recyclerView.getAdapter()).setData(devicesListModel.getDevices());
+
+                if(devicesListModel.getDevices().size() == 0){
+                    getView().findViewById(R.id.NoDevicesView).setVisibility(View.VISIBLE);
+                }else
+                {
+                    getView().findViewById(R.id.NoDevicesView).setVisibility(View.GONE);
+                }
             }
         });
     }

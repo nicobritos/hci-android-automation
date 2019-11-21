@@ -20,6 +20,7 @@ public class HomeViewModel extends ViewModel {
         if(mData == null){
             mData = new MutableLiveData<>();
             regions.add(new RegionModel("Region 1"));
+            regions.get(0).rooms = new ArrayList<>();
             regions.add(new RegionModel("Region 2"));
             regions.add(new RegionModel("Region 3"));
             loadModel();

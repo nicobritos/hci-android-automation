@@ -60,6 +60,16 @@ public class RoutinesListFragment extends Fragment {
             public void onChanged(RoutinesListModel model) {
                 RecyclerView recyclerView =  getView().findViewById(R.id.RecyclerViewRoutines);
                 ((RecyclerViewRoutinesAdapter)recyclerView.getAdapter()).setData(model.getRoutines());
+
+
+                if(model.getRoutines().size() == 0){
+                    getView().findViewById(R.id.NoRoutinesView).setVisibility(View.VISIBLE);
+                }
+                else{
+                    getView().findViewById(R.id.NoRoutinesView).setVisibility(View.GONE);
+                }
+
+
             }
         });
 

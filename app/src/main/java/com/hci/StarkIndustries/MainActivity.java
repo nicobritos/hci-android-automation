@@ -1,6 +1,7 @@
 package com.hci.StarkIndustries;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.hci.StarkIndustries.ui.DeviceMenu.AC.ACFragment;
@@ -12,6 +13,8 @@ import com.hci.StarkIndustries.ui.DeviceMenu.Lamp.LampFragment;
 import com.hci.StarkIndustries.ui.DeviceMenu.Oven.OvenFragment;
 import com.hci.StarkIndustries.ui.DeviceMenu.Speaker.SpeakerFragment;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
@@ -44,9 +47,19 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
 
         initializeFragments();
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        NavController navController = Navigation.findNavController(this,R.id.nav_host_fragment);
+        navController.navigate(R.id.action_room_to_navigation_home);
+        return true;
     }
 
     public IPassableID getFragment(String name){

@@ -8,6 +8,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,6 +45,9 @@ public class RecyclerViewRegionsAdapter extends RecyclerView.Adapter<RecyclerVie
 
         holder.regionName.setText(region.name);
 
+        if(region.rooms.size() == 0){
+            holder.cardView.setVisibility(View.VISIBLE);
+        }
 
         GridLayoutManager layoutManager = new GridLayoutManager(holder.recyclerView.getContext(),2, RecyclerView.HORIZONTAL,false);
         holder.recyclerView.setLayoutManager(layoutManager);
@@ -60,11 +65,14 @@ public class RecyclerViewRegionsAdapter extends RecyclerView.Adapter<RecyclerVie
     public class ViewHolder  extends RecyclerView.ViewHolder{
         public TextView regionName;
         public RecyclerView recyclerView;
+        public CardView cardView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             regionName = itemView.findViewById(R.id.RegionName);
             recyclerView = itemView.findViewById(R.id.HouseRoomRecyclerView);
+            cardView = itemView.findViewById(R.id.NoRoomsOnRegionView);
+
 
         }
     }

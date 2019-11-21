@@ -1,5 +1,6 @@
 package com.hci.StarkIndustries.ui.Room;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,9 +9,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -54,7 +58,17 @@ public class RoomFragment extends Fragment {
 
         fragment.setID(id);
 
+//        ActionBar actionBar = getActivity().getActionBar();
+//        actionBar.setDisplayHomeAsUpEnabled(true);
+
         return root;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        NavController navController = Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
+        navController.navigate(R.id.action_room_to_navigation_home);
+        return true;
     }
 
     @Override
@@ -69,18 +83,6 @@ public class RoomFragment extends Fragment {
 
                 RoomDevicesListFragment fragment = (RoomDevicesListFragment) getChildFragmentManager()
                         .findFragmentById(R.id.RoomDevicesFragmentContainer);
-
-                if(fragment.getDevicesInRoom() == 0) {
-
-                    getChildFragmentManager()
-                            .findFragmentById(R.id.NoDevicesOnRoomFragment).getView().setVisibility(View.VISIBLE);
-                }else{
-                    getChildFragmentManager()
-                            .findFragmentById(R.id.NoDevicesOnRoomFragment).getView().setVisibility(View.GONE);
-                }
-
-
-
 
             }
         });

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_dashboard">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -29,8 +29,9 @@
     <fragment
         android:id="@+id/room"
         android:name="com.hci.StarkIndustries.ui.Room.RoomFragment"
-        android:label="fragment_room"
-        tools:layout="@layout/fragment_room" >
+        android:label="@string/TitleRoom"
+        tools:layout="@layout/fragment_room"
+        >
         <argument
             android:name="RoomID"
             app:argType="string" />
@@ -38,5 +39,10 @@
             android:id="@+id/action_room_to_navigation_home"
             app:destination="@id/navigation_home" />
     </fragment>
+    <action
+        android:id="@+id/action_mobile_navigation_pop"
+        app:destination="@+id/navigation_home"
+        app:popUpTo="@id/mobile_navigation"
+        app:popUpToInclusive="true" />
 
 </navigation>
