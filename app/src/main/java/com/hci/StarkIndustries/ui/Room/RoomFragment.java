@@ -58,18 +58,10 @@ public class RoomFragment extends Fragment {
 
         fragment.setID(id);
 
-//        ActionBar actionBar = getActivity().getActionBar();
-//        actionBar.setDisplayHomeAsUpEnabled(true);
-
         return root;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        NavController navController = Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
-        navController.navigate(R.id.action_room_to_navigation_home);
-        return true;
-    }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

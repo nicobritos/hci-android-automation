@@ -8,5 +8,6 @@
     <string name="EmptyRegionText">Oops, there are no rooms in this region...</string>
     <string name="EmptyRoomText">Oops, there are no devices here...</string>
     <string name="EmptyRoutinesText">you haven\'t created any routines yet</string>
+    <string name="EmptyHouseText">There are no regions in the house</string>
 
 </resources>
