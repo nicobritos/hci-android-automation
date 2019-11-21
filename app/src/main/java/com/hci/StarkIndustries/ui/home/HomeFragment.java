@@ -59,8 +59,10 @@ public class HomeFragment extends Fragment implements IClickableItem {
         homeViewModel.getModels().observe(this, new Observer<List<RegionModel>>() {
             @Override
             public void onChanged(List<RegionModel> regionModels) {
-                ((RecyclerViewRegionsAdapter) ((RecyclerView)getView().findViewById(R.id.HouseRegionsRecyclerView))
-                        .getAdapter()).setData(regionModels);
+
+                ((RecyclerViewRegionsAdapter) ((RecyclerView) getView().findViewById(R.id.HouseRegionsRecyclerView))
+                            .getAdapter()).setData(regionModels);
+
             }
         });
 

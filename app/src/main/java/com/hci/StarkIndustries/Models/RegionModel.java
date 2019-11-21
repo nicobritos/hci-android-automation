@@ -12,9 +12,9 @@ public class RegionModel {
         this.name = name;
         this.id = name;
 
-        rooms.add(new RoomModel("Cuarto1"));
-        rooms.add(new RoomModel("Cuarto2"));
-        rooms.add(new RoomModel("Cuarto3"));
-        rooms.add(new RoomModel("Cuarto4"));
+        rooms.add(new RoomModel("ROOM1"));
+        rooms.add(new RoomModel("ROOM2"));
+        rooms.add(new RoomModel("ROOM3"));
+        rooms.add(new RoomModel("ROOM4"));
     }
 }

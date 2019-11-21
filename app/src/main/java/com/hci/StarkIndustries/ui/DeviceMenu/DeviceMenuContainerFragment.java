@@ -103,18 +103,25 @@ public class DeviceMenuContainerFragment extends DialogFragment {
         switch (type){
             case AC:
                 fragment = act.getFragment("AC");
+                break;
             case Door:
                 fragment = act.getFragment("Door");
+                break;
             case Curtains:
                 fragment = act.getFragment("Curtains");
+                break;
             case Lamp:
                 fragment =  act.getFragment("Lamp");
+                break;
             case Fridge:
                 fragment = act.getFragment("Fridge");
+                break;
             case Oven:
                 fragment = act.getFragment("Oven");
+                break;
             case Speaker:
                 fragment =  act.getFragment("Speaker");
+                break;
         }
 
         if(fragment != null){

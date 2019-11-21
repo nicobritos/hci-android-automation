@@ -36,6 +36,10 @@ public class RoomDevicesListFragment extends DevicesListFragment {
         ((RoomDevicesListViewModel)mViewModel).SetID(this.id);
     }
 
+    public int getDevicesInRoom(){
+        return mViewModel.getModel().getValue().getDevices().size();
+    }
+
     public void setID(String id){
         this.id = id;
     }

@@ -54,13 +54,6 @@ public class RoomFragment extends Fragment {
 
         fragment.setID(id);
 
-//        Fragment fragment = RoomDevicesListFragment.newInstance(id);
-//        FragmentTransaction ft = this.getChildFragmentManager().beginTransaction();
-//        ft.replace(R.id.RoomDevicesFragmentContainer,fragment );
-//        ft.commit();
-
-
-
         return root;
     }
 
@@ -73,6 +66,21 @@ public class RoomFragment extends Fragment {
             @Override
             public void onChanged(RoomModel roomModel) {
                 ((TextView)getView().findViewById(R.id.RoomTitle)).setText(roomModel.name);
+
+                RoomDevicesListFragment fragment = (RoomDevicesListFragment) getChildFragmentManager()
+                        .findFragmentById(R.id.RoomDevicesFragmentContainer);
+
+                if(fragment.getDevicesInRoom() == 0) {
+
+                    getChildFragmentManager()
+                            .findFragmentById(R.id.NoDevicesOnRoomFragment).getView().setVisibility(View.VISIBLE);
+                }else{
+                    getChildFragmentManager()
+                            .findFragmentById(R.id.NoDevicesOnRoomFragment).getView().setVisibility(View.GONE);
+                }
+
+
+
 
             }
         });
