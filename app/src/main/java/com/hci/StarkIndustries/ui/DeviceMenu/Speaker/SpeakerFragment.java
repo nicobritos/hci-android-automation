@@ -21,19 +21,21 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.SpeakerModel;
 
+
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class SpeakerFragment extends Fragment {
+public class SpeakerFragment extends Fragment implements IPassableID {
 
     private SpeakerViewModel mViewModel;
     private SongTimer songProgressTimer;
+    private String id = "";
 
     protected SpeakerFragment() {
     }
 
-    public static SpeakerFragment newInstance(String id) {
+    public static SpeakerFragment newInstance() {
 
         SpeakerFragment f = new SpeakerFragment();
         Bundle arg = new Bundle();
@@ -189,7 +191,6 @@ public class SpeakerFragment extends Fragment {
         if (songProgressTimer == null) {
             songProgressTimer = new SongTimer();
 
-
 //            int progress = model.SongTimestamp;
 //            int duration = model.SongDuration;
 //            songProgressTimer.scheduleAtFixedRate(new SongTimerTask(progress, duration), 0, 1000);
@@ -219,7 +220,6 @@ public class SpeakerFragment extends Fragment {
 //        else
 //            PauseSong();
 //
-
     }
 
     private class SongTimer extends Timer {
@@ -280,11 +280,15 @@ public class SpeakerFragment extends Fragment {
 
                     if (progress > duration) {
                         mViewModel.nextSong();
-
+            Activity act =  getActivity();
+            if(act != null){
+                act.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mViewModel.incrementProgress();
                     }
-
-                }
-            });
+                });
+            }
 
 
         }

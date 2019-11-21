@@ -21,9 +21,12 @@ import androidx.lifecycle.ViewModelProviders;
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.OvenModel;
 
-public class OvenFragment extends Fragment {
+import java.security.spec.InvalidParameterSpecException;
+
+public class OvenFragment extends Fragment implements IPassableID {
 
     private OvenViewModel mViewModel;
+    private String id = "";
 
     public static OvenFragment newInstance(String id) {
         OvenFragment f = new OvenFragment();
@@ -145,7 +148,7 @@ public class OvenFragment extends Fragment {
         });
 
     }
-
+  
     private String getID() {
         return getArguments().getString("id");
     }

@@ -18,16 +18,16 @@ import androidx.lifecycle.ViewModelProviders;
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.DoorModel;
 
-public class DoorMenuFragment extends Fragment {
+public class DoorMenuFragment extends Fragment implements IPassableID {
 
     private DoorMenuViewModel mViewModel;
     private static final String TAG = "DoorMenuFragment";
+    private String id = "";
 
     protected DoorMenuFragment() {
     }
 
-    public static DoorMenuFragment newInstance(String id) {
-
+    public static DoorMenuFragment newInstance() {
         DoorMenuFragment f = new DoorMenuFragment();
         Bundle args = new Bundle();
         args.putString("id", id);
@@ -107,6 +107,12 @@ public class DoorMenuFragment extends Fragment {
     private String getID() {
         return getArguments().getString("id");
     }
+
+    @Override
+    public void setID(String id) {
+        this.id = id;
+    }
+
 
 
 }

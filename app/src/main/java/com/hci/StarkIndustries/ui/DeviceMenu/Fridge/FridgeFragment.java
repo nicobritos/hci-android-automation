@@ -18,15 +18,15 @@ import androidx.lifecycle.ViewModelProviders;
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.FridgeModel;
 
-public class FridgeFragment extends Fragment {
+public class FridgeFragment extends Fragment implements IPassableID {
 
     private FridgeViewModel mViewModel;
+    private String id = "";
 
     protected FridgeFragment() {
     }
 
-    public static FridgeFragment newInstance(String id) {
-
+    public static FridgeFragment newInstance() {
         FridgeFragment f = new FridgeFragment();
         Bundle arg = new Bundle();
         arg.putString("id", id);
@@ -120,6 +120,10 @@ public class FridgeFragment extends Fragment {
         return getArguments().getString("id");
     }
 
+    @Override
+    public void setID(String id) {
+        this.id = id;
+    }
 
 }
 

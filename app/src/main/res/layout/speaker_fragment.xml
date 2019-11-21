@@ -17,8 +17,8 @@
             android:id="@+id/SpakerImageLayout">
 
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
                 android:id="@+id/SpeakerImage"
                 android:scaleType="centerInside"
                 app:layout_constraintTop_toTopOf="parent"
@@ -185,8 +185,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/SpeakerVolumeLayout"
-            android:layout_marginTop="20dp">
 
+            android:layout_marginTop="20dp"
+            android:id="@+id/ModeSelectionLayout"
+            >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -214,7 +216,9 @@
             android:layout_height="wrap_content"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ModeSelectionLayout"
             android:layout_margin="10dp"
+            android:layout_marginTop="40dp"
             android:foreground="@drawable/ic_stop_black_48dp"
             android:scaleType="fitCenter"
             android:foregroundTint="@color/colorPrimary"

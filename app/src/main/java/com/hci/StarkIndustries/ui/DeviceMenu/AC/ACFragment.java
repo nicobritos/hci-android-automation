@@ -22,14 +22,14 @@ import com.hci.StarkIndustries.data.Models.devices.DeviceModels.ACModel;
 public class ACFragment extends Fragment {
     private ACViewModel mViewModel;
 
-    public static ACFragment newInstance(String id) {
+    public static ACFragment newInstance() {
         ACFragment f = new ACFragment();
 
         Bundle args = new Bundle();
         args.putString("id", id);
         f.setArguments(args);
 
-        return f;
+      return f;
     }
 
     @Override

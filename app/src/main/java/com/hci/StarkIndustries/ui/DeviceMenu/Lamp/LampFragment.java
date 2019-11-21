@@ -25,6 +25,7 @@ import com.madrapps.pikolo.listeners.SimpleColorSelectionListener;
 
 public class LampFragment extends Fragment {
     private LampViewModel mViewModel;
+    private String id = "";
 
     public static LampFragment newInstance(String id) {
         LampFragment f = new LampFragment();
