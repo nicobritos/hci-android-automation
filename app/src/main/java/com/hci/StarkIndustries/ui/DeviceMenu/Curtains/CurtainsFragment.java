@@ -14,9 +14,9 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.CurtainsModel;
-import com.hci.StarkIndustries.ui.DeviceMenu.IPassableIDFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.IdentifiableFragment;
 
-public class CurtainsFragment extends IPassableIDFragment {
+public class CurtainsFragment extends IdentifiableFragment {
     private CurtainsViewModel viewModel;
 
     public static CurtainsFragment newInstance() {
@@ -32,7 +32,7 @@ public class CurtainsFragment extends IPassableIDFragment {
         Button button = root.findViewById(R.id.curtainsButton);
 
         button.setOnClickListener(v -> {
-            CurtainsModel model = viewModel.getModel(getID()).getValue();
+            CurtainsModel model = viewModel.getModel(this, getID()).getValue();
 
             viewModel.setState(!model.isOpen());
         });
@@ -47,7 +47,7 @@ public class CurtainsFragment extends IPassableIDFragment {
 
         CurtainsViewModel model = ViewModelProviders.of(this).get(CurtainsViewModel.class);
 
-        model.getModel(getID()).observe(this, new Observer<CurtainsModel>() {
+        model.getModel(this, getID()).observe(this, new Observer<CurtainsModel>() {
             @Override
             public void onChanged(CurtainsModel curtainsModel) {
 

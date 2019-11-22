@@ -10,7 +10,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.hci.StarkIndustries.ui.DeviceMenu.IPassableIDFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.IdentifiableFragment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
     }
 
-    public IPassableIDFragment getFragment(String name) {
-        return (IPassableIDFragment) fragments.get(adaptName(name));
+    public IdentifiableFragment getFragment(String name) {
+        return (IdentifiableFragment) fragments.get(adaptName(name));
     }
 
     private String adaptName(String name) {

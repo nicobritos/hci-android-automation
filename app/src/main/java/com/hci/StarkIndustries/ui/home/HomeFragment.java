@@ -15,7 +15,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.hci.StarkIndustries.Models.RegionModel;
+import com.hci.StarkIndustries.data.Models.RegionModel;
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.ui.RecycleViewAdapters.IClickableItem;
 import com.hci.StarkIndustries.ui.RecycleViewAdapters.RecyclerViewRegionsAdapter;

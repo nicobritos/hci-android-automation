@@ -15,12 +15,12 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.LampModel;
-import com.hci.StarkIndustries.ui.DeviceMenu.IPassableIDFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.IdentifiableFragment;
 import com.madrapps.pikolo.ColorPicker;
 import com.madrapps.pikolo.RGBColorPicker;
 import com.madrapps.pikolo.listeners.SimpleColorSelectionListener;
 
-public class LampFragment extends IPassableIDFragment {
+public class LampFragment extends IdentifiableFragment {
     private LampViewModel mViewModel;
 
     public static LampFragment newInstance() {
@@ -63,7 +63,7 @@ public class LampFragment extends IPassableIDFragment {
                     imageView.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
                     mViewModel.setColor(color);
                 } else {
-                    LampModel model = mViewModel.getModel(getID()).getValue();
+                    LampModel model = mViewModel.getModel(LampFragment.this, getID()).getValue();
                     imageView.getBackground().setColorFilter(model.getColorInt(), PorterDuff.Mode.MULTIPLY);
                     colorPicker.setColor(model.getColorInt());
                 }
@@ -80,7 +80,7 @@ public class LampFragment extends IPassableIDFragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(LampViewModel.class);
 
-        mViewModel.getModel(getID()).observe(this, lampModel -> {
+        mViewModel.getModel(this, getID()).observe(this, lampModel -> {
             getView().findViewById(R.id.LampSeekBar).setEnabled(lampModel.isPowered());
 
             ((Switch) getView().findViewById(R.id.LampSwitch)).setChecked(lampModel.isPowered());

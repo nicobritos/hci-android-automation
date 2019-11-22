@@ -5,33 +5,14 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.FridgeModel;
+import com.hci.StarkIndustries.ui.DeviceMenu.DeviceViewModel;
 
-public class FridgeViewModel extends ViewModel {
+public class FridgeViewModel extends DeviceViewModel<FridgeModel> {
     public static final int MODE_DEFAULT = 0;
     public static final int MODE_PARTY = 1;
     public static final int MODE_VACATIONS = 2;
+
     private static final String TAG = "FridgeViewModel";
-    private MutableLiveData<FridgeModel> mFridge;
-    private String id;
-    // temp
-    private FridgeModel model;
-
-
-    public LiveData<FridgeModel> getModel(String id) {
-        if (mFridge == null) {
-            mFridge = new MutableLiveData<>();
-            this.id = id;
-            model = new FridgeModel();
-//            model = new FridgeModel("Heladera", id, "ROOM 1");
-            loadModel();
-        }
-
-        return mFridge;
-    }
-
-    private void loadModel() {
-        mFridge.setValue(model);
-    }
 
     public void setTemperature(int temperature) {
 //        model.temperature = temperature;

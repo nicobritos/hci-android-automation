@@ -1,12 +1,9 @@
 package com.hci.StarkIndustries.ui.DeviceMenu.AC;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
-
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.ACModel;
+import com.hci.StarkIndustries.ui.DeviceMenu.DeviceViewModel;
 
-public class ACViewModel extends ViewModel {
+public class ACViewModel extends DeviceViewModel<ACModel> {
     public static final int FAN_AUTO = 0;
     public static final int FAN_25 = 1;
     public static final int FAN_50 = 2;
@@ -31,23 +28,6 @@ public class ACViewModel extends ViewModel {
     public static final int MODE_FAN = 3;
 
     private static final String TAG = "ACViewModel";
-    private MutableLiveData<ACModel> mAC;
-    private ACModel model = null;
-    private String id = "";
-
-    public LiveData<ACModel> getModel(String id) {
-        if (mAC == null) {
-            this.id = id;
-            mAC = new MutableLiveData<>();
-            model = new ACModel();
-            loadModel();
-        }
-        return mAC;
-    }
-
-    private void loadModel() {
-        mAC.setValue(model);
-    }
 
     public void setPower(boolean isChecked) {
 //        model.power = isChecked;
@@ -73,11 +53,11 @@ public class ACViewModel extends ViewModel {
 
     public Integer getModeInt() {
         switch (this.model.getMode()) {
-            case "cool":
+            case ACModel.MODE_COOL:
                 return MODE_COOL;
-            case "heat":
+            case ACModel.MODE_HEAT:
                 return MODE_HEAT;
-            case "fan":
+            case ACModel.MODE_FAN:
                 return MODE_FAN;
             default:
                 return 0;
@@ -86,15 +66,15 @@ public class ACViewModel extends ViewModel {
 
     public Integer getFanSpeedInt() {
         switch (this.model.getFanSpeed()) {
-            case "auto":
+            case ACModel.FAN_AUTO:
                 return FAN_AUTO;
-            case "25":
+            case ACModel.FAN_25:
                 return FAN_25;
-            case "50":
+            case ACModel.FAN_50:
                 return FAN_50;
-            case "75":
+            case ACModel.FAN_75:
                 return FAN_75;
-            case "100":
+            case ACModel.FAN_100:
                 return FAN_100;
             default:
                 return 0;

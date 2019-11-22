@@ -1,5 +1,7 @@
 package com.hci.StarkIndustries.data.Models;
 
+import android.os.Parcelable;
+
 import java.util.Map;
 
 public abstract class CommonModel {
@@ -17,12 +19,6 @@ public abstract class CommonModel {
 
     public String getId() {
         return id;
-    }
-
-    public boolean isFavorite() {
-        Object o = meta.get("favourite");
-        if (o instanceof Boolean) return (boolean) o;
-        return false;
     }
 
     @Override

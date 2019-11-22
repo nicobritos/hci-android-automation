@@ -17,9 +17,9 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.ACModel;
-import com.hci.StarkIndustries.ui.DeviceMenu.IPassableIDFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.IdentifiableFragment;
 
-public class ACFragment extends IPassableIDFragment {
+public class ACFragment extends IdentifiableFragment {
     private ACViewModel mViewModel;
 
     public static ACFragment newInstance() {
@@ -112,7 +112,7 @@ public class ACFragment extends IPassableIDFragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(ACViewModel.class);
 
-        mViewModel.getModel(getID()).observe(this, acModel -> {
+        mViewModel.getModel(this, getID()).observe(this, acModel -> {
             TextView tempView = getView().findViewById(R.id.ACTemperatureView);
             SeekBar tempSlider = getView().findViewById(R.id.ACTemperatureSlider);
 

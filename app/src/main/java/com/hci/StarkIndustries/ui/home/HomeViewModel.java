@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.hci.StarkIndustries.Models.RegionModel;
+import com.hci.StarkIndustries.data.Models.RegionModel;
 
 import java.util.ArrayList;
 import java.util.List;

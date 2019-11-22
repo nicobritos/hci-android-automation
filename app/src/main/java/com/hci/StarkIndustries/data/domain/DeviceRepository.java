@@ -5,9 +5,10 @@ import android.app.Application;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.hci.StarkIndustries.data.Models.CommonModel;
 import com.hci.StarkIndustries.data.Models.Result;
 import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -36,6 +37,12 @@ public class DeviceRepository extends CommonRepository {
         return result;
     }
 
+    public LiveData<Result<Boolean>> performActionOnDevice(String id, String actionId, JSONObject payload) {
+        final MutableLiveData<Result<Boolean>> result = new MutableLiveData<>();
+        this.api.performActionOnDevice(id, actionId, payload, getListener(result), getErrorListener(api, result));
+        return result;
+    }
+
     public LiveData<Result<ArrayList<CommonDeviceModel>>> getDevices() {
         final MutableLiveData<Result<ArrayList<CommonDeviceModel>>> result = new MutableLiveData<>();
         this.api.getDevices(getListener(result), getErrorListener(api, result));
@@ -43,12 +50,11 @@ public class DeviceRepository extends CommonRepository {
     }
 
     public LiveData<Result<ArrayList<CommonDeviceModel>>> getFavouriteDevices() {
-        final MutableLiveData<Result<ArrayList<CommonDeviceModel>>> resultFavourites = new MutableLiveData<>();
         final MutableLiveData<Result<ArrayList<CommonDeviceModel>>> result = new MutableLiveData<>();
 
         this.api.getDevices(
                 getListener(result, commonDeviceModels -> {
-                    return commonDeviceModels.stream().filter(CommonModel::isFavorite).collect(Collectors.toCollection(ArrayList::new));
+                    return commonDeviceModels.stream().filter(CommonDeviceModel::isFavourite).collect(Collectors.toCollection(ArrayList::new));
                 }),
                 getErrorListener(api, result)
         );

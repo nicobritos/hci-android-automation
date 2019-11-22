@@ -15,9 +15,9 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.FridgeModel;
-import com.hci.StarkIndustries.ui.DeviceMenu.IPassableIDFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.IdentifiableFragment;
 
-public class FridgeFragment extends IPassableIDFragment {
+public class FridgeFragment extends IdentifiableFragment {
     private FridgeViewModel mViewModel;
 
     public static FridgeFragment newInstance() {
@@ -89,7 +89,7 @@ public class FridgeFragment extends IPassableIDFragment {
         mViewModel = ViewModelProviders.of(this).get(FridgeViewModel.class);
         // TODO: Use the ViewModel
 
-        mViewModel.getModel(getID()).observe(this, fridgeModel -> {
+        mViewModel.getModel(this, getID()).observe(this, fridgeModel -> {
             ((Spinner) getView().findViewById(R.id.FridgeModeDDL)).setSelection(mViewModel.getModeInt(), true);
 
             TextView text = getView().findViewById(R.id.FridgeViewTemp);

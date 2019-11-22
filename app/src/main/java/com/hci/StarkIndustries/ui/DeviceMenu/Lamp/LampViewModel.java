@@ -7,33 +7,10 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.LampModel;
+import com.hci.StarkIndustries.ui.DeviceMenu.DeviceViewModel;
 
-public class LampViewModel extends ViewModel {
+public class LampViewModel extends DeviceViewModel<LampModel> {
     private static final String TAG = "LampViewModel";
-    private MutableLiveData<LampModel> mLamp;
-    private String id = "";
-
-    // temp
-    private LampModel model;
-
-    public LiveData<LampModel> getModel(String id) {
-
-        if (mLamp == null) {
-            Log.d(TAG, "getModel: Loading Model. ID: " + id);
-            this.id = id;
-            mLamp = new MutableLiveData<>();
-//            model = new LampModel("Lampara", id, "Room1");
-            model = new LampModel();
-            loadModel();
-        }
-
-        return mLamp;
-    }
-
-    private void loadModel() {
-        // Aca habria que hablar con la API
-        mLamp.setValue(model);
-    }
 
     public boolean setIntensity(int intensity) {
 

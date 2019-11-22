@@ -3,6 +3,25 @@ package com.hci.StarkIndustries.data.Models.devices.DeviceModels;
 import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
 
 public class ACModel extends CommonDeviceModel {
+    public static final String MODE_COOL = "cool";
+    public static final String MODE_HEAT = "heat";
+    public static final String MODE_FAN = "fan";
+
+    public static final String FAN_AUTO = "auto";
+    public static final String FAN_25 = "25";
+    public static final String FAN_50 = "50";
+    public static final String FAN_75 = "75";
+    public static final String FAN_100 = "100";
+
+    public static final String HORIZONTAL_SWING_AUTO = "auto";
+    public static final String HORIZONTAL_SWING__90 = "25";
+    public static final String HORIZONTAL_SWING__45 = "50";
+    public static final String HORIZONTAL_SWING_0 = "75";
+    public static final String HORIZONTAL_SWING_45= "100";
+    public static final String HORIZONTAL_SWING_90= "100";
+
+
+
     public static final int TEMPERATURE_MAX = 38;
     public static final int TEMPERATURE_MIN = 18;
 
