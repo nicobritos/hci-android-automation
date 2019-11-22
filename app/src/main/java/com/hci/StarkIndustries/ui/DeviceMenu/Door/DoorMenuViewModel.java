@@ -1,5 +1,7 @@
 package com.hci.StarkIndustries.ui.DeviceMenu.Door;
 
+import android.util.Log;
+
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -12,40 +14,19 @@ import com.hci.StarkIndustries.ui.DeviceMenu.DeviceViewModel;
 public class DoorMenuViewModel extends DeviceViewModel<DoorModel> {
     private static final String TAG = "DoorMenuViewModel";
 
-    public boolean open() {
-
-        loadModel();
-        return true;
+    public void open() {
+        this.performActionOnDevice(DeviceRepository.DoorActions.OPEN.getCommand());
     }
 
-    public boolean close() {
-
-
-//        model.isOpen = false;
-        // Do stuff
-        loadModel();
-        return true;
+    public void close() {
+        this.performActionOnDevice(DeviceRepository.DoorActions.CLOSE.getCommand());
     }
 
-    public boolean lock() {
-
-
-//        model.islocked = true;
-
-        // Do stuff
-        loadModel();
-        return true;
+    public void lock() {
+        this.performActionOnDevice(DeviceRepository.DoorActions.LOCK.getCommand());
     }
 
-    public boolean unlock() {
-
-
-//        model.islocked = false;
-
-        // Do stuff
-        loadModel();
-        return true;
+    public void unlock() {
+        this.performActionOnDevice(DeviceRepository.DoorActions.UNLOCK.getCommand());
     }
-
-
 }

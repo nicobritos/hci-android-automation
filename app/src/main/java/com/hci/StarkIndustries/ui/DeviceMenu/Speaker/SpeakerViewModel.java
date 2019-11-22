@@ -50,5 +50,4 @@ public class SpeakerViewModel extends DeviceViewModel<SpeakerModel> {
 //        speaker.genre = genre;
         loadModel();
     }
-
 }

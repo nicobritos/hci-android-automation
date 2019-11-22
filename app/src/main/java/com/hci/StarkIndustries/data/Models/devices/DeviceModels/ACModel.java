@@ -14,16 +14,20 @@ public class ACModel extends CommonDeviceModel {
     public static final String FAN_100 = "100";
 
     public static final String HORIZONTAL_SWING_AUTO = "auto";
-    public static final String HORIZONTAL_SWING__90 = "25";
-    public static final String HORIZONTAL_SWING__45 = "50";
-    public static final String HORIZONTAL_SWING_0 = "75";
-    public static final String HORIZONTAL_SWING_45= "100";
-    public static final String HORIZONTAL_SWING_90= "100";
+    public static final String HORIZONTAL_SWING__90 = "-90";
+    public static final String HORIZONTAL_SWING__45 = "-45";
+    public static final String HORIZONTAL_SWING_0 = "0";
+    public static final String HORIZONTAL_SWING_45= "45";
+    public static final String HORIZONTAL_SWING_90= "90";
 
+    public static final String VERTICAL_SWING_AUTO = "auto";
+    public static final String VERTICAL_SWING_22 = "22";
+    public static final String VERTICAL_SWING_45 = "45";
+    public static final String VERTICAL_SWING_67 = "67";
+    public static final String VERTICAL_SWING_90= "90";
 
-
-    public static final int TEMPERATURE_MAX = 38;
-    public static final int TEMPERATURE_MIN = 18;
+    public static final int MAX_TEMPERATURE = 38;
+    public static final int MIN_TEMPERATURE = 18;
 
     private ACState state;
 

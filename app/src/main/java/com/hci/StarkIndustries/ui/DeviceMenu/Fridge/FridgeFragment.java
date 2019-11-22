@@ -99,7 +99,7 @@ public class FridgeFragment extends IdentifiableFragment {
             text2.setText(String.valueOf(fridgeModel.getFreezerTemperature()));
 
             SeekBar seekBar2 = (getView().findViewById(R.id.FridgeSliderFreezer));
-            seekBar2.setProgress(fridgeModel.getFreezerTemperature() - FridgeModel.FREEZER_MIN_TEMPERATURE, true);
+            seekBar2.setProgress(fridgeModel.getFreezerTemperature() - FridgeModel.MIN_FREEZER_TEMPERATURE, true);
 
             SeekBar seekBar1 = getView().findViewById(R.id.FridgeSlidierTemperature);
             seekBar1.setProgress(fridgeModel.getTemperature() - FridgeModel.MIN_TEMPERATURE, true);

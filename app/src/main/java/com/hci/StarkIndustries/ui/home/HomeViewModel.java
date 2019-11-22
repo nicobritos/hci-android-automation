@@ -1,35 +1,42 @@
 package com.hci.StarkIndustries.ui.home;
 
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.hci.StarkIndustries.data.Models.RegionModel;
+import com.hci.StarkIndustries.data.Models.RoomModel;
+import com.hci.StarkIndustries.data.domain.DeviceRepository;
+import com.hci.StarkIndustries.data.domain.RoomRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomeViewModel extends ViewModel {
+    private MutableLiveData<List<RoomModel>> mModel;
+    private List<RoomModel> model = new ArrayList<>();
+    private LifecycleOwner lifecycleOwner;
 
-    private MutableLiveData<List<RegionModel>> mData;
+    public LiveData<List<RoomModel>> getModel(LifecycleOwner lifecycleOwner) {
+        if (mModel == null) {
+            mModel = new MutableLiveData<>();
 
-    private List<RegionModel> regions = new ArrayList<>();
-
-
-    public LiveData<List<RegionModel>> getModels() {
-        if (mData == null) {
-            mData = new MutableLiveData<>();
-            regions.add(new RegionModel("Region 1"));
-            regions.add(new RegionModel("Region 2"));
-            regions.add(new RegionModel("Region 3"));
-            loadModel();
+            this.lifecycleOwner = lifecycleOwner;
+            RoomRepository.get().getRooms().observe(lifecycleOwner, result -> {
+                if (result.ok()) {
+                    model = result.getResult();
+                } else {
+                    model = null;
+                }
+                loadModel();
+            });
         }
 
-        return mData;
+        return mModel;
     }
 
     private void loadModel() {
-        mData.setValue(regions);
+        mModel.setValue(model);
     }
-
 }

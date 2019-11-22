@@ -3,6 +3,18 @@ package com.hci.StarkIndustries.data.Models.devices.DeviceModels;
 import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
 
 public class OvenModel extends CommonDeviceModel {
+    public static final String GRILL_LARGE = "large";
+    public static final String GRILL_ECO = "eco";
+    public static final String GRILL_OFF = "off";
+
+    public static final String HEAT_CONVENTIONAL = "conventional";
+    public static final String HEAT_BOTTOM = "bottom";
+    public static final String HEAT_TOP = "top";
+
+    public static final String CONVECTION_NORMAL = "normal";
+    public static final String CONVECTION_ECO = "eco";
+    public static final String CONVECTION_OFF = "off";
+
     public static final int MIN_TEMPERATURE = 90;
     public static final int MAX_TEMPERATURE = 230;
 

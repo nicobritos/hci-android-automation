@@ -38,7 +38,7 @@ public class ACFragment extends IdentifiableFragment {
         tempSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                tempView.setText(String.valueOf(ACModel.TEMPERATURE_MIN + progress));
+                tempView.setText(String.valueOf(ACModel.MIN_TEMPERATURE + progress));
             }
 
             @Override
@@ -47,7 +47,7 @@ public class ACFragment extends IdentifiableFragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                mViewModel.setTemperature(ACModel.TEMPERATURE_MIN + seekBar.getProgress());
+                mViewModel.setTemperature(ACModel.MIN_TEMPERATURE + seekBar.getProgress());
             }
         });
 
@@ -116,7 +116,7 @@ public class ACFragment extends IdentifiableFragment {
             TextView tempView = getView().findViewById(R.id.ACTemperatureView);
             SeekBar tempSlider = getView().findViewById(R.id.ACTemperatureSlider);
 
-            tempSlider.setProgress(acModel.getTemperature() - ACModel.TEMPERATURE_MIN, true);
+            tempSlider.setProgress(acModel.getTemperature() - ACModel.MIN_TEMPERATURE, true);
             tempView.setText(String.valueOf(acModel.getTemperature()));
 
             Spinner modeDDL = getView().findViewById(R.id.ACModeDDL);

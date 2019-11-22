@@ -45,16 +45,10 @@ public class HomeFragment extends Fragment implements IClickableItem {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        homeViewModel.getModels().observe(this, new Observer<List<RegionModel>>() {
-            @Override
-            public void onChanged(List<RegionModel> regionModels) {
-
-                ((RecyclerViewRegionsAdapter) ((RecyclerView) getView().findViewById(R.id.HouseRegionsRecyclerView))
-                        .getAdapter()).setData(regionModels);
-
-            }
-        });
-
+//        homeViewModel.getModel(this).observe(this, regionModels -> {
+//            ((RecyclerViewRegionsAdapter) ((RecyclerView) getView().findViewById(R.id.HouseRegionsRecyclerView))
+//                    .getAdapter()).setData(regionModels);
+//        });
     }
 
 
