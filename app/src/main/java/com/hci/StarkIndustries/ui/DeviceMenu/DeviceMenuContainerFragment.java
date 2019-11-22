@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -15,11 +14,9 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.hci.StarkIndustries.MainActivity;
-import com.hci.StarkIndustries.Models.CommonDeviceModel;
-import com.hci.StarkIndustries.Models.DeviceModels.SpeakerModel;
-import com.hci.StarkIndustries.Models.DeviceType;
 import com.hci.StarkIndustries.R;
+import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
+import com.hci.StarkIndustries.data.Models.devices.DeviceTypeEnum;
 import com.hci.StarkIndustries.ui.DeviceMenu.AC.ACFragment;
 import com.hci.StarkIndustries.ui.DeviceMenu.Curtains.CurtainsFragment;
 import com.hci.StarkIndustries.ui.DeviceMenu.Door.DoorMenuFragment;
@@ -34,12 +31,12 @@ public class DeviceMenuContainerFragment extends DialogFragment {
 
     private DeviceMenuContainerViewModel viewModel;
 
-    protected DeviceMenuContainerFragment(){}
+    protected DeviceMenuContainerFragment() {
+    }
 
     public static DeviceMenuContainerFragment newInstance(CommonDeviceModel deviceModel) {
         Bundle args = new Bundle();
         args.putParcelable("device", deviceModel);
-        args.putString("deviceType", deviceModel.type.name());
 
         DeviceMenuContainerFragment f = new DeviceMenuContainerFragment();
         f.setArguments(args);
@@ -66,14 +63,14 @@ public class DeviceMenuContainerFragment extends DialogFragment {
         // Sets view of the device
         Fragment fragment = getCorrectFragment();
         FragmentTransaction ft = this.getChildFragmentManager().beginTransaction();
-        ft.replace(R.id.fragmentContainer123,fragment );
+        ft.replace(R.id.fragmentContainer123, fragment);
         ft.commit();
 
         CommonDeviceModel model = getArguments().getParcelable("device");
 
         // Sets name of the device
         TextView nameText = view.findViewById(R.id.DeviceName);
-        nameText.setText(model.Name);
+        nameText.setText(model.getName());
 
         // Sets controllers of the view (Mostly returns)
         ImageButton backButton = view.findViewById(R.id.GoBackDeviceMenuBtn);
@@ -89,52 +86,36 @@ public class DeviceMenuContainerFragment extends DialogFragment {
         });
 
 
-
         return view;
     }
 
     private Fragment getCorrectFragment() {
-        DeviceType type = DeviceType.valueOf(getArguments().getString("deviceType"));
         CommonDeviceModel model = getArguments().getParcelable("device");
+        DeviceTypeEnum type = model.getDeviceType();
 
-        MainActivity act = (MainActivity) getActivity();
-        IPassableID fragment = null;
+//        switch (type) {
+//            case AC:
+//                return ACFragment.newInstance(model.getId());
+//            case Door:
+//                return DoorMenuFragment.newInstance(model.getId());
+//            case Curtains:
+//                return CurtainsFragment.newInstance(model.getId());
+//            case Lamp:
+//                return LampFragment.newInstance(model.getId());
+//            case Fridge:
+//                return FridgeFragment.newInstance(model.getId());
+//            case Oven:
+//                return OvenFragment.newInstance(model.getId());
+//            case Speaker:
+//                return SpeakerFragment.newInstance(model.getId());
+//        }
 
-        switch (type){
-            case AC:
-                fragment = act.getFragment("AC");
-                break;
-            case Door:
-                fragment = act.getFragment("Door");
-                break;
-            case Curtains:
-                fragment = act.getFragment("Curtains");
-                break;
-            case Lamp:
-                fragment =  act.getFragment("Lamp");
-                break;
-            case Fridge:
-                fragment = act.getFragment("Fridge");
-                break;
-            case Oven:
-                fragment = act.getFragment("Oven");
-                break;
-            case Speaker:
-                fragment =  act.getFragment("Speaker");
-                break;
-        }
-
-        if(fragment != null){
-            fragment.setID(model.Id);
-        }
-
-        return (Fragment) fragment;
-
+        Log.d(TAG, "getCorrectFragment: FRAGMENT NOT FOUND");
+        return null;
     }
 
 
-
-    private class OnClickExitDialog implements View.OnClickListener{
+    private class OnClickExitDialog implements View.OnClickListener {
         @Override
         public void onClick(View v) {
             getDialog().cancel();

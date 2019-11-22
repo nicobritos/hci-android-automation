@@ -2,11 +2,14 @@ package com.hci.StarkIndustries.ui.Room;
 
 import android.app.ActionBar;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
@@ -21,13 +24,13 @@ import android.widget.TextView;
 
 import com.hci.StarkIndustries.Models.RoomModel;
 import com.hci.StarkIndustries.R;
+import com.hci.StarkIndustries.data.Models.RoomModel;
 import com.hci.StarkIndustries.ui.Miniatures.RoomDevices.RoomDevicesListFragment;
 
 
 public class RoomFragment extends Fragment {
-
-    private String id = "";
     private RoomViewModel mViewModel;
+    private String id = "";
 
     public RoomFragment() {
         // Required empty public constructor
@@ -56,7 +59,7 @@ public class RoomFragment extends Fragment {
 
         RoomDevicesListFragment fragment = (RoomDevicesListFragment) getChildFragmentManager().findFragmentById(R.id.RoomDevicesFragmentContainer);
 
-        fragment.setID(id);
+//        fragment.setID(id);
 
         return root;
     }
@@ -71,10 +74,22 @@ public class RoomFragment extends Fragment {
         mViewModel.getModel(id).observe(this, new Observer<RoomModel>() {
             @Override
             public void onChanged(RoomModel roomModel) {
-                ((TextView)getView().findViewById(R.id.RoomTitle)).setText(roomModel.name);
+                ((TextView) getView().findViewById(R.id.RoomTitle)).setText(roomModel.name);
 
                 RoomDevicesListFragment fragment = (RoomDevicesListFragment) getChildFragmentManager()
                         .findFragmentById(R.id.RoomDevicesFragmentContainer);
+
+                if(fragment.getDevicesInRoom() == 0) {
+
+                    getChildFragmentManager()
+                            .findFragmentById(R.id.NoDevicesOnRoomFragment).getView().setVisibility(View.VISIBLE);
+                }else{
+                    getChildFragmentManager()
+                            .findFragmentById(R.id.NoDevicesOnRoomFragment).getView().setVisibility(View.GONE);
+                }
+
+
+
 
             }
         });

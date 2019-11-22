@@ -13,11 +13,11 @@ public class HomeViewModel extends ViewModel {
 
     private MutableLiveData<List<RegionModel>> mData;
 
-    private List<RegionModel> regions =  new ArrayList<>();
+    private List<RegionModel> regions = new ArrayList<>();
 
 
-    public LiveData<List<RegionModel>> getModels(){
-        if(mData == null){
+    public LiveData<List<RegionModel>> getModels() {
+        if (mData == null) {
             mData = new MutableLiveData<>();
 //            regions.add(new RegionModel("Region 1"));
 //            regions.get(0).rooms = new ArrayList<>();
@@ -26,10 +26,10 @@ public class HomeViewModel extends ViewModel {
             loadModel();
         }
 
-        return  mData;
+        return mData;
     }
 
-    private void loadModel(){
+    private void loadModel() {
         mData.setValue(regions);
     }
 

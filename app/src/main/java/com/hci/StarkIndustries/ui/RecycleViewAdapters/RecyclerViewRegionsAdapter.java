@@ -4,14 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hci.StarkIndustries.Models.RegionModel;
@@ -25,7 +23,8 @@ public class RecyclerViewRegionsAdapter extends RecyclerView.Adapter<RecyclerVie
     private List<RegionModel> regions = new ArrayList<>();
     private Context mContext;
     private IClickableItem iClickableItem;
-    public RecyclerViewRegionsAdapter(IClickableItem iClickableItem,Context mContext) {
+
+    public RecyclerViewRegionsAdapter(IClickableItem iClickableItem, Context mContext) {
         this.mContext = mContext;
         this.iClickableItem = iClickableItem;
     }
@@ -33,7 +32,7 @@ public class RecyclerViewRegionsAdapter extends RecyclerView.Adapter<RecyclerVie
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_region_miniature,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_region_miniature, parent, false);
 
         return new ViewHolder(view);
     }
@@ -49,9 +48,9 @@ public class RecyclerViewRegionsAdapter extends RecyclerView.Adapter<RecyclerVie
             holder.cardView.setVisibility(View.VISIBLE);
         }
 
-        GridLayoutManager layoutManager = new GridLayoutManager(holder.recyclerView.getContext(),2, RecyclerView.HORIZONTAL,false);
+        GridLayoutManager layoutManager = new GridLayoutManager(holder.recyclerView.getContext(), 2, RecyclerView.HORIZONTAL, false);
         holder.recyclerView.setLayoutManager(layoutManager);
-        RecyclerViewRoomsAdapter adapter = new RecyclerViewRoomsAdapter(holder.recyclerView.getContext(),iClickableItem);
+        RecyclerViewRoomsAdapter adapter = new RecyclerViewRoomsAdapter(holder.recyclerView.getContext(), iClickableItem);
         adapter.setData(region.rooms);
         holder.recyclerView.setAdapter(adapter);
 
@@ -62,7 +61,13 @@ public class RecyclerViewRegionsAdapter extends RecyclerView.Adapter<RecyclerVie
         return regions.size();
     }
 
-    public class ViewHolder  extends RecyclerView.ViewHolder{
+    public void setData(List<RegionModel> regions) {
+        this.regions = regions;
+
+        notifyDataSetChanged();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView regionName;
         public RecyclerView recyclerView;
         public CardView cardView;
@@ -75,11 +80,5 @@ public class RecyclerViewRegionsAdapter extends RecyclerView.Adapter<RecyclerVie
 
 
         }
-    }
-
-    public void setData(List<RegionModel> regions){
-        this.regions = regions;
-
-        notifyDataSetChanged();
     }
 }

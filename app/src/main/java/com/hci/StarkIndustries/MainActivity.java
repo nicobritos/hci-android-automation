@@ -22,14 +22,14 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import java.util.ArrayList;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.hci.StarkIndustries.ui.DeviceMenu.IPassableIDFragment;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-
-    private Map<String,Fragment>fragments = new HashMap<>();
+    private Map<String, Fragment> fragments = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         return (IPassableID)fragments.get(adaptName(name));
     }
 
-    private String adaptName(String name){
+    private String adaptName(String name) {
         return name.toLowerCase();
     }
 
@@ -80,9 +80,5 @@ public class MainActivity extends AppCompatActivity {
         fragments.put(adaptName("Lamp"), LampFragment.newInstance());
         fragments.put(adaptName("Speaker"), SpeakerFragment.newInstance());
 
-
-
-
     }
-
 }

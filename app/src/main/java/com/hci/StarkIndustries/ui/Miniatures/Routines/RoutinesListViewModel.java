@@ -4,26 +4,22 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.hci.StarkIndustries.Models.RoutineModel;
-import com.hci.StarkIndustries.Models.RoutinesListModel;
+import com.hci.StarkIndustries.data.Models.Result;
+import com.hci.StarkIndustries.data.Models.RoutineModel;
+import com.hci.StarkIndustries.data.Models.RoutinesListModel;
+import com.hci.StarkIndustries.data.domain.RoutineRepository;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class RoutinesListViewModel extends ViewModel {
-
     protected MutableLiveData<RoutinesListModel> mRoutine;
     protected RoutinesListModel model;
 
-    public LiveData<RoutinesListModel> getModel(){
-
-        if(mRoutine == null){
-            mRoutine = new MutableLiveData<>();
-            model = new RoutinesListModel();
-            loadModel();
-        }
-        return  mRoutine;
+    public LiveData<Result<ArrayList<RoutineModel>>> getModel() {
+        return RoutineRepository.get().getRoutines();
     }
 
-    protected void loadModel(){mRoutine.setValue(model);}
-
+    protected void loadModel() {
+        mRoutine.setValue(model);
+    }
 }

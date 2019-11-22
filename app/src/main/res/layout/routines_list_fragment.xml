@@ -10,8 +10,7 @@
         android:id="@+id/RecyclerViewRoutines"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        ></androidx.recyclerview.widget.RecyclerView>
+        android:orientation="vertical"></androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"

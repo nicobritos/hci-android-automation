@@ -1,14 +1,6 @@
 package com.hci.StarkIndustries.ui.DeviceMenu.Fridge;
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,20 +9,19 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.hci.StarkIndustries.Models.DeviceModels.FridgeModel;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.hci.StarkIndustries.R;
-import com.hci.StarkIndustries.ui.DeviceMenu.IPassableID;
+import com.hci.StarkIndustries.data.Models.devices.DeviceModels.FridgeModel;
+import com.hci.StarkIndustries.ui.DeviceMenu.IPassableIDFragment;
 
-public class FridgeFragment extends Fragment implements IPassableID {
-
+public class FridgeFragment extends IPassableIDFragment {
     private FridgeViewModel mViewModel;
-    private String id = "";
-
-    protected FridgeFragment(){}
 
     public static FridgeFragment newInstance() {
-        FridgeFragment f = new FridgeFragment();
-        return  f;
+        return new FridgeFragment();
     }
 
     @Override
@@ -43,12 +34,13 @@ public class FridgeFragment extends Fragment implements IPassableID {
         SliderTemp.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if(fromUser)
-                    ((TextView)getView().findViewById(R.id.FridgeViewTemp)).setText(String.valueOf(2 +progress));
+                if (fromUser)
+                    ((TextView) getView().findViewById(R.id.FridgeViewTemp)).setText(String.valueOf(2 + progress));
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
@@ -61,12 +53,13 @@ public class FridgeFragment extends Fragment implements IPassableID {
         SliderFreezer.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if(fromUser)
-                    ((TextView)getView().findViewById(R.id.FridgeViewFreezerTemp)).setText(String.valueOf(-20 +progress));
+                if (fromUser)
+                    ((TextView) getView().findViewById(R.id.FridgeViewFreezerTemp)).setText(String.valueOf(-20 + progress));
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
@@ -83,10 +76,9 @@ public class FridgeFragment extends Fragment implements IPassableID {
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         });
-
-
 
         return root;
     }
@@ -97,40 +89,22 @@ public class FridgeFragment extends Fragment implements IPassableID {
         mViewModel = ViewModelProviders.of(this).get(FridgeViewModel.class);
         // TODO: Use the ViewModel
 
-        mViewModel.getModel(getID()).observe(this, new Observer<FridgeModel>() {
-            @Override
-            public void onChanged(FridgeModel fridgeModel) {
+        mViewModel.getModel(getID()).observe(this, fridgeModel -> {
+            ((Spinner) getView().findViewById(R.id.FridgeModeDDL)).setSelection(mViewModel.getModeInt(), true);
 
-                ((Spinner)getView().findViewById(R.id.FridgeModeDDL)).setSelection(fridgeModel.mode,true);
+            TextView text = getView().findViewById(R.id.FridgeViewTemp);
+            text.setText(String.valueOf(fridgeModel.getTemperature()));
 
-                TextView text = getView().findViewById(R.id.FridgeViewTemp);
-                text.setText(String.valueOf(fridgeModel.temperature));
+            TextView text2 = (getView().findViewById(R.id.FridgeViewFreezerTemp));
+            text2.setText(String.valueOf(fridgeModel.getFreezerTemperature()));
 
-                TextView text2 = (getView().findViewById(R.id.FridgeViewFreezerTemp));
-                text2.setText(String.valueOf(fridgeModel.freezerTemperature));
+            SeekBar seekBar2 = (getView().findViewById(R.id.FridgeSliderFreezer));
+            seekBar2.setProgress(fridgeModel.getFreezerTemperature() - FridgeModel.FREEZER_MIN_TEMPERATURE, true);
 
-                SeekBar seekBar2 =(getView().findViewById(R.id.FridgeSliderFreezer));
-                seekBar2.setProgress(20 +fridgeModel.freezerTemperature,true);
-
-                SeekBar seekBar1 = getView().findViewById(R.id.FridgeSlidierTemperature);
-                seekBar1.setProgress(fridgeModel.temperature-2,true);
-
-            }
+            SeekBar seekBar1 = getView().findViewById(R.id.FridgeSlidierTemperature);
+            seekBar1.setProgress(fridgeModel.getTemperature() - FridgeModel.MIN_TEMPERATURE, true);
         });
-
-
     }
-
-    @Override
-    public String getID() {
-        return this.id;
-    }
-
-    @Override
-    public void setID(String id) {
-        this.id = id;
-    }
-
 }
 
 

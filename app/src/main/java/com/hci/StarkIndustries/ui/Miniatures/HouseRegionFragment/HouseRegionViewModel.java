@@ -12,18 +12,18 @@ public class HouseRegionViewModel extends ViewModel {
     private RegionModel model;
     private String id = "";
 
-    LiveData<RegionModel> getModel(String id){
+    LiveData<RegionModel> getModel(String id) {
 
-        if(mData == null){
+        if (mData == null) {
             mData = new MutableLiveData<>();
             model = new RegionModel(id);
             this.id = id;
             loadModel();
         }
-        return  mData;
+        return mData;
     }
 
-    private void loadModel(){
+    private void loadModel() {
         mData.setValue(model);
     }
     // TODO: Implement the ViewModel

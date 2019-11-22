@@ -1,6 +1,6 @@
 package com.hci.StarkIndustries.ui.RecycleViewAdapters;
 
-import com.hci.StarkIndustries.Models.CommonDeviceModel;
+import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
 
 public interface DevicesRecyclerViewClickInteface {
 

@@ -5,16 +5,16 @@
     <string name="ACVerticalTitle">Vertical movement</string>
     <string-array name="ACModeList">
         <item>
-            Fan
-        </item>
-        <item>
             Cold
         </item>
         <item>
             Warm
         </item>
+        <item>
+            Fan
+        </item>
     </string-array>
-    
+
     <string-array name="ACVerticalMovementList">
         <item>
             Automatic

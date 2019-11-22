@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -17,6 +17,7 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:text="Favorite Devices"
             android:textAlignment="inherit"
             android:textSize="30sp"
@@ -32,8 +33,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/textView"
             android:name="com.hci.StarkIndustries.ui.Miniatures.FavouriteDevices.FavoriteDevicesListFragment"
-            android:id="@+id/FAvDevicesFragment"
-            />
+            android:id="@+id/FAvDevicesFragment" />
 
 
         <View
@@ -54,11 +54,9 @@
             android:textAlignment="inherit"
             android:textSize="30sp"
             app:layout_constraintTop_toTopOf="@+id/separator1"
-            android:layout_marginTop="10dp"
-            >
+            android:layout_marginTop="10dp">
 
         </TextView>
-
 
 
         <fragment
@@ -66,10 +64,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/textView2"
             android:name="com.hci.StarkIndustries.ui.Miniatures.FavoriteRoutines.FavoriteRoutinesListFragment"
-            android:id="@+id/FavRoutinesFragment"
-            />
-
-
+            android:id="@+id/FavRoutinesFragment" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
