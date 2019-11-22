@@ -8,7 +8,6 @@ import com.hci.StarkIndustries.ui.DeviceMenu.AC.ACFragment;
 import com.hci.StarkIndustries.ui.DeviceMenu.Curtains.CurtainsFragment;
 import com.hci.StarkIndustries.ui.DeviceMenu.Door.DoorMenuFragment;
 import com.hci.StarkIndustries.ui.DeviceMenu.Fridge.FridgeFragment;
-import com.hci.StarkIndustries.ui.DeviceMenu.IPassableID;
 import com.hci.StarkIndustries.ui.DeviceMenu.Lamp.LampFragment;
 import com.hci.StarkIndustries.ui.DeviceMenu.Oven.OvenFragment;
 import com.hci.StarkIndustries.ui.DeviceMenu.Speaker.SpeakerFragment;
@@ -62,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public IPassableID getFragment(String name){
-        return (IPassableID)fragments.get(adaptName(name));
+    public IPassableIDFragment getFragment(String name){
+        return (IPassableIDFragment) fragments.get(adaptName(name));
     }
 
     private String adaptName(String name) {

@@ -46,16 +46,18 @@ public class RoutinesListFragment extends Fragment {
         LoadViewModel();
         mViewModel.getModel().observe(this, arrayListResult -> {
             RecyclerView recyclerView = getView().findViewById(R.id.RecyclerViewRoutines);
-                if(model.getRoutines().size() == 0){
+
+            if (arrayListResult.ok()) {
+                ((RecyclerViewRoutinesAdapter) recyclerView.getAdapter()).setData(arrayListResult.getResult());
+                if(arrayListResult.getResult().size() == 0){
                     getView().findViewById(R.id.NoRoutinesView).setVisibility(View.VISIBLE);
                 }
                 else{
                     getView().findViewById(R.id.NoRoutinesView).setVisibility(View.GONE);
                 }
-            if (arrayListResult.ok()) {
-                ((RecyclerViewRoutinesAdapter) recyclerView.getAdapter()).setData(arrayListResult.getResult());
             } else {
                 // TODO: ERROR
+                getView().findViewById(R.id.NoRoutinesView).setVisibility(View.VISIBLE);
             }
         });
 

@@ -22,7 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.hci.StarkIndustries.Models.RoomModel;
+//import com.hci.StarkIndustries.Models.RoomModel;
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.RoomModel;
 import com.hci.StarkIndustries.ui.Miniatures.RoomDevices.RoomDevicesListFragment;
@@ -74,23 +74,10 @@ public class RoomFragment extends Fragment {
         mViewModel.getModel(id).observe(this, new Observer<RoomModel>() {
             @Override
             public void onChanged(RoomModel roomModel) {
-                ((TextView) getView().findViewById(R.id.RoomTitle)).setText(roomModel.name);
+                ((TextView) getView().findViewById(R.id.RoomTitle)).setText(roomModel.getName());
 
                 RoomDevicesListFragment fragment = (RoomDevicesListFragment) getChildFragmentManager()
                         .findFragmentById(R.id.RoomDevicesFragmentContainer);
-
-                if(fragment.getDevicesInRoom() == 0) {
-
-                    getChildFragmentManager()
-                            .findFragmentById(R.id.NoDevicesOnRoomFragment).getView().setVisibility(View.VISIBLE);
-                }else{
-                    getChildFragmentManager()
-                            .findFragmentById(R.id.NoDevicesOnRoomFragment).getView().setVisibility(View.GONE);
-                }
-
-
-
-
             }
         });
 
