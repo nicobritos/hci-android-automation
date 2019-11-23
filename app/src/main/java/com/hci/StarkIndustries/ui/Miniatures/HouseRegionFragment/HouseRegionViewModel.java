@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel;
 import com.hci.StarkIndustries.data.Models.RegionModel;
 
 public class HouseRegionViewModel extends ViewModel {
-
     private MutableLiveData<RegionModel> mData;
     private RegionModel model;
     private String id = "";
@@ -16,9 +15,9 @@ public class HouseRegionViewModel extends ViewModel {
 
         if (mData == null) {
             mData = new MutableLiveData<>();
-            model = new RegionModel(id);
+//            model = new RegionModel(id);
             this.id = id;
-            loadModel();
+//            loadModel();
         }
         return mData;
     }

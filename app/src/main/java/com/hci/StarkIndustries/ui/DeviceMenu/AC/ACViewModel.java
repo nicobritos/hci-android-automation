@@ -43,7 +43,7 @@ public class ACViewModel extends DeviceViewModel<ACModel> {
     public void selectVerticalMovement(int position) {
         DeviceRepository.ACActions action = DeviceRepository.ACActions.SET_VERTICAL_SWING;
         String value;
-        
+
         switch (position) {
             case VERTICAL_SWING_AUTO:
                 value = ACModel.VERTICAL_SWING_AUTO;

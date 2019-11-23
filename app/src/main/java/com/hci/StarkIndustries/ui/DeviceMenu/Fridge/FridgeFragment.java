@@ -15,9 +15,10 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.FridgeModel;
-import com.hci.StarkIndustries.ui.DeviceMenu.IdentifiableFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.DeviceFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.DeviceViewModel;
 
-public class FridgeFragment extends IdentifiableFragment {
+public class FridgeFragment extends DeviceFragment {
     private FridgeViewModel mViewModel;
 
     public static FridgeFragment newInstance() {
@@ -104,6 +105,11 @@ public class FridgeFragment extends IdentifiableFragment {
             SeekBar seekBar1 = getView().findViewById(R.id.FridgeSlidierTemperature);
             seekBar1.setProgress(fridgeModel.getTemperature() - FridgeModel.MIN_TEMPERATURE, true);
         });
+    }
+
+    @Override
+    public DeviceViewModel getViewModel() {
+        return this.mViewModel;
     }
 }
 

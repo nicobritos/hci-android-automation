@@ -3,12 +3,12 @@ package com.hci.StarkIndustries.data.domain;
 import android.app.Application;
 import android.util.Log;
 
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.hci.StarkIndustries.data.Models.Result;
 import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
+import com.hci.StarkIndustries.data.remote.Api;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,7 +16,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-public class DeviceRepository extends CommonRepository {
+public class DeviceRepository extends FavouriteRepository {
     private static final String TAG = "DeviceRepository";
     private static DeviceRepository instance;
 
@@ -79,6 +79,11 @@ public class DeviceRepository extends CommonRepository {
         final MutableLiveData<Result<ArrayList<CommonDeviceModel>>> result = new MutableLiveData<>();
         this.api.getDevices(roomId, getListener(result), getErrorListener(api, result));
         return result;
+    }
+
+    @Override
+    protected Api.APIEntityType getEntityType() {
+        return Api.APIEntityType.DEVICE;
     }
 
     // Enums

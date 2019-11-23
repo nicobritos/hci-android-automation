@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.hci.StarkIndustries.R;
@@ -60,7 +59,7 @@ public class DeviceMenuContainerFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_device_menu_container, null);
 
         // Sets view of the device
-        Fragment fragment = getCorrectFragment();
+        DeviceFragment fragment = getCorrectFragment();
         FragmentTransaction ft = this.getChildFragmentManager().beginTransaction();
         ft.replace(R.id.fragmentContainer123, fragment);
         ft.commit();
@@ -75,17 +74,16 @@ public class DeviceMenuContainerFragment extends DialogFragment {
         ImageButton backButton = view.findViewById(R.id.GoBackDeviceMenuBtn);
         backButton.setOnClickListener(new OnClickExitDialog());
 
-
         ImageButton favoriteButton = view.findViewById(R.id.ContainerFavButton);
         favoriteButton.setOnClickListener(v -> {
-            // Marcar como favorito
+            fragment.getViewModel().toggleFavourite();
         });
 
         return view;
     }
 
-    private Fragment getCorrectFragment() {
-        IdentifiableFragment fragment;
+    private DeviceFragment getCorrectFragment() {
+        DeviceFragment fragment;
         switch (DeviceTypeEnum.valueOf(getArguments().getString("deviceType"))) {
             case AC:
                 fragment = ACFragment.newInstance();

@@ -3,6 +3,7 @@ package com.hci.StarkIndustries;
 import android.app.Application;
 
 import com.hci.StarkIndustries.data.domain.DeviceRepository;
+import com.hci.StarkIndustries.data.domain.RegionRepository;
 import com.hci.StarkIndustries.data.domain.RoomRepository;
 import com.hci.StarkIndustries.data.domain.RoutineRepository;
 
@@ -19,6 +20,7 @@ public class MyApplication extends Application {
 
         RoomRepository.create(this);
         DeviceRepository.create(this);
+        RegionRepository.create(this);
         RoutineRepository.create(this);
 
         instance = this;

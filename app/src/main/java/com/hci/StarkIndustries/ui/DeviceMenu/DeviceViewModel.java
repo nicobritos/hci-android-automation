@@ -1,42 +1,19 @@
 package com.hci.StarkIndustries.ui.DeviceMenu;
 
-import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.hci.StarkIndustries.data.Models.Result;
 import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
 import com.hci.StarkIndustries.data.domain.DeviceRepository;
+import com.hci.StarkIndustries.data.domain.FavouriteRepository;
+import com.hci.StarkIndustries.ui.FavouritableCommonViewModel;
 
 import java.util.function.Function;
 
-public abstract class DeviceViewModel<T extends CommonDeviceModel> extends ViewModel {
-    protected LifecycleOwner lifecycleOwner;
-    protected MutableLiveData<T> mModel;
-    protected T model;
-
-    public LiveData<T> getModel(LifecycleOwner lifecycleOwner, String id) {
-        if (mModel == null || !model.getId().equalsIgnoreCase(id)) {
-            mModel = new MutableLiveData<>();
-
-            this.lifecycleOwner = lifecycleOwner;
-            DeviceRepository.get().getDevice(id).observe(lifecycleOwner, commonDeviceModelResult -> {
-                if (commonDeviceModelResult.ok()) {
-                    //noinspection unchecked
-                    model = (T) commonDeviceModelResult.getResult();
-                } else {
-                    model = null;
-                }
-                loadModel();
-            });
-        }
-
-        return mModel;
-    }
-
+public abstract class DeviceViewModel<T extends CommonDeviceModel> extends FavouritableCommonViewModel<T> {
+    @Override
     protected void loadModel() {
-        mModel.setValue(model);
+        DeviceRepository.get().getDevice(this.id).observe(this.lifecycleOwner, this::onModelLoad);
     }
 
     protected LiveData<Result<Boolean>> performActionOnDevice(String actionId) {
@@ -62,8 +39,8 @@ public abstract class DeviceViewModel<T extends CommonDeviceModel> extends ViewM
         return resultLiveData;
     }
 
-    private Void reloadModelCallback(Result<Boolean> result) {
-        if (result.ok() && result.getResult()) loadModel();
-        return null;
+    @Override
+    protected FavouriteRepository getRepository() {
+        return DeviceRepository.get();
     }
 }

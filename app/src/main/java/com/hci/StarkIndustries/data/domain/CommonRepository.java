@@ -1,7 +1,6 @@
 package com.hci.StarkIndustries.data.domain;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -19,9 +18,7 @@ public abstract class CommonRepository {
     }
 
     protected static <T> Response.Listener<T> getListener(final MutableLiveData<Result<T>> result) {
-        return (response) -> {
-            result.setValue(new Result<>(response));
-        };
+        return (response) -> result.setValue(new Result<>(response));
     }
 
     protected static <T> Response.Listener<T> getListener(final MutableLiveData<Result<T>> result, final Function<T, T> filtered) {

@@ -1,6 +1,5 @@
 package com.hci.StarkIndustries.ui.favourites;
 
-import androidx.lifecycle.ViewModel;
-
-public class FavouritesViewModel extends ViewModel {
+public class FavouritesViewModel {
+// public class FavouritesViewModel extends FavouritableCommonViewModel<FavouriteCommonModel> {
 }

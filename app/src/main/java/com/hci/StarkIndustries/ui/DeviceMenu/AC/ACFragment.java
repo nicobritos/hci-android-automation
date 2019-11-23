@@ -17,9 +17,10 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.ACModel;
-import com.hci.StarkIndustries.ui.DeviceMenu.IdentifiableFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.DeviceFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.DeviceViewModel;
 
-public class ACFragment extends IdentifiableFragment {
+public class ACFragment extends DeviceFragment {
     private ACViewModel mViewModel;
 
     public static ACFragment newInstance() {
@@ -147,5 +148,10 @@ public class ACFragment extends IdentifiableFragment {
             modeDDL.setEnabled(acModel.isPowered());
             vertMovDDL.setEnabled(acModel.isPowered());
         });
+    }
+
+    @Override
+    public DeviceViewModel getViewModel() {
+        return this.mViewModel;
     }
 }
