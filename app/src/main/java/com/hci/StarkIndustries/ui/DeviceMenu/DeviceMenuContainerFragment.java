@@ -55,7 +55,6 @@ public class DeviceMenuContainerFragment extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_device_menu_container, null);
 
         // Sets view of the device
@@ -75,8 +74,29 @@ public class DeviceMenuContainerFragment extends DialogFragment {
         backButton.setOnClickListener(new OnClickExitDialog());
 
         ImageButton favoriteButton = view.findViewById(R.id.ContainerFavButton);
+//        fragment.getViewModel()
+//                .getModel(this, getArguments().getString("deviceId"))
+//                .observe(this, o -> {
+//                    CommonDeviceModel deviceModel = ((CommonDeviceModel) o);
+//                    if (deviceModel.isFavourite())
+//                        favoriteButton.setImageResource(R.drawable.ic_star_black_24dp);
+//                    else
+//                        favoriteButton.setImageResource(R.drawable.ic_star_white_48dp);
+//                });
+
         favoriteButton.setOnClickListener(v -> {
-            fragment.getViewModel().toggleFavourite();
+            fragment.getViewModel()
+                    .setFavourite(!fragment.getViewModel().isModalFavourite())
+                    .observe(this, o -> {
+                        CommonDeviceModel deviceModel = ((CommonDeviceModel) (fragment.getViewModel().getModel()));
+                        if (fragment.getViewModel().getModel() != null) {
+                            deviceModel.setFavourite(!deviceModel.isFavourite());
+                        }
+                        if (deviceModel.isFavourite())
+                            favoriteButton.setImageResource(R.drawable.ic_star_black_24dp);
+                        else
+                            favoriteButton.setImageResource(R.drawable.ic_star_white_48dp);
+                    });
         });
 
         return view;

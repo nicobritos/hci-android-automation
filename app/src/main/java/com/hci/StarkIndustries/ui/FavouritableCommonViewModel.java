@@ -17,8 +17,8 @@ public abstract class FavouritableCommonViewModel<T extends FavouriteCommonModel
         return resultLiveData;
     }
 
-    public LiveData<Result<Boolean>> toggleFavourite() {
-        return this.setFavourite(!this.model.isFavourite());
+    public boolean isModalFavourite() {
+        return model.isFavourite();
     }
 
     protected abstract FavouriteRepository getRepository();

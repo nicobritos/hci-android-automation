@@ -59,7 +59,5 @@ public class RoutinesListFragment extends Fragment {
                 getView().findViewById(R.id.NoRoutinesView).setVisibility(View.VISIBLE);
             }
         });
-
-        // TODO: Use the ViewModel
     }
 }

@@ -18,10 +18,6 @@ public class RoutineModel extends FavouriteCommonModel {
         return description;
     }
 
-    public void setFavourite(boolean v) {
-        this.meta.put("favourite", v);
-    }
-
     @Override
     public JSONObject toJSON() {
         try {

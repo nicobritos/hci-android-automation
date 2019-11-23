@@ -25,6 +25,10 @@ public abstract class CommonViewModel<T> extends ViewModel {
         return mModel;
     }
 
+    public T getModel() {
+        return this.model;
+    }
+
     protected void onModelLoad(Result<? super T> result) {
         if (result.ok()) {
             //noinspection unchecked
