@@ -10,10 +10,12 @@ import com.hci.StarkIndustries.data.Models.Result;
 import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
 import com.hci.StarkIndustries.data.remote.Api;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class DeviceRepository extends FavouriteRepository {
@@ -42,13 +44,19 @@ public class DeviceRepository extends FavouriteRepository {
     }
 
     public LiveData<Result<Boolean>> performActionOnDevice(String id, String actionId, String key, String value) {
-        JSONObject payload = new JSONObject();
+
+        List<String> payload = new ArrayList<>();
+        JSONArray payload_ = new JSONArray();
         if (key != null) {
-            try {
-                payload.put(key, value);
-            } catch (JSONException e) {
-                Log.e(TAG, e.toString());
-            }
+            // El parametro es un Array con el elemento adentro, no es un objeto
+            payload.add(value);
+            payload_.put(value);
+//            try {
+//                payload.put(value);
+//                //payload.put(key, value);
+//            } catch (JSONException e) {
+//                Log.e(TAG, e.toString());
+//            }
         }
 
         final MutableLiveData<Result<Boolean>> result = new MutableLiveData<>();

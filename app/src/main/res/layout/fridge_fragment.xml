@@ -8,7 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="594dp"
+        android:layout_height="wrap_content"
 
         >
 
@@ -16,8 +16,8 @@
             android:id="@+id/FridgeImageLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginTop="10dp"
+            android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -25,9 +25,9 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
                 android:orientation="vertical"
 
                 >
@@ -46,27 +46,27 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:scaleType="centerInside"
-                        android:tint="@color/colorPrimaryDark"
-                        android:src="@drawable/ic_white_circle" />
+                        android:src="@drawable/ic_white_circle"
+                        android:tint="@color/colorPrimaryDark" />
 
                     <TextView
+                        android:id="@+id/FridgeViewTemp"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:gravity="center"
                         android:text="0"
                         android:textColor="@color/colorPrimary"
-                        android:id="@+id/FridgeViewTemp"
                         android:textSize="25sp" />
                 </RelativeLayout>
             </LinearLayout>
 
 
             <ImageView
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
                 android:id="@+id/FridgeImage"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 android:src="@drawable/ic_fridge"
 
                 android:textAlignment="center"
@@ -75,9 +75,9 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -94,8 +94,8 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:scaleType="centerInside"
-                        android:tint="@color/colorPrimaryDark"
-                        android:src="@drawable/ic_white_circle" />
+                        android:src="@drawable/ic_white_circle"
+                        android:tint="@color/colorPrimaryDark" />
 
 
                     <TextView
@@ -116,11 +116,11 @@
             android:id="@+id/FridgeTextTemperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="40dp"
             android:text="@string/FridgeTemperatureTitle"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/FridgeImageLayout"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="10dp" />
+            app:layout_constraintTop_toBottomOf="@+id/FridgeImageLayout" />
 
         <SeekBar
             android:id="@+id/FridgeSlidierTemperature"
@@ -130,8 +130,8 @@
             android:max="6"
             android:progress="3"
             app:layout_constraintLeft_toRightOf="@+id/FridgeTextTemperature"
-            app:layout_constraintTop_toTopOf="@id/FridgeTextTemperature"
             app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/FridgeTextTemperature"
 
             />
 
@@ -139,33 +139,33 @@
             android:id="@+id/FridgeTextFreezer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/FreezerTemperatureTitle"
-            app:layout_constraintTop_toBottomOf="@id/FridgeTextTemperature"
-            android:layout_marginTop="40dp"
             android:layout_marginLeft="10dp"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            android:layout_marginTop="40dp"
+            android:text="@string/FreezerTemperatureTitle"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/FridgeTextTemperature" />
 
         <SeekBar
             android:id="@+id/FridgeSliderFreezer"
             style="@style/Widget.AppCompat.SeekBar.Discrete"
             android:layout_width="0dp"
-            app:layout_constraintLeft_toRightOf="@id/FridgeTextFreezer"
-            app:layout_constraintTop_toTopOf="@id/FridgeTextFreezer"
-            app:layout_constraintRight_toRightOf="parent"
             android:layout_height="wrap_content"
             android:max="12"
-            android:progress="3" />
+            android:progress="3"
+            app:layout_constraintLeft_toRightOf="@id/FridgeTextFreezer"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/FridgeTextFreezer" />
 
 
         <TextView
             android:id="@+id/FridgeMode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="40dp"
             android:text="@string/FridgeMode"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/FridgeTextFreezer"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="40dp" />
+            app:layout_constraintTop_toBottomOf="@id/FridgeTextFreezer" />
 
         <Spinner
             android:id="@+id/FridgeModeDDL"

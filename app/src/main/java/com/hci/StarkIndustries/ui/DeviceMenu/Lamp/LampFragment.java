@@ -89,8 +89,9 @@ public class LampFragment extends DeviceFragment {
             ((SeekBar) getView().findViewById(R.id.LampSeekBar)).setProgress(lampModel.getBrightness());
 
             ((RGBColorPicker) getView().findViewById(R.id.colorPicker)).setColor(lampModel.getColorInt());
+            ((ImageView)getView().findViewById(R.id.imageView))
+                    .getBackground().setColorFilter(lampModel.getColorInt(), PorterDuff.Mode.MULTIPLY);
 
-            getView().findViewById(R.id.imageView).getBackground().setTint(lampModel.getColorInt());
         });
     }
 
