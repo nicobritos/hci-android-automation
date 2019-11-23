@@ -9,7 +9,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/activity_horizontal_margin"
-        android:background="@color/colorPrimary"
         app:cardBackgroundColor="@color/colorPrimary"
         app:cardMaxElevation="5dp"
         app:cardElevation="3dp"

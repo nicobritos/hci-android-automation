@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hci.StarkIndustries.R;
@@ -32,7 +32,13 @@ public class HomeFragment extends APIReloadingFragment implements IClickableItem
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
+        int columns = 1;
+
+        if(root.findViewById(R.id.HomeFragmentPhoneIdentifier) == null){
+            columns = 2;
+        }
+
+        GridLayoutManager layoutManager = new GridLayoutManager(this.getContext(), columns,RecyclerView.VERTICAL, false);
         RecyclerView recyclerView = root.findViewById(R.id.HouseRegionsRecyclerView);
         recyclerView.setLayoutManager(layoutManager);
         RecyclerViewRegionsAdapter adapter = new RecyclerViewRegionsAdapter(this, this.getContext());
@@ -49,7 +55,10 @@ public class HomeFragment extends APIReloadingFragment implements IClickableItem
             RecyclerView recyclerView = getView().findViewById(R.id.HouseRegionsRecyclerView);
 
             if (arrayListResult.ok()) {
-                ((RecyclerViewRegionsAdapter) recyclerView.getAdapter()).setData(arrayListResult.getResult());
+                List<RegionModel> temp = arrayListResult.getResult();
+                temp.sort((x,y)->x.getName().compareToIgnoreCase(y.getName()));
+                ((RecyclerViewRegionsAdapter) recyclerView.getAdapter())
+                        .setData(temp);
                 if (arrayListResult.getResult().size() == 0) {
                     getView().findViewById(R.id.NoRegionsView).setVisibility(View.VISIBLE);
                 } else {

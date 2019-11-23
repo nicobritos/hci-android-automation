@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hci.StarkIndustries.R;
@@ -31,7 +31,12 @@ public class RoutinesListFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.routines_list_fragment, container, false);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
+        int columns = 1;
+
+        if(view.findViewById(R.id.RoutinesFragmentPhoneIdentifier) == null)
+            columns = 2;
+
+        GridLayoutManager layoutManager = new GridLayoutManager(this.getContext(),columns, RecyclerView.VERTICAL, false);
         RecyclerView recyclerView = view.findViewById(R.id.RecyclerViewRoutines);
         recyclerView.setLayoutManager(layoutManager);
         RecyclerViewRoutinesAdapter adapter = new RecyclerViewRoutinesAdapter(this.getContext());
