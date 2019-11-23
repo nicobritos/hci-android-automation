@@ -49,11 +49,4 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:id="@+id/RoutinesFragmentPhoneIdentifier"
-        />
-
 </FrameLayout>
