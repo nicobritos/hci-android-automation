@@ -19,9 +19,10 @@ public class HomeViewModel extends ViewModel {
     public LiveData<List<RegionModel>> getModels() {
         if (mData == null) {
             mData = new MutableLiveData<>();
-            regions.add(new RegionModel("Region 1"));
-            regions.add(new RegionModel("Region 2"));
-            regions.add(new RegionModel("Region 3"));
+//            regions.add(new RegionModel("Region 1"));
+//            regions.get(0).rooms = new ArrayList<>();
+//            regions.add(new RegionModel("Region 2"));
+//            regions.add(new RegionModel("Region 3"));
             loadModel();
         }
 

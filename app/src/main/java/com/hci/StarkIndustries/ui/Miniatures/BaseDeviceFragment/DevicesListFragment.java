@@ -41,10 +41,18 @@ public abstract class DevicesListFragment extends Fragment implements DevicesRec
         LoadViewModel();
         mViewModel.getModel().observe(this, devicesListModel -> {
             RecyclerView recyclerView = getView().findViewById(R.id.RecyclerViewDevices);
+
             if (devicesListModel.ok()) {
                 ((RecyclerViewDevicesAdapter) recyclerView.getAdapter()).setData(devicesListModel.getResult());
+                if(devicesListModel.getResult().size() == 0){
+                    getView().findViewById(R.id.NoDevicesView).setVisibility(View.VISIBLE);
+                }else
+                {
+                    getView().findViewById(R.id.NoDevicesView).setVisibility(View.GONE);
+                }
             } else {
                 // TODO: ERROR
+                getView().findViewById(R.id.NoDevicesView).setVisibility(View.VISIBLE);
             }
         });
     }

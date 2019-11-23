@@ -62,12 +62,6 @@
             android:id="@+id/RoomDevicesFragmentContainer"
             />
 
-            <fragment
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:name="com.hci.StarkIndustries.ui.Room.EmptyRoomFragment"
-                android:id="@+id/NoDevicesOnRoomFragment"
-                />
             </LinearLayout>
 
         </ScrollView>
