@@ -15,10 +15,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hci.StarkIndustries.R;
+import com.hci.StarkIndustries.data.Models.RegionModel;
+import com.hci.StarkIndustries.data.Models.Result;
+import com.hci.StarkIndustries.ui.APIReloadingFragment;
+import com.hci.StarkIndustries.ui.ChangeEndpointFragment;
 import com.hci.StarkIndustries.ui.RecycleViewAdapters.IClickableItem;
 import com.hci.StarkIndustries.ui.RecycleViewAdapters.RecyclerViewRegionsAdapter;
 
-public class HomeFragment extends Fragment implements IClickableItem {
+import java.util.ArrayList;
+
+public class HomeFragment extends APIReloadingFragment implements IClickableItem {
     private static final String TAG = "HomeFragment";
     private HomeViewModel homeViewModel;
 
@@ -62,5 +68,27 @@ public class HomeFragment extends Fragment implements IClickableItem {
         Bundle args = new Bundle();
         args.putString("id", id);
         navController.navigate(R.id.action_navigation_home_to_room, args);
+    }
+
+
+    @Override
+    protected void reloadPage() {
+        RecyclerView recyclerView = getView().findViewById(R.id.HouseRegionsRecyclerView);
+        Result<ArrayList<RegionModel>> temp= homeViewModel.getModel().getValue();
+        ArrayList<RegionModel> arr = new ArrayList<>();
+
+        if(temp != null && temp.ok()) {
+            arr = temp.getResult();
+        }
+        ((RecyclerViewRegionsAdapter) recyclerView.getAdapter()).setData(arr);
+
+        if (arr.size() == 0) {
+            getView().findViewById(R.id.NoRegionsView).setVisibility(View.VISIBLE);
+        } else {
+            getView().findViewById(R.id.NoRegionsView).setVisibility(View.GONE);
+        }
+
+
+
     }
 }

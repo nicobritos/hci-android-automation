@@ -13,7 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hci.StarkIndustries.R;
+import com.hci.StarkIndustries.data.Models.Result;
+import com.hci.StarkIndustries.data.Models.RoutineModel;
 import com.hci.StarkIndustries.ui.RecycleViewAdapters.RecyclerViewRoutinesAdapter;
+
+import java.util.ArrayList;
 
 public class RoutinesListFragment extends Fragment {
     protected RoutinesListViewModel mViewModel;
@@ -60,6 +64,26 @@ public class RoutinesListFragment extends Fragment {
             }
         });
 
-        // TODO: Use the ViewModel
+    }
+
+    public void ReloadElements(){
+
+        Result<ArrayList<RoutineModel>> temp = mViewModel.getModel().getValue();
+        RecyclerView recyclerView = getView().findViewById(R.id.RecyclerViewRoutines);
+
+        ArrayList<RoutineModel> arr = new ArrayList<>();
+
+
+        if (temp != null && temp.ok()) {
+            arr = temp.getResult();
+        }
+            ((RecyclerViewRoutinesAdapter) recyclerView.getAdapter()).setData(arr);
+            if (arr.size() == 0) {
+                getView().findViewById(R.id.NoRoutinesView).setVisibility(View.VISIBLE);
+            } else {
+                getView().findViewById(R.id.NoRoutinesView).setVisibility(View.GONE);
+            }
+
+
     }
 }

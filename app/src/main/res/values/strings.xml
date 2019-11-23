@@ -10,4 +10,11 @@
     <string name="EmptyRoutinesText">you haven\'t created any routines yet</string>
     <string name="EmptyHouseText">There are no regions in the house</string>
 
+    <string name="defaultAPIEndpoint">
+        http://10.0.2.2:8080/api
+    </string>
+    <string name="newEndpointText">New endpoint added!</string>
+    <string name="newEndpointUndo">Undo</string>
+    <string name="EndpointError">Endpoint Invalid</string>
+
 </resources>

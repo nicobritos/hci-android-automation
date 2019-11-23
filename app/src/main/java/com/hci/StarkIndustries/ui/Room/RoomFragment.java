@@ -12,9 +12,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.hci.StarkIndustries.R;
+import com.hci.StarkIndustries.ui.APIReloadingFragment;
+import com.hci.StarkIndustries.ui.Miniatures.BaseDeviceFragment.DevicesListFragment;
 import com.hci.StarkIndustries.ui.Miniatures.RoomDevices.RoomDevicesListFragment;
 
-public class RoomFragment extends Fragment {
+public class RoomFragment extends APIReloadingFragment {
     private RoomViewModel mViewModel;
     private String id = "";
 
@@ -45,8 +47,6 @@ public class RoomFragment extends Fragment {
 
         RoomDevicesListFragment fragment = (RoomDevicesListFragment) getChildFragmentManager().findFragmentById(R.id.RoomDevicesFragmentContainer);
 
-//        fragment.setID(id);
-
         return root;
     }
 
@@ -64,5 +64,11 @@ public class RoomFragment extends Fragment {
         });
 
 
+    }
+
+    @Override
+    protected void reloadPage() {
+        DevicesListFragment fragment = (DevicesListFragment) getChildFragmentManager().findFragmentById(R.id.RoomDevicesFragmentContainer);
+        fragment.ReloadElements();
     }
 }
