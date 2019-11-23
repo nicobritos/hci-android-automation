@@ -34,6 +34,7 @@ public abstract class CommonViewModel<T> extends ViewModel {
         } else {
             model = null;
         }
+        mModel.postValue(model);
     }
 
     protected abstract void loadModel();
