@@ -22,6 +22,7 @@ import com.hci.StarkIndustries.ui.DeviceMenu.DeviceViewModel;
 
 public class ACFragment extends DeviceFragment {
     private ACViewModel mViewModel;
+    private boolean loaded = false;
 
     public static ACFragment newInstance() {
         return new ACFragment();
@@ -38,7 +39,8 @@ public class ACFragment extends DeviceFragment {
         tempSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                tempView.setText(String.valueOf(ACModel.MIN_TEMPERATURE + progress));
+                if (loaded)
+                    tempView.setText(String.valueOf(ACModel.MIN_TEMPERATURE + progress));
             }
 
             @Override
@@ -47,7 +49,8 @@ public class ACFragment extends DeviceFragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                mViewModel.setTemperature(ACModel.MIN_TEMPERATURE + seekBar.getProgress());
+                if (loaded)
+                    mViewModel.setTemperature(ACModel.MIN_TEMPERATURE + seekBar.getProgress());
             }
         });
 
@@ -55,7 +58,8 @@ public class ACFragment extends DeviceFragment {
         modeDDL.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mViewModel.selectMode(position);
+                if (loaded)
+                    mViewModel.selectMode(position);
             }
 
             @Override
@@ -67,7 +71,8 @@ public class ACFragment extends DeviceFragment {
         fanSpeedDDL.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mViewModel.selectFanSpeed(position);
+                if (loaded)
+                    mViewModel.selectFanSpeed(position);
             }
 
             @Override
@@ -79,7 +84,8 @@ public class ACFragment extends DeviceFragment {
         horizMovDDL.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mViewModel.selectHorizontalMovement(position);
+                if (loaded)
+                    mViewModel.selectHorizontalMovement(position);
             }
 
             @Override
@@ -91,7 +97,8 @@ public class ACFragment extends DeviceFragment {
         vertMovDDL.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mViewModel.selectVerticalMovement(position);
+                if (loaded)
+                    mViewModel.selectVerticalMovement(position);
             }
 
             @Override
@@ -144,6 +151,9 @@ public class ACFragment extends DeviceFragment {
             horizMovDDL.setEnabled(acModel.isPowered());
             modeDDL.setEnabled(acModel.isPowered());
             vertMovDDL.setEnabled(acModel.isPowered());
+
+            if (!this.loaded)
+                this.loaded = true;
         });
     }
 
