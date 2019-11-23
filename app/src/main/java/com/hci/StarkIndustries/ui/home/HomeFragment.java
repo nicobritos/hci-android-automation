@@ -44,9 +44,9 @@ public class HomeFragment extends Fragment implements IClickableItem {
 
             if (arrayListResult.ok()) {
                 ((RecyclerViewRegionsAdapter) recyclerView.getAdapter()).setData(arrayListResult.getResult());
-                if(regionModels.size() == 0){
+                if (arrayListResult.getResult().size() == 0) {
                     getView().findViewById(R.id.NoRegionsView).setVisibility(View.VISIBLE);
-                }else{
+                } else {
                     getView().findViewById(R.id.NoRegionsView).setVisibility(View.GONE);
                 }
             } else {

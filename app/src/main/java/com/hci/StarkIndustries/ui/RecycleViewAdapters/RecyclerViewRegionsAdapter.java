@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -42,7 +41,7 @@ public class RecyclerViewRegionsAdapter extends RecyclerView.Adapter<RecyclerVie
 
         holder.regionName.setText(region.getName());
 
-        if(region.rooms.size() == 0){
+        if (region.getRooms().size() == 0) {
             holder.cardView.setVisibility(View.VISIBLE);
         }
 

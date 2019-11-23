@@ -43,10 +43,9 @@ public abstract class DevicesListFragment extends Fragment implements DevicesRec
 
             if (devicesListModel.ok()) {
                 ((RecyclerViewDevicesAdapter) recyclerView.getAdapter()).setData(devicesListModel.getResult());
-                if(devicesListModel.getResult().size() == 0){
+                if (devicesListModel.getResult().size() == 0) {
                     getView().findViewById(R.id.NoDevicesView).setVisibility(View.VISIBLE);
-                }else
-                {
+                } else {
                     getView().findViewById(R.id.NoDevicesView).setVisibility(View.GONE);
                 }
             } else {

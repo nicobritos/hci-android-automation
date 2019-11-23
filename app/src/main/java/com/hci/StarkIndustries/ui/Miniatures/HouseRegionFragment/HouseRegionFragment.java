@@ -1,9 +1,5 @@
 package com.hci.StarkIndustries.ui.Miniatures.HouseRegionFragment;
 
-import androidx.cardview.widget.CardView;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,17 +7,14 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.hci.StarkIndustries.Models.RegionModel;
 import com.hci.StarkIndustries.R;
-import com.hci.StarkIndustries.ui.RecycleViewAdapters.RecyclerViewRegionsAdapter;
+import com.hci.StarkIndustries.data.Models.RegionModel;
 import com.hci.StarkIndustries.ui.RecycleViewAdapters.RecyclerViewRoomsAdapter;
 
 public class HouseRegionFragment extends Fragment {
@@ -46,14 +39,14 @@ public class HouseRegionFragment extends Fragment {
         mViewModel.getModel("").observe(this, new Observer<RegionModel>() {
             @Override
             public void onChanged(RegionModel regionModel) {
-                if(regionModel.rooms.size() != 0) {
+                if (regionModel.getRooms().size() != 0) {
                     ((RecyclerViewRoomsAdapter) ((RecyclerView) getView().findViewById(R.id.HouseRoomRecyclerView))
-                            .getAdapter()).setData(regionModel.rooms);
-                    ((CardView)getView().findViewById(R.id.NoRoomsOnRegionView)).setVisibility(View.GONE);
+                            .getAdapter()).setData(regionModel.getRooms());
+                    getView().findViewById(R.id.NoRoomsOnRegionView).setVisibility(View.GONE);
 
-                }else{
+                } else {
 
-                    ((CardView)getView().findViewById(R.id.NoRoomsOnRegionView)).setVisibility(View.VISIBLE);
+                    getView().findViewById(R.id.NoRoomsOnRegionView).setVisibility(View.VISIBLE);
 
                 }
             }

@@ -3,15 +3,6 @@ package com.hci.StarkIndustries;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.hci.StarkIndustries.ui.DeviceMenu.AC.ACFragment;
-import com.hci.StarkIndustries.ui.DeviceMenu.Curtains.CurtainsFragment;
-import com.hci.StarkIndustries.ui.DeviceMenu.Door.DoorMenuFragment;
-import com.hci.StarkIndustries.ui.DeviceMenu.Fridge.FridgeFragment;
-import com.hci.StarkIndustries.ui.DeviceMenu.Lamp.LampFragment;
-import com.hci.StarkIndustries.ui.DeviceMenu.Oven.OvenFragment;
-import com.hci.StarkIndustries.ui.DeviceMenu.Speaker.SpeakerFragment;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,7 +13,14 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.hci.StarkIndustries.ui.DeviceMenu.AC.ACFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.Curtains.CurtainsFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.Door.DoorMenuFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.Fridge.FridgeFragment;
 import com.hci.StarkIndustries.ui.DeviceMenu.IdentifiableFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.Lamp.LampFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.Oven.OvenFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.Speaker.SpeakerFragment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -56,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        NavController navController = Navigation.findNavController(this,R.id.nav_host_fragment);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         navController.navigate(R.id.action_mobile_navigation_pop);
         return true;
     }
@@ -69,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         return name.toLowerCase();
     }
 
-    private void initializeFragments(){
+    private void initializeFragments() {
 
         fragments.put(adaptName("AC"), ACFragment.newInstance());
         fragments.put(adaptName("Door"), DoorMenuFragment.newInstance());

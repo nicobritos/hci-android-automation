@@ -49,10 +49,9 @@ public class RoutinesListFragment extends Fragment {
 
             if (arrayListResult.ok()) {
                 ((RecyclerViewRoutinesAdapter) recyclerView.getAdapter()).setData(arrayListResult.getResult());
-                if(arrayListResult.getResult().size() == 0){
+                if (arrayListResult.getResult().size() == 0) {
                     getView().findViewById(R.id.NoRoutinesView).setVisibility(View.VISIBLE);
-                }
-                else{
+                } else {
                     getView().findViewById(R.id.NoRoutinesView).setVisibility(View.GONE);
                 }
             } else {
