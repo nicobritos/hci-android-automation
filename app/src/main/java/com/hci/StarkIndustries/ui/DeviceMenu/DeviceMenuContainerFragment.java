@@ -47,7 +47,7 @@ public class DeviceMenuContainerFragment extends DialogFragment {
         super.onResume();
         // Sets view size
         ViewGroup.LayoutParams params = getDialog().getWindow().getAttributes();
-        params.width = ViewGroup.LayoutParams.MATCH_PARENT;
+//        params.width = ViewGroup.LayoutParams.MATCH_PARENT;
         params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
         getDialog().getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
     }

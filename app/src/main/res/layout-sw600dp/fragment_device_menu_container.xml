@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="100dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/DeviceMenuTopBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/GoBackDeviceMenuBtn"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:scaleType="center"
+            android:src="@drawable/ic_arrow_back_black_48dp"
+
+            />
+
+        <TextView
+            android:id="@+id/DeviceName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:text="dasdasdasd"
+            android:textColor="@color/Black"
+
+            />
+
+        <ImageButton
+            android:id="@+id/ContainerFavButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+
+            android:src="@drawable/ic_star_black_24dp" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/TopDivider"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        app:layout_constraintTop_toBottomOf="@id/DeviceMenuTopBar" />
+
+
+    <FrameLayout
+        android:id="@+id/fragmentContainer123"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TopDivider"
+
+        />
+
+    <View
+        android:id="@+id/LowDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        app:layout_constraintTop_toBottomOf="@id/fragmentContainer123" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
