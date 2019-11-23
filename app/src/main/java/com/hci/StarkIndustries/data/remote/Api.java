@@ -49,7 +49,7 @@ public class Api {
     // Use IP 10.0.2.2 instead of 127.0.0.1 when running Android emulator in the
     // same computer that runs the API.
     // TODO: Change
-    private final String URL = "http://10.0.2.2:8080/api";
+    private final String URL = "http://10.0.2.2:9090/api";
 
     private Api(Context context) {
         requestQueue = VolleySingleton.getInstance(context).getRequestQueue();

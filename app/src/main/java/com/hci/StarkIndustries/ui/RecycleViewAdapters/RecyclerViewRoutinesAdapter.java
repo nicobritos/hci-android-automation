@@ -43,6 +43,7 @@ public class RecyclerViewRoutinesAdapter extends RecyclerView.Adapter<RecyclerVi
 
         holder.name.setText(model.getName());
         holder.description.setText(model.getDescription());
+
         holder.playImage.setImageResource(R.drawable.ic_play_arrow_white_48dp);
 
         if (model.isFavourite())
