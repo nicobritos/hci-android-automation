@@ -25,7 +25,6 @@ import com.hci.StarkIndustries.ui.DeviceMenu.Oven.OvenFragment;
 import com.hci.StarkIndustries.ui.DeviceMenu.Speaker.SpeakerFragment;
 
 public class DeviceMenuContainerFragment extends DialogFragment {
-
     private static final String TAG = "DeviceMenuContainerFrag";
 
     private DeviceMenuContainerViewModel viewModel;
@@ -51,7 +50,6 @@ public class DeviceMenuContainerFragment extends DialogFragment {
         getDialog().getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
     }
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -74,15 +72,6 @@ public class DeviceMenuContainerFragment extends DialogFragment {
         backButton.setOnClickListener(new OnClickExitDialog());
 
         ImageButton favoriteButton = view.findViewById(R.id.ContainerFavButton);
-//        fragment.getViewModel()
-//                .getModel(this, getArguments().getString("deviceId"))
-//                .observe(this, o -> {
-//                    CommonDeviceModel deviceModel = ((CommonDeviceModel) o);
-//                    if (deviceModel.isFavourite())
-//                        favoriteButton.setImageResource(R.drawable.ic_star_black_24dp);
-//                    else
-//                        favoriteButton.setImageResource(R.drawable.ic_star_white_48dp);
-//                });
 
         favoriteButton.setOnClickListener(v -> {
             fragment.getViewModel()
@@ -142,8 +131,3 @@ public class DeviceMenuContainerFragment extends DialogFragment {
         }
     }
 }
-
-
-
-
-

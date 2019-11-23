@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.ui.DeviceMenu.IdentifiableFragment;
@@ -30,14 +32,10 @@ public class RoomFragment extends IdentifiableFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_room, container, false);
-
-//        RoomDevicesListFragment fragment = (RoomDevicesListFragment) getChildFragmentManager().findFragmentById(R.id.RoomDevicesFragmentContainer);
-//
-//        fragment.setID(id);
+        RoomDevicesListFragment fragment = (RoomDevicesListFragment) getChildFragmentManager().findFragmentById(R.id.RoomDevicesFragmentContainer);
+        fragment.setRoomId(this.getID());
 
         return root;
     }
@@ -45,26 +43,10 @@ public class RoomFragment extends IdentifiableFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(RoomViewModel.class);
 
+        mViewModel = ViewModelProviders.of(this).get(RoomViewModel.class);
         mViewModel.getModel(this, this.getID()).observe(this, roomModel -> {
             ((TextView) getView().findViewById(R.id.RoomTitle)).setText(roomModel.getName());
-
-            RoomDevicesListFragment fragment = (RoomDevicesListFragment) getChildFragmentManager()
-                    .findFragmentById(R.id.RoomDevicesFragmentContainer);
-
-//            RecyclerView recyclerView = getView().findViewById(R.id.HouseRoomRecyclerView);
-
-//            if (arrayListResult.ok()) {
-//                ((RecyclerViewRegionsAdapter) recyclerView.getAdapter()).setData(arrayListResult.getResult());
-//                if (arrayListResult.getResult().size() == 0) {
-//                    getView().findViewById(R.id.NoRegionsView).setVisibility(View.VISIBLE);
-//                } else {
-//                    getView().findViewById(R.id.NoRegionsView).setVisibility(View.GONE);
-//                }
-//            } else {
-//                // TODO: ERROR
-//            }
         });
     }
 }
