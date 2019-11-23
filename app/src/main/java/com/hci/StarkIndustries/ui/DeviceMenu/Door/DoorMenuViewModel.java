@@ -1,12 +1,5 @@
 package com.hci.StarkIndustries.ui.DeviceMenu.Door;
 
-import android.util.Log;
-
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
-
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.DoorModel;
 import com.hci.StarkIndustries.data.domain.DeviceRepository;
 import com.hci.StarkIndustries.ui.DeviceMenu.DeviceViewModel;

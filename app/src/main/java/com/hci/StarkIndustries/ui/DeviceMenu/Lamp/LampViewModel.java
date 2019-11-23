@@ -1,20 +1,8 @@
 package com.hci.StarkIndustries.ui.DeviceMenu.Lamp;
 
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.util.Log;
-
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
-
-import com.hci.StarkIndustries.data.Models.devices.DeviceModels.FridgeModel;
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.LampModel;
 import com.hci.StarkIndustries.data.domain.DeviceRepository;
 import com.hci.StarkIndustries.ui.DeviceMenu.DeviceViewModel;
-
-import static com.hci.StarkIndustries.ui.DeviceMenu.Fridge.FridgeViewModel.MODE_PARTY;
-import static com.hci.StarkIndustries.ui.DeviceMenu.Fridge.FridgeViewModel.MODE_VACATION;
 
 public class LampViewModel extends DeviceViewModel<LampModel> {
     private static final String TAG = "LampViewModel";

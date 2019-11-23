@@ -9,14 +9,13 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.hci.StarkIndustries.R;
-import com.hci.StarkIndustries.data.Models.devices.DeviceModels.CurtainsModel;
-import com.hci.StarkIndustries.ui.DeviceMenu.IdentifiableFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.DeviceFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.DeviceViewModel;
 
-public class CurtainsFragment extends IdentifiableFragment {
+public class CurtainsFragment extends DeviceFragment {
     private CurtainsViewModel viewModel;
 
     public static CurtainsFragment newInstance() {
@@ -31,12 +30,7 @@ public class CurtainsFragment extends IdentifiableFragment {
 
         Button button = root.findViewById(R.id.curtainsButton);
 
-        button.setOnClickListener(v -> {
-            CurtainsModel model = viewModel.getModel(this, getID()).getValue();
-
-            viewModel.setState(!model.isOpen());
-        });
-
+        button.setOnClickListener(v -> viewModel.toggleState());
 
         return root;
     }
@@ -47,22 +41,24 @@ public class CurtainsFragment extends IdentifiableFragment {
 
         CurtainsViewModel model = ViewModelProviders.of(this).get(CurtainsViewModel.class);
 
-        model.getModel(this, getID()).observe(this, new Observer<CurtainsModel>() {
-            @Override
-            public void onChanged(CurtainsModel curtainsModel) {
+        model.getModel(this, getID()).observe(this, curtainsModel -> {
 
-                Button button = getView().findViewById(R.id.curtainsButton);
-                ImageView image = getView().findViewById(R.id.curtainsImage);
+            Button button = getView().findViewById(R.id.curtainsButton);
+            ImageView image = getView().findViewById(R.id.curtainsImage);
 
-                if (curtainsModel.isOpen()) {
-                    image.setImageResource(R.drawable.ic_curtain_open);
-                    button.setText(R.string.CourtainsButtonClose);
-                } else {
-                    image.setImageResource(R.drawable.ic_curtain_closed);
-                    button.setText(R.string.CourtainsButtonOpen);
-                }
-
+            if (curtainsModel.isOpen()) {
+                image.setImageResource(R.drawable.ic_curtain_open);
+                button.setText(R.string.CourtainsButtonClose);
+            } else {
+                image.setImageResource(R.drawable.ic_curtain_closed);
+                button.setText(R.string.CourtainsButtonOpen);
             }
+
         });
+    }
+
+    @Override
+    public DeviceViewModel getViewModel() {
+        return this.viewModel;
     }
 }

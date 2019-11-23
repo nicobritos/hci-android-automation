@@ -13,9 +13,10 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.hci.StarkIndustries.R;
-import com.hci.StarkIndustries.ui.DeviceMenu.IdentifiableFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.DeviceFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.DeviceViewModel;
 
-public class DoorMenuFragment extends IdentifiableFragment {
+public class DoorMenuFragment extends DeviceFragment {
     private static final String TAG = "DoorMenuFragment";
     private DoorMenuViewModel mViewModel;
 
@@ -78,5 +79,10 @@ public class DoorMenuFragment extends IdentifiableFragment {
             }
             getView().findViewById(R.id.OpenDoorBtn).setEnabled(!doorModel.isLocked());
         });
+    }
+
+    @Override
+    public DeviceViewModel getViewModel() {
+        return this.mViewModel;
     }
 }

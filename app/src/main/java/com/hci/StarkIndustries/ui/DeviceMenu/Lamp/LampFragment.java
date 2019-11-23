@@ -15,12 +15,13 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.LampModel;
-import com.hci.StarkIndustries.ui.DeviceMenu.IdentifiableFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.DeviceFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.DeviceViewModel;
 import com.madrapps.pikolo.ColorPicker;
 import com.madrapps.pikolo.RGBColorPicker;
 import com.madrapps.pikolo.listeners.SimpleColorSelectionListener;
 
-public class LampFragment extends IdentifiableFragment {
+public class LampFragment extends DeviceFragment {
     private LampViewModel mViewModel;
 
     public static LampFragment newInstance() {
@@ -92,5 +93,10 @@ public class LampFragment extends IdentifiableFragment {
                     .getBackground().setColorFilter(lampModel.getColorInt(), PorterDuff.Mode.MULTIPLY);
 
         });
+    }
+
+    @Override
+    public DeviceViewModel getViewModel() {
+        return this.mViewModel;
     }
 }

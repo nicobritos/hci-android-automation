@@ -1,6 +1,6 @@
 package com.hci.StarkIndustries.data.Models;
 
-import android.os.Parcelable;
+import org.json.JSONObject;
 
 import java.util.Map;
 
@@ -19,6 +19,10 @@ public abstract class CommonModel {
 
     public String getId() {
         return id;
+    }
+
+    public JSONObject getMeta() {
+        return new JSONObject(meta);
     }
 
     @Override

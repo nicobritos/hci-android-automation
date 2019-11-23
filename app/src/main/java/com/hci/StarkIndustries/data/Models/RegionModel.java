@@ -1,23 +1,21 @@
 package com.hci.StarkIndustries.data.Models;
 
-import com.hci.StarkIndustries.data.Models.CommonModel;
-import com.hci.StarkIndustries.data.Models.RoomModel;
-
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class RegionModel extends CommonModel {
-    public String id;
-    public List<RoomModel> rooms = new ArrayList<>();
-    public String name;
+    private List<RoomModel> rooms = new ArrayList<>();
 
-    public RegionModel(String name) {
-        this.name = name;
-        this.id = name;
-//
-//        rooms.add(new RoomModel("ROOM1"));
-//        rooms.add(new RoomModel("ROOM2"));
-//        rooms.add(new RoomModel("ROOM3"));
-//        rooms.add(new RoomModel("ROOM4"));
+    public List<RoomModel> getRooms() {
+        return rooms;
+    }
+
+    public void addRooms(Collection<RoomModel> roomModels) {
+        this.rooms.addAll(roomModels);
+    }
+
+    public void addRoom(RoomModel roomModel) {
+        this.rooms.add(roomModel);
     }
 }

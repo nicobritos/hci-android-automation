@@ -7,11 +7,12 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.hci.StarkIndustries.data.Models.Result;
 import com.hci.StarkIndustries.data.Models.RoutineModel;
+import com.hci.StarkIndustries.data.remote.Api;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-public class RoutineRepository extends CommonRepository {
+public class RoutineRepository extends FavouriteRepository {
     private static RoutineRepository instance;
 
     private RoutineRepository(Application application) {
@@ -52,5 +53,10 @@ public class RoutineRepository extends CommonRepository {
         );
 
         return result;
+    }
+
+    @Override
+    protected Api.APIEntityType getEntityType() {
+        return Api.APIEntityType.ROUTINE;
     }
 }

@@ -18,9 +18,10 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.OvenModel;
-import com.hci.StarkIndustries.ui.DeviceMenu.IdentifiableFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.DeviceFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.DeviceViewModel;
 
-public class OvenFragment extends IdentifiableFragment {
+public class OvenFragment extends DeviceFragment {
     private OvenViewModel mViewModel;
 
     public static OvenFragment newInstance() {
@@ -137,5 +138,10 @@ public class OvenFragment extends IdentifiableFragment {
             Switch power = getView().findViewById(R.id.OvenPower);
             power.setChecked(ovenModel.isPowered());
         });
+    }
+
+    @Override
+    public DeviceViewModel getViewModel() {
+        return this.mViewModel;
     }
 }

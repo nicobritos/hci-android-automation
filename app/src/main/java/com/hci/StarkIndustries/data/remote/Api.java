@@ -14,6 +14,7 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.hci.StarkIndustries.data.Models.RegionModel;
+import com.hci.StarkIndustries.data.Models.Result;
 import com.hci.StarkIndustries.data.Models.RoomModel;
 import com.hci.StarkIndustries.data.Models.RoutineModel;
 import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
@@ -68,10 +69,31 @@ public class Api {
                 this.formatUrl(API_REGIONS),
                 null,
                 "result",
-                new TypeToken<ArrayList<RegionModel>>() {},
+                new TypeToken<ArrayList<RegionModel>>() {
+                },
                 null,
                 null,
-                listener,
+                response -> {
+                    Result<ArrayList<RegionModel>> regionResult = new Result<>(response);
+
+                    ArrayList<RegionModel> out = new ArrayList<>();
+                    for (RegionModel regionModel : regionResult.getResult()) {
+                        getRooms(regionModel.getId(),
+                                roomsResponse -> {
+                                    Result<ArrayList<RoomModel>> roomsResult = new Result<>(roomsResponse);
+                                    regionModel.addRooms(roomsResult.getResult());
+                                    out.add(regionModel);
+                                    if (out.size() == regionResult.getResult().size()) {
+                                        listener.onResponse(out);
+                                    }
+                                },
+                                error -> {
+                                    out.add(regionModel);
+                                    errorListener.onErrorResponse(error);
+                                }
+                        );
+                    }
+                },
                 errorListener
         );
 
@@ -87,10 +109,21 @@ public class Api {
                 this.formatUrl(API_REGIONS, id),
                 null,
                 "result",
-                new TypeToken<RegionModel>() {},
+                new TypeToken<RegionModel>() {
+                },
                 null,
                 null,
-                listener,
+                response -> {
+                    Result<RegionModel> regionResult = new Result<>(response);
+                    getRooms(id,
+                            roomsResponse -> {
+                                Result<ArrayList<RoomModel>> roomsResult = new Result<>(roomsResponse);
+                                regionResult.getResult().addRooms(roomsResult.getResult());
+                                listener.onResponse(regionResult.getResult());
+                            },
+                            errorListener
+                    );
+                },
                 errorListener
         );
 
@@ -107,7 +140,8 @@ public class Api {
                 this.formatUrl(API_ROOMS),
                 null,
                 "result",
-                new TypeToken<ArrayList<RoomModel>>() {},
+                new TypeToken<ArrayList<RoomModel>>() {
+                },
                 null,
                 null,
                 listener,
@@ -126,7 +160,8 @@ public class Api {
                 this.formatUrl(API_REGIONS, sectionId, API_ROOMS),
                 null,
                 "result",
-                new TypeToken<ArrayList<RoomModel>>() {},
+                new TypeToken<ArrayList<RoomModel>>() {
+                },
                 null,
                 null,
                 listener,
@@ -145,7 +180,8 @@ public class Api {
                 this.formatUrl(API_ROOMS, id),
                 null,
                 "result",
-                new TypeToken<RoomModel>() {},
+                new TypeToken<RoomModel>() {
+                },
                 null,
                 null,
                 listener,
@@ -223,7 +259,8 @@ public class Api {
                 this.formatUrl(API_DEVICES, id, actionId),
                 payload,
                 "result",
-                new TypeToken<Boolean>() {},
+                new TypeToken<Boolean>() {
+                },
                 null,
                 null,
                 listener,
@@ -245,7 +282,8 @@ public class Api {
                 this.formatUrl(API_ROUTINES),
                 null,
                 "result",
-                new TypeToken<ArrayList<RoutineModel>>() {},
+                new TypeToken<ArrayList<RoutineModel>>() {
+                },
                 null,
                 null,
                 listener,
@@ -264,7 +302,8 @@ public class Api {
                 this.formatUrl(API_ROUTINES, id),
                 null,
                 "result",
-                new TypeToken<RoutineModel>() {},
+                new TypeToken<RoutineModel>() {
+                },
                 null,
                 null,
                 listener,
@@ -277,6 +316,35 @@ public class Api {
         return uuid;
     }
 
+    // General
+    public String updateMeta(String id, String name, JSONObject meta, APIEntityType entityType, Response.Listener<Boolean> listener, Response.ErrorListener errorListener) {
+        String endpoint = getEndpoint(entityType);
+
+        JSONObject data = new JSONObject();
+        try {
+            data.put("name", name);
+            data.put("meta", meta);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        GsonRequest<Object, Boolean> request = new GsonRequest<>(
+                Request.Method.PUT,
+                this.formatUrl(endpoint, id),
+                data,
+                "result",
+                new TypeToken<Boolean>() {
+                },
+                null,
+                null,
+                listener,
+                errorListener
+        );
+
+        String uuid = UUID.randomUUID().toString();
+        request.setTag(uuid);
+        requestQueue.add(request);
+        return uuid;
+    }
 
     public void cancelRequest(String uuid) {
         if ((uuid != null) && (requestQueue != null)) {
@@ -356,24 +424,50 @@ public class Api {
         try {
             switch (DeviceTypeEnum.getDeviceTypeEnumFromId(jsonObject.getJSONObject("type").getString("id"))) {
                 case Door:
-                    return gson.fromJson(jsonObject.toString(), (new TypeToken<DoorModel>() {}).getType());
+                    return gson.fromJson(jsonObject.toString(), (new TypeToken<DoorModel>() {
+                    }).getType());
                 case Speaker:
-                    return gson.fromJson(jsonObject.toString(), (new TypeToken<SpeakerModel>() {}).getType());
+                    return gson.fromJson(jsonObject.toString(), (new TypeToken<SpeakerModel>() {
+                    }).getType());
                 case AC:
-                    return gson.fromJson(jsonObject.toString(), (new TypeToken<ACModel>() {}).getType());
+                    return gson.fromJson(jsonObject.toString(), (new TypeToken<ACModel>() {
+                    }).getType());
                 case Curtains:
-                    return gson.fromJson(jsonObject.toString(), (new TypeToken<CurtainsModel>() {}).getType());
+                    return gson.fromJson(jsonObject.toString(), (new TypeToken<CurtainsModel>() {
+                    }).getType());
                 case Fridge:
-                    return gson.fromJson(jsonObject.toString(), (new TypeToken<FridgeModel>() {}).getType());
+                    return gson.fromJson(jsonObject.toString(), (new TypeToken<FridgeModel>() {
+                    }).getType());
                 case Lamp:
-                    return gson.fromJson(jsonObject.toString(), (new TypeToken<LampModel>() {}).getType());
+                    return gson.fromJson(jsonObject.toString(), (new TypeToken<LampModel>() {
+                    }).getType());
                 case Oven:
-                    return gson.fromJson(jsonObject.toString(), (new TypeToken<OvenModel>() {}).getType());
+                    return gson.fromJson(jsonObject.toString(), (new TypeToken<OvenModel>() {
+                    }).getType());
             }
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
 
         return null;
+    }
+
+    private String getEndpoint(APIEntityType entityType) {
+        switch (entityType) {
+            case ROOM:
+                return API_ROOMS;
+            case DEVICE:
+                return API_DEVICES;
+            case REGION:
+                return API_REGIONS;
+            case ROUTINE:
+                return API_ROUTINES;
+            default:
+                return null;
+        }
+    }
+
+    public enum APIEntityType {
+        DEVICE, ROOM, REGION, ROUTINE
     }
 }

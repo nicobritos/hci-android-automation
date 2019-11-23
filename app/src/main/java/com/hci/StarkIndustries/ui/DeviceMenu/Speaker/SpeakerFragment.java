@@ -17,13 +17,14 @@ import androidx.lifecycle.ViewModelProviders;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.SpeakerModel;
-import com.hci.StarkIndustries.ui.DeviceMenu.IdentifiableFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.DeviceFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.DeviceViewModel;
 
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class SpeakerFragment extends IdentifiableFragment {
+public class SpeakerFragment extends DeviceFragment {
     private SpeakerViewModel mViewModel;
     private SongTimer songProgressTimer;
     
@@ -194,6 +195,11 @@ public class SpeakerFragment extends IdentifiableFragment {
 //        else
 //            PauseSong();
 //
+    }
+
+    @Override
+    public DeviceViewModel getViewModel() {
+        return this.mViewModel;
     }
 
     private class SongTimer extends Timer {
