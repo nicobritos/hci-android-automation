@@ -278,7 +278,7 @@ public class Api {
                 "result",
                 new TypeToken<Object>() {
                 },
-                null,
+                this::parseDeviceAction,
                 this.getHeaders(),
                 listener,
                 errorListener
@@ -449,6 +449,10 @@ public class Api {
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private Object parseDeviceAction(Gson gson, String jsonString) {
+        return true;
     }
 
     private CommonDeviceModel parseDeviceJSON(Gson gson, JSONObject jsonObject) {
