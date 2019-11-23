@@ -1,7 +1,5 @@
 package com.hci.StarkIndustries.data.remote;
 
-import android.util.Log;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
@@ -14,7 +12,6 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
 import java.util.function.BiFunction;

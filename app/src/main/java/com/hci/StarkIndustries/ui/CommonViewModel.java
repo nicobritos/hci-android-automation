@@ -1,7 +1,5 @@
 package com.hci.StarkIndustries.ui;
 
-import android.util.Log;
-
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -41,7 +39,6 @@ public abstract class CommonViewModel<T> extends ViewModel {
 
     protected <R> Void reloadModelCallback(Result<R> result) {
         if (result.ok()) loadModel();
-        else Log.d("CommonViewModel", result.getError().getDescription());
         return null;
     }
 }

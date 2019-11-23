@@ -66,17 +66,17 @@ public class RecyclerViewRoutinesAdapter extends RecyclerView.Adapter<RecyclerVi
                     .get()
                     .setFavourite(model.getId(), model.toJSON(), !model.isFavourite())
                     .observe(this.lifecycleOwner, result -> {
-                        if (result.ok() && result.getResult()) {
-                            model.setFavourite(!model.isFavourite());
-                            if (model.isFavourite())
-                                imageView.setImageResource(R.drawable.ic_star_black_24dp);
-                            else
-                                imageView.setImageResource(R.drawable.ic_star_white_48dp);
-                        } else {
-                            Log.e(TAG, result.getError().getDescription().toString());
-                        }
-                    }
-            );
+                                if (result.ok() && result.getResult()) {
+                                    model.setFavourite(!model.isFavourite());
+                                    if (model.isFavourite())
+                                        imageView.setImageResource(R.drawable.ic_star_black_24dp);
+                                    else
+                                        imageView.setImageResource(R.drawable.ic_star_white_48dp);
+                                } else {
+                                    Log.e(TAG, result.getError().getDescription());
+                                }
+                            }
+                    );
         });
     }
 

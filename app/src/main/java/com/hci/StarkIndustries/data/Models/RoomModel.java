@@ -2,9 +2,6 @@ package com.hci.StarkIndustries.data.Models;
 
 import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;

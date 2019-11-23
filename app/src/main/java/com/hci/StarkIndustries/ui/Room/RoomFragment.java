@@ -9,12 +9,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.ui.DeviceMenu.IdentifiableFragment;
 import com.hci.StarkIndustries.ui.Miniatures.RoomDevices.RoomDevicesListFragment;
-import com.hci.StarkIndustries.ui.RecycleViewAdapters.RecyclerViewRegionsAdapter;
 
 public class RoomFragment extends IdentifiableFragment {
     private RoomViewModel mViewModel;

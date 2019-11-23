@@ -1,7 +1,6 @@
 package com.hci.StarkIndustries.data.domain;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -11,8 +10,6 @@ import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
 import com.hci.StarkIndustries.data.remote.Api;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
