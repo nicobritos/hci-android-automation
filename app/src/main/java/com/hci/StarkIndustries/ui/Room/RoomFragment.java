@@ -1,5 +1,6 @@
 package com.hci.StarkIndustries.ui.Room;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+//import com.hci.StarkIndustries.Models.RoomModel;
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.ui.Miniatures.RoomDevices.RoomDevicesListFragment;
 
@@ -50,31 +61,22 @@ public class RoomFragment extends Fragment {
         return root;
     }
 
+
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(RoomViewModel.class);
 
-//        mViewModel.getModel(id).observe(this, new Observer<RoomModel>() {
-//            @Override
-//            public void onChanged(RoomModel roomModel) {
-//                ((TextView) getView().findViewById(R.id.RoomTitle)).setText(roomModel.name);
+        mViewModel.getModel(id).observe(this, new Observer<RoomModel>() {
+            @Override
+            public void onChanged(RoomModel roomModel) {
+                ((TextView) getView().findViewById(R.id.RoomTitle)).setText(roomModel.getName());
 
-//                RoomDevicesListFragment fragment = (RoomDevicesListFragment) getChildFragmentManager()
-//                        .findFragmentById(R.id.RoomDevicesFragmentContainer);
-
-//                if (fragment.getDevicesInRoom() == 0) {
-//
-//                    getChildFragmentManager()
-//                            .findFragmentById(R.id.NoDevicesOnRoomFragment).getView().setVisibility(View.VISIBLE);
-//                } else {
-//                    getChildFragmentManager()
-//                            .findFragmentById(R.id.NoDevicesOnRoomFragment).getView().setVisibility(View.GONE);
-//                }
-
-
-//            }
-//        });
+                RoomDevicesListFragment fragment = (RoomDevicesListFragment) getChildFragmentManager()
+                        .findFragmentById(R.id.RoomDevicesFragmentContainer);
+            }
+        });
 
 
     }
