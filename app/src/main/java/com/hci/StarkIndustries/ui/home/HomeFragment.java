@@ -39,7 +39,7 @@ public class HomeFragment extends Fragment implements IClickableItem {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        homeViewModel.getModel(this).observe(this, arrayListResult -> {
+        homeViewModel.getModel().observe(this, arrayListResult -> {
             RecyclerView recyclerView = getView().findViewById(R.id.HouseRegionsRecyclerView);
 
             if (arrayListResult.ok()) {

@@ -154,11 +154,6 @@ public class SpeakerFragment extends DeviceFragment {
 //        PauseSong();
 //    }
 
-    @Override
-    public String getID() {
-        return getArguments().getString("id");
-    }
-
     private void PlaySong() {
         SpeakerModel model = mViewModel.getModel(this, getID()).getValue();
 
