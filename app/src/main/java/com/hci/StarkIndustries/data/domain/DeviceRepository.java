@@ -10,6 +10,7 @@ import com.hci.StarkIndustries.data.Models.Result;
 import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
 import com.hci.StarkIndustries.data.remote.Api;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -41,17 +42,12 @@ public class DeviceRepository extends FavouriteRepository {
         return result;
     }
 
-    public LiveData<Result<Boolean>> performActionOnDevice(String id, String actionId, String key, String value) {
-        JSONObject payload = new JSONObject();
-        if (key != null) {
-            try {
-                payload.put(key, value);
-            } catch (JSONException e) {
-                Log.e(TAG, e.toString());
-            }
-        }
+    public <T> LiveData<Result<Object>> performActionOnDevice(String id, String actionId, String key, T value) {
+        JSONArray payload = new JSONArray();
+        if (key != null)
+            payload.put(value);
 
-        final MutableLiveData<Result<Boolean>> result = new MutableLiveData<>();
+        final MutableLiveData<Result<Object>> result = new MutableLiveData<>();
         this.api.performActionOnDevice(id, actionId, payload, getListener(result), getErrorListener(api, result));
         return result;
     }

@@ -1,6 +1,7 @@
 package com.hci.StarkIndustries.ui.DeviceMenu.AC;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +34,6 @@ public class ACFragment extends DeviceFragment {
         View root = inflater.inflate(R.layout.ac_fragment, container, false);
 
         final TextView tempView = root.findViewById(R.id.ACTemperatureView);
-
         final SeekBar tempSlider = root.findViewById(R.id.ACTemperatureSlider);
 
         tempSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -56,7 +56,6 @@ public class ACFragment extends DeviceFragment {
         modeDDL.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // API
                 mViewModel.selectMode(position);
             }
 
@@ -81,7 +80,6 @@ public class ACFragment extends DeviceFragment {
         horizMovDDL.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // API
                 mViewModel.selectHorizontalMovement(position);
             }
 

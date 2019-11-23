@@ -1,12 +1,10 @@
 package com.hci.StarkIndustries.data.remote;
 
-import java.util.ArrayList;
-
 public class Error {
     private int code;
-    private ArrayList<String> description;
+    private String description;
 
-    public Error(int code, ArrayList<String> description) {
+    public Error(int code, String description) {
         this.code = code;
         this.description = description;
     }
@@ -15,15 +13,7 @@ public class Error {
         return this.code;
     }
 
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public ArrayList<String> getDescription() {
+    public String getDescription() {
         return this.description;
-    }
-
-    public void setDescription(ArrayList<String> description) {
-        this.description = description;
     }
 }

@@ -270,16 +270,16 @@ public class Api {
         return uuid;
     }
 
-    public String performActionOnDevice(String id, String actionId, JSONObject payload, Response.Listener<Boolean> listener, Response.ErrorListener errorListener) {
-        GsonRequest<JSONObject, Boolean> request = new GsonRequest<>(
+    public String performActionOnDevice(String id, String actionId, JSONArray payload, Response.Listener<Object> listener, Response.ErrorListener errorListener) {
+        GsonRequest<Object, Object> request = new GsonRequest<>(
                 Request.Method.PUT,
                 this.formatUrl(API_DEVICES, id, actionId),
                 payload,
                 "result",
-                new TypeToken<Boolean>() {
+                new TypeToken<Object>() {
                 },
                 null,
-                null,
+                this.getHeaders(),
                 listener,
                 errorListener
         );
@@ -353,11 +353,9 @@ public class Api {
 
     // General
     public String updateMeta(String id, JSONObject parsedObject, APIEntityType entityType, Response.Listener<Boolean> listener, Response.ErrorListener errorListener) {
-        String endpoint = getEndpoint(entityType);
-
         GsonRequest<Object, Boolean> request = new GsonRequest<>(
                 Request.Method.PUT,
-                this.formatUrl(endpoint, id),
+                this.formatUrl(getEndpoint(entityType), id),
                 parsedObject,
                 "result",
                 new TypeToken<Boolean>() {
@@ -404,8 +402,7 @@ public class Api {
         if (!handled) {
             Log.e(TAG, error.toString());
 
-            ArrayList<String> description = new ArrayList<>(Arrays.asList(error.getMessage()));
-            response = new Error(6, description);
+            response = new Error(6, error.getMessage());
         }
 
         return response;

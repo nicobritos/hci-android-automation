@@ -58,8 +58,6 @@ public class LampFragment extends DeviceFragment {
         colorPicker.setColorSelectionListener(new SimpleColorSelectionListener() {
             @Override
             public void onColorSelected(int color) {
-                // Do whatever you want with the color
-
                 if (switch_.isChecked()) {
                     imageView.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
                     mViewModel.setColor(color);

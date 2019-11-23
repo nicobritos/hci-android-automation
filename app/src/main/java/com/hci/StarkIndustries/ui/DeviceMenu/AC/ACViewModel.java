@@ -31,6 +31,8 @@ public class ACViewModel extends DeviceViewModel<ACModel> {
     private static final String TAG = "ACViewModel";
 
     public void setPower(boolean isChecked) {
+        if (isChecked == this.model.isPowered()) return;
+
         DeviceRepository.ACActions action;
         if (isChecked)
             action = DeviceRepository.ACActions.TURN_ON;
@@ -64,6 +66,7 @@ public class ACViewModel extends DeviceViewModel<ACModel> {
                 return;
         }
 
+        if (value.equals(this.model.getVerticalSwing())) return;
         this.performActionOnDevice(action.getCommand(), action.getField(), value);
     }
 
@@ -94,6 +97,7 @@ public class ACViewModel extends DeviceViewModel<ACModel> {
                 return;
         }
 
+        if (value.equals(this.model.getHorizontalSwing())) return;
         this.performActionOnDevice(action.getCommand(), action.getField(), value);
     }
 
@@ -121,6 +125,7 @@ public class ACViewModel extends DeviceViewModel<ACModel> {
                 return;
         }
 
+        if (value.equals(this.model.getFanSpeed())) return;
         this.performActionOnDevice(action.getCommand(), action.getField(), value);
     }
 
@@ -142,13 +147,15 @@ public class ACViewModel extends DeviceViewModel<ACModel> {
                 return;
         }
 
+        if (value.equals(this.model.getMode())) return;
         this.performActionOnDevice(action.getCommand(), action.getField(), value);
     }
 
-    public void setTemperature(int i) {
+    public void setTemperature(int temperature) {
+        if (temperature == this.model.getTemperature()) return;
         DeviceRepository.ACActions action = DeviceRepository.ACActions.SET_TEMPERATURE;
 
-        this.performActionOnDevice(action.getCommand(), action.getField(), String.valueOf(i + ACModel.MIN_TEMPERATURE));
+        this.performActionOnDevice(action.getCommand(), action.getField(), temperature);
     }
 
     public Integer getModeInt() {
