@@ -12,10 +12,13 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hci.StarkIndustries.R;
+import com.hci.StarkIndustries.data.Models.Result;
 import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
 import com.hci.StarkIndustries.ui.DeviceMenu.DeviceMenuContainerFragment;
 import com.hci.StarkIndustries.ui.RecycleViewAdapters.DevicesRecyclerViewClickInteface;
 import com.hci.StarkIndustries.ui.RecycleViewAdapters.RecyclerViewDevicesAdapter;
+
+import java.util.ArrayList;
 
 public abstract class DevicesListFragment extends Fragment implements DevicesRecyclerViewClickInteface {
     protected DevicesListViewModel mViewModel;
@@ -53,6 +56,25 @@ public abstract class DevicesListFragment extends Fragment implements DevicesRec
                 getView().findViewById(R.id.NoDevicesView).setVisibility(View.VISIBLE);
             }
         });
+    }
+
+    public void ReloadElements(){
+        Result<ArrayList<CommonDeviceModel>>temp = mViewModel.getModel().getValue();
+        RecyclerView recyclerView = getView().findViewById(R.id.RecyclerViewDevices);
+        ArrayList<CommonDeviceModel> arr = new ArrayList<>();
+
+        if (temp != null && temp.ok()) {
+            arr = temp.getResult();
+        }
+            ((RecyclerViewDevicesAdapter) recyclerView.getAdapter()).setData(arr);
+            if (arr.size() == 0) {
+                getView().findViewById(R.id.NoDevicesView).setVisibility(View.VISIBLE);
+            } else {
+                getView().findViewById(R.id.NoDevicesView).setVisibility(View.GONE);
+            }
+
+
+
     }
 
     public void LoadViewModel() {

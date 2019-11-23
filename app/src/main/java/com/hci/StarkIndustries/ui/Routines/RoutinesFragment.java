@@ -10,8 +10,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.hci.StarkIndustries.R;
+import com.hci.StarkIndustries.ui.APIReloadingFragment;
+import com.hci.StarkIndustries.ui.Miniatures.Routines.RoutinesListFragment;
 
-public class RoutinesFragment extends Fragment {
+public class RoutinesFragment extends APIReloadingFragment {
 
     private static final String TAG = "RoutinesFragment";
 
@@ -24,5 +26,11 @@ public class RoutinesFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_routines, container, false);
 
         return root;
+    }
+
+    @Override
+    protected void reloadPage() {
+        RoutinesListFragment fragment = (RoutinesListFragment) getChildFragmentManager().findFragmentById(R.id.RoutinesFragmentContainer);
+        fragment.ReloadElements();
     }
 }
