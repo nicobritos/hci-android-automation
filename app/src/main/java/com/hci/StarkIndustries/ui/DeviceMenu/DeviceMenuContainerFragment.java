@@ -115,7 +115,6 @@ public class DeviceMenuContainerFragment extends DialogFragment {
         return fragment;
     }
 
-
     private class OnClickExitDialog implements View.OnClickListener {
         @Override
         public void onClick(View v) {

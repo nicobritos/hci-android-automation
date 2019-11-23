@@ -32,6 +32,8 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class Api {
@@ -40,13 +42,14 @@ public class Api {
     private final static String API_DEVICES = "devices";
     private final static String API_ROUTINES = "routines";
     private final static String API_REGIONS = "homes";
+    private final static String API_ROUTINES_EXECUTE = "execute";
 
     private static Api instance;
     private static RequestQueue requestQueue;
     // Use IP 10.0.2.2 instead of 127.0.0.1 when running Android emulator in the
     // same computer that runs the API.
     // TODO: Change
-    private final String URL = "http://10.0.2.2:8080/api";
+    private final String URL = "http://10.0.2.2:9090/api";
 
     private Api(Context context) {
         requestQueue = VolleySingleton.getInstance(context).getRequestQueue();
@@ -192,6 +195,23 @@ public class Api {
         return uuid;
     }
 
+    public String getRoomDevices(String id, Response.Listener<RoomModel> listener, Response.ErrorListener errorListener) {
+        return this.getRoom(
+                id,
+                roomResponse -> {
+                    this.getDevices(
+                            id,
+                            devicesResponse -> {
+                                roomResponse.addDevices(devicesResponse);
+                                listener.onResponse(roomResponse);
+                            },
+                            errorListener
+                    );
+                },
+                errorListener
+        );
+    }
+
     // Devices
     public String getDevices(Response.Listener<ArrayList<CommonDeviceModel>> listener, Response.ErrorListener errorListener) {
         GsonRequest<Object, ArrayList<CommonDeviceModel>> request = new GsonRequest<>(
@@ -311,26 +331,39 @@ public class Api {
         return uuid;
     }
 
-    // General
-    public String updateMeta(String id, String name, JSONObject meta, APIEntityType entityType, Response.Listener<Boolean> listener, Response.ErrorListener errorListener) {
-        String endpoint = getEndpoint(entityType);
-
-        JSONObject data = new JSONObject();
-        try {
-            data.put("name", name);
-            data.put("meta", meta);
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
-        }
+    public String executeRoutine(String id, Response.Listener<Boolean> listener, Response.ErrorListener errorListener) {
         GsonRequest<Object, Boolean> request = new GsonRequest<>(
-                Request.Method.PUT,
-                this.formatUrl(endpoint, id),
-                data,
+                Request.Method.GET,
+                this.formatUrl(API_ROUTINES, id, API_ROUTINES_EXECUTE),
+                null,
                 "result",
                 new TypeToken<Boolean>() {
                 },
                 null,
                 null,
+                listener,
+                errorListener
+        );
+
+        String uuid = UUID.randomUUID().toString();
+        request.setTag(uuid);
+        requestQueue.add(request);
+        return uuid;
+    }
+
+    // General
+    public String updateMeta(String id, JSONObject parsedObject, APIEntityType entityType, Response.Listener<Boolean> listener, Response.ErrorListener errorListener) {
+        String endpoint = getEndpoint(entityType);
+
+        GsonRequest<Object, Boolean> request = new GsonRequest<>(
+                Request.Method.PUT,
+                this.formatUrl(endpoint, id),
+                parsedObject,
+                "result",
+                new TypeToken<Boolean>() {
+                },
+                null,
+                this.getHeaders(),
                 listener,
                 errorListener
         );
@@ -395,7 +428,14 @@ public class Api {
         ArrayList<CommonDeviceModel> list = new ArrayList<>();
 
         try {
-            JSONArray array = new JSONObject(jsonString).getJSONArray("devices");
+            JSONObject jsonObject = new JSONObject(jsonString);
+            JSONArray array;
+            if (jsonObject.has("devices")) {
+                array = new JSONObject(jsonString).getJSONArray("devices");
+            } else {
+                array = new JSONObject(jsonString).getJSONArray("result");
+            }
+
             for (int i = 0; i < array.length(); i++) {
                 list.add(this.parseDeviceJSON(gson, array.getJSONObject(i)));
             }
@@ -460,6 +500,13 @@ public class Api {
                 return null;
         }
     }
+
+    public Map<String, String> getHeaders() {
+        HashMap<String, String> headers = new HashMap<>();
+        headers.put("Content-Type", "application/json; charset=utf-8");
+        return headers;
+    }
+
 
     public enum APIEntityType {
         DEVICE, ROOM, REGION, ROUTINE

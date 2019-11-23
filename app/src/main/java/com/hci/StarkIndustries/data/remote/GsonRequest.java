@@ -1,5 +1,7 @@
 package com.hci.StarkIndustries.data.remote;
 
+import android.util.Log;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
@@ -9,8 +11,10 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
 import java.util.function.BiFunction;
@@ -55,7 +59,14 @@ class GsonRequest<T1, T2> extends Request<T2> {
 
     @Override
     public byte[] getBody() throws AuthFailureError {
-        return this.data != null ? gson.toJson(this.data).getBytes() : super.getBody();
+        if (this.data != null) {
+            if (this.data instanceof JSONObject || this.data instanceof JSONArray) {
+                return this.data.toString().getBytes();
+            } else {
+                return this.gson.toJson(this.data).getBytes();
+            }
+        }
+        return super.getBody();
     }
 
     @Override

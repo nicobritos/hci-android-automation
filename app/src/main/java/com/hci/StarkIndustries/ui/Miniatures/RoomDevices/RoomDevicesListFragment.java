@@ -29,6 +29,6 @@ public class RoomDevicesListFragment extends DevicesListFragment {
         mViewModel = ViewModelProviders.of(this).get(RoomDevicesListViewModel.class);
         //((RoomDevicesListViewModel)mViewModel).SetID(this.getArguments().getString("roomId"));
 
-        ((RoomDevicesListViewModel) mViewModel).SetID(this.id);
+//        ((RoomDevicesListViewModel) mViewModel).SetID(this.id);
     }
 }

@@ -34,6 +34,12 @@ public class RoomRepository extends CommonRepository {
         return result;
     }
 
+    public LiveData<Result<RoomModel>> getRoomDevices(String id) {
+        final MutableLiveData<Result<RoomModel>> result = new MutableLiveData<>();
+        this.api.getRoomDevices(id, getListener(result), getErrorListener(api, result));
+        return result;
+    }
+
     public LiveData<Result<ArrayList<RoomModel>>> getRooms() {
         final MutableLiveData<Result<ArrayList<RoomModel>>> result = new MutableLiveData<>();
         this.api.getRooms(getListener(result), getErrorListener(api, result));

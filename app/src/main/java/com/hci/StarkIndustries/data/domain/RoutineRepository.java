@@ -30,6 +30,12 @@ public class RoutineRepository extends FavouriteRepository {
         return instance;
     }
 
+    public LiveData<Result<Boolean>> executeRoutine(String id) {
+        final MutableLiveData<Result<Boolean>> result = new MutableLiveData<>();
+        this.api.executeRoutine(id, getListener(result), getErrorListener(api, result));
+        return result;
+    }
+
     public LiveData<Result<RoutineModel>> getRoutine(String id) {
         final MutableLiveData<Result<RoutineModel>> result = new MutableLiveData<>();
         this.api.getRoutine(id, getListener(result), getErrorListener(api, result));

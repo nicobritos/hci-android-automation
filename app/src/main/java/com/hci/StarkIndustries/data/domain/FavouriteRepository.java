@@ -1,6 +1,7 @@
 package com.hci.StarkIndustries.data.domain;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -18,16 +19,15 @@ public abstract class FavouriteRepository extends CommonRepository {
         super(application);
     }
 
-    public LiveData<Result<Boolean>> setFavourite(String id, String name, JSONObject meta, boolean value) {
+    public LiveData<Result<Boolean>> setFavourite(String id, JSONObject parsedObject, boolean value) {
         try {
-            if (value) meta.put("favourite", true);
-            else meta.put("favourite", false);
+            parsedObject.getJSONObject("meta").put("favourite", value);
         } catch (JSONException e) {
-            return null;
+            throw new RuntimeException(e);
         }
 
         final MutableLiveData<Result<Boolean>> result = new MutableLiveData<>();
-        this.api.updateMeta(id, name, meta, getEntityType(), getListener(result), getErrorListener(api, result));
+        this.api.updateMeta(id, parsedObject, getEntityType(), getListener(result), getErrorListener(api, result));
         return result;
     }
 

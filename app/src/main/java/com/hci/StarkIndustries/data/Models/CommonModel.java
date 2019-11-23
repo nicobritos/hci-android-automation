@@ -1,5 +1,6 @@
 package com.hci.StarkIndustries.data.Models;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Map;
@@ -36,5 +37,17 @@ public abstract class CommonModel {
         if (o == null || getClass() != o.getClass()) return false;
         CommonModel that = (CommonModel) o;
         return getId().equals(that.getId());
+    }
+
+    public JSONObject toJSON() {
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("name", name);
+            jsonObject.put("meta", new JSONObject(meta));
+            jsonObject.put("id", id);
+            return jsonObject;
+        } catch (JSONException e) {
+            return null;
+        }
     }
 }

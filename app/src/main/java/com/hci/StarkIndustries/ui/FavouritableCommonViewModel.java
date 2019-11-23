@@ -10,8 +10,7 @@ public abstract class FavouritableCommonViewModel<T extends FavouriteCommonModel
     public LiveData<Result<Boolean>> setFavourite(boolean value) {
         LiveData<Result<Boolean>> resultLiveData = getRepository().setFavourite(
                 model.getId(),
-                model.getName(),
-                model.getMeta(),
+                model.toJSON(),
                 value
         );
         resultLiveData.observe(this.lifecycleOwner, this::reloadModelCallback);

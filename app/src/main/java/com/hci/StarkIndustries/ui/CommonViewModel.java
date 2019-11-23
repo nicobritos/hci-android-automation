@@ -8,14 +8,14 @@ import androidx.lifecycle.ViewModel;
 import com.hci.StarkIndustries.data.Models.CommonModel;
 import com.hci.StarkIndustries.data.Models.Result;
 
-public abstract class CommonViewModel<T extends CommonModel> extends ViewModel {
+public abstract class CommonViewModel<T> extends ViewModel {
     protected LifecycleOwner lifecycleOwner;
     protected MutableLiveData<T> mModel;
     protected String id;
     protected T model;
 
     public LiveData<T> getModel(LifecycleOwner lifecycleOwner, String id) {
-        if (mModel == null || !model.getId().equalsIgnoreCase(id)) {
+        if (mModel == null || (model instanceof CommonModel && !((CommonModel) model).getId().equalsIgnoreCase(id))) {
             mModel = new MutableLiveData<>();
             this.id = id;
             this.lifecycleOwner = lifecycleOwner;
@@ -25,7 +25,7 @@ public abstract class CommonViewModel<T extends CommonModel> extends ViewModel {
         return mModel;
     }
 
-    protected void onModelLoad(Result<? extends CommonModel> result) {
+    protected void onModelLoad(Result<? super T> result) {
         if (result.ok()) {
             //noinspection unchecked
             model = (T) result.getResult();
