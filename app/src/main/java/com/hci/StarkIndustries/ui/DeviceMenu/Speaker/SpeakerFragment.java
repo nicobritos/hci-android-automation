@@ -26,6 +26,7 @@ import java.util.TimerTask;
 public class SpeakerFragment extends IdentifiableFragment {
     private SpeakerViewModel mViewModel;
     private SongTimer songProgressTimer;
+    
 
     public static SpeakerFragment newInstance() {
         return new SpeakerFragment();

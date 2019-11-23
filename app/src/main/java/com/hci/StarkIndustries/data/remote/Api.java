@@ -3,6 +3,8 @@ package com.hci.StarkIndustries.data.remote;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
+
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -31,6 +33,7 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 public class Api {
@@ -214,8 +217,8 @@ public class Api {
         return uuid;
     }
 
-    public String performActionOnDevice(String id, String actionId, JSONObject payload, Response.Listener<Boolean> listener, Response.ErrorListener errorListener) {
-        GsonRequest<JSONObject, Boolean> request = new GsonRequest<>(
+    public String performActionOnDevice(String id, String actionId, List<String> payload, Response.Listener<Boolean> listener, Response.ErrorListener errorListener) {
+        GsonRequest<List<String>, Boolean> request = new GsonRequest<>(
                 Request.Method.PUT,
                 this.formatUrl(API_DEVICES, id, actionId),
                 payload,
@@ -226,6 +229,8 @@ public class Api {
                 listener,
                 errorListener
         );
+
+
 
         String uuid = UUID.randomUUID().toString();
         request.setTag(uuid);
@@ -296,7 +301,8 @@ public class Api {
                 Gson gson = new Gson();
                 response = gson.fromJson(json, Error.class);
                 handled = true;
-            } catch (JSONException | UnsupportedEncodingException e) {
+            } catch ( Exception   e) {
+                Log.d(TAG, "handleError: %s",e.getCause());
             }
         }
 
