@@ -9,6 +9,7 @@ import com.hci.StarkIndustries.data.Models.Result;
 import com.hci.StarkIndustries.data.Models.RoomModel;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class RoomRepository extends CommonRepository {
     private static RoomRepository instance;
@@ -42,13 +43,21 @@ public class RoomRepository extends CommonRepository {
 
     public LiveData<Result<ArrayList<RoomModel>>> getRooms() {
         final MutableLiveData<Result<ArrayList<RoomModel>>> result = new MutableLiveData<>();
-        this.api.getRooms(getListener(result), getErrorListener(api, result));
+        this.api.getRooms(getListener(result, roomModels -> {
+            return roomModels.stream()
+                    .sorted()
+                    .collect(Collectors.toCollection(ArrayList::new));
+        }), getErrorListener(api, result));
         return result;
     }
 
     public LiveData<Result<ArrayList<RoomModel>>> getRooms(String regionId) {
         final MutableLiveData<Result<ArrayList<RoomModel>>> result = new MutableLiveData<>();
-        this.api.getRooms(regionId, getListener(result), getErrorListener(api, result));
+        this.api.getRooms(regionId, getListener(result, roomModels -> {
+            return roomModels.stream()
+                    .sorted()
+                    .collect(Collectors.toCollection(ArrayList::new));
+        }), getErrorListener(api, result));
         return result;
     }
 }

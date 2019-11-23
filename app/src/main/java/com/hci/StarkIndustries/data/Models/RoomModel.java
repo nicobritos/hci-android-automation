@@ -31,11 +31,13 @@ public class RoomModel extends CommonModel {
     public void addDevice(CommonDeviceModel deviceModel) {
         createDevices();
         this.devices.add(deviceModel);
+        this.devices.sort(CommonModel::compareTo);
     }
 
     public void addDevices(Collection<CommonDeviceModel> deviceModels) {
         createDevices();
         this.devices.addAll(deviceModels);
+        this.devices.sort(CommonModel::compareTo);
     }
 
     private void createDevices() {

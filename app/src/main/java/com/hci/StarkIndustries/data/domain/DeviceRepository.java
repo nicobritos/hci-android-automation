@@ -51,7 +51,11 @@ public class DeviceRepository extends FavouriteRepository {
 
     public LiveData<Result<ArrayList<CommonDeviceModel>>> getDevices() {
         final MutableLiveData<Result<ArrayList<CommonDeviceModel>>> result = new MutableLiveData<>();
-        this.api.getDevices(getListener(result), getErrorListener(api, result));
+        this.api.getDevices(getListener(result, deviceModels -> {
+            return deviceModels.stream()
+                    .sorted()
+                    .collect(Collectors.toCollection(ArrayList::new));
+        }), getErrorListener(api, result));
         return result;
     }
 
@@ -60,7 +64,10 @@ public class DeviceRepository extends FavouriteRepository {
 
         this.api.getDevices(
                 getListener(result, commonDeviceModels -> {
-                    return commonDeviceModels.stream().filter(CommonDeviceModel::isFavourite).collect(Collectors.toCollection(ArrayList::new));
+                    return commonDeviceModels.stream()
+                            .filter(CommonDeviceModel::isFavourite)
+                            .sorted()
+                            .collect(Collectors.toCollection(ArrayList::new));
                 }),
                 getErrorListener(api, result)
         );
@@ -70,7 +77,11 @@ public class DeviceRepository extends FavouriteRepository {
 
     public LiveData<Result<ArrayList<CommonDeviceModel>>> getDevices(String roomId) {
         final MutableLiveData<Result<ArrayList<CommonDeviceModel>>> result = new MutableLiveData<>();
-        this.api.getDevices(roomId, getListener(result), getErrorListener(api, result));
+        this.api.getDevices(roomId, getListener(result, deviceModels -> {
+            return deviceModels.stream()
+                    .sorted()
+                    .collect(Collectors.toCollection(ArrayList::new));
+        }), getErrorListener(api, result));
         return result;
     }
 

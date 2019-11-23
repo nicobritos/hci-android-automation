@@ -44,7 +44,11 @@ public class RoutineRepository extends FavouriteRepository {
 
     public LiveData<Result<ArrayList<RoutineModel>>> getRoutines() {
         final MutableLiveData<Result<ArrayList<RoutineModel>>> result = new MutableLiveData<>();
-        this.api.getRoutines(getListener(result), getErrorListener(api, result));
+        this.api.getRoutines(getListener(result, routineModels -> {
+            return routineModels.stream()
+                    .sorted()
+                    .collect(Collectors.toCollection(ArrayList::new));
+        }), getErrorListener(api, result));
         return result;
     }
 
@@ -53,7 +57,10 @@ public class RoutineRepository extends FavouriteRepository {
 
         this.api.getRoutines(
                 getListener(result, routineModels -> {
-                    return routineModels.stream().filter(RoutineModel::isFavourite).collect(Collectors.toCollection(ArrayList::new));
+                    return routineModels.stream()
+                            .filter(RoutineModel::isFavourite)
+                            .sorted()
+                            .collect(Collectors.toCollection(ArrayList::new));
                 }),
                 getErrorListener(api, result)
         );
