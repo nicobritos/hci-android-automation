@@ -1,5 +1,7 @@
 package com.hci.StarkIndustries.data.Models;
 
+import org.json.JSONObject;
+
 import java.util.Map;
 
 public abstract class CommonModel {
@@ -19,10 +21,8 @@ public abstract class CommonModel {
         return id;
     }
 
-    public boolean isFavorite() {
-        Object o = meta.get("favourite");
-        if (o instanceof Boolean) return (boolean) o;
-        return false;
+    public JSONObject getMeta() {
+        return new JSONObject(meta);
     }
 
     @Override

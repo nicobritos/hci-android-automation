@@ -18,9 +18,10 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.OvenModel;
-import com.hci.StarkIndustries.ui.DeviceMenu.IPassableIDFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.DeviceFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.DeviceViewModel;
 
-public class OvenFragment extends IPassableIDFragment {
+public class OvenFragment extends DeviceFragment {
     private OvenViewModel mViewModel;
 
     public static OvenFragment newInstance() {
@@ -107,7 +108,7 @@ public class OvenFragment extends IPassableIDFragment {
         mViewModel = ViewModelProviders.of(this).get(OvenViewModel.class);
         // TODO: Use the ViewModel
 
-        mViewModel.getModel(getID()).observe(this, ovenModel -> {
+        mViewModel.getModel(this, getID()).observe(this, ovenModel -> {
             SeekBar temperatureSlider = getView().findViewById(R.id.OvenTemperatureSlider);
             temperatureSlider.setProgress(ovenModel.getTemperature() - OvenModel.MIN_TEMPERATURE, true);
             temperatureSlider.setEnabled(ovenModel.isPowered());
@@ -137,5 +138,10 @@ public class OvenFragment extends IPassableIDFragment {
             Switch power = getView().findViewById(R.id.OvenPower);
             power.setChecked(ovenModel.isPowered());
         });
+    }
+
+    @Override
+    public DeviceViewModel getViewModel() {
+        return this.mViewModel;
     }
 }

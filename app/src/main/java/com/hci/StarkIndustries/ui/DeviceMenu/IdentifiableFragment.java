@@ -2,7 +2,7 @@ package com.hci.StarkIndustries.ui.DeviceMenu;
 
 import androidx.fragment.app.Fragment;
 
-public abstract class IPassableIDFragment extends Fragment {
+public abstract class IdentifiableFragment extends Fragment {
     private String id;
 
     public String getID() {

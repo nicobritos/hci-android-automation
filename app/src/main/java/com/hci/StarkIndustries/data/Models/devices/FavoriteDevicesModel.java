@@ -10,7 +10,7 @@ public class FavoriteDevicesModel extends DevicesListModel {
         return models.stream().filter(new Predicate<CommonDeviceModel>() {
             @Override
             public boolean test(CommonDeviceModel deviceModel) {
-                return deviceModel.isFavorite();
+                return deviceModel.isFavourite();
             }
         }).collect(Collectors.toList());
     }

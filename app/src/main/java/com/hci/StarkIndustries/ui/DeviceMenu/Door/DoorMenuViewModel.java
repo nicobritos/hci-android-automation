@@ -1,74 +1,25 @@
 package com.hci.StarkIndustries.ui.DeviceMenu.Door;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
-
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.DoorModel;
+import com.hci.StarkIndustries.data.domain.DeviceRepository;
+import com.hci.StarkIndustries.ui.DeviceMenu.DeviceViewModel;
 
-public class DoorMenuViewModel extends ViewModel {
-
+public class DoorMenuViewModel extends DeviceViewModel<DoorModel> {
     private static final String TAG = "DoorMenuViewModel";
-    private MutableLiveData<DoorModel> mModel;
-    private String id = "";
-    private DoorModel model;
 
-    public LiveData<DoorModel> getModel(String id) {
-
-        if (mModel == null) {
-            mModel = new MutableLiveData<>();
-            this.id = id;
-            model = new DoorModel();
-//            model = new DoorModel("Puerta", id, "Room1");
-            loadModel();
-        }
-
-        return mModel;
+    public void open() {
+        this.performActionOnDevice(DeviceRepository.DoorActions.OPEN.getCommand());
     }
 
-    private void loadModel() {
-        // Usar el ID que esta en la clase
-        mModel.setValue(model);
-
+    public void close() {
+        this.performActionOnDevice(DeviceRepository.DoorActions.CLOSE.getCommand());
     }
 
-    public boolean open() {
-
-
-//        model.isOpen = true;
-
-        loadModel();
-        return true;
+    public void lock() {
+        this.performActionOnDevice(DeviceRepository.DoorActions.LOCK.getCommand());
     }
 
-    public boolean close() {
-
-
-//        model.isOpen = false;
-        // Do stuff
-        loadModel();
-        return true;
+    public void unlock() {
+        this.performActionOnDevice(DeviceRepository.DoorActions.UNLOCK.getCommand());
     }
-
-    public boolean lock() {
-
-
-//        model.islocked = true;
-
-        // Do stuff
-        loadModel();
-        return true;
-    }
-
-    public boolean unlock() {
-
-
-//        model.islocked = false;
-
-        // Do stuff
-        loadModel();
-        return true;
-    }
-
-
 }

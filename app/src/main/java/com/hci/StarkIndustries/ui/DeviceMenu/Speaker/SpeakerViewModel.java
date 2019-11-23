@@ -1,36 +1,9 @@
 package com.hci.StarkIndustries.ui.DeviceMenu.Speaker;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
-
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.SpeakerModel;
+import com.hci.StarkIndustries.ui.DeviceMenu.DeviceViewModel;
 
-public class SpeakerViewModel extends ViewModel {
-
-    private MutableLiveData<SpeakerModel> mSpeaker;
-    private String id = "";
-
-    private SpeakerModel speaker;
-
-
-    public LiveData<SpeakerModel> getModel(String id) {
-
-        if (mSpeaker == null) {
-            mSpeaker = new MutableLiveData<>();
-//            speaker = new SpeakerModel("PARLANTE", id, "ROOM2");
-            speaker = new SpeakerModel();
-            this.id = id;
-            loadModel();
-        }
-
-        return mSpeaker;
-    }
-
-    private void loadModel() {
-        mSpeaker.setValue(speaker);
-    }
-
+public class SpeakerViewModel extends DeviceViewModel<SpeakerModel> {
     // IMPLEMENTAR EL RESTO DE  LA API
 
     public void setPlayState() {
@@ -73,5 +46,4 @@ public class SpeakerViewModel extends ViewModel {
 //        speaker.genre = genre;
         loadModel();
     }
-
 }

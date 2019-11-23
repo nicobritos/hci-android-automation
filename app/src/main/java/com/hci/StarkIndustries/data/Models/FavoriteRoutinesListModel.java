@@ -10,7 +10,7 @@ public class FavoriteRoutinesListModel extends RoutinesListModel {
         return this.routines.stream().filter(new Predicate<RoutineModel>() {
             @Override
             public boolean test(RoutineModel routineModel) {
-                return routineModel.isFavorite;
+                return routineModel.isFavourite();
             }
         }).collect(Collectors.toList());
     }

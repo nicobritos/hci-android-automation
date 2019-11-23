@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.hci.StarkIndustries.R;
@@ -31,12 +30,11 @@ public class DeviceMenuContainerFragment extends DialogFragment {
 
     private DeviceMenuContainerViewModel viewModel;
 
-    protected DeviceMenuContainerFragment() {
-    }
-
     public static DeviceMenuContainerFragment newInstance(CommonDeviceModel deviceModel) {
         Bundle args = new Bundle();
-        args.putParcelable("device", deviceModel);
+        args.putString("deviceId", deviceModel.getId());
+        args.putString("deviceType", deviceModel.getDeviceType().toString());
+        args.putString("deviceName", deviceModel.getName());
 
         DeviceMenuContainerFragment f = new DeviceMenuContainerFragment();
         f.setArguments(args);
@@ -61,57 +59,60 @@ public class DeviceMenuContainerFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_device_menu_container, null);
 
         // Sets view of the device
-        Fragment fragment = getCorrectFragment();
+        DeviceFragment fragment = getCorrectFragment();
         FragmentTransaction ft = this.getChildFragmentManager().beginTransaction();
         ft.replace(R.id.fragmentContainer123, fragment);
         ft.commit();
 
-        CommonDeviceModel model = getArguments().getParcelable("device");
+        String name = getArguments().getString("deviceName");
 
         // Sets name of the device
         TextView nameText = view.findViewById(R.id.DeviceName);
-        nameText.setText(model.getName());
+        nameText.setText(name);
 
         // Sets controllers of the view (Mostly returns)
         ImageButton backButton = view.findViewById(R.id.GoBackDeviceMenuBtn);
         backButton.setOnClickListener(new OnClickExitDialog());
 
-
         ImageButton favoriteButton = view.findViewById(R.id.ContainerFavButton);
-        favoriteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Marcar como favorito
-            }
+        favoriteButton.setOnClickListener(v -> {
+            fragment.getViewModel().toggleFavourite();
         });
-
 
         return view;
     }
 
-    private Fragment getCorrectFragment() {
-        CommonDeviceModel model = getArguments().getParcelable("device");
-        DeviceTypeEnum type = model.getDeviceType();
+    private DeviceFragment getCorrectFragment() {
+        DeviceFragment fragment;
+        switch (DeviceTypeEnum.valueOf(getArguments().getString("deviceType"))) {
+            case AC:
+                fragment = ACFragment.newInstance();
+                break;
+            case Door:
+                fragment = DoorMenuFragment.newInstance();
+                break;
+            case Curtains:
+                fragment = CurtainsFragment.newInstance();
+                break;
+            case Lamp:
+                fragment = LampFragment.newInstance();
+                break;
+            case Fridge:
+                fragment = FridgeFragment.newInstance();
+                break;
+            case Oven:
+                fragment = OvenFragment.newInstance();
+                break;
+            case Speaker:
+                fragment = SpeakerFragment.newInstance();
+                break;
+            default:
+                Log.d(TAG, "getCorrectFragment: FRAGMENT NOT FOUND");
+                return null;
+        }
 
-//        switch (type) {
-//            case AC:
-//                return ACFragment.newInstance(model.getId());
-//            case Door:
-//                return DoorMenuFragment.newInstance(model.getId());
-//            case Curtains:
-//                return CurtainsFragment.newInstance(model.getId());
-//            case Lamp:
-//                return LampFragment.newInstance(model.getId());
-//            case Fridge:
-//                return FridgeFragment.newInstance(model.getId());
-//            case Oven:
-//                return OvenFragment.newInstance(model.getId());
-//            case Speaker:
-//                return SpeakerFragment.newInstance(model.getId());
-//        }
-
-        Log.d(TAG, "getCorrectFragment: FRAGMENT NOT FOUND");
-        return null;
+        fragment.setID(getArguments().getString("deviceId"));
+        return fragment;
     }
 
 

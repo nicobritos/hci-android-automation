@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 
@@ -14,9 +13,10 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.hci.StarkIndustries.R;
-import com.hci.StarkIndustries.ui.DeviceMenu.IPassableIDFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.DeviceFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.DeviceViewModel;
 
-public class DoorMenuFragment extends IPassableIDFragment {
+public class DoorMenuFragment extends DeviceFragment {
     private static final String TAG = "DoorMenuFragment";
     private DoorMenuViewModel mViewModel;
 
@@ -29,36 +29,26 @@ public class DoorMenuFragment extends IPassableIDFragment {
                              @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.door_menu_fragment, container, false);
 
-
         final ImageView doorOpenSwitcher = root.findViewById(R.id.IsDoorOpenImage);
-
         final ImageView doorLockSwitcher = root.findViewById(R.id.isDoorLockedImage);
 
         Switch openDoorButton = root.findViewById(R.id.OpenDoorBtn);
 
-        openDoorButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                if (isChecked)
-                    mViewModel.open();
-                else
-                    mViewModel.close();
-            }
+        openDoorButton.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked)
+                mViewModel.open();
+            else
+                mViewModel.close();
         });
 
         Switch lockDoorButton = root.findViewById(R.id.LockDoorBtn);
 
-        lockDoorButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                if (isChecked)
-                    mViewModel.lock();
-                else
-                    mViewModel.unlock();
-            }
+        lockDoorButton.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked)
+                mViewModel.lock();
+            else
+                mViewModel.unlock();
         });
-
-
         return root;
     }
 
@@ -69,12 +59,11 @@ public class DoorMenuFragment extends IPassableIDFragment {
 
         Log.d(TAG, "onActivityCreated: Por entrar al GetModel");
 
-        mViewModel.getModel(getID()).observe(this, doorModel -> {
+        mViewModel.getModel(this, getID()).observe(this, doorModel -> {
             Log.d(TAG, "onChanged: isOpen: " + doorModel.isOpen() + " isLocked: " + doorModel.isLocked());
             if (doorModel.isOpen()) {
                 ((ImageView) getView().findViewById(R.id.IsDoorOpenImage)).setImageResource(R.drawable.ic_open_door);
                 ((Switch) getView().findViewById(R.id.OpenDoorBtn)).setText(R.string.DoorButtonClose);
-
             } else {
                 ((ImageView) getView().findViewById(R.id.IsDoorOpenImage)).setImageResource(R.drawable.ic_closed_door);
                 ((Switch) getView().findViewById(R.id.OpenDoorBtn)).setText(R.string.DoorButtonOpen);
@@ -89,7 +78,11 @@ public class DoorMenuFragment extends IPassableIDFragment {
                 ((Switch) getView().findViewById(R.id.LockDoorBtn)).setText(R.string.DoorButtonLock);
             }
             getView().findViewById(R.id.OpenDoorBtn).setEnabled(!doorModel.isLocked());
-
         });
+    }
+
+    @Override
+    public DeviceViewModel getViewModel() {
+        return this.mViewModel;
     }
 }

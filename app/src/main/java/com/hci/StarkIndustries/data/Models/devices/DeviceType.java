@@ -1,5 +1,6 @@
 package com.hci.StarkIndustries.data.Models.devices;
 
+
 public class DeviceType {
     private String id;
 

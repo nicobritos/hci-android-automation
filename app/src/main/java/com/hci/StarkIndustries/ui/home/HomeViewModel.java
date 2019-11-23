@@ -1,36 +1,16 @@
 package com.hci.StarkIndustries.ui.home;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.hci.StarkIndustries.Models.RegionModel;
+import com.hci.StarkIndustries.data.Models.RegionModel;
+import com.hci.StarkIndustries.data.Models.Result;
+import com.hci.StarkIndustries.data.domain.RegionRepository;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class HomeViewModel extends ViewModel {
-
-    private MutableLiveData<List<RegionModel>> mData;
-
-    private List<RegionModel> regions = new ArrayList<>();
-
-
-    public LiveData<List<RegionModel>> getModels() {
-        if (mData == null) {
-            mData = new MutableLiveData<>();
-//            regions.add(new RegionModel("Region 1"));
-//            regions.get(0).rooms = new ArrayList<>();
-//            regions.add(new RegionModel("Region 2"));
-//            regions.add(new RegionModel("Region 3"));
-            loadModel();
-        }
-
-        return mData;
+    public LiveData<Result<ArrayList<RegionModel>>> getModel() {
+        return RegionRepository.get().getRegions();
     }
-
-    private void loadModel() {
-        mData.setValue(regions);
-    }
-
 }

@@ -12,17 +12,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.hci.StarkIndustries.Models.RegionModel;
 import com.hci.StarkIndustries.R;
+import com.hci.StarkIndustries.data.Models.RegionModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewRegionsAdapter extends RecyclerView.Adapter<RecyclerViewRegionsAdapter.ViewHolder> {
-
     private List<RegionModel> regions = new ArrayList<>();
-    private Context mContext;
     private IClickableItem iClickableItem;
+    private Context mContext;
 
     public RecyclerViewRegionsAdapter(IClickableItem iClickableItem, Context mContext) {
         this.mContext = mContext;
@@ -39,10 +38,9 @@ public class RecyclerViewRegionsAdapter extends RecyclerView.Adapter<RecyclerVie
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         RegionModel region = regions.get(position);
 
-        holder.regionName.setText(region.name);
+        holder.regionName.setText(region.getName());
 
         if(region.rooms.size() == 0){
             holder.cardView.setVisibility(View.VISIBLE);
@@ -51,9 +49,8 @@ public class RecyclerViewRegionsAdapter extends RecyclerView.Adapter<RecyclerVie
         GridLayoutManager layoutManager = new GridLayoutManager(holder.recyclerView.getContext(), 2, RecyclerView.HORIZONTAL, false);
         holder.recyclerView.setLayoutManager(layoutManager);
         RecyclerViewRoomsAdapter adapter = new RecyclerViewRoomsAdapter(holder.recyclerView.getContext(), iClickableItem);
-        adapter.setData(region.rooms);
+        adapter.setData(region.getRooms());
         holder.recyclerView.setAdapter(adapter);
-
     }
 
     @Override

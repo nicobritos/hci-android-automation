@@ -1,14 +1,13 @@
 package com.hci.StarkIndustries.data.Models;
 
-public class RoutineModel extends CommonModel {
-
-    public String Name;
-    public String Description;
-    public boolean isFavorite;
+public class RoutineModel extends FavouriteCommonModel {
+    private String description;
 
     public RoutineModel(String name, String description, boolean isFavorite) {
-        Name = name;
-        Description = description;
-        this.isFavorite = isFavorite;
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

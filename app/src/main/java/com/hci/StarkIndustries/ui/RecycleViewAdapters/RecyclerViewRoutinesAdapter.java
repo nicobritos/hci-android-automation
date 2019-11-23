@@ -41,11 +41,11 @@ public class RecyclerViewRoutinesAdapter extends RecyclerView.Adapter<RecyclerVi
 
         final RoutineModel model = routines.get(position);
 
-        holder.name.setText(model.Name);
-        holder.description.setText(model.Description);
+        holder.name.setText(model.getName());
+        holder.description.setText(model.getDescription());
         holder.playImage.setImageResource(R.drawable.ic_play_arrow_white_48dp);
 
-        if (model.isFavorite)
+        if (model.isFavourite())
             holder.favImage.setImageResource(R.drawable.ic_star_white_48dp);
         else
             holder.favImage.setImageResource(R.drawable.ic_star_black_24dp);
@@ -64,12 +64,12 @@ public class RecyclerViewRoutinesAdapter extends RecyclerView.Adapter<RecyclerVi
 
                 ImageView imageView = (ImageView) v;
 
-                if (model.isFavorite)
+                if (model.isFavourite())
                     imageView.setImageResource(R.drawable.ic_star_black_24dp);
                 else
                     imageView.setImageResource(R.drawable.ic_star_white_48dp);
 
-                model.isFavorite = !model.isFavorite;
+//                model.isFavourite = !model.isFavourite;
             }
         });
     }
@@ -87,7 +87,6 @@ public class RecyclerViewRoutinesAdapter extends RecyclerView.Adapter<RecyclerVi
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
         public ImageView favImage;
         public ImageView playImage;
         public TextView name;

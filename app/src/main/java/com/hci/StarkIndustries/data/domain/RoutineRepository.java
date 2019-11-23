@@ -5,14 +5,14 @@ import android.app.Application;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.hci.StarkIndustries.data.Models.CommonModel;
 import com.hci.StarkIndustries.data.Models.Result;
 import com.hci.StarkIndustries.data.Models.RoutineModel;
+import com.hci.StarkIndustries.data.remote.Api;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-public class RoutineRepository extends CommonRepository {
+public class RoutineRepository extends FavouriteRepository {
     private static RoutineRepository instance;
 
     private RoutineRepository(Application application) {
@@ -47,11 +47,16 @@ public class RoutineRepository extends CommonRepository {
 
         this.api.getRoutines(
                 getListener(result, routineModels -> {
-                    return routineModels.stream().filter(CommonModel::isFavorite).collect(Collectors.toCollection(ArrayList::new));
+                    return routineModels.stream().filter(RoutineModel::isFavourite).collect(Collectors.toCollection(ArrayList::new));
                 }),
                 getErrorListener(api, result)
         );
 
         return result;
+    }
+
+    @Override
+    protected Api.APIEntityType getEntityType() {
+        return Api.APIEntityType.ROUTINE;
     }
 }

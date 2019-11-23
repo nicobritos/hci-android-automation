@@ -17,9 +17,10 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.ACModel;
-import com.hci.StarkIndustries.ui.DeviceMenu.IPassableIDFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.DeviceFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.DeviceViewModel;
 
-public class ACFragment extends IPassableIDFragment {
+public class ACFragment extends DeviceFragment {
     private ACViewModel mViewModel;
 
     public static ACFragment newInstance() {
@@ -38,7 +39,7 @@ public class ACFragment extends IPassableIDFragment {
         tempSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                tempView.setText(String.valueOf(ACModel.TEMPERATURE_MIN + progress));
+                tempView.setText(String.valueOf(ACModel.MIN_TEMPERATURE + progress));
             }
 
             @Override
@@ -47,7 +48,7 @@ public class ACFragment extends IPassableIDFragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                mViewModel.setTemperature(ACModel.TEMPERATURE_MIN + seekBar.getProgress());
+                mViewModel.setTemperature(ACModel.MIN_TEMPERATURE + seekBar.getProgress());
             }
         });
 
@@ -112,11 +113,11 @@ public class ACFragment extends IPassableIDFragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(ACViewModel.class);
 
-        mViewModel.getModel(getID()).observe(this, acModel -> {
+        mViewModel.getModel(this, getID()).observe(this, acModel -> {
             TextView tempView = getView().findViewById(R.id.ACTemperatureView);
             SeekBar tempSlider = getView().findViewById(R.id.ACTemperatureSlider);
 
-            tempSlider.setProgress(acModel.getTemperature() - ACModel.TEMPERATURE_MIN, true);
+            tempSlider.setProgress(acModel.getTemperature() - ACModel.MIN_TEMPERATURE, true);
             tempView.setText(String.valueOf(acModel.getTemperature()));
 
             Spinner modeDDL = getView().findViewById(R.id.ACModeDDL);
@@ -147,5 +148,10 @@ public class ACFragment extends IPassableIDFragment {
             modeDDL.setEnabled(acModel.isPowered());
             vertMovDDL.setEnabled(acModel.isPowered());
         });
+    }
+
+    @Override
+    public DeviceViewModel getViewModel() {
+        return this.mViewModel;
     }
 }

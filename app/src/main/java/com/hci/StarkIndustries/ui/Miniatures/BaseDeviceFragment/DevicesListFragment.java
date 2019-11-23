@@ -25,7 +25,6 @@ public abstract class DevicesListFragment extends Fragment implements DevicesRec
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.devices_list_fragment, container, false);
 
-
         GridLayoutManager layoutManager = new GridLayoutManager(this.getContext(), 2, RecyclerView.HORIZONTAL, false);
         RecyclerView recyclerView = view.findViewById(R.id.RecyclerViewDevices);
         recyclerView.setLayoutManager(layoutManager);

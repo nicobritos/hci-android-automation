@@ -15,9 +15,10 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.FridgeModel;
-import com.hci.StarkIndustries.ui.DeviceMenu.IPassableIDFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.DeviceFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.DeviceViewModel;
 
-public class FridgeFragment extends IPassableIDFragment {
+public class FridgeFragment extends DeviceFragment {
     private FridgeViewModel mViewModel;
 
     public static FridgeFragment newInstance() {
@@ -89,7 +90,7 @@ public class FridgeFragment extends IPassableIDFragment {
         mViewModel = ViewModelProviders.of(this).get(FridgeViewModel.class);
         // TODO: Use the ViewModel
 
-        mViewModel.getModel(getID()).observe(this, fridgeModel -> {
+        mViewModel.getModel(this, getID()).observe(this, fridgeModel -> {
             ((Spinner) getView().findViewById(R.id.FridgeModeDDL)).setSelection(mViewModel.getModeInt(), true);
 
             TextView text = getView().findViewById(R.id.FridgeViewTemp);
@@ -99,11 +100,16 @@ public class FridgeFragment extends IPassableIDFragment {
             text2.setText(String.valueOf(fridgeModel.getFreezerTemperature()));
 
             SeekBar seekBar2 = (getView().findViewById(R.id.FridgeSliderFreezer));
-            seekBar2.setProgress(fridgeModel.getFreezerTemperature() - FridgeModel.FREEZER_MIN_TEMPERATURE, true);
+            seekBar2.setProgress(fridgeModel.getFreezerTemperature() - FridgeModel.MIN_FREEZER_TEMPERATURE, true);
 
             SeekBar seekBar1 = getView().findViewById(R.id.FridgeSlidierTemperature);
             seekBar1.setProgress(fridgeModel.getTemperature() - FridgeModel.MIN_TEMPERATURE, true);
         });
+    }
+
+    @Override
+    public DeviceViewModel getViewModel() {
+        return this.mViewModel;
     }
 }
 
