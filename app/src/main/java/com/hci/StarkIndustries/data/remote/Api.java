@@ -48,7 +48,7 @@ public class Api {
     // same computer that runs the API.
     // TODO: Change
 
-    private static String URL = "http://10.0.2.2:8080/api";
+    private static String URL = "http://10.0.2.2:9090/api";
 
     public static void setEndpoint(String newEndpoint){
         URL = newEndpoint;

@@ -64,10 +64,8 @@ public class HomeFragment extends APIReloadingFragment implements IClickableItem
             RecyclerView recyclerView = getView().findViewById(R.id.HouseRegionsRecyclerView);
 
             if (arrayListResult.ok()) {
-                List<RegionModel> temp = arrayListResult.getResult();
-                temp.sort((x,y)->x.getName().compareToIgnoreCase(y.getName()));
                 ((RecyclerViewRegionsAdapter) recyclerView.getAdapter())
-                        .setData(temp);
+                        .setData(arrayListResult.getResult());
                 if (arrayListResult.getResult().size() == 0) {
                     getView().findViewById(R.id.NoRegionsView).setVisibility(View.VISIBLE);
                 } else {
