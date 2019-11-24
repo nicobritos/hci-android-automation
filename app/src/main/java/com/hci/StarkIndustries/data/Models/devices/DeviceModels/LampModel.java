@@ -36,7 +36,7 @@ public class LampModel extends CommonDeviceModel {
         }
 
         public String getColor() {
-            return color != null ? color : "000000";
+            return "#" + (color != null ? color : "000000");
         }
 
         public Integer getBrightness() {
