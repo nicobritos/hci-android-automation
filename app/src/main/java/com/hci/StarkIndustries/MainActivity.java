@@ -17,8 +17,11 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.hci.StarkIndustries.data.Models.NotificationWorker;
 import com.hci.StarkIndustries.data.remote.Api;
 import com.hci.StarkIndustries.ui.ChangeEndpointFragment;
 import com.hci.StarkIndustries.ui.DeviceMenu.AC.ACFragment;
@@ -33,6 +36,7 @@ import com.hci.StarkIndustries.ui.DeviceMenu.Speaker.SpeakerFragment;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
     private Map<String, Fragment> fragments = new HashMap<>();
@@ -64,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+        final PeriodicWorkRequest request = new PeriodicWorkRequest.Builder(NotificationWorker.class,20, TimeUnit.MINUTES).build();
+        WorkManager.getInstance(this).enqueue(request);
 
 
         initializeFragments();
@@ -123,6 +128,5 @@ public class MainActivity extends AppCompatActivity {
         fragments.put(adaptName("Speaker"), SpeakerFragment.newInstance());
     }
     
-    final PeriodicWorkRequest request = new PeriodicWorkRequest.Builder(NotificationWorker.class,20, TimeUnit.MINUTES).build();
-    WorkManager.getInstance().enqueue(request);
+
 }
