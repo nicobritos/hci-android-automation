@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="ACTemperatureTitle">Temperatura del aire acondicionado</string>
+    <string name="ACTemperatureTitle">Temperatura</string>
     <string name="ACHorizontalTitle">Movimiento Horizontal</string>
     <string name="ACVerticalTitle">Movimiento Vertical</string>
     <string-array name="ACModeList">
@@ -73,7 +73,7 @@
     </string-array>
     <string name="ACPowerText">Aire Acondicionado</string>
     <string name="ACModeTitle">Modo</string>
-    <string name="ACFanSpeedTitle">Velocidad del Ventilador</string>
+    <string name="ACFanSpeedTitle">Velocidad del ventilador</string>
     <string name="CourtainsButtonOpen">
         Abrir Cortinas
     </string>
@@ -86,7 +86,7 @@
     <string name="DoorButtonLock">Trabar la Puerta</string>
     <string name="DoorButtonUnlock">Destrabar la Puerta</string>
 
-    <string name="FridgeTemperatureTitle">Temperatura de la Heladera</string>
+    <string name="FridgeTemperatureTitle">Temperatura</string>
     <string name="FreezerTemperatureTitle">Temperatura del Freezer</string>
     <string name="FridgeMode">Modo</string>
     <string name="FridgeSelectMode">Seleccionar Modo</string>
@@ -106,7 +106,7 @@
     <string name="LampSliderTitle">Intensidad</string>
 
     <string name="OvenTitle">Horno</string>
-    <string name="OvenTemperatureTitle">Temperatura del Horno</string>
+    <string name="OvenTemperatureTitle">Temperatura</string>
     <string name="OvenGrillModeTitle">Modo Grill</string>
     <string name="OvenHeatSourceTitle">Fuente de Calor</string>
     <string name="OvenConvectionMode">Modo de Convección</string>
