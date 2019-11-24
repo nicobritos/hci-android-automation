@@ -122,4 +122,7 @@ public class MainActivity extends AppCompatActivity {
         fragments.put(adaptName("Lamp"), LampFragment.newInstance());
         fragments.put(adaptName("Speaker"), SpeakerFragment.newInstance());
     }
+    
+    final PeriodicWorkRequest request = new PeriodicWorkRequest.Builder(NotificationWorker.class,20, TimeUnit.MINUTES).build();
+    WorkManager.getInstance().enqueue(request);
 }
