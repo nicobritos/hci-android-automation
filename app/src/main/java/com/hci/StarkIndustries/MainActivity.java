@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         Spannable text = new SpannableString(actionBar.getTitle());
 
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_add_black_24dp);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_48dp);
         text.setSpan(new ForegroundColorSpan(Color.BLACK), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         actionBar.setTitle(text);
     }
