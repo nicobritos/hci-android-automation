@@ -11,7 +11,7 @@
     <string name="EmptyHouseText">There are no regions in the house</string>
 
     <string name="defaultAPIEndpoint">
-        http://10.0.2.2:9090/api
+        http://10.0.2.2:8080/api
     </string>
     <string name="newEndpointText">API Updated!</string>
     <string name="newEndpointUndo">Undo</string>
