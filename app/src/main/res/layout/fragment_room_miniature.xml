@@ -39,15 +39,16 @@
             <TextView
 
                 android:id="@+id/RoomName"
-                android:layout_width="100dp"
-                android:layout_height="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/RoomImage"
                 android:gravity="center"
                 app:layout_constraintTop_toBottomOf="@+id/RoomImage"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="1dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 android:text="room"
+                android:textSize="17dp"
                 android:textColor="@color/Black"
 
                 />

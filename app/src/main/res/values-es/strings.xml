@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="FavouritesDevicesTitle">Dispositivos Favoritos</string>
+    <string name="FavDevicesTitle">Rutinas Favoritas</string>
+    <string name="TextBtnDone">Cambiar</string>
+    <string name="APIEndpointHint">URL de la API</string>
+
+    <string name="TextBtnCancel">Cancelar</string>
+    <string name="APIEndpointTitle">Ingresar la URL de la API</string>
+</resources>

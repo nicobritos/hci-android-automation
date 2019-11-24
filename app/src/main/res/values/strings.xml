@@ -11,10 +11,16 @@
     <string name="EmptyHouseText">There are no regions in the house</string>
 
     <string name="defaultAPIEndpoint">
-        http://10.0.2.2:8080/api
+        http://10.0.2.2:9090/api
     </string>
-    <string name="newEndpointText">New endpoint added!</string>
+    <string name="newEndpointText">API Updated!</string>
     <string name="newEndpointUndo">Undo</string>
     <string name="EndpointError">Endpoint Invalid</string>
+    <string name="FavouritesDevicesTitle">Favourite Devices</string>
+    <string name="FavDevicesTitle">Favorite Routines</string>
+    <string name="APIEndpointHint">API endpoint</string>
+    <string name="TextBtnDone">Done</string>
+    <string name="TextBtnCancel">cancel</string>
+    <string name="APIEndpointTitle">Enter the API URL</string>
 
 </resources>

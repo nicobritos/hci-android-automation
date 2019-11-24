@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.hci.StarkIndustries.MainActivity;
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.ui.DeviceMenu.IdentifiableFragment;
 import com.hci.StarkIndustries.ui.Miniatures.RoomDevices.RoomDevicesListFragment;
@@ -34,6 +35,8 @@ public class RoomFragment extends IdentifiableFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_room, container, false);
+        ((MainActivity)getActivity()).SetTitleColor();
+
         RoomDevicesListFragment fragment = (RoomDevicesListFragment) getChildFragmentManager().findFragmentById(R.id.RoomDevicesFragmentContainer);
         fragment.setRoomId(this.getID());
 

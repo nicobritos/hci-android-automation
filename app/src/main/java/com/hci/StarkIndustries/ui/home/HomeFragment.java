@@ -1,12 +1,17 @@
 package com.hci.StarkIndustries.ui.home;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
@@ -14,6 +19,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.hci.StarkIndustries.MainActivity;
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.data.Models.RegionModel;
 import com.hci.StarkIndustries.data.Models.Result;
@@ -23,14 +29,18 @@ import com.hci.StarkIndustries.ui.RecycleViewAdapters.IClickableItem;
 import com.hci.StarkIndustries.ui.RecycleViewAdapters.RecyclerViewRegionsAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends APIReloadingFragment implements IClickableItem {
     private static final String TAG = "HomeFragment";
     private HomeViewModel homeViewModel;
 
+
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        ((MainActivity)getActivity()).SetTitleColor();
 
         int columns = 1;
 

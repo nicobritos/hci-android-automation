@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.hci.StarkIndustries.MainActivity;
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.ui.APIReloadingFragment;
 import com.hci.StarkIndustries.ui.Miniatures.BaseDeviceFragment.DevicesListFragment;
@@ -17,7 +18,7 @@ public class FavouritesFragment extends APIReloadingFragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_favourites, container, false);
-
+        ((MainActivity)getActivity()).SetTitleColor();
         return root;
     }
 
