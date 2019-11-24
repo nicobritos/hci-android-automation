@@ -35,7 +35,6 @@ public class HomeFragment extends Fragment implements IClickableItem {
         return root;
     }
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -54,7 +53,6 @@ public class HomeFragment extends Fragment implements IClickableItem {
             }
         });
     }
-
 
     @Override
     public void onItemClick(String id) {

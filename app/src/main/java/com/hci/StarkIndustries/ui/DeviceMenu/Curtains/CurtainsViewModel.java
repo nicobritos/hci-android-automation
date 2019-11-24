@@ -1,7 +1,5 @@
 package com.hci.StarkIndustries.ui.DeviceMenu.Curtains;
 
-import android.util.Log;
-
 import com.hci.StarkIndustries.data.Models.devices.DeviceModels.CurtainsModel;
 import com.hci.StarkIndustries.data.domain.DeviceRepository;
 import com.hci.StarkIndustries.ui.DeviceMenu.DeviceViewModel;
@@ -15,7 +13,6 @@ public class CurtainsViewModel extends DeviceViewModel<CurtainsModel> {
             action = DeviceRepository.CurtainsActions.CLOSE;
         }
 
-        Log.d("CURTAINS", "Setting state");
         this.performActionOnDevice(action.getCommand());
     }
 

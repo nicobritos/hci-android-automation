@@ -9,6 +9,7 @@ import com.hci.StarkIndustries.data.Models.RegionModel;
 import com.hci.StarkIndustries.data.Models.Result;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class RegionRepository extends CommonRepository {
     private static RegionRepository instance;
@@ -36,7 +37,11 @@ public class RegionRepository extends CommonRepository {
 
     public LiveData<Result<ArrayList<RegionModel>>> getRegions() {
         final MutableLiveData<Result<ArrayList<RegionModel>>> result = new MutableLiveData<>();
-        this.api.getRegions(getListener(result), getErrorListener(api, result));
+        this.api.getRegions(getListener(result, regionModels -> {
+            return regionModels.stream()
+                    .sorted()
+                    .collect(Collectors.toCollection(ArrayList::new));
+        }), getErrorListener(api, result));
         return result;
     }
 }

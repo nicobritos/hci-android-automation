@@ -32,11 +32,11 @@ public class LampViewModel extends DeviceViewModel<LampModel> {
         StringBuilder stringBuilder = new StringBuilder();
 
         // Red
-        stringBuilder.append(Integer.toHexString((color & 0xff0000) >>> (8 * 2)));
+        stringBuilder.append(String.format("%02X", (color & 0xff0000) >>> (8 * 2)));
         // Blue
-        stringBuilder.append(Integer.toHexString((color & 0xff00) >>> 8));
+        stringBuilder.append(String.format("%02X", (color & 0xff00) >>> 8));
         // Green
-        stringBuilder.append(Integer.toHexString(color & 0xff));
+        stringBuilder.append(String.format("%02X", color & 0xff));
 
         return stringBuilder.toString();
     }

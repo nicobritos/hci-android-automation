@@ -38,12 +38,12 @@ public abstract class DevicesListFragment extends Fragment implements DevicesRec
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         LoadViewModel();
-        mViewModel.getModel().observe(this, devicesListModel -> {
+        mViewModel.getModel().observe(this, deviceModelsResult -> {
             RecyclerView recyclerView = getView().findViewById(R.id.RecyclerViewDevices);
 
-            if (devicesListModel.ok()) {
-                ((RecyclerViewDevicesAdapter) recyclerView.getAdapter()).setData(devicesListModel.getResult());
-                if (devicesListModel.getResult().size() == 0) {
+            if (deviceModelsResult.ok()) {
+                ((RecyclerViewDevicesAdapter) recyclerView.getAdapter()).setData(deviceModelsResult.getResult());
+                if (deviceModelsResult.getResult().size() == 0) {
                     getView().findViewById(R.id.NoDevicesView).setVisibility(View.VISIBLE);
                 } else {
                     getView().findViewById(R.id.NoDevicesView).setVisibility(View.GONE);

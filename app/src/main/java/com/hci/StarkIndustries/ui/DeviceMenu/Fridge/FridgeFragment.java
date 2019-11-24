@@ -20,6 +20,7 @@ import com.hci.StarkIndustries.ui.DeviceMenu.DeviceViewModel;
 
 public class FridgeFragment extends DeviceFragment {
     private FridgeViewModel mViewModel;
+    private boolean loaded;
 
     public static FridgeFragment newInstance() {
         return new FridgeFragment();
@@ -31,12 +32,11 @@ public class FridgeFragment extends DeviceFragment {
         View root = inflater.inflate(com.hci.StarkIndustries.R.layout.fridge_fragment, container, false);
 
         SeekBar SliderTemp = root.findViewById(R.id.FridgeSlidierTemperature);
-
         SliderTemp.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser)
-                    ((TextView) getView().findViewById(R.id.FridgeViewTemp)).setText(String.valueOf(2 + progress));
+                if (loaded)
+                    ((TextView) getView().findViewById(R.id.FridgeViewTemp)).setText(String.valueOf(FridgeModel.MIN_TEMPERATURE + progress));
             }
 
             @Override
@@ -45,17 +45,17 @@ public class FridgeFragment extends DeviceFragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                mViewModel.setTemperature(2 + seekBar.getProgress());
+                if (loaded)
+                    mViewModel.setTemperature(seekBar.getProgress());
             }
         });
 
         SeekBar SliderFreezer = root.findViewById(R.id.FridgeSliderFreezer);
-
         SliderFreezer.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser)
-                    ((TextView) getView().findViewById(R.id.FridgeViewFreezerTemp)).setText(String.valueOf(-20 + progress));
+                if (loaded)
+                    ((TextView) getView().findViewById(R.id.FridgeViewFreezerTemp)).setText(String.valueOf(FridgeModel.MIN_FREEZER_TEMPERATURE + progress));
             }
 
             @Override
@@ -64,16 +64,17 @@ public class FridgeFragment extends DeviceFragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                mViewModel.setFreezerTemperature(-20 + seekBar.getProgress());
+                if (loaded)
+                    mViewModel.setFreezerTemperature(seekBar.getProgress());
             }
         });
 
         Spinner ddl = root.findViewById(R.id.FridgeModeDDL);
-
         ddl.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mViewModel.setMode(position);
+                if (loaded)
+                    mViewModel.setMode(position);
             }
 
             @Override
@@ -88,7 +89,6 @@ public class FridgeFragment extends DeviceFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(FridgeViewModel.class);
-        // TODO: Use the ViewModel
 
         mViewModel.getModel(this, getID()).observe(this, fridgeModel -> {
             ((Spinner) getView().findViewById(R.id.FridgeModeDDL)).setSelection(mViewModel.getModeInt(), true);
@@ -104,6 +104,9 @@ public class FridgeFragment extends DeviceFragment {
 
             SeekBar seekBar1 = getView().findViewById(R.id.FridgeSlidierTemperature);
             seekBar1.setProgress(fridgeModel.getTemperature() - FridgeModel.MIN_TEMPERATURE, true);
+
+            if (!loaded)
+                loaded = true;
         });
     }
 
@@ -112,20 +115,3 @@ public class FridgeFragment extends DeviceFragment {
         return this.mViewModel;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

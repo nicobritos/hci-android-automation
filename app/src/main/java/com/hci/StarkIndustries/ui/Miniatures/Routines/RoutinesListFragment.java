@@ -30,7 +30,7 @@ public class RoutinesListFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
         RecyclerView recyclerView = view.findViewById(R.id.RecyclerViewRoutines);
         recyclerView.setLayoutManager(layoutManager);
-        RecyclerViewRoutinesAdapter adapter = new RecyclerViewRoutinesAdapter(this.getContext());
+        RecyclerViewRoutinesAdapter adapter = new RecyclerViewRoutinesAdapter(this.getContext(), this);
         recyclerView.setAdapter(adapter);
 
         return view;
@@ -59,7 +59,5 @@ public class RoutinesListFragment extends Fragment {
                 getView().findViewById(R.id.NoRoutinesView).setVisibility(View.VISIBLE);
             }
         });
-
-        // TODO: Use the ViewModel
     }
 }

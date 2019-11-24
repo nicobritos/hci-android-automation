@@ -26,7 +26,7 @@ public class RoutinesViewModel extends FavouritableCommonViewModel<RoutineModel>
     }
 
     @Override
-    protected void loadModel() {
+    public void reloadModel() {
         RoutineRepository.get().getRoutine(this.id).observe(this.lifecycleOwner, this::onModelLoad);
     }
 }

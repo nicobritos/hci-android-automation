@@ -17,7 +17,7 @@ public class HouseRegionViewModel extends ViewModel {
             mData = new MutableLiveData<>();
 //            model = new RegionModel(id);
             this.id = id;
-//            loadModel();
+//            reloadModel();
         }
         return mData;
     }

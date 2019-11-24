@@ -16,4 +16,8 @@ public abstract class FavouriteCommonModel extends CommonModel {
         if (o instanceof Boolean) return (boolean) o;
         return false;
     }
+
+    public void setFavourite(boolean v) {
+        this.meta.put("favourite", v);
+    }
 }

@@ -3,10 +3,24 @@ package com.hci.StarkIndustries.data.Models.devices.DeviceModels;
 import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
 
 public class SpeakerModel extends CommonDeviceModel {
+    public static final int MAX_VOLUME = 10;
+    public static final int MIN_VOLUME = 0;
+
+    public static final String GENRE_CLASSICAL = "classical";
+    public static final String GENRE_COUNTRY = "country";
+    public static final String GENRE_DANCE = "dance";
+    public static final String GENRE_LATINA = "latina";
+    public static final String GENRE_POP = "pop";
+    public static final String GENRE_ROCK = "rock";
+
     private SpeakerState state;
 
     public String getStatus() {
         return this.state.getStatus();
+    }
+
+    public PlayState getPlayState() {
+        return this.state.getPlayState();
     }
 
     public String getGenre() {
@@ -21,13 +35,25 @@ public class SpeakerModel extends CommonDeviceModel {
         return this.state.getCurrentSong();
     }
 
+    public enum PlayState {
+        Playing(), Paused(), Stopped();
+    }
+
     private class SpeakerState {
         private String status, genre;
         private Integer volume;
-        private SpeakerSong currentSong;
+        private SpeakerSong song;
 
         public String getStatus() {
             return status != null ? status : "";
+        }
+
+        public PlayState getPlayState() {
+            switch (this.getStatus()) {
+                case "playing": return PlayState.Playing;
+                case "paused": return PlayState.Paused;
+                default: return PlayState.Stopped;
+            }
         }
 
         public String getGenre() {
@@ -35,15 +61,15 @@ public class SpeakerModel extends CommonDeviceModel {
         }
 
         public Integer getVolume() {
-            return volume != null ? volume : 0;
+            return volume != null ? volume : MIN_VOLUME;
         }
 
         public SpeakerSong getCurrentSong() {
-            return currentSong;
+            return song;
         }
     }
 
-    private class SpeakerSong {
+    public class SpeakerSong {
         private String title, artist, album, duration, progress;
 
         public String getTitle() {
@@ -66,55 +92,4 @@ public class SpeakerModel extends CommonDeviceModel {
             return progress != null ? progress : "";
         }
     }
-
-//
-//    public enum PlayState{
-//      Playing,Paused,Stopped
-//    };
-//
-//    public class SongModel{
-//        public int duration;
-//        public int timestamp = 0;
-//        public String name;
-//        public String artist;
-//
-//        public SongModel(int duration, String name, String artist) {
-//            this.duration = duration;
-//            this.name = name;
-//            this.artist = artist;
-//        }
-//    }
-//
-//    public int volume = 3;
-//    public PlayState playState = PlayState.Playing;
-//    public int genre = 1;
-//    public int seletedSong = 2;
-//    public List<SongModel> songs = new ArrayList<>();
-//
-//    public int SongDuration;
-//    public int SongTimestamp;
-//    public String SongName;
-//    public String SongArtist;
-//
-//
-//
-//    public SpeakerModel(String name, String id, String room) {
-////        super(name, id, room, DeviceType.Speaker,false);
-//
-//        songs.add(new SongModel(320,"Cancion 1 Cancion 1 Cancion 1 Cancion 1 Cancion 1 Cancion 1 Cancion 1 Cancion 1 Cancion 1 Cancion 1","Artista"));
-//        songs.add(new SongModel(120,"Cancion 2","Artista2"));
-//        songs.add(new SongModel(220,"Cancion 3","Artista3"));
-//        songs.add(new SongModel(420,"Cancion 4","Artista4"));
-//
-//        loadSong();
-//
-//
-//    }
-//
-//    public void loadSong(){
-//        SongArtist = songs.get(seletedSong).artist;
-//        SongDuration = songs.get(seletedSong).duration;
-//        SongName = songs.get(seletedSong).name;
-//        SongTimestamp = songs.get(seletedSong).timestamp;
-//    }
 }

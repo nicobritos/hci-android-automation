@@ -37,7 +37,7 @@ public class DoorModel extends CommonDeviceModel {
         }
 
         public boolean isOpen() {
-            return !this.getLockStatus().equalsIgnoreCase("closed");
+            return !this.getStatus().equalsIgnoreCase("closed");
         }
     }
 }

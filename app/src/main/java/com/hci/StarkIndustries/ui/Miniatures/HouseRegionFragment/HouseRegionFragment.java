@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -18,7 +17,6 @@ import com.hci.StarkIndustries.data.Models.RegionModel;
 import com.hci.StarkIndustries.ui.RecycleViewAdapters.RecyclerViewRoomsAdapter;
 
 public class HouseRegionFragment extends Fragment {
-
     private HouseRegionViewModel mViewModel;
 
     public static HouseRegionFragment newInstance() {
@@ -36,22 +34,14 @@ public class HouseRegionFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(HouseRegionViewModel.class);
 
-        mViewModel.getModel("").observe(this, new Observer<RegionModel>() {
-            @Override
-            public void onChanged(RegionModel regionModel) {
-                if (regionModel.getRooms().size() != 0) {
-                    ((RecyclerViewRoomsAdapter) ((RecyclerView) getView().findViewById(R.id.HouseRoomRecyclerView))
-                            .getAdapter()).setData(regionModel.getRooms());
-                    getView().findViewById(R.id.NoRoomsOnRegionView).setVisibility(View.GONE);
-
-                } else {
-
-                    getView().findViewById(R.id.NoRoomsOnRegionView).setVisibility(View.VISIBLE);
-
-                }
+        mViewModel.getModel("").observe(this, regionModel -> {
+            if (regionModel.getRooms().size() != 0) {
+                ((RecyclerViewRoomsAdapter) ((RecyclerView) getView().findViewById(R.id.HouseRoomRecyclerView))
+                        .getAdapter()).setData(regionModel.getRooms());
+                getView().findViewById(R.id.NoRoomsOnRegionView).setVisibility(View.GONE);
+            } else {
+                getView().findViewById(R.id.NoRoomsOnRegionView).setVisibility(View.VISIBLE);
             }
         });
-
     }
-
 }
