@@ -23,6 +23,7 @@ import com.hci.StarkIndustries.ui.DeviceMenu.DeviceViewModel;
 
 public class OvenFragment extends DeviceFragment {
     private OvenViewModel mViewModel;
+    private boolean loaded = false;
 
     public static OvenFragment newInstance() {
         return new OvenFragment();
@@ -40,7 +41,8 @@ public class OvenFragment extends DeviceFragment {
         temperatureSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                tempView.setText(String.valueOf(90 + progress));
+                if (loaded)
+                    tempView.setText(String.valueOf(OvenModel.MIN_TEMPERATURE + progress));
             }
 
             @Override
@@ -49,7 +51,8 @@ public class OvenFragment extends DeviceFragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                mViewModel.setTemperature(seekBar.getProgress() + OvenModel.MIN_TEMPERATURE);
+                if (loaded)
+                    mViewModel.setTemperature(seekBar.getProgress());
             }
         });
 
@@ -57,7 +60,8 @@ public class OvenFragment extends DeviceFragment {
         heatSource.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mViewModel.setHeatSource(position);
+                if (loaded)
+                    mViewModel.setHeatSource(position);
             }
 
             @Override
@@ -69,7 +73,8 @@ public class OvenFragment extends DeviceFragment {
         grillMode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mViewModel.setGrillMode(position);
+                if (loaded)
+                    mViewModel.setGrillMode(position);
             }
 
             @Override
@@ -81,8 +86,8 @@ public class OvenFragment extends DeviceFragment {
         convectionMode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mViewModel.setConvectionMode(position);
-                //BACKEND
+                if (loaded)
+                    mViewModel.setConvectionMode(position);
             }
 
             @Override
@@ -92,11 +97,9 @@ public class OvenFragment extends DeviceFragment {
 
         Switch power = root.findViewById(R.id.OvenPower);
 
-        power.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        power.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (loaded)
                 mViewModel.setPower(isChecked);
-            }
         });
 
         return root;
@@ -137,6 +140,8 @@ public class OvenFragment extends DeviceFragment {
 
             Switch power = getView().findViewById(R.id.OvenPower);
             power.setChecked(ovenModel.isPowered());
+
+            if (!loaded) loaded = true;
         });
     }
 
