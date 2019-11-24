@@ -524,4 +524,26 @@ public class Api {
     public enum APIEntityType {
         DEVICE, ROOM, REGION, ROUTINE
     }
+    
+    static public String getEventsUrl() {
+        StringBuilder url = new StringBuilder();
+        url.append(URL);
+        url.append('/');
+        url.append("devices");
+        url.append('/');
+        url.append("events");
+
+        return url.toString();
+    }
+
+    public static String getDeviceUrl( String id) {
+        StringBuilder url = new StringBuilder();
+        url.append(URL);
+        url.append('/');
+        url.append("devices");
+        url.append('/');
+        url.append(id);
+
+        return url.toString();
+    }
 }
