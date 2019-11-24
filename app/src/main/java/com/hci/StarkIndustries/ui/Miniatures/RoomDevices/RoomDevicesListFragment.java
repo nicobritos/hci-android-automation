@@ -8,7 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.hci.StarkIndustries.ui.Miniatures.BaseDeviceFragment.DevicesListFragment;
 
 public class RoomDevicesListFragment extends DevicesListFragment {
-    private String id = "";
+    private String roomId;
+
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
+    }
 
     @Override
     protected int getOrientation() {
@@ -27,8 +31,6 @@ public class RoomDevicesListFragment extends DevicesListFragment {
 
     public void LoadViewModel() {
         mViewModel = ViewModelProviders.of(this).get(RoomDevicesListViewModel.class);
-        //((RoomDevicesListViewModel)mViewModel).SetID(this.getArguments().getString("roomId"));
-
-        ((RoomDevicesListViewModel) mViewModel).SetID(this.id);
+        ((RoomDevicesListViewModel) mViewModel).setId(roomId);
     }
 }

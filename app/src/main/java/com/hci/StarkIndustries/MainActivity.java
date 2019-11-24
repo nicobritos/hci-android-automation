@@ -102,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeFragments() {
-
         fragments.put(adaptName("AC"), ACFragment.newInstance());
         fragments.put(adaptName("Door"), DoorMenuFragment.newInstance());
         fragments.put(adaptName("Oven"), OvenFragment.newInstance());
@@ -110,6 +109,5 @@ public class MainActivity extends AppCompatActivity {
         fragments.put(adaptName("Curtains"), CurtainsFragment.newInstance());
         fragments.put(adaptName("Lamp"), LampFragment.newInstance());
         fragments.put(adaptName("Speaker"), SpeakerFragment.newInstance());
-
     }
 }

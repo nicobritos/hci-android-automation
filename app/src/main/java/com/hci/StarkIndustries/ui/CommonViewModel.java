@@ -8,36 +8,41 @@ import androidx.lifecycle.ViewModel;
 import com.hci.StarkIndustries.data.Models.CommonModel;
 import com.hci.StarkIndustries.data.Models.Result;
 
-public abstract class CommonViewModel<T extends CommonModel> extends ViewModel {
+public abstract class CommonViewModel<T> extends ViewModel {
     protected LifecycleOwner lifecycleOwner;
     protected MutableLiveData<T> mModel;
     protected String id;
     protected T model;
 
     public LiveData<T> getModel(LifecycleOwner lifecycleOwner, String id) {
-        if (mModel == null || !model.getId().equalsIgnoreCase(id)) {
+        if (mModel == null || (model instanceof CommonModel && !((CommonModel) model).getId().equalsIgnoreCase(id))) {
             mModel = new MutableLiveData<>();
             this.id = id;
             this.lifecycleOwner = lifecycleOwner;
-            this.loadModel();
+            this.reloadModel();
         }
 
         return mModel;
     }
 
-    protected void onModelLoad(Result<? extends CommonModel> result) {
+    public T getModel() {
+        return this.model;
+    }
+
+    protected void onModelLoad(Result<? super T> result) {
         if (result.ok()) {
             //noinspection unchecked
             model = (T) result.getResult();
         } else {
             model = null;
         }
+        mModel.postValue(model);
     }
 
-    protected abstract void loadModel();
+    public abstract void reloadModel();
 
-    protected Void reloadModelCallback(Result<Boolean> result) {
-        if (result.ok() && result.getResult()) loadModel();
+    protected <R> Void reloadModelCallback(Result<R> result) {
+        if (result.ok()) reloadModel();
         return null;
     }
 }

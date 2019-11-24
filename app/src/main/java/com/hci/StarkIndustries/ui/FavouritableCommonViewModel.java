@@ -10,16 +10,15 @@ public abstract class FavouritableCommonViewModel<T extends FavouriteCommonModel
     public LiveData<Result<Boolean>> setFavourite(boolean value) {
         LiveData<Result<Boolean>> resultLiveData = getRepository().setFavourite(
                 model.getId(),
-                model.getName(),
-                model.getMeta(),
+                model.toJSON(),
                 value
         );
         resultLiveData.observe(this.lifecycleOwner, this::reloadModelCallback);
         return resultLiveData;
     }
 
-    public LiveData<Result<Boolean>> toggleFavourite() {
-        return this.setFavourite(!this.model.isFavourite());
+    public boolean isModalFavourite() {
+        return model.isFavourite();
     }
 
     protected abstract FavouriteRepository getRepository();

@@ -10,14 +10,18 @@ import com.hci.StarkIndustries.ui.Miniatures.BaseDeviceFragment.DevicesListViewM
 import java.util.ArrayList;
 
 public class RoomDevicesListViewModel extends DevicesListViewModel {
-    protected String id = "";
+    private String id;
 
-    public void SetID(String id) {
+    public void setId(String id) {
         this.id = id;
+    }
+
+    public String getId() {
+        return this.id;
     }
 
     @Override
     public LiveData<Result<ArrayList<CommonDeviceModel>>> getModel() {
-        return DeviceRepository.get().getDevices(id);
+        return DeviceRepository.get().getDevices(this.id);
     }
 }

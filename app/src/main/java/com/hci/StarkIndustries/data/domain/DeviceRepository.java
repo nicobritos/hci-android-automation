@@ -1,7 +1,6 @@
 package com.hci.StarkIndustries.data.domain;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -11,8 +10,6 @@ import com.hci.StarkIndustries.data.Models.devices.CommonDeviceModel;
 import com.hci.StarkIndustries.data.remote.Api;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,30 +40,23 @@ public class DeviceRepository extends FavouriteRepository {
         return result;
     }
 
-    public LiveData<Result<Boolean>> performActionOnDevice(String id, String actionId, String key, String value) {
+    public <T> LiveData<Result<Object>> performActionOnDevice(String id, String actionId, String key, T value) {
+        JSONArray payload = new JSONArray();
+        if (key != null)
+            payload.put(value);
 
-        List<String> payload = new ArrayList<>();
-        JSONArray payload_ = new JSONArray();
-        if (key != null) {
-            // El parametro es un Array con el elemento adentro, no es un objeto
-            payload.add(value);
-            payload_.put(value);
-//            try {
-//                payload.put(value);
-//                //payload.put(key, value);
-//            } catch (JSONException e) {
-//                Log.e(TAG, e.toString());
-//            }
-        }
-
-        final MutableLiveData<Result<Boolean>> result = new MutableLiveData<>();
+        final MutableLiveData<Result<Object>> result = new MutableLiveData<>();
         this.api.performActionOnDevice(id, actionId, payload, getListener(result), getErrorListener(api, result));
         return result;
     }
 
     public LiveData<Result<ArrayList<CommonDeviceModel>>> getDevices() {
         final MutableLiveData<Result<ArrayList<CommonDeviceModel>>> result = new MutableLiveData<>();
-        this.api.getDevices(getListener(result), getErrorListener(api, result));
+        this.api.getDevices(getListener(result, deviceModels -> {
+            return deviceModels.stream()
+                    .sorted()
+                    .collect(Collectors.toCollection(ArrayList::new));
+        }), getErrorListener(api, result));
         return result;
     }
 
@@ -75,7 +65,10 @@ public class DeviceRepository extends FavouriteRepository {
 
         this.api.getDevices(
                 getListener(result, commonDeviceModels -> {
-                    return commonDeviceModels.stream().filter(CommonDeviceModel::isFavourite).collect(Collectors.toCollection(ArrayList::new));
+                    return commonDeviceModels.stream()
+                            .filter(CommonDeviceModel::isFavourite)
+                            .sorted()
+                            .collect(Collectors.toCollection(ArrayList::new));
                 }),
                 getErrorListener(api, result)
         );
@@ -85,7 +78,11 @@ public class DeviceRepository extends FavouriteRepository {
 
     public LiveData<Result<ArrayList<CommonDeviceModel>>> getDevices(String roomId) {
         final MutableLiveData<Result<ArrayList<CommonDeviceModel>>> result = new MutableLiveData<>();
-        this.api.getDevices(roomId, getListener(result), getErrorListener(api, result));
+        this.api.getDevices(roomId, getListener(result, deviceModels -> {
+            return deviceModels.stream()
+                    .sorted()
+                    .collect(Collectors.toCollection(ArrayList::new));
+        }), getErrorListener(api, result));
         return result;
     }
 

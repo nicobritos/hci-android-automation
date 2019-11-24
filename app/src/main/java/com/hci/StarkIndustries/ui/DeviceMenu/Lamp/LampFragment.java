@@ -2,6 +2,7 @@ package com.hci.StarkIndustries.ui.DeviceMenu.Lamp;
 
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import com.madrapps.pikolo.listeners.SimpleColorSelectionListener;
 
 public class LampFragment extends DeviceFragment {
     private LampViewModel mViewModel;
+    private boolean loaded = false;
 
     public static LampFragment newInstance() {
         return new LampFragment();
@@ -47,7 +49,8 @@ public class LampFragment extends DeviceFragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                mViewModel.setIntensity(seekBar.getProgress());
+                if (loaded)
+                    mViewModel.setIntensity(seekBar.getProgress());
             }
         });
 
@@ -58,15 +61,15 @@ public class LampFragment extends DeviceFragment {
         colorPicker.setColorSelectionListener(new SimpleColorSelectionListener() {
             @Override
             public void onColorSelected(int color) {
-                // Do whatever you want with the color
-
-                if (switch_.isChecked()) {
-                    imageView.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
-                    mViewModel.setColor(color);
-                } else {
-                    LampModel model = mViewModel.getModel(LampFragment.this, getID()).getValue();
-                    imageView.getBackground().setColorFilter(model.getColorInt(), PorterDuff.Mode.MULTIPLY);
-                    colorPicker.setColor(model.getColorInt());
+                if (loaded) {
+                    if (switch_.isChecked()) {
+                        imageView.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
+                        mViewModel.setColor(color);
+                    } else {
+                        LampModel model = mViewModel.getModel(LampFragment.this, getID()).getValue();
+                        imageView.getBackground().setColorFilter(model.getColorInt(), PorterDuff.Mode.MULTIPLY);
+                        colorPicker.setColor(model.getColorInt());
+                    }
                 }
             }
         });
@@ -92,6 +95,9 @@ public class LampFragment extends DeviceFragment {
             ((ImageView)getView().findViewById(R.id.imageView))
                     .getBackground().setColorFilter(lampModel.getColorInt(), PorterDuff.Mode.MULTIPLY);
 
+            getView().findViewById(R.id.imageView).getBackground().setTint(lampModel.getColorInt());
+
+            if (!loaded) loaded = true;
         });
     }
 

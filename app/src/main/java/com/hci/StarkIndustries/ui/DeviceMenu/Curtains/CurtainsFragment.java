@@ -23,13 +23,9 @@ public class CurtainsFragment extends DeviceFragment {
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         viewModel = ViewModelProviders.of(this).get(CurtainsViewModel.class);
-
         View root = inflater.inflate(R.layout.fragment_courtains_menu, container, false);
-
         Button button = root.findViewById(R.id.curtainsButton);
-
         button.setOnClickListener(v -> viewModel.toggleState());
 
         return root;
@@ -40,9 +36,7 @@ public class CurtainsFragment extends DeviceFragment {
         super.onViewCreated(view, savedInstanceState);
 
         CurtainsViewModel model = ViewModelProviders.of(this).get(CurtainsViewModel.class);
-
         model.getModel(this, getID()).observe(this, curtainsModel -> {
-
             Button button = getView().findViewById(R.id.curtainsButton);
             ImageView image = getView().findViewById(R.id.curtainsImage);
 
@@ -53,7 +47,6 @@ public class CurtainsFragment extends DeviceFragment {
                 image.setImageResource(R.drawable.ic_curtain_closed);
                 button.setText(R.string.CourtainsButtonOpen);
             }
-
         });
     }
 

@@ -30,8 +30,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class Api {
@@ -40,6 +40,7 @@ public class Api {
     private final static String API_DEVICES = "devices";
     private final static String API_ROUTINES = "routines";
     private final static String API_REGIONS = "homes";
+    private final static String API_ROUTINES_EXECUTE = "execute";
 
     private static Api instance;
     private static RequestQueue requestQueue;
@@ -198,6 +199,23 @@ public class Api {
         return uuid;
     }
 
+    public String getRoomDevices(String id, Response.Listener<RoomModel> listener, Response.ErrorListener errorListener) {
+        return this.getRoom(
+                id,
+                roomResponse -> {
+                    this.getDevices(
+                            id,
+                            devicesResponse -> {
+                                roomResponse.addDevices(devicesResponse);
+                                listener.onResponse(roomResponse);
+                            },
+                            errorListener
+                    );
+                },
+                errorListener
+        );
+    }
+
     // Devices
     public String getDevices(Response.Listener<ArrayList<CommonDeviceModel>> listener, Response.ErrorListener errorListener) {
         GsonRequest<Object, ArrayList<CommonDeviceModel>> request = new GsonRequest<>(
@@ -256,16 +274,16 @@ public class Api {
         return uuid;
     }
 
-    public String performActionOnDevice(String id, String actionId, List<String> payload, Response.Listener<Boolean> listener, Response.ErrorListener errorListener) {
-        GsonRequest<List<String>, Boolean> request = new GsonRequest<>(
+    public String performActionOnDevice(String id, String actionId, JSONArray payload, Response.Listener<Object> listener, Response.ErrorListener errorListener) {
+        GsonRequest<Object, Object> request = new GsonRequest<>(
                 Request.Method.PUT,
                 this.formatUrl(API_DEVICES, id, actionId),
                 payload,
                 "result",
-                new TypeToken<Boolean>() {
+                new TypeToken<Object>() {
                 },
-                null,
-                null,
+                this::parseDeviceAction,
+                this.getHeaders(),
                 listener,
                 errorListener
         );
@@ -319,26 +337,37 @@ public class Api {
         return uuid;
     }
 
-    // General
-    public String updateMeta(String id, String name, JSONObject meta, APIEntityType entityType, Response.Listener<Boolean> listener, Response.ErrorListener errorListener) {
-        String endpoint = getEndpoint(entityType);
-
-        JSONObject data = new JSONObject();
-        try {
-            data.put("name", name);
-            data.put("meta", meta);
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
-        }
+    public String executeRoutine(String id, Response.Listener<Boolean> listener, Response.ErrorListener errorListener) {
         GsonRequest<Object, Boolean> request = new GsonRequest<>(
-                Request.Method.PUT,
-                this.formatUrl(endpoint, id),
-                data,
+                Request.Method.GET,
+                this.formatUrl(API_ROUTINES, id, API_ROUTINES_EXECUTE),
+                null,
                 "result",
                 new TypeToken<Boolean>() {
                 },
                 null,
                 null,
+                listener,
+                errorListener
+        );
+
+        String uuid = UUID.randomUUID().toString();
+        request.setTag(uuid);
+        requestQueue.add(request);
+        return uuid;
+    }
+
+    // General
+    public String updateMeta(String id, JSONObject parsedObject, APIEntityType entityType, Response.Listener<Boolean> listener, Response.ErrorListener errorListener) {
+        GsonRequest<Object, Boolean> request = new GsonRequest<>(
+                Request.Method.PUT,
+                this.formatUrl(getEndpoint(entityType), id),
+                parsedObject,
+                "result",
+                new TypeToken<Boolean>() {
+                },
+                null,
+                this.getHeaders(),
                 listener,
                 errorListener
         );
@@ -380,8 +409,7 @@ public class Api {
         if (!handled) {
             Log.e(TAG, error.toString());
 
-            ArrayList<String> description = new ArrayList<>(Arrays.asList(error.getMessage()));
-            response = new Error(6, description);
+            response = new Error(6, error.getMessage());
         }
 
         return response;
@@ -404,7 +432,14 @@ public class Api {
         ArrayList<CommonDeviceModel> list = new ArrayList<>();
 
         try {
-            JSONArray array = new JSONObject(jsonString).getJSONArray("devices");
+            JSONObject jsonObject = new JSONObject(jsonString);
+            JSONArray array;
+            if (jsonObject.has("devices")) {
+                array = new JSONObject(jsonString).getJSONArray("devices");
+            } else {
+                array = new JSONObject(jsonString).getJSONArray("result");
+            }
+
             for (int i = 0; i < array.length(); i++) {
                 list.add(this.parseDeviceJSON(gson, array.getJSONObject(i)));
             }
@@ -421,6 +456,10 @@ public class Api {
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private Object parseDeviceAction(Gson gson, String jsonString) {
+        return true;
     }
 
     private CommonDeviceModel parseDeviceJSON(Gson gson, JSONObject jsonObject) {
@@ -469,6 +508,13 @@ public class Api {
                 return null;
         }
     }
+
+    public Map<String, String> getHeaders() {
+        HashMap<String, String> headers = new HashMap<>();
+        headers.put("Content-Type", "application/json; charset=utf-8");
+        return headers;
+    }
+
 
     public enum APIEntityType {
         DEVICE, ROOM, REGION, ROUTINE

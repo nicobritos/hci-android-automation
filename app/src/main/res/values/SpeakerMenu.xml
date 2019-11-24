@@ -3,13 +3,22 @@
 
     <string-array name="SpeakerGenreList">
         <item>
-            Rock
+            Classical
+        </item>
+        <item>
+            Country
+        </item>
+        <item>
+            Dance
+        </item>
+        <item>
+            Latina
         </item>
         <item>
             Pop
         </item>
         <item>
-            Soul
+            Rock
         </item>
     </string-array>
     <string name="SpeakerModeTitle">Mode</string>

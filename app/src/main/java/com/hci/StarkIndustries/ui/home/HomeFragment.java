@@ -47,7 +47,6 @@ public class HomeFragment extends APIReloadingFragment implements IClickableItem
         return root;
     }
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -69,7 +68,6 @@ public class HomeFragment extends APIReloadingFragment implements IClickableItem
             }
         });
     }
-
 
     @Override
     public void onItemClick(String id) {
