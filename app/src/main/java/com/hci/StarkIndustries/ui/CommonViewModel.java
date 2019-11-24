@@ -19,7 +19,7 @@ public abstract class CommonViewModel<T> extends ViewModel {
             mModel = new MutableLiveData<>();
             this.id = id;
             this.lifecycleOwner = lifecycleOwner;
-            this.loadModel();
+            this.reloadModel();
         }
 
         return mModel;
@@ -39,10 +39,10 @@ public abstract class CommonViewModel<T> extends ViewModel {
         mModel.postValue(model);
     }
 
-    protected abstract void loadModel();
+    public abstract void reloadModel();
 
     protected <R> Void reloadModelCallback(Result<R> result) {
-        if (result.ok()) loadModel();
+        if (result.ok()) reloadModel();
         return null;
     }
 }

@@ -6,7 +6,7 @@ import com.hci.StarkIndustries.ui.CommonViewModel;
 
 public class RoomViewModel extends CommonViewModel<RoomModel> {
     @Override
-    protected void loadModel() {
+    public void reloadModel() {
         RoomRepository.get().getRoomDevices(this.id).observe(this.lifecycleOwner, this::onModelLoad);
     }
 }

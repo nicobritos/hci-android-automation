@@ -12,7 +12,7 @@ import java.util.function.Function;
 
 public abstract class DeviceViewModel<T extends CommonDeviceModel> extends FavouritableCommonViewModel<T> {
     @Override
-    protected void loadModel() {
+    public void reloadModel() {
         DeviceRepository.get().getDevice(this.id).observe(this.lifecycleOwner, this::onModelLoad);
     }
 
