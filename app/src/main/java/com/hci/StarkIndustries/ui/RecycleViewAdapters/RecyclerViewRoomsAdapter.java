@@ -16,10 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewRoomsAdapter extends RecyclerView.Adapter<RecyclerViewRoomsAdapter.ViewHolder> {
-
     private List<RoomModel> rooms = new ArrayList<>();
-    private Context mContext;
     private IClickableItem clickableItem;
+    private Context mContext;
 
     public RecyclerViewRoomsAdapter(Context mContext, IClickableItem inter) {
         this.mContext = mContext;
@@ -35,11 +34,8 @@ public class RecyclerViewRoomsAdapter extends RecyclerView.Adapter<RecyclerViewR
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         RoomModel room = rooms.get(position);
-
         holder.name.setText(room.getName());
-
     }
 
     @Override
@@ -59,14 +55,7 @@ public class RecyclerViewRoomsAdapter extends RecyclerView.Adapter<RecyclerViewR
             super(itemView);
             name = itemView.findViewById(R.id.RoomName);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    clickableItem.onItemClick(rooms.get(getAdapterPosition()).getId());
-
-                }
-            });
+            itemView.setOnClickListener(v -> clickableItem.onItemClick(rooms.get(getAdapterPosition()).getId()));
         }
     }
 }

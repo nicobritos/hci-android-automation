@@ -8,69 +8,48 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.hci.StarkIndustries.MainActivity;
 import com.hci.StarkIndustries.R;
-import com.hci.StarkIndustries.ui.APIReloadingFragment;
-import com.hci.StarkIndustries.ui.Miniatures.BaseDeviceFragment.DevicesListFragment;
+import com.hci.StarkIndustries.ui.DeviceMenu.IdentifiableFragment;
 import com.hci.StarkIndustries.ui.Miniatures.RoomDevices.RoomDevicesListFragment;
 
-public class RoomFragment extends APIReloadingFragment {
+public class RoomFragment extends IdentifiableFragment {
     private RoomViewModel mViewModel;
-    private String id = "";
-
-    public RoomFragment() {
-        // Required empty public constructor
-    }
-
 
     public static RoomFragment newInstance() {
-        RoomFragment fragment = new RoomFragment();
-
-        return fragment;
+        return new RoomFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            id = getArguments().getString("id");
+            this.setID(getArguments().getString("id"));
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_room, container, false);
         ((MainActivity)getActivity()).SetTitleColor();
 
         RoomDevicesListFragment fragment = (RoomDevicesListFragment) getChildFragmentManager().findFragmentById(R.id.RoomDevicesFragmentContainer);
+        fragment.setRoomId(this.getID());
 
         return root;
     }
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         mViewModel = ViewModelProviders.of(this).get(RoomViewModel.class);
-
-        mViewModel.getModel(id).observe(this, roomModel -> {
+        mViewModel.getModel(this, this.getID()).observe(this, roomModel -> {
             ((TextView) getView().findViewById(R.id.RoomTitle)).setText(roomModel.getName());
-
-            RoomDevicesListFragment fragment = (RoomDevicesListFragment) getChildFragmentManager()
-                    .findFragmentById(R.id.RoomDevicesFragmentContainer);
         });
-
-
-    }
-
-    @Override
-    protected void reloadPage() {
-        DevicesListFragment fragment = (DevicesListFragment) getChildFragmentManager().findFragmentById(R.id.RoomDevicesFragmentContainer);
-        fragment.ReloadElements();
     }
 }

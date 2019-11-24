@@ -12,24 +12,24 @@ import java.util.function.Function;
 
 public abstract class DeviceViewModel<T extends CommonDeviceModel> extends FavouritableCommonViewModel<T> {
     @Override
-    protected void loadModel() {
+    public void reloadModel() {
         DeviceRepository.get().getDevice(this.id).observe(this.lifecycleOwner, this::onModelLoad);
     }
 
-    protected LiveData<Result<Boolean>> performActionOnDevice(String actionId) {
+    protected LiveData<Result<Object>> performActionOnDevice(String actionId) {
         return this.performActionOnDevice(actionId, null, null, this::reloadModelCallback);
     }
 
-    protected LiveData<Result<Boolean>> performActionOnDevice(String actionId, Function<Result<Boolean>, Void> callback) {
+    protected LiveData<Result<Object>> performActionOnDevice(String actionId, Function<Result<Object>, Void> callback) {
         return this.performActionOnDevice(actionId, null, null, callback);
     }
 
-    protected LiveData<Result<Boolean>> performActionOnDevice(String actionId, String key, String value) {
+    protected <R> LiveData<Result<Object>> performActionOnDevice(String actionId, String key, R value) {
         return this.performActionOnDevice(actionId, key, value, this::reloadModelCallback);
     }
 
-    protected LiveData<Result<Boolean>> performActionOnDevice(String actionId, String key, String value, Function<Result<Boolean>, Void> callback) {
-        LiveData<Result<Boolean>> resultLiveData = DeviceRepository.get().performActionOnDevice(
+    protected <R> LiveData<Result<Object>> performActionOnDevice(String actionId, String key, R value, Function<Result<Object>, Void> callback) {
+        LiveData<Result<Object>> resultLiveData = DeviceRepository.get().performActionOnDevice(
                 model.getId(),
                 actionId,
                 key,

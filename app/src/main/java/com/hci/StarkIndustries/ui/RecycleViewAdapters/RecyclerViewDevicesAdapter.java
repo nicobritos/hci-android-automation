@@ -43,7 +43,7 @@ public class RecyclerViewDevicesAdapter extends RecyclerView.Adapter<RecyclerVie
         Log.d(TAG, "onBindViewHolder: called");
 
         CommonDeviceModel model = devices.get(position);
-        holder.roomName.setText(model.getRoom() != null ? model.getRoom().getName() : "NO TENGO DUENO");
+        holder.roomName.setText(model.getRoom() != null ? model.getRoom().getName() : "");
         holder.deviceName.setText(model.getName());
         holder.image.setImageResource(getImageResourcesForDevice(model.getDeviceType()));
     }

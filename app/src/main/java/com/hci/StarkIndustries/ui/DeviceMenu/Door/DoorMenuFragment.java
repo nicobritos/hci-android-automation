@@ -33,7 +33,6 @@ public class DoorMenuFragment extends DeviceFragment {
         final ImageView doorLockSwitcher = root.findViewById(R.id.isDoorLockedImage);
 
         Switch openDoorButton = root.findViewById(R.id.OpenDoorBtn);
-
         openDoorButton.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked)
                 mViewModel.open();
@@ -42,7 +41,6 @@ public class DoorMenuFragment extends DeviceFragment {
         });
 
         Switch lockDoorButton = root.findViewById(R.id.LockDoorBtn);
-
         lockDoorButton.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked)
                 mViewModel.lock();
@@ -57,10 +55,7 @@ public class DoorMenuFragment extends DeviceFragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(DoorMenuViewModel.class);
 
-        Log.d(TAG, "onActivityCreated: Por entrar al GetModel");
-
         mViewModel.getModel(this, getID()).observe(this, doorModel -> {
-            Log.d(TAG, "onChanged: isOpen: " + doorModel.isOpen() + " isLocked: " + doorModel.isLocked());
             if (doorModel.isOpen()) {
                 ((ImageView) getView().findViewById(R.id.IsDoorOpenImage)).setImageResource(R.drawable.ic_open_door);
                 ((Switch) getView().findViewById(R.id.OpenDoorBtn)).setText(R.string.DoorButtonClose);
