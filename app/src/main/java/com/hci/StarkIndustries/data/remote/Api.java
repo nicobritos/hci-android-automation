@@ -3,8 +3,6 @@ package com.hci.StarkIndustries.data.remote;
 import android.content.Context;
 import android.util.Log;
 
-import androidx.lifecycle.LiveData;
-
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -31,7 +29,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -50,7 +47,13 @@ public class Api {
     // Use IP 10.0.2.2 instead of 127.0.0.1 when running Android emulator in the
     // same computer that runs the API.
     // TODO: Change
-    private final String URL = "http://10.0.2.2:9090/api";
+
+    private static String URL = "http://10.0.2.2:8080/api";
+
+    public static void setEndpoint(String newEndpoint){
+        URL = newEndpoint;
+    }
+
 
     private Api(Context context) {
         requestQueue = VolleySingleton.getInstance(context).getRequestQueue();

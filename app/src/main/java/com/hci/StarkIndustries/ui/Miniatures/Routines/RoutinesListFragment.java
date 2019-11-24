@@ -9,11 +9,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hci.StarkIndustries.R;
+import com.hci.StarkIndustries.data.Models.Result;
+import com.hci.StarkIndustries.data.Models.RoutineModel;
 import com.hci.StarkIndustries.ui.RecycleViewAdapters.RecyclerViewRoutinesAdapter;
+
+import java.util.ArrayList;
 
 public class RoutinesListFragment extends Fragment {
     protected RoutinesListViewModel mViewModel;
@@ -27,7 +31,12 @@ public class RoutinesListFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.routines_list_fragment, container, false);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
+        int columns = 1;
+
+        if(view.findViewById(R.id.RoutinesFragmentPhoneIdentifier) == null)
+            columns = 2;
+
+        GridLayoutManager layoutManager = new GridLayoutManager(this.getContext(),columns, RecyclerView.VERTICAL, false);
         RecyclerView recyclerView = view.findViewById(R.id.RecyclerViewRoutines);
         recyclerView.setLayoutManager(layoutManager);
         RecyclerViewRoutinesAdapter adapter = new RecyclerViewRoutinesAdapter(this.getContext(), this);
@@ -59,5 +68,27 @@ public class RoutinesListFragment extends Fragment {
                 getView().findViewById(R.id.NoRoutinesView).setVisibility(View.VISIBLE);
             }
         });
+
+    }
+
+    public void ReloadElements(){
+
+        Result<ArrayList<RoutineModel>> temp = mViewModel.getModel().getValue();
+        RecyclerView recyclerView = getView().findViewById(R.id.RecyclerViewRoutines);
+
+        ArrayList<RoutineModel> arr = new ArrayList<>();
+
+
+        if (temp != null && temp.ok()) {
+            arr = temp.getResult();
+        }
+            ((RecyclerViewRoutinesAdapter) recyclerView.getAdapter()).setData(arr);
+            if (arr.size() == 0) {
+                getView().findViewById(R.id.NoRoutinesView).setVisibility(View.VISIBLE);
+            } else {
+                getView().findViewById(R.id.NoRoutinesView).setVisibility(View.GONE);
+            }
+
+
     }
 }

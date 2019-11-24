@@ -49,4 +49,10 @@ public class RoomFragment extends IdentifiableFragment {
             ((TextView) getView().findViewById(R.id.RoomTitle)).setText(roomModel.getName());
         });
     }
+
+    @Override
+    protected void reloadPage() {
+        DevicesListFragment fragment = (DevicesListFragment) getChildFragmentManager().findFragmentById(R.id.RoomDevicesFragmentContainer);
+        fragment.ReloadElements();
+    }
 }
