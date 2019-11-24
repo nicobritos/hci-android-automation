@@ -2,6 +2,7 @@ package com.hci.StarkIndustries.data.remote;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -42,6 +43,7 @@ public class Api {
     private final static String API_REGIONS = "homes";
     private final static String API_ROUTINES_EXECUTE = "execute";
 
+    private Context mContext;
     private static Api instance;
     private static RequestQueue requestQueue;
     // Use IP 10.0.2.2 instead of 127.0.0.1 when running Android emulator in the
@@ -57,6 +59,7 @@ public class Api {
 
     private Api(Context context) {
         requestQueue = VolleySingleton.getInstance(context).getRequestQueue();
+        mContext = context;
     }
 
     public static synchronized Api getInstance(Context context) {
@@ -411,6 +414,8 @@ public class Api {
 
             response = new Error(6, error.getMessage());
         }
+
+        Toast.makeText(mContext,"API ERROR",Toast.LENGTH_LONG).show();
 
         return response;
     }

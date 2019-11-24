@@ -26,6 +26,10 @@ public abstract class CommonRepository {
     }
 
     protected static <T> Response.ErrorListener getErrorListener(final Api api, final MutableLiveData<Result<T>> result) {
-        return (error) -> result.setValue(new Result<>(null, api.handleError(error)));
+        return (error) ->{
+
+            result.setValue(new Result<>(null, api.handleError(error)));
+
+        };
     }
 }

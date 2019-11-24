@@ -25,13 +25,13 @@ public abstract class APIReloadingFragment extends Fragment implements ChangeEnd
 
             Api.setEndpoint(oldAddress);
             act.sharedPreferences.edit().putString("API ENDPOINT",oldAddress).commit();
-            reloadPage();
+           // reloadPage();
 
         });
 
         snackbar.show();
 
-        reloadPage();
+        //reloadPage();
     }
 
     abstract protected void reloadPage();
