@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.hci.StarkIndustries.MainActivity;
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.ui.APIReloadingFragment;
 import com.hci.StarkIndustries.ui.Miniatures.BaseDeviceFragment.DevicesListFragment;
@@ -44,6 +45,7 @@ public class RoomFragment extends APIReloadingFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_room, container, false);
+        ((MainActivity)getActivity()).SetTitleColor();
 
         RoomDevicesListFragment fragment = (RoomDevicesListFragment) getChildFragmentManager().findFragmentById(R.id.RoomDevicesFragmentContainer);
 

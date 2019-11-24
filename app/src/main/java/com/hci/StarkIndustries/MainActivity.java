@@ -1,7 +1,11 @@
 package com.hci.StarkIndustries;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -59,13 +63,21 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
 
-//        ActionBar actionBar = getSupportActionBar();
-//        actionBar.setDisplayHomeAsUpEnabled(true);
+
 
 
 
         initializeFragments();
 
+    }
+
+    public void SetTitleColor(){
+        ActionBar actionBar = getSupportActionBar();
+        Spannable text = new SpannableString(actionBar.getTitle());
+
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_add_black_24dp);
+        text.setSpan(new ForegroundColorSpan(Color.BLACK), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        actionBar.setTitle(text);
     }
 
     @Override

@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.hci.StarkIndustries.MainActivity;
 import com.hci.StarkIndustries.R;
 import com.hci.StarkIndustries.ui.APIReloadingFragment;
 import com.hci.StarkIndustries.ui.Miniatures.Routines.RoutinesListFragment;
@@ -24,7 +25,7 @@ public class RoutinesFragment extends APIReloadingFragment {
         routinesViewModel =
                 ViewModelProviders.of(this).get(RoutinesViewModel.class);
         View root = inflater.inflate(R.layout.fragment_routines, container, false);
-
+        ((MainActivity)getActivity()).SetTitleColor();
         return root;
     }
 

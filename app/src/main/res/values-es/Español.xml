@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ACTemperatureTitle">Temperatura del aire acondicionado</string>
+    <string name="ACHorizontalTitle">Movimiento Horizontal</string>
+    <string name="ACVerticalTitle">Movimiento Vertical</string>
+    <string-array name="ACModeList">
+        <item>
+            Frio
+        </item>
+        <item>
+            Calido
+        </item>
+        <item>
+            Ventilador
+        </item>
+    </string-array>
+
+    <string-array name="ACVerticalMovementList">
+        <item>
+            Automatico
+        </item>
+        <item>
+            22 grados
+        </item>
+        <item>
+            45 grados
+        </item>
+        <item>
+            67 grados
+        </item>
+        <item>
+            90 grados
+        </item>
+    </string-array>
+
+    <string-array name="ACHorizontalMovementList">
+        <item>
+            Automatico
+        </item>
+        <item>
+            -90 grados
+        </item>
+        <item>
+            -45 grados
+        </item>
+        <item>
+            0 grados
+        </item>
+        <item>
+            45 grados
+        </item>
+        <item>
+            90 grados
+        </item>
+    </string-array>
+
+    <string-array name="ACFanSpeedList">
+        <item>
+            Automatico
+        </item>
+        <item>
+            25 %
+        </item>
+        <item>
+            50 %
+        </item>
+        <item>
+            75 %
+        </item>
+        <item>
+            100 %
+        </item>
+    </string-array>
+    <string name="ACPowerText">Aire Acondicionado</string>
+    <string name="ACModeTitle">Modo</string>
+    <string name="ACFanSpeedTitle">Velocidad del Ventilador</string>
+    <string name="CourtainsButtonOpen">
+        Abrir Cortinas
+    </string>
+    <string name="CourtainsButtonClose">
+        Cerar Cortinas
+    </string>
+
+    <string name="DoorButtonOpen">Abrir la Puerta</string>
+    <string name="DoorButtonClose">Cerrar la Pruerta</string>
+    <string name="DoorButtonLock">Trabar la Puerta</string>
+    <string name="DoorButtonUnlock">Destrabar la Puerta</string>
+
+    <string name="FridgeTemperatureTitle">Temperatura de la Heladera</string>
+    <string name="FreezerTemperatureTitle">Temperatura del Freezer</string>
+    <string name="FridgeMode">Modo</string>
+    <string name="FridgeSelectMode">Seleccionar Modo</string>
+    <string-array name="FridgeModeOptions">
+        <item>
+            Default
+        </item>
+        <item>
+            Fiesta
+        </item>
+        <item>
+            Vacaciones
+        </item>
+    </string-array>
+
+    <string name="LampSwitch">Lampara</string>
+    <string name="LampSliderTitle">Intensidad</string>
+
+    <string name="OvenTitle">Horno</string>
+    <string name="OvenTemperatureTitle">Temperatura del Horno</string>
+    <string name="OvenGrillModeTitle">Modo Grill</string>
+    <string name="OvenHeatSourceTitle">Fuente de Calor</string>
+    <string name="OvenConvectionMode">Modo de Convección</string>
+    <string-array name="OvenHeatSourceDDL">
+        <item>
+            Default
+        </item>
+        <item>
+            Superior
+        </item>
+        <item>
+            Inferior
+        </item>
+    </string-array>
+
+    <string-array name="OvenGrillModeDDL">
+        <item>
+            Apagado
+        </item>
+        <item>
+            Economía
+        </item>
+        <item>
+            Completo
+        </item>
+    </string-array>
+
+    <string-array name="OvenConvectionModeDDL">
+        <item>
+            Apagado
+        </item>
+        <item>
+            Economía
+        </item>
+        <item>
+            Default
+        </item>
+    </string-array>
+
+    <string-array name="SpeakerGenreList">
+        <item>
+            Rock
+        </item>
+        <item>
+            Pop
+        </item>
+        <item>
+            Soul
+        </item>
+    </string-array>
+    <string name="SpeakerModeTitle">Modo</string>
+    <string name="SpeakerNoSong">Presiona Play para escuchar música</string>
+
+    <string name="app_name">Stark Industries</string>
+    <string name="title_home">Cuartos</string>
+    <string name="title_favorites">Favoritos</string>
+    <string name="title_routines">Rutinas</string>
+
+    <string name="TitleRoom">Cuarto</string>
+    <string name="EmptyRegionText">Ups, no hay ningún cuarto en esta región...</string>
+    <string name="EmptyRoomText">Ups, No hay ningún dispositivo en acá...</string>
+    <string name="EmptyRoutinesText">No hay ninguna rutina acá</string>
+    <string name="EmptyHouseText">No hay regiones en esta casa</string>
+
+    <string name="defaultAPIEndpoint">
+        http://10.0.2.2:9090/api
+    </string>
+    <string name="newEndpointText">La API fue actualizada!</string>
+    <string name="newEndpointUndo">Deshacer</string>
+    <string name="EndpointError">API inválida</string>
+
+
+</resources>

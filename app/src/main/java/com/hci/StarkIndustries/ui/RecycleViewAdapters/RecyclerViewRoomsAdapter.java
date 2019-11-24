@@ -38,7 +38,7 @@ public class RecyclerViewRoomsAdapter extends RecyclerView.Adapter<RecyclerViewR
 
         RoomModel room = rooms.get(position);
 
-//        holder.name.setText(room.name);
+        holder.name.setText(room.getName());
 
     }
 
